@@ -1,0 +1,4 @@
+Controllers
+=================================
+.. automodule:: kervi.controller
+   :members:
