@@ -23,15 +23,17 @@ Features of the framework are:
 
 .. toctree::
    :maxdepth: 2
+   :includehidden:
    :caption: Contents:
 
-   install
    getstarted
-   dashboard
+   overview
+   dashboards
    sensors
    controllers
    camera
    ipc
+   cli
 
 
 Indices and tables

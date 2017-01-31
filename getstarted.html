@@ -34,8 +34,8 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Kervi 0.8 documentation" href="index.html"/>
-        <link rel="next" title="Dashboards" href="dashboard.html"/>
-        <link rel="prev" title="Installation" href="install.html"/> 
+        <link rel="next" title="Overview" href="overview.html"/>
+        <link rel="prev" title="Kervi!" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -86,12 +86,14 @@
             
                 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Get started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dashboard.html">Dashboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 </ul>
 
             
@@ -126,8 +128,6 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/getstarted.rst.txt" rel="nofollow"> View page source</a>
-          
         
       </li>
   </ul>
@@ -138,6 +138,30 @@
             
   <div class="section" id="get-started">
 <h1>Get started<a class="headerlink" href="#get-started" title="Permalink to this headline">¶</a></h1>
+<p>Install Kervi via pip:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">kervi</span>
+</pre></div>
+</div>
+<p>After kervi is installed a commandline tool <em>kervi</em> is available that helps with scaffolding Kervi apps.
+Create you first app in an empty folder by executing:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">kervi</span> <span class="n">create</span> <span class="n">application</span> <span class="n">myapp</span> <span class="s2">&quot;My first app&quot;</span>
+</pre></div>
+</div>
+<p>Start your new app by executing:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">myapp</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>The following output shuld be displayed (example):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Starting</span> <span class="n">kervi</span> <span class="n">application</span><span class="p">,</span> <span class="n">please</span> <span class="n">wait</span>
+<span class="n">load</span> <span class="n">sensors</span>
+<span class="n">load</span> <span class="n">controllers</span>
+<span class="n">load</span> <span class="n">cameras</span>
+<span class="n">init</span> <span class="n">IPC</span>
+<span class="n">Your</span> <span class="n">Kervi</span> <span class="n">application</span> <span class="ow">is</span> <span class="n">ready</span> <span class="n">at</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">0.120</span><span class="p">:</span><span class="mi">8080</span>
+</pre></div>
+</div>
+<p>If you enter the url into at browser you should see something like this</p>
+<img alt="_images/dashboard.png" src="_images/dashboard.png" />
 </div>
 
 
@@ -147,10 +171,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dashboard.html" class="btn btn-neutral float-right" title="Dashboards" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="overview.html" class="btn btn-neutral float-right" title="Overview" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="install.html" class="btn btn-neutral" title="Installation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="Kervi!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

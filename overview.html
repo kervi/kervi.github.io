@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Overview &mdash; Kervi 0.8 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Kervi 0.8 documentation" href="index.html"/>
+        <link rel="next" title="Dashboards" href="dashboards.html"/>
+        <link rel="prev" title="Get started" href="getstarted.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Kervi
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#kervi-app-anatomy">Kervi app anatomy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dashboards">Dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#link-components-to-dashboards">Link components to dashboards</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Kervi</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Overview</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<p>If you have completed the steps in the <em>Get started</em> section the result should be a running kervi application.
+The application has a system dashboard that shows sensors messauring cpu, memory and disk use and a power controller.</p>
+<div class="section" id="kervi-app-anatomy">
+<h2>Kervi app anatomy<a class="headerlink" href="#kervi-app-anatomy" title="Permalink to this headline">¶</a></h2>
+<p>The application is structured in several files with the following layout</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="n">root</span>
+<span class="o">|</span>
+<span class="o">|-</span> <span class="n">cams</span>
+    <span class="o">|-</span> <span class="fm">__init__</span>
+    <span class="o">|-</span> <span class="n">cam1</span><span class="o">.</span><span class="n">py</span>
+<span class="o">|-</span> <span class="n">controllers</span>
+    <span class="o">|-</span> <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
+    <span class="o">|-</span> <span class="n">my_controller</span><span class="o">.</span><span class="n">py</span>
+    <span class="o">|-</span> <span class="n">system_controller</span><span class="o">.</span><span class="n">py</span>
+<span class="o">|-</span> <span class="n">dashboards</span>
+    <span class="o">|-</span> <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
+<span class="o">|-</span> <span class="n">sensors</span>
+    <span class="o">|-</span> <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
+    <span class="o">|-</span> <span class="n">my_sensor</span><span class="o">.</span><span class="n">py</span>
+    <span class="o">|-</span> <span class="n">system_sensor</span><span class="o">.</span><span class="n">py</span>
+<span class="o">|-</span> <span class="n">myapp</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>The kervi application is bootstrapped in myapp.py</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.bootstrap</span> <span class="k">import</span> <span class="n">Application</span>
+<span class="kn">import</span> <span class="nn">kervi.utility.nethelper</span> <span class="k">as</span> <span class="nn">nethelper</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">({</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;myapp&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;My app&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;appKey&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;network&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;IPAddress&quot;</span><span class="p">:</span> <span class="n">nethelper</span><span class="o">.</span><span class="n">get_ip_address</span><span class="p">(),</span>
+            <span class="s2">&quot;IPCBasePort&quot;</span><span class="p">:</span><span class="mi">9500</span><span class="p">,</span>
+            <span class="s2">&quot;WebSocketPort&quot;</span><span class="p">:</span><span class="mi">9000</span><span class="p">,</span>
+            <span class="s2">&quot;WebPort&quot;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+            <span class="s2">&quot;IPCSecret&quot;</span><span class="p">:</span><span class="sa">b</span><span class="s2">&quot;a5fa439d-c285-49c1-a39a-af98babd2cbc&quot;</span>
+        <span class="p">},</span>
+    <span class="p">})</span>
+
+    <span class="n">APP</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The values for ports and secrets are generated by the Kervi commandline tool.
+When the Application.run is called the system looks for Kervi components in cam, controllers, dashboard and sensor folders.
+In each folder the __init__.py bootstraps and load the components that resides in the local folder.</p>
+</div>
+<div class="section" id="dashboards">
+<h2>Dashboards<a class="headerlink" href="#dashboards" title="Permalink to this headline">¶</a></h2>
+<p>The __init__.py in the dashboards folder contains the code that defines dashboards.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.dashboard</span> <span class="k">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">Camboard</span><span class="p">,</span> <span class="n">DashboardSection</span>
+
+<span class="c1">#Create the dashboards for your Kervi application here.</span>
+
+<span class="c1">#A camboard is a special dashbord where the background is a video feed.</span>
+<span class="c1">#is_default signals that this dashbord is shown first when ui starts.</span>
+<span class="c1">#cam1 is the id of the camera that should be used as video source.</span>
+<span class="n">MAIN</span> <span class="o">=</span> <span class="n">Camboard</span><span class="p">(</span><span class="s2">&quot;cam&quot;</span><span class="p">,</span> <span class="s2">&quot;Main&quot;</span><span class="p">,</span> <span class="s2">&quot;cam1&quot;</span><span class="p">,</span> <span class="n">is_default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">MAIN</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">DashboardSection</span><span class="p">(</span><span class="s2">&quot;section1&quot;</span><span class="p">))</span>
+
+<span class="c1">#Standard dashboard with several sections where sensors are placed.</span>
+<span class="c1">#Each sensor create links to one or more dashboard sections</span>
+<span class="n">SYSTEM</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;System&quot;</span><span class="p">)</span>
+<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">DashboardSection</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">collapsed</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">DashboardSection</span><span class="p">(</span><span class="s2">&quot;memory&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">collapsed</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">DashboardSection</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Log&quot;</span><span class="p">,</span> <span class="n">user_log</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">DashboardSection</span><span class="p">(</span><span class="s2">&quot;disk&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">DashboardSection</span><span class="p">(</span><span class="s2">&quot;power&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Power&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>In the example above two dashboards are defined CAM and SYSTEM. Each dashboard has one or more sections where kervi components like sensors and controllers are linked to.</p>
+</div>
+<div class="section" id="link-components-to-dashboards">
+<h2>Link components to dashboards<a class="headerlink" href="#link-components-to-dashboards" title="Permalink to this headline">¶</a></h2>
+<p>In the sensors folder a dummy sensor my_sensor.py looks like this:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.sensor</span> <span class="k">import</span> <span class="n">Sensor</span><span class="p">,</span> <span class="n">SensorThread</span>
+
+<span class="k">class</span> <span class="nc">MySensor</span><span class="p">(</span><span class="n">Sensor</span><span class="p">):</span>
+     <span class="sd">&quot;&quot;&quot; My sensor &quot;&quot;&quot;</span>
+     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+         <span class="n">Sensor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;mySensor&quot;</span><span class="p">,</span> <span class="s2">&quot;My sensor&quot;</span><span class="p">)</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;temp&quot;</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="mi">100</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="mi">0</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s2">&quot;C&quot;</span>
+
+         <span class="c1">#link the sensor to a dashboard section</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;cam&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;radial_gauge&quot;</span><span class="p">)</span>
+
+         <span class="c1">#variables needed for my sensor</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#dummy counter</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">counter_delta</span> <span class="o">=</span> <span class="mi">1</span>
+
+     <span class="k">def</span> <span class="nf">read_sensor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+         <span class="c1">#read_sensor is called by the SensorThread</span>
+         <span class="c1">#snippet below is just dummy code</span>
+         <span class="c1">#enter your real code here to read your sensor</span>
+
+         <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter_delta</span>
+
+         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max</span><span class="p">:</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">counter_delta</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min</span><span class="p">:</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">counter_delta</span> <span class="o">=</span> <span class="mi">1</span>
+
+         <span class="c1">#call new_sensor_reading to signal a new value</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">new_sensor_reading</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="p">)</span>
+
+ <span class="c1">#Add sensor to a SensorThread that polls the sensor by the specified interval</span>
+ <span class="n">MY_SENSOR_THREAD</span> <span class="o">=</span> <span class="n">SensorThread</span><span class="p">(</span><span class="n">MySensor</span><span class="p">(),</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The main method to present Kervi components on dashboards is by call link_to_dashboard on a Kervi component.
+In the snippet above the sensor is linked to the dashboard section <em>section1</em> on the dashboard with id <em>cam</em> and presented as a radial gauge.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dashboards.html" class="btn btn-neutral float-right" title="Dashboards" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="getstarted.html" class="btn btn-neutral" title="Get started" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Tim Wentzlau.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

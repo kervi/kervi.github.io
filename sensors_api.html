@@ -1,0 +1,488 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Sensors API &mdash; Kervi 0.8 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Kervi 0.8 documentation" href="index.html"/>
+        <link rel="up" title="Sensors" href="sensors.html"/>
+        <link rel="next" title="Controllers" href="controllers.html"/>
+        <link rel="prev" title="Sensors" href="sensors.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Kervi
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="sensors.html">Sensors</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Sensors API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Kervi</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="sensors.html">Sensors</a> &raquo;</li>
+      
+    <li>Sensors API</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-kervi.sensor">
+<span id="sensors-api"></span><h1>Sensors API<a class="headerlink" href="#module-kervi.sensor" title="Permalink to this headline">¶</a></h1>
+<p>Sensors in Kervi applications are handled via the classes Sensor and SensorThread. 
+The sensor handles sensor settings and reading the values and sensor threads polls the sensor.</p>
+<dl class="class">
+<dt id="kervi.sensor.Sensor">
+<em class="property">class </em><code class="descclassname">kervi.sensor.</code><code class="descname">Sensor</code><span class="sig-paren">(</span><em>sensor_id</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.sensor.Sensor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sensor is the base class that all sensors inherits from.
+This class handles storage in DB, trigger events when value change
+and linking to dashboards.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sensor_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Id of the sensor.
+This id is used in other components to reference this sesnor.</li>
+<li><strong>name</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Name of the sensor. User in UI</li>
+<li><strong>**kwargs</strong> &#8211; See below</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><em>title</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Title of the section.</li>
+<li><em>columns</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Number of columns in this section, default is 1.</li>
+<li><em>rows</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Number of rows in this section, default is 1.</li>
+<li><em>add_user_log</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; This section shows user log messages.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kervi.sensor.Sensor.link_to_dashboard">
+<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.sensor.Sensor.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Links the sensor to a dashboard.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dashboard_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Id of the dashboard to link to.
+Enter a * if the sensor should be linked to all dashboards.</li>
+<li><strong>section_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Id of the section to link to.
+This is the id of a section you have added your self to a dashboard or one of the
+system sections <em>sys-header</em>, <em>header</em> or <em>footer</em></li>
+<li><strong>**kwargs</strong> &#8211; See below</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><dl class="first docutils">
+<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; How many cells should the sensor occupy in the dashboard section.</dt>
+<dd>The actual size depends on the <em>type</em> a radia gauge of size 2 fills 2*2 cells.
+A vertical gauge is 2 cells heigh and 1 cell wide. 
+If size is 0 it will be as wide as the section.</dd>
+</dl>
+</li>
+<li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; One of the following values <em>radial_gauge</em>, <em>vertical_gauge</em>, <em>horizontal_gauge</em>, <em>chart</em> or <em>value</em>.</li>
+<li><em>chart_points</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Maximun number of points in the chart.</li>
+<li><em>show_sparkline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Show a sparkline next to the value.</li>
+<li><em>add_to_header</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Place the sensor in the header of the section.</li>
+<li><em>icon</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Icon to show. All Font Awesome icons are valid just enter the name of the icon without <em>fa-</em>.</li>
+<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Shows the sensor with out any 3d effect.</li>
+<li><em>show_value</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Show the numeric value and unit.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.sensor.Sensor.lower_fatal_limit">
+<code class="descname">lower_fatal_limit</code><a class="headerlink" href="#kervi.sensor.Sensor.lower_fatal_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>If set the sensor will trigger an event <em>sensorLowerFatal</em>
+if the value pases this limit from a higher previus value.
+When the sensor is displayed on a dashboard
+the zone from min to lower_fatal_limit is marked red.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">float</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.sensor.Sensor.lower_warning_limit">
+<code class="descname">lower_warning_limit</code><a class="headerlink" href="#kervi.sensor.Sensor.lower_warning_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>If set the sensor will trigger an event <em>sensorLowerWarning</em>
+if the value pases this limit from a higher previus value.
+When the sensor is displayed on a dashboard
+the zone from min or lower_fatal_limit to lower_warning_limit is marked yellow.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">float</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.sensor.Sensor.max">
+<code class="descname">max</code><a class="headerlink" href="#kervi.sensor.Sensor.max" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum value the sensor may mesaure.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">float</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.sensor.Sensor.min">
+<code class="descname">min</code><a class="headerlink" href="#kervi.sensor.Sensor.min" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum value the sensor may mesaure.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">float</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.sensor.Sensor.new_sensor_reading">
+<code class="descname">new_sensor_reading</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.sensor.Sensor.new_sensor_reading" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call this method to signal a new sensor reading.
+This method handles DB storage and triggers different events.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<code class="docutils literal"><span class="pre">float</span></code>) &#8211; New value to be stored in the system.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.sensor.Sensor.read_sensor">
+<code class="descname">read_sensor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.sensor.Sensor.read_sensor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method that must be implementd by the inherting class.
+This method is called by the sensor thread on regular intervals.</p>
+<p>There is no need to implement own polling systems or call time.sleep this
+is handles by the calling sensor thread.</p>
+<p>Use the method new_sensor_reading to store the value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.sensor.Sensor.save_to_db">
+<code class="descname">save_to_db</code><a class="headerlink" href="#kervi.sensor.Sensor.save_to_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>If true the method new_sensor_reading
+will save the sensor reading to DB.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">bool</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.sensor.Sensor.store_delta">
+<code class="descname">store_delta</code><a class="headerlink" href="#kervi.sensor.Sensor.store_delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enter how much a sensor value should change between readings before
+the method new_sensor_reading triggers db saving and send events.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">float</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.sensor.Sensor.type">
+<code class="descname">type</code><a class="headerlink" href="#kervi.sensor.Sensor.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sensor type enter values like temperature, pressure, counter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">str</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.sensor.Sensor.unit">
+<code class="descname">unit</code><a class="headerlink" href="#kervi.sensor.Sensor.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mesauring unit for value. Enter values like C, F, hPa</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">str</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.sensor.Sensor.upper_fatal_limit">
+<code class="descname">upper_fatal_limit</code><a class="headerlink" href="#kervi.sensor.Sensor.upper_fatal_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>If set the sensor will trigger an event <em>sensorUpperFatal</em> if the value pases this limit.
+When the sensor is displayed on a dashboard
+the zone from upper_fatal_limit to max is marked red.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">float</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.sensor.Sensor.upper_warning_limit">
+<code class="descname">upper_warning_limit</code><a class="headerlink" href="#kervi.sensor.Sensor.upper_warning_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>If set the sensor will trigger an event <em>sensorUpperWarning</em> if the value pases this limit.
+When the sensor is displayed on a dashboard the zone from upper_warning_limit
+to upper_fatal_limit or max is marked yellow.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">float</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kervi.sensor.SensorThread">
+<em class="property">class </em><code class="descclassname">kervi.sensor.</code><code class="descname">SensorThread</code><span class="sig-paren">(</span><em>sensors</em>, <em>reading_interval=1</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.sensor.SensorThread" title="Permalink to this definition">¶</a></dt>
+<dd><p>SensorThread is the base class that  polls sensors.
+Add one or more sensors and set polling interval.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>sensors</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Id of the sensor.
+This id is used in other components to reference this sesnor.</li>
+<li><strong>reading_interval</strong> (<code class="docutils literal"><span class="pre">float</span></code>) &#8211; Polling interval in seconds between</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="controllers.html" class="btn btn-neutral float-right" title="Controllers" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sensors.html" class="btn btn-neutral" title="Sensors" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Tim Wentzlau.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

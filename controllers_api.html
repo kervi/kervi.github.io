@@ -1,0 +1,507 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Controllers api &mdash; Kervi 0.8 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Kervi 0.8 documentation" href="index.html"/>
+        <link rel="up" title="Controllers" href="controllers.html"/>
+        <link rel="next" title="Camera and video" href="camera.html"/>
+        <link rel="prev" title="Controllers" href="controllers.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Kervi
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="controllers.html">Controllers</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Controllers api</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Kervi</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="controllers.html">Controllers</a> &raquo;</li>
+      
+    <li>Controllers api</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-kervi.controller">
+<span id="controllers-api"></span><h1>Controllers api<a class="headerlink" href="#module-kervi.controller" title="Permalink to this headline">¶</a></h1>
+<p>A Kervi controller is a class that acts upon input from users or events or the underlaying os.</p>
+<dl class="class">
+<dt id="kervi.controller.Controller">
+<em class="property">class </em><code class="descclassname">kervi.controller.</code><code class="descname">Controller</code><span class="sig-paren">(</span><em>controller_id</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.Controller" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Kervi controller is a class that acts upon input from users or events or the underlaying os.</p>
+<p>Examples for controllers are motor control, servo control, output to IO.</p>
+<dl class="method">
+<dt id="kervi.controller.Controller.link_to_dashboard">
+<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.Controller.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Links this component to a dashboard section.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dashboard_id</strong> &#8211; id of the dashboard to link to.</li>
+<li><strong>section_id</strong> (<em>str</em>) &#8211; id of the section.</li>
+<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values set in ui_parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><dl class="first docutils">
+<dt><em>ui_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Size of the component in dashboard unit size.</dt>
+<dd>In order to make the sections and components align correct a dashboard unit is defined.
+Default the dashboard unit is a square that is 150 x 150 pixels.
+The width of the select box is ui_size * dashboard unit size.</dd>
+</dl>
+</li>
+<li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Type of select box, dropdown or list.</li>
+<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Add this component to header of section.</li>
+<li><em>icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
+<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Flat look and feel.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kervi.controller.ControllerDateTimeInput">
+<em class="property">class </em><code class="descclassname">kervi.controller.</code><code class="descname">ControllerDateTimeInput</code><span class="sig-paren">(</span><em>input_id</em>, <em>name</em>, <em>input_type</em>, <em>controller</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerDateTimeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>A date and time component.</p>
+<dl class="method">
+<dt id="kervi.controller.ControllerDateTimeInput.link_to_dashboard">
+<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerDateTimeInput.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Links this component to a dashboard section.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dashboard_id</strong> &#8211; id of the dashboard to link to.</li>
+<li><strong>section_id</strong> (<em>str</em>) &#8211; id of the section.</li>
+<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values set in ui_parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><dl class="first docutils">
+<dt><em>ui_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Size of the component in dashboard unit size.</dt>
+<dd>In order to make the sections and components align correct a dashboard unit is defined.
+Default the dashboard unit is a square that is 150 x 150 pixels.
+The width of the select box is ui_size * dashboard unit size.</dd>
+</dl>
+</li>
+<li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Type of select box, dropdown or list.</li>
+<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Add this component to header of section.</li>
+<li><em>icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
+<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Flat look and feel.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kervi.controller.ControllerNumberInput">
+<em class="property">class </em><code class="descclassname">kervi.controller.</code><code class="descname">ControllerNumberInput</code><span class="sig-paren">(</span><em>input_id</em>, <em>name</em>, <em>controller</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerNumberInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>A number input component shows as a slider on dashboards.</p>
+<dl class="method">
+<dt id="kervi.controller.ControllerNumberInput.link_to_dashboard">
+<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerNumberInput.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Links this component to a dashboard section.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dashboard_id</strong> &#8211; id of the dashboard to link to.</li>
+<li><strong>section_id</strong> (<em>str</em>) &#8211; id of the section.</li>
+<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values set in ui_parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><dl class="first docutils">
+<dt><em>ui_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Size of the component in dashboard unit size.</dt>
+<dd>In order to make the sections and components align correct a dashboard unit is defined.
+Default the dashboard unit is a square that is 150 x 150 pixels.
+The width of the select box is ui_size * dashboard unit size.</dd>
+</dl>
+</li>
+<li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Type of select box, dropdown or list.</li>
+<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Add this component to header of section.</li>
+<li><em>icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
+<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Flat look and feel.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kervi.controller.ControllerSelect">
+<em class="property">class </em><code class="descclassname">kervi.controller.</code><code class="descname">ControllerSelect</code><span class="sig-paren">(</span><em>select_id</em>, <em>name</em>, <em>controller</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerSelect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select component for Kervi controller</p>
+<p>Usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CameraFrameRate</span><span class="p">(</span><span class="n">ControllerSelect</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller</span><span class="p">):</span>
+    <span class="n">ControllerSelect</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller</span><span class="o">.</span><span class="n">controllerId</span><span class="o">+</span><span class="s2">&quot;.framerate&quot;</span><span class="p">,</span> <span class="s2">&quot;Framerate&quot;</span> <span class="p">,</span> <span class="n">controller</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">addOption</span><span class="p">(</span><span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;5 / sec&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">addOption</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="s2">&quot;10 / sec&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">addOption</span><span class="p">(</span><span class="s2">&quot;15&quot;</span><span class="p">,</span> <span class="s2">&quot;15 / sec&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">selectedOptions</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Frame rate changed&quot;</span><span class="p">,</span> <span class="n">selectedOptions</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="kervi.controller.ControllerSelect.add_option">
+<code class="descname">add_option</code><span class="sig-paren">(</span><em>value</em>, <em>text</em>, <em>selected=False</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerSelect.add_option" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add option to select</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.controller.ControllerSelect.change">
+<code class="descname">change</code><span class="sig-paren">(</span><em>selected_options</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerSelect.change" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method fill in with your own code to be executed when a change occur.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.controller.ControllerSelect.link_to_dashboard">
+<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerSelect.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Links this component to a dashboard section.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dashboard_id</strong> &#8211; id of the dashboard to link to.</li>
+<li><strong>section_id</strong> (<em>str</em>) &#8211; id of the section.</li>
+<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values set in ui_parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><dl class="first docutils">
+<dt><em>ui_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Size of the component in dashboard unit size.</dt>
+<dd>In order to make the sections and components align correct a dashboard unit is defined.
+Default the dashboard unit is a square that is 150 x 150 pixels.
+The width of the select box is ui_size * dashboard unit size.</dd>
+</dl>
+</li>
+<li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Type of select box, dropdown or list.</li>
+<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Add this component to header of section.</li>
+<li><em>icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
+<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Flat look and feel.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kervi.controller.ControllerSwitchButton">
+<em class="property">class </em><code class="descclassname">kervi.controller.</code><code class="descname">ControllerSwitchButton</code><span class="sig-paren">(</span><em>button_id</em>, <em>name</em>, <em>controller</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerSwitchButton" title="Permalink to this definition">¶</a></dt>
+<dd><p>Switch button controller component, shows a on/off button in UI</p>
+<dl class="method">
+<dt id="kervi.controller.ControllerSwitchButton.link_to_dashboard">
+<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerSwitchButton.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Links this component to a dashboard section.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dashboard_id</strong> &#8211; id of the dashboard to link to.</li>
+<li><strong>section_id</strong> (<em>str</em>) &#8211; id of the section.</li>
+<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values set in ui_parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><dl class="first docutils">
+<dt><em>ui_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Size of the component in dashboard unit size.</dt>
+<dd>In order to make the sections and components align correct a dashboard unit is defined.
+Default the dashboard unit is a square that is 150 x 150 pixels.
+The width of the select box is ui_size * dashboard unit size.</dd>
+</dl>
+</li>
+<li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Type of select box, dropdown or list.</li>
+<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Add this component to header of section.</li>
+<li><em>icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
+<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Flat look and feel.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.controller.ControllerSwitchButton.off">
+<code class="descname">off</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerSwitchButton.off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method that is executed then button is turned off.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.controller.ControllerSwitchButton.on">
+<code class="descname">on</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerSwitchButton.on" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method fill that is executed when button is turned on.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kervi.controller.ControllerTextInput">
+<em class="property">class </em><code class="descclassname">kervi.controller.</code><code class="descname">ControllerTextInput</code><span class="sig-paren">(</span><em>input_id</em>, <em>name</em>, <em>controller</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerTextInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Text input component</p>
+<dl class="method">
+<dt id="kervi.controller.ControllerTextInput.link_to_dashboard">
+<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerTextInput.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Links this component to a dashboard section.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dashboard_id</strong> &#8211; id of the dashboard to link to.</li>
+<li><strong>section_id</strong> (<em>str</em>) &#8211; id of the section.</li>
+<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values set in ui_parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><dl class="first docutils">
+<dt><em>ui_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Size of the component in dashboard unit size.</dt>
+<dd>In order to make the sections and components align correct a dashboard unit is defined.
+Default the dashboard unit is a square that is 150 x 150 pixels.
+The width of the select box is ui_size * dashboard unit size.</dd>
+</dl>
+</li>
+<li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Type of select box, dropdown or list.</li>
+<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Add this component to header of section.</li>
+<li><em>icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
+<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Flat look and feel.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.controller.ControllerTextInput.value_changed">
+<code class="descname">value_changed</code><span class="sig-paren">(</span><em>new_value</em>, <em>old_value</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerTextInput.value_changed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method called when the content of the text box change.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="camera.html" class="btn btn-neutral float-right" title="Camera and video" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="controllers.html" class="btn btn-neutral" title="Controllers" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Tim Wentzlau.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

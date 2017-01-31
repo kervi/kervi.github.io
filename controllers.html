@@ -34,8 +34,8 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Kervi 0.8 documentation" href="index.html"/>
-        <link rel="next" title="Camera and video" href="camera.html"/>
-        <link rel="prev" title="Sensors" href="sensors.html"/> 
+        <link rel="next" title="Controllers api" href="controllers_api.html"/>
+        <link rel="prev" title="Sensors API" href="sensors_api.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -86,12 +86,17 @@
             
                 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dashboard.html">Dashboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Controllers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controllers_api.html">Controllers api</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 </ul>
 
             
@@ -126,8 +131,6 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/controllers.rst.txt" rel="nofollow"> View page source</a>
-          
         
       </li>
   </ul>
@@ -136,72 +139,56 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-kervi.controller">
-<span id="controllers"></span><h1>Controllers<a class="headerlink" href="#module-kervi.controller" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="kervi.controller.ControllerSelect">
-<em class="property">class </em><code class="descclassname">kervi.controller.</code><code class="descname">ControllerSelect</code><span class="sig-paren">(</span><em>select_id</em>, <em>name</em>, <em>controller</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerSelect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Select component for Kervi controller
-Usage:
-class CameraFrameRate(ControllerSelect):</p>
+  <div class="section" id="controllers">
+<h1>Controllers<a class="headerlink" href="#controllers" title="Permalink to this headline">¶</a></h1>
+<p>A Kervi controller is a class that acts upon input from users or events or the underlaying os.</p>
+<p>Examples for controllers are motor control, servo control, output to IO.</p>
+<p>User input comes from the following controller components:</p>
 <blockquote>
-<div>def __init__(self, controller):
-ControllerSelect.__init__(self, controller.controllerId+&#8221;.framerate&#8221;, &#8220;Framerate&#8221; , controller)
-self.addOption(&#8220;5&#8221;, &#8220;5 / sec&#8221;)
-self.addOption(&#8220;10&#8221;, &#8220;10 / sec&#8221;)
-self.addOption(&#8220;15&#8221;, &#8220;15 / sec&#8221;, True)</div></blockquote>
-<dl class="docutils">
-<dt>def change(self, selectedOptions):</dt>
-<dd>print (&#8220;Frame rate changed&#8221;, selectedOptions)</dd>
-</dl>
-<dl class="method">
-<dt id="kervi.controller.ControllerSelect.add_option">
-<code class="descname">add_option</code><span class="sig-paren">(</span><em>value</em>, <em>text</em>, <em>selected=False</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerSelect.add_option" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add option to select</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.controller.ControllerSelect.change">
-<code class="descname">change</code><span class="sig-paren">(</span><em>selected_options</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerSelect.change" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract method fill in with your own code to be executed when a change occur.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.controller.ControllerSelect.link_to_dashboard">
-<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.ControllerSelect.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
-<dd><p>Links this component to a dashboard section.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>dashboard_id</strong> &#8211; id of the dashboard to link to.</li>
-<li><strong>section_id</strong> (<em>str</em>) &#8211; id of the section.</li>
-<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values set in ui_parameters</li>
+<div><ul class="simple">
+<li>ControllerSelect</li>
+<li>ControllerButton</li>
+<li>ControllerSwitchButton</li>
+<li>ControllerNumberInput</li>
+<li>ControllerTextInput</li>
+<li>ControllerDateTimeInput</li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
-<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
-<li><em>ui_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Size of the component in dashboard unit size.</li>
-</ul>
-<p>In order to make the sections and components align correct a dashboard unit is defined.
-Default the dashboard unit is a square that is 150 x 150 pixels.
-The width of the select box is ui_size * dashboard unit size.</p>
-<ul class="last simple">
-<li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Type of select box, dropdown or list.</li>
-<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Add this component to header of section.</li>
-<li><em>icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
-<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Flat look and feel.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
+</div></blockquote>
+<p>The controller it self or the controller components may be linked to dashboards.</p>
+<p><strong>Example</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.controller</span> <span class="kn">import</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">ControllerSwitchButton</span>
 
-</dd></dl>
+<span class="c1">#Switch button shown on a dashboard</span>
+<span class="k">class</span> <span class="nc">LightButton</span><span class="p">(</span><span class="n">ControllerSwitchButton</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller</span><span class="p">):</span>
+        <span class="n">ControllerSwitchButton</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">controller</span><span class="o">.</span><span class="n">component_id</span><span class="o">+</span><span class="s2">&quot;.light&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Light 1&quot;</span><span class="p">,</span>
+            <span class="n">controller</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">on</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#event fired when user click the button in UI</span>
+        <span class="c1">#set GPIO pin high</span>
+
+    <span class="k">def</span> <span class="nf">off</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#event fired when user click the button in UI</span>
+        <span class="c1">#set GPIO pin low</span>
+
+<span class="k">class</span> <span class="nc">LightController</span><span class="p">(</span><span class="n">Controller</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Controller</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;lightController&quot;</span><span class="p">,</span> <span class="s2">&quot;Light&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;light&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_components</span><span class="p">(</span><span class="n">LightButton</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+
+<span class="n">MY_CONTROLLER</span> <span class="o">=</span> <span class="n">LightController</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
 </div>
 
 
@@ -211,10 +198,10 @@ The width of the select box is ui_size * dashboard unit size.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="camera.html" class="btn btn-neutral float-right" title="Camera and video" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="controllers_api.html" class="btn btn-neutral float-right" title="Controllers api" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="sensors.html" class="btn btn-neutral" title="Sensors" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="sensors_api.html" class="btn btn-neutral" title="Sensors API" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

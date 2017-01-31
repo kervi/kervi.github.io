@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Dashboards &mdash; Kervi 0.8 documentation</title>
+  <title>Dashboards api &mdash; Kervi 0.8 documentation</title>
   
 
   
@@ -34,8 +34,9 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Kervi 0.8 documentation" href="index.html"/>
+        <link rel="up" title="Dashboards" href="dashboards.html"/>
         <link rel="next" title="Sensors" href="sensors.html"/>
-        <link rel="prev" title="Overview" href="overview.html"/> 
+        <link rel="prev" title="Dashboards" href="dashboards.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -88,7 +89,10 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Dashboards</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="dashboards.html">Dashboards</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Dashboards api</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
@@ -124,7 +128,9 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Dashboards</li>
+          <li><a href="dashboards.html">Dashboards</a> &raquo;</li>
+      
+    <li>Dashboards api</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -137,24 +143,8 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-kervi.dashboard">
-<span id="dashboards"></span><h1>Dashboards<a class="headerlink" href="#module-kervi.dashboard" title="Permalink to this headline">¶</a></h1>
-<p>A dashboard is the main ui component in a kervi application.
-An application may define one or more dashboards if it is a home automation application
-A dashboard could be a room or a floor.</p>
-<p>Each dashbord contains one or more sections where it is possible to link
-sensors, controllers and camera output.</p>
-<p>A dashboard section is divided in columns and rows where the cell size is 150x150 pixels.
-When a component is linked to a section it is specified how many cells
-the component occupies in that section.</p>
-<p><strong>Example</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SYSTEM</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;System&quot;</span><span class="p">)</span>
-<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">DashboardSection</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">collapsed</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
-<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">DashboardSection</span><span class="p">(</span><span class="s2">&quot;memory&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">collapsed</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
-<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">DashboardSection</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Log&quot;</span><span class="p">,</span> <span class="n">user_log</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
-<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">DashboardSection</span><span class="p">(</span><span class="s2">&quot;disk&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">DashboardSection</span><span class="p">(</span><span class="s2">&quot;power&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Power&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
+<span id="dashboards-api"></span><h1>Dashboards api<a class="headerlink" href="#module-kervi.dashboard" title="Permalink to this headline">¶</a></h1>
+<p>A dashboard is the main ui component in a kervi application.</p>
 <dl class="class">
 <dt id="kervi.dashboard.Camboard">
 <em class="property">class </em><code class="descclassname">kervi.dashboard.</code><code class="descname">Camboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>name</em>, <em>camera_id</em>, <em>is_default=False</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.dashboard.Camboard" title="Permalink to this definition">¶</a></dt>
@@ -272,7 +262,7 @@ This id is used in other components to reference this section.</li>
         <a href="sensors.html" class="btn btn-neutral float-right" title="Sensors" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="overview.html" class="btn btn-neutral" title="Overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dashboards.html" class="btn btn-neutral" title="Dashboards" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
