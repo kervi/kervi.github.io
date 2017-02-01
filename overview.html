@@ -90,7 +90,9 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#kervi-app-anatomy">Kervi app anatomy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dashboards">Dashboards</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#link-components-to-dashboards">Link components to dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sensors">Sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#controllers">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-components-to-dashboards">Add components to dashboards</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
@@ -218,8 +220,8 @@ In each folder the __init__.py bootstraps and load the components that resides i
 </div>
 <p>In the example above two dashboards are defined CAM and SYSTEM. Each dashboard has one or more sections where kervi components like sensors and controllers are linked to.</p>
 </div>
-<div class="section" id="link-components-to-dashboards">
-<h2>Link components to dashboards<a class="headerlink" href="#link-components-to-dashboards" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sensors">
+<h2>Sensors<a class="headerlink" href="#sensors" title="Permalink to this headline">¶</a></h2>
 <p>In the sensors folder a dummy sensor my_sensor.py looks like this:</p>
 <div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.sensor</span> <span class="k">import</span> <span class="n">Sensor</span><span class="p">,</span> <span class="n">SensorThread</span>
 
@@ -258,8 +260,53 @@ In each folder the __init__.py bootstraps and load the components that resides i
  <span class="n">MY_SENSOR_THREAD</span> <span class="o">=</span> <span class="n">SensorThread</span><span class="p">(</span><span class="n">MySensor</span><span class="p">(),</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The main method to present Kervi components on dashboards is by call link_to_dashboard on a Kervi component.
-In the snippet above the sensor is linked to the dashboard section <em>section1</em> on the dashboard with id <em>cam</em> and presented as a radial gauge.</p>
+<p>A custom sensor inherits from the Sensor class. The Sensor class handles storage to DB, notify UI and other components via events.
+The custom sensor must implement the method read_sensor where code to get readings from sensore probes resides.
+A sensor reading is processed by the system by calling new_sensor_reading.</p>
+</div>
+<div class="section" id="controllers">
+<h2>Controllers<a class="headerlink" href="#controllers" title="Permalink to this headline">¶</a></h2>
+<p>Controllers react to user input and events triggered by other components. A custom controller inherits from the class Controller.
+To react to user input the controller must add one or more controller components.
+The example below implements light controller that controls a GPIO pin.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.controller</span> <span class="kn">import</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">ControllerSwitchButton</span>
+
+<span class="c1">#Switch button shown on a dashboard</span>
+<span class="k">class</span> <span class="nc">LightButton</span><span class="p">(</span><span class="n">ControllerSwitchButton</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller</span><span class="p">):</span>
+        <span class="n">ControllerSwitchButton</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">controller</span><span class="o">.</span><span class="n">component_id</span><span class="o">+</span><span class="s2">&quot;.light&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Light 1&quot;</span><span class="p">,</span>
+            <span class="n">controller</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">on</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#event fired when user click the button in UI</span>
+        <span class="c1">#set GPIO 23 pin high</span>
+
+    <span class="k">def</span> <span class="nf">off</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#event fired when user click the button in UI</span>
+        <span class="c1">#set GPIO pin 23 low</span>
+
+<span class="k">class</span> <span class="nc">LightController</span><span class="p">(</span><span class="n">Controller</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Controller</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;lightController&quot;</span><span class="p">,</span> <span class="s2">&quot;Light&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;light&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_components</span><span class="p">(</span><span class="n">LightButton</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+
+<span class="n">MY_CONTROLLER</span> <span class="o">=</span> <span class="n">LightController</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-components-to-dashboards">
+<h2>Add components to dashboards<a class="headerlink" href="#add-components-to-dashboards" title="Permalink to this headline">¶</a></h2>
+<p>In order to display sensors and other Kervi components they must be linked to a dashboard.
+This is done by calling link_to_dashboard on a Kervi component.
+In the sensor snippet above the sensor is linked to the dashboard section <em>section1</em> on the dashboard with id <em>cam</em> and presented as a radial gauge.
+The button defined in the controller snippet is linked to a dashboard section <em>light</em> on the dashboard whith id <em>system</em> and uses an icon.</p>
 </div>
 </div>
 
