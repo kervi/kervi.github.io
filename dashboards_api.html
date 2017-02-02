@@ -170,11 +170,10 @@ and controllers for pan/tilt at the center of the dashboard.</p>
 <dt id="kervi.dashboard.Dashboard">
 <em class="property">class </em><code class="descclassname">kervi.dashboard.</code><code class="descname">Dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.dashboard.Dashboard" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a UI dashboard. The dashboard will show up in the dashboard menu in the UI.</p>
-<p>A dashboard contains one or more sections. Kervi components like <em>sensors</em>,
-<em>controllers</em> and <em>controller components</em> all have a dashboard property where it is
-possible to link a kervi component to a dasboard and section.</p>
+<p>A dashboard contains one or more panels. Kervi components like <em>sensors</em>,
+<em>controllers</em> and <em>controller components</em> links to a panel on a dashboard.</p>
 <dl class="docutils">
-<dt>All dashboard have the following sections:</dt>
+<dt>All dashboard have the following panels:</dt>
 <dd><ul class="first last simple">
 <li>sys-header - for system info like cpu load</li>
 <li>header - for showing sensors and controllers in the top header</li>
@@ -206,14 +205,14 @@ possible to link a kervi component to a dasboard and section.</p>
 </tbody>
 </table>
 <dl class="method">
-<dt id="kervi.dashboard.Dashboard.add_section">
-<code class="descname">add_section</code><span class="sig-paren">(</span><em>section</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.dashboard.Dashboard.add_section" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a dashboard section to the dashboard</p>
+<dt id="kervi.dashboard.Dashboard.add_panel">
+<code class="descname">add_panel</code><span class="sig-paren">(</span><em>panel</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.dashboard.Dashboard.add_panel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a dashboard panel to the dashboard</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>section</strong> (<code class="docutils literal"><span class="pre">DashboardSection</span></code>) &#8211; A dashboardSection to add to this dashboard.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>panel</strong> (<code class="docutils literal"><span class="pre">DashboardPanel</span></code>) &#8211; A DashboardPanel to add to this dashboard.</td>
 </tr>
 </tbody>
 </table>
@@ -222,27 +221,27 @@ possible to link a kervi component to a dasboard and section.</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="kervi.dashboard.DashboardSection">
-<em class="property">class </em><code class="descclassname">kervi.dashboard.</code><code class="descname">DashboardSection</code><span class="sig-paren">(</span><em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.dashboard.DashboardSection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a dashboard section.</p>
+<dt id="kervi.dashboard.DashboardPanel">
+<em class="property">class </em><code class="descclassname">kervi.dashboard.</code><code class="descname">DashboardPanel</code><span class="sig-paren">(</span><em>panel_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.dashboard.DashboardPanel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a dashboard panel.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>section_id</strong> (<em>str</em>) &#8211; id of the section.
-This id is used in other components to reference this section.</li>
+<li><strong>panel_id</strong> (<em>str</em>) &#8211; id of the panel.
+This id is used in other components to reference this panel.</li>
 <li><strong>**kwargs</strong> &#8211; See below</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
-<li><em>title</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Title of the section.</li>
-<li><em>columns</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Number of columns in this section, default is 1.</li>
-<li><em>rows</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Number of rows in this section, default is 1.</li>
-<li><em>add_user_log</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; This section shows user log messages.</li>
-<li><em>collapsed</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; If true the body of the section is collapsed.</li>
+<li><em>title</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Title of the panel.</li>
+<li><em>columns</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Number of columns in this panel, default is 1.</li>
+<li><em>rows</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Number of rows in this panel, default is 1.</li>
+<li><em>add_user_log</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; This panel shows user log messages.</li>
+<li><em>collapsed</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; If true the body of the panel is collapsed.</li>
 </ul>
 </td>
 </tr>
