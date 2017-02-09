@@ -12,7 +12,7 @@ It is possible to link a camera to dashboard sections or as a dashboard backgrou
     :width: 45 %
 
 
-At the center of the camera stream there is a pan/tilt area where it is possible to control the camers
+There is a pan/tilt area at the center of the camera stream where it is possible to control the cameras
 pan and tilt if the camera is equiped with servos.
 
 Record and picture buttons are available for capturing single frames or video sequences from the camera.
