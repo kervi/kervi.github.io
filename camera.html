@@ -34,7 +34,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Kervi 0.8 documentation" href="index.html"/>
-        <link rel="next" title="Component communication" href="ipc.html"/>
+        <link rel="next" title="Camera api" href="camera_api.html"/>
         <link rel="prev" title="Controllers api" href="controllers_api.html"/> 
 
   
@@ -91,7 +91,10 @@
 <li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Camera and video</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Camera and video</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="camera_api.html">Camera api</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 </ul>
@@ -136,58 +139,83 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-kervi.camera">
-<span id="camera-and-video"></span><h1>Camera and video<a class="headerlink" href="#module-kervi.camera" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="kervi.camera.FrameCamera">
-<em class="property">class </em><code class="descclassname">kervi.camera.</code><code class="descname">FrameCamera</code><span class="sig-paren">(</span><em>camera_id</em>, <em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.camera.FrameCamera" title="Permalink to this definition">¶</a></dt>
-<dd><p>Simple camera that streams video frame by frame to the ui.
-Colud be used with the Raspberry PI camera.
-Fill in the abstract method get_frame with functionality that graps one frame from the camera.
-Frames must be pil images.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>camera_id</strong> &#8211; Id of the camera used to reference in dashboards.</li>
-<li><strong>name</strong> (<em>str</em>) &#8211; Name of the camera used in ui.</li>
-<li><strong>**kwargs</strong> &#8211; See below</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
-<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
-<li><dl class="first docutils">
-<dt><em>height</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211;</dt>
-<dd>Height of video frame. Default value is 480.</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><em>width</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211;</dt>
-<dd>Width of video frame. Default value is 640.</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><em>fps</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211;</dt>
-<dd>Frames per second.</dd>
-</dl>
-</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="kervi.camera.FrameCamera.get_frame">
-<code class="descname">get_frame</code><span class="sig-paren">(</span><em>height</em>, <em>width</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.camera.FrameCamera.get_frame" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract method.
-Fill in the abstract method get_frame with functionality that graps one frame from the camera.
-The method must return a pil images.</p>
-</dd></dl>
+  <div class="section" id="camera-and-video">
+<h1>Camera and video<a class="headerlink" href="#camera-and-video" title="Permalink to this headline">¶</a></h1>
+<p>Video and camera is managed via special Kervi Camera controllers.
+A camera controller capture frames from camera and feeds them into the system.</p>
+<p>It is possible to link a camera to dashboard sections or as a dashboard background.</p>
+<a class="reference internal image-reference" href="_images/dashboard_cam.png"><img alt="_images/dashboard_cam.png" src="_images/dashboard_cam.png" style="width: 45%;" /></a>
+<a class="reference internal image-reference" href="_images/panel_cam.png"><img alt="_images/panel_cam.png" src="_images/panel_cam.png" style="width: 45%;" /></a>
+<p>At the center of the camera stream there is a pan/tilt area where it is possible to control the camers
+pan and tilt if the camera is equiped with servos.</p>
+<p>Record and picture buttons are available for capturing single frames or video sequences from the camera.</p>
+<p>Changes to pan, tilt and buttons in the ui should be handled in abstract methods methods of the camera class.</p>
+<p><strong>Raspberry pi camera example</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">picamera</span>
+<span class="kn">from</span> <span class="nn">kervi.camera</span> <span class="kn">import</span> <span class="n">FrameCamera</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">io</span>
 
-</dd></dl>
+<span class="k">class</span> <span class="nc">Cam_1</span><span class="p">(</span><span class="n">FrameCamera</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">FrameCamera</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;cam1&quot;</span><span class="p">,</span> <span class="s2">&quot;camera 1&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fps</span> <span class="o">=</span> <span class="mi">10</span>
 
+    <span class="k">def</span> <span class="nf">capture_frames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">picamera</span><span class="o">.</span><span class="n">PiCamera</span><span class="p">()</span> <span class="k">as</span> <span class="n">camera</span><span class="p">:</span>
+            <span class="n">camera</span><span class="o">.</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+            <span class="n">camera</span><span class="o">.</span><span class="n">framerate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fps</span>
+
+            <span class="c1">#wait for camera to be ready</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+            <span class="n">stream</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">foo</span> <span class="ow">in</span> <span class="n">camera</span><span class="o">.</span><span class="n">capture_continuous</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s1">&#39;jpeg&#39;</span><span class="p">,</span> <span class="n">use_video_port</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+                <span class="n">stream</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
+                <span class="n">image</span><span class="o">=</span><span class="n">i</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">frame_ready</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+                <span class="n">stream</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">wait_next_frame</span><span class="p">()</span>
+
+                <span class="c1">#check if fps has changed</span>
+                <span class="k">if</span> <span class="n">camera</span><span class="o">.</span><span class="n">framerate</span> <span class="o">&lt;&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">fps</span><span class="p">:</span>
+                    <span class="n">camera</span><span class="o">.</span><span class="n">framerate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fps</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">terminate</span><span class="p">:</span>
+                    <span class="k">break</span>
+
+
+    <span class="k">def</span> <span class="nf">pan_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pan_value</span><span class="p">,</span> <span class="n">old_value</span><span class="p">):</span>
+        <span class="c1">#The user has changed the pan in ui.</span>
+        <span class="c1">#If you have a pan servo you can control it from here.</span>
+        <span class="c1">#pan_value range is from -100 to 100 where zero is center.</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;pan changed&quot;</span><span class="p">,</span> <span class="n">pan_value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tilt_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tilt_value</span><span class="p">,</span> <span class="n">old_value</span><span class="p">):</span>
+        <span class="c1">#The user has changed the tilt in ui.</span>
+        <span class="c1">#If you have a tilt servo you can control it from here.</span>
+        <span class="c1">#tilt_value range is from -100 to 100 where zero is center.</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;tilt changed&quot;</span><span class="p">,</span> <span class="n">tilt_value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">start_record</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#The user has clicked on the start record button in ui.</span>
+        <span class="c1">#Implement you save functionality here</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;start record&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">stop_record</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#The user has stopped the recording in ui.</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;stop record&quot;</span><span class="p">)</span>
+
+<span class="n">Cam_1</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
 </div>
 
 
@@ -197,7 +225,7 @@ The method must return a pil images.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ipc.html" class="btn btn-neutral float-right" title="Component communication" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="camera_api.html" class="btn btn-neutral float-right" title="Camera api" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="controllers_api.html" class="btn btn-neutral" title="Controllers api" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
