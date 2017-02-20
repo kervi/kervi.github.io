@@ -1,0 +1,377 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GPIO API &mdash; Kervi 0.8 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Kervi 0.8 documentation" href="index.html"/>
+        <link rel="up" title="Hardware and devices" href="hal.html"/>
+        <link rel="next" title="I2C API" href="hal_i2c_api.html"/>
+        <link rel="prev" title="Hardware and devices" href="hal.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Kervi
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="hal.html">Hardware and devices</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hal.html#select-platform">Select platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#gpio">GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#i2c">I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#spi">SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#device-library">Device library</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="hal.html#hal-api">Hal API</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">GPIO API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hal_i2c_api.html">I2C API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Kervi</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="hal.html">Hardware and devices</a> &raquo;</li>
+      
+    <li>GPIO API</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-kervi.utility.hal.gpio">
+<span id="gpio-api"></span><h1>GPIO API<a class="headerlink" href="#module-kervi.utility.hal.gpio" title="Permalink to this headline">¶</a></h1>
+<p>When Kervi starts it scans for installed Kervi platform drivers and loads the GPIO driver.
+In your application you access GPIO via:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">kervi.hal.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+
+<span class="c1">#define channel 23 as input</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">define_as_input</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver">
+<em class="property">class </em><code class="descclassname">kervi.utility.hal.gpio.</code><code class="descname">IGPIODeviceDriver</code><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.define_as_input">
+<code class="descname">define_as_input</code><span class="sig-paren">(</span><em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.define_as_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a channel as input</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.define_as_output">
+<code class="descname">define_as_output</code><span class="sig-paren">(</span><em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.define_as_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a channel as output</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.define_as_pwm">
+<code class="descname">define_as_pwm</code><span class="sig-paren">(</span><em>channel</em>, <em>frequency</em>, <em>duty_cycle=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.define_as_pwm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines a channel as pwm output.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The channel to define as a pwm output.</li>
+<li><strong>frequency</strong> &#8211; The pwn frequency.</li>
+<li><strong>duty_cycle</strong> &#8211; The duty_cycle to use, can be changed in call to pwm_start</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the state of a channel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.listen">
+<code class="descname">listen</code><span class="sig-paren">(</span><em>channel</em>, <em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.listen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Listen on a channel for state change.
+The callback function is called when a channel is going high and low.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The channel to listen on.</li>
+<li><strong>callback</strong> (<code class="docutils literal"><span class="pre">function</span> <span class="pre">or</span> <span class="pre">method</span></code>) &#8211; The function or method to call when the state of the channel change.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.listen_falling">
+<code class="descname">listen_falling</code><span class="sig-paren">(</span><em>channel</em>, <em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.listen_falling" title="Permalink to this definition">¶</a></dt>
+<dd><p>calls the callback when a channel is going low.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">function</span> <span class="pre">or</span> <span class="pre">method</span></code>) &#8211; The channel to listen on.</li>
+<li><strong>callback</strong> &#8211; The function or method to call when the state of the channel change.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.listen_rising">
+<code class="descname">listen_rising</code><span class="sig-paren">(</span><em>channel</em>, <em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.listen_rising" title="Permalink to this definition">¶</a></dt>
+<dd><p>calls the callback when a channel is going high.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">function</span> <span class="pre">or</span> <span class="pre">method</span></code>) &#8211; The channel to listen on.</li>
+<li><strong>callback</strong> &#8211; The function or method to call when the state of the channel change.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.pwm_start">
+<code class="descname">pwm_start</code><span class="sig-paren">(</span><em>channel</em>, <em>duty_cycle=None</em>, <em>frequency=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.pwm_start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the pwm signal on a channel. The channel should be defined as pwm prior to this call.
+If no duty_cycle or frequency is passed in this call previous values from call to
+define_as_pwm or pwm_start is used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The channel to start the pwm signal on.</li>
+<li><strong>duty_cycle</strong> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The duty cycle use on the channel.</li>
+<li><strong>frequency</strong> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The frequency to be used on the pwm channel.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.pwm_stop">
+<code class="descname">pwm_stop</code><span class="sig-paren">(</span><em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.pwm_stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop pwm signal on channel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.set">
+<code class="descname">set</code><span class="sig-paren">(</span><em>channel</em>, <em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the state of a channel that is defined as output.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; The channel that should be changed.</li>
+<li><strong>state</strong> &#8211; The state of the channel.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="hal_i2c_api.html" class="btn btn-neutral float-right" title="I2C API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="hal.html" class="btn btn-neutral" title="Hardware and devices" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Tim Wentzlau.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

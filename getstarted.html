@@ -92,6 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 </ul>
@@ -138,16 +139,47 @@
             
   <div class="section" id="get-started">
 <h1>Get started<a class="headerlink" href="#get-started" title="Permalink to this headline">¶</a></h1>
-<p>Install Kervi via pip:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">kervi</span>
+<p><strong>Prequisits</strong></p>
+<p>Kervi is a python framework and needs python 3.4+ and the python package manager pip.</p>
+<p>Raspberry Pi comes with python and pip preinstalled if you are able to start your Raspberry Pi you are ready to install Kervi.</p>
+<p>If you install on other platforms like windows and linux you have to install python and pip. Please follow the instructions on python.org to get python installed.
+Notice there are no native support for hardware when your install on these platforms but you will be able to
+create dashboards and let users interact with your python kervi application via a browser.</p>
+<p><strong>install</strong></p>
+<p>Open a terminal window and run the pip command below.</p>
+<p>Raspberry Pi:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip3</span> <span class="n">install</span> <span class="n">kervi</span><span class="p">[</span><span class="n">rpi</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>After kervi is installed a commandline tool <em>kervi</em> is available that helps with scaffolding Kervi apps.
-Create you first app in an empty folder by executing:</p>
+<p>Other platforms:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">kervi</span>
+</pre></div>
+</div>
+<p>Next your create a folder for your application:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">myapp</span>
+<span class="n">cd</span> <span class="n">myapp</span>
+</pre></div>
+</div>
+<p>After kervi is installed a commandline tool <em>kervi</em> is available that helps with creating the sceleton for your Kervi apps.
+You have two choices when it comes to create a kervi applications via the commandline tool.</p>
+<p><strong>1) Single file application</strong></p>
+<p>If you are new to Kervi or just wants to make a quick test application then a single file kervi application is a good chooice to get going.
+You create the single file app via the following command in the terminal window:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">kervi</span> <span class="n">create</span> <span class="n">application</span> <span class="n">myapp</span> <span class="s2">&quot;My first app&quot;</span> <span class="o">--</span><span class="n">single_file_app</span>
+</pre></div>
+</div>
+<p><strong>2) Normal application</strong></p>
+<p>If you are planning to build a robot or home automation system it is recommanded to create a normal Kervi application.
+Such an application consists of several files and the Kervi framework is able to spread the load on all the cores on your board.</p>
+<p>To create a full kervi application write the following command in the terminal:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">kervi</span> <span class="n">create</span> <span class="n">application</span> <span class="n">myapp</span> <span class="s2">&quot;My first app&quot;</span>
 </pre></div>
 </div>
-<p>Start your new app by executing:</p>
+<p>If you use Raspberry pi you start your new app by executing:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="n">myapp</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>On other platforms you run this command:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">myapp</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>

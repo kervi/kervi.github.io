@@ -88,17 +88,25 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#kervi-app-anatomy">Kervi app anatomy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dashboards">Dashboards</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#sensors">Sensors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#controllers">Controllers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#add-components-to-dashboards">Add components to dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kervi-application-anatomy">Kervi application anatomy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#single-file-application">Single file application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#application-line-5-6">Application (line 5-6)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dashboards-line-8-11">Dashboards (line 8-11)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sensors-22-33">Sensors (22-33)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controllers-line-38-59">Controllers (line 38-59)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#start-the-engines-line-61">Start the engines (line 61)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#normal-application">Normal application</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 </ul>
@@ -147,9 +155,185 @@
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
 <p>If you have completed the steps in the <em>Get started</em> section the result should be a running kervi application.
 The application has a system dashboard that shows sensors messauring cpu, memory and disk use and a power controller.</p>
-<div class="section" id="kervi-app-anatomy">
-<h2>Kervi app anatomy<a class="headerlink" href="#kervi-app-anatomy" title="Permalink to this headline">¶</a></h2>
-<p>The application is structured in several files with the following layout</p>
+<div class="section" id="kervi-application-anatomy">
+<h2>Kervi application anatomy<a class="headerlink" href="#kervi-application-anatomy" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="single-file-application">
+<h3>Single file application<a class="headerlink" href="#single-file-application" title="Permalink to this headline">¶</a></h3>
+<p>Below you see the content of a <em>single file application</em> created with the commandline tool on a Raspberry Pi.</p>
+<p>myapp.py</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span> <span class="c1">#This line is needed in windows</span>
+
+     <span class="c1">#Create the application object this must be the very first action</span>
+     <span class="c1">#as it prepares the system.</span>
+     <span class="kn">from</span> <span class="nn">kervi.bootstrap</span> <span class="kn">import</span> <span class="n">Application</span>
+     <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
+
+     <span class="c1">#create dashboards and panels</span>
+     <span class="kn">from</span> <span class="nn">kervi.dashboard</span> <span class="kn">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
+     <span class="n">DASHBOARD</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="s2">&quot;App&quot;</span><span class="p">,</span> <span class="n">is_default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+     <span class="n">DASHBOARD</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Light&quot;</span><span class="p">))</span>
+
+     <span class="n">SYSTEMBOARD</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;System&quot;</span><span class="p">)</span>
+     <span class="n">SYSTEMBOARD</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+     <span class="c1">#Your are ready to create your application logic</span>
+     <span class="c1">#Get the GPIO module. The gpio module is used to control</span>
+     <span class="c1">#input and output of your application</span>
+     <span class="kn">from</span> <span class="nn">kervi.hal</span> <span class="kn">import</span> <span class="n">GPIO</span>
+
+
+     <span class="c1">#Create a sensor this sensors uses a *cpu load device driver* build into kervi</span>
+     <span class="kn">from</span> <span class="nn">kervi.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
+     <span class="kn">from</span> <span class="nn">kervi_devices.platforms.common.sensors.cpu_use</span> <span class="kn">import</span> <span class="n">CPULoadSensorDeviceDriver</span>
+     <span class="n">SENSOR_1</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;CPULoadSensor&quot;</span><span class="p">,</span> <span class="s2">&quot;CPU&quot;</span><span class="p">,</span> <span class="n">CPULoadSensorDeviceDriver</span><span class="p">())</span>
+
+     <span class="c1">#link the sensor to sys area top right</span>
+     <span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="s2">&quot;sys-header&quot;</span><span class="p">)</span>
+
+     <span class="c1">#link the sensor to a panel, show value in panel header and</span>
+     <span class="c1"># chart of sensor values in the panel body</span>
+     <span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">link_to_header</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+     <span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;chart&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+
+     <span class="c1">#More on sensors https://kervi.github.io/sensors.html</span>
+
+     <span class="c1">#define a light controller</span>
+     <span class="c1">#Import controller and a ui controller input.</span>
+     <span class="kn">from</span> <span class="nn">kervi.controller</span> <span class="kn">import</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">UISwitchButtonControllerInput</span>
+     <span class="k">class</span> <span class="nc">MyController</span><span class="p">(</span><span class="n">Controller</span><span class="p">):</span>
+         <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+             <span class="n">Controller</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;lightController&quot;</span><span class="p">,</span> <span class="s2">&quot;Light&quot;</span><span class="p">)</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;light&quot;</span>
+
+             <span class="c1">#define an input and link it to the dashboard panel</span>
+             <span class="n">light1</span> <span class="o">=</span> <span class="n">UISwitchButtonControllerInput</span><span class="p">(</span><span class="s2">&quot;lightctrl.light1&quot;</span><span class="p">,</span> <span class="s2">&quot;Light&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+             <span class="n">light1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+             <span class="c1">#add the input to this controller</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">add_input</span><span class="p">(</span><span class="n">light1</span><span class="p">)</span>
+
+             <span class="c1">#define GPIO</span>
+             <span class="n">GPIO</span><span class="o">.</span><span class="n">define_as_output</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+
+         <span class="k">def</span> <span class="nf">input_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">changed_input</span><span class="p">):</span>
+             <span class="n">GPIO</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">changed_input</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+     <span class="n">MY_CONTROLLER</span> <span class="o">=</span> <span class="n">MyController</span><span class="p">()</span>
+
+     <span class="n">APP</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="application-line-5-6">
+<h4>Application (line 5-6)<a class="headerlink" href="#application-line-5-6" title="Permalink to this headline">¶</a></h4>
+<p>The hart of a kervi application is the Application class.
+You must create an Application instance as the very first
+in your application.</p>
+<p>The Application class prepares your application it figures out
+if you are using a Raspberry Pi as your board and loads required
+driveres. It also loads a web server that serves the files to the browser.</p>
+</div>
+<div class="section" id="dashboards-line-8-11">
+<h4>Dashboards (line 8-11)<a class="headerlink" href="#dashboards-line-8-11" title="Permalink to this headline">¶</a></h4>
+<p>Dashboards are as such no at part of your application logic but you need to
+tell kervi how you want to organize your application in the browser.
+You can have multiple dashboards in an application. It can be floores in a house
+if your are developing a house automation project or it can be a camera view and
+system information if you are creating a robot.</p>
+<p>In the example above two dashboards are defined APP and SYSTEM.</p>
+<p>Each dashboard has one or more panels where kervi components like sensors and controllers are linked to.</p>
+</div>
+<div class="section" id="sensors-22-33">
+<h4>Sensors (22-33)<a class="headerlink" href="#sensors-22-33" title="Permalink to this headline">¶</a></h4>
+<p>Sensors are used to sence the world and readings from sensors are handled thru the Sensor Class.
+You can program a sensor your self or you can utterlize one of the ready made sensor drivers from the Kervi Device Library (KDL).</p>
+<p>In the example above a <em>Cpu Load sensor</em> is fetched from KDL and applied to the Sensor class.
+When the application is running the Sensor class polls <em>Cpu load sensor</em> device and notify other
+parts of the application via events.</p>
+<p>In order to display the values from the sensor in the browser you need to link it to a dashboard and a panel.
+This is done by calling the method link_to_dashboard where you specify dashboard/panel and display parameters.
+When a sensor is linked to a dashboard panel the UI logic will pick up sensor readings for the sensor and update the value on the screen.</p>
+</div>
+<div class="section" id="controllers-line-38-59">
+<h4>Controllers (line 38-59)<a class="headerlink" href="#controllers-line-38-59" title="Permalink to this headline">¶</a></h4>
+<p>Controllers react to input from user and input channels.
+A custom controller inherits from the class Controller.
+In __init__ ( the constructor) you define inputs and setup the hardware.</p>
+<p>In the example above the controller defines a button and links it to a dashboard panel.
+When the user pushes the button in the browser it will invoke the input_changed on the controller
+and the controller will set the state on a output channel.</p>
+</div>
+<div class="section" id="start-the-engines-line-61">
+<h4>Start the engines (line 61)<a class="headerlink" href="#start-the-engines-line-61" title="Permalink to this headline">¶</a></h4>
+<p>The work so far have bin to prepare your application to actually launch it you need to call APP.run().
+This will launch the web server, interprocess communication systems and start sensor readings.</p>
+</div>
+</div>
+<div class="section" id="normal-application">
+<h3>Normal application<a class="headerlink" href="#normal-application" title="Permalink to this headline">¶</a></h3>
+<p>Below is the structure of a <em>normal</em> Kervi application. All the parts from a single file application are moved into
+seperate files and foldes. Kervi uses this structure to load each section in it own process in order to improve the performance.</p>
+<p>A second advantance to this model is that it is easier to maintain as the Kervi project grows bigger.</p>
 <div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="n">root</span>
 <span class="o">|</span>
 <span class="o">|-</span> <span class="n">cams</span>
@@ -195,118 +379,6 @@ The application has a system dashboard that shows sensors messauring cpu, memory
 When the Application.run is called the system looks for Kervi components in cam, controllers, dashboard and sensor folders.
 In each folder the __init__.py bootstraps and load the components that resides in the local folder.</p>
 </div>
-<div class="section" id="dashboards">
-<h2>Dashboards<a class="headerlink" href="#dashboards" title="Permalink to this headline">¶</a></h2>
-<p>The __init__.py in the dashboards folder contains the code that defines dashboards.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.dashboard</span> <span class="k">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">Camboard</span><span class="p">,</span> <span class="n">DashboardSection</span>
-
-<span class="c1">#Create the dashboards for your Kervi application here.</span>
-
-<span class="c1">#A camboard is a special dashbord where the background is a video feed.</span>
-<span class="c1">#is_default signals that this dashbord is shown first when ui starts.</span>
-<span class="c1">#cam1 is the id of the camera that should be used as video source.</span>
-<span class="n">MAIN</span> <span class="o">=</span> <span class="n">Camboard</span><span class="p">(</span><span class="s2">&quot;cam&quot;</span><span class="p">,</span> <span class="s2">&quot;Main&quot;</span><span class="p">,</span> <span class="s2">&quot;cam1&quot;</span><span class="p">,</span> <span class="n">is_default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">MAIN</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">DashboardSection</span><span class="p">(</span><span class="s2">&quot;section1&quot;</span><span class="p">))</span>
-
-<span class="c1">#Standard dashboard with several sections where sensors are placed.</span>
-<span class="c1">#Each sensor create links to one or more dashboard sections</span>
-<span class="n">SYSTEM</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;System&quot;</span><span class="p">)</span>
-<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">DashboardSection</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">collapsed</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">DashboardSection</span><span class="p">(</span><span class="s2">&quot;memory&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">collapsed</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">DashboardSection</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Log&quot;</span><span class="p">,</span> <span class="n">user_log</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">DashboardSection</span><span class="p">(</span><span class="s2">&quot;disk&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">DashboardSection</span><span class="p">(</span><span class="s2">&quot;power&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Power&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-<p>In the example above two dashboards are defined CAM and SYSTEM. Each dashboard has one or more sections where kervi components like sensors and controllers are linked to.</p>
-</div>
-<div class="section" id="sensors">
-<h2>Sensors<a class="headerlink" href="#sensors" title="Permalink to this headline">¶</a></h2>
-<p>In the sensors folder a dummy sensor my_sensor.py looks like this:</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.sensor</span> <span class="k">import</span> <span class="n">Sensor</span><span class="p">,</span> <span class="n">SensorThread</span>
-
-<span class="k">class</span> <span class="nc">MySensor</span><span class="p">(</span><span class="n">Sensor</span><span class="p">):</span>
-     <span class="sd">&quot;&quot;&quot; My sensor &quot;&quot;&quot;</span>
-     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-         <span class="n">Sensor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;mySensor&quot;</span><span class="p">,</span> <span class="s2">&quot;My sensor&quot;</span><span class="p">)</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;temp&quot;</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="mi">100</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="mi">0</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s2">&quot;C&quot;</span>
-
-         <span class="c1">#link the sensor to a dashboard section</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;cam&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;radial_gauge&quot;</span><span class="p">)</span>
-
-         <span class="c1">#variables needed for my sensor</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#dummy counter</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">counter_delta</span> <span class="o">=</span> <span class="mi">1</span>
-
-     <span class="k">def</span> <span class="nf">read_sensor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-         <span class="c1">#read_sensor is called by the SensorThread</span>
-         <span class="c1">#snippet below is just dummy code</span>
-         <span class="c1">#enter your real code here to read your sensor</span>
-
-         <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter_delta</span>
-
-         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max</span><span class="p">:</span>
-             <span class="bp">self</span><span class="o">.</span><span class="n">counter_delta</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min</span><span class="p">:</span>
-             <span class="bp">self</span><span class="o">.</span><span class="n">counter_delta</span> <span class="o">=</span> <span class="mi">1</span>
-
-         <span class="c1">#call new_sensor_reading to signal a new value</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">new_sensor_reading</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="p">)</span>
-
- <span class="c1">#Add sensor to a SensorThread that polls the sensor by the specified interval</span>
- <span class="n">MY_SENSOR_THREAD</span> <span class="o">=</span> <span class="n">SensorThread</span><span class="p">(</span><span class="n">MySensor</span><span class="p">(),</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>A custom sensor inherits from the Sensor class. The Sensor class handles storage to DB, notify UI and other components via events.
-The custom sensor must implement the method read_sensor where code to get readings from sensore probes resides.
-A sensor reading is processed by the system by calling new_sensor_reading.</p>
-</div>
-<div class="section" id="controllers">
-<h2>Controllers<a class="headerlink" href="#controllers" title="Permalink to this headline">¶</a></h2>
-<p>Controllers react to user input and events triggered by other components. A custom controller inherits from the class Controller.
-To react to user input the controller must add one or more controller components.
-The example below implements light controller that controls a GPIO pin.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.controller</span> <span class="kn">import</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">ControllerSwitchButton</span>
-
-<span class="c1">#Switch button shown on a dashboard</span>
-<span class="k">class</span> <span class="nc">LightButton</span><span class="p">(</span><span class="n">ControllerSwitchButton</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller</span><span class="p">):</span>
-        <span class="n">ControllerSwitchButton</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">controller</span><span class="o">.</span><span class="n">component_id</span><span class="o">+</span><span class="s2">&quot;.light&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;Light 1&quot;</span><span class="p">,</span>
-            <span class="n">controller</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">on</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1">#event fired when user click the button in UI</span>
-        <span class="c1">#set GPIO 23 pin high</span>
-
-    <span class="k">def</span> <span class="nf">off</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1">#event fired when user click the button in UI</span>
-        <span class="c1">#set GPIO pin 23 low</span>
-
-<span class="k">class</span> <span class="nc">LightController</span><span class="p">(</span><span class="n">Controller</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">Controller</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;lightController&quot;</span><span class="p">,</span> <span class="s2">&quot;Light&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;light&quot;</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_components</span><span class="p">(</span><span class="n">LightButton</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
-
-<span class="n">MY_CONTROLLER</span> <span class="o">=</span> <span class="n">LightController</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="add-components-to-dashboards">
-<h2>Add components to dashboards<a class="headerlink" href="#add-components-to-dashboards" title="Permalink to this headline">¶</a></h2>
-<p>In order to display sensors and other Kervi components they must be linked to a dashboard.
-This is done by calling link_to_dashboard on a Kervi component.
-In the sensor snippet above the sensor is linked to the dashboard section <em>section1</em> on the dashboard with id <em>cam</em> and presented as a radial gauge.
-The button defined in the controller snippet is linked to a dashboard section <em>light</em> on the dashboard whith id <em>system</em> and uses an icon.</p>
 </div>
 </div>
 

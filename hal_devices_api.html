@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sensors API &mdash; Kervi 0.8 documentation</title>
+  <title>Devices API &mdash; Kervi 0.8 documentation</title>
   
 
   
@@ -33,10 +33,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Kervi 0.8 documentation" href="index.html"/>
-        <link rel="up" title="Sensors" href="sensors.html"/>
-        <link rel="next" title="Controllers" href="controllers.html"/>
-        <link rel="prev" title="Sensors" href="sensors.html"/> 
+    <link rel="top" title="Kervi 0.8 documentation" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -86,20 +83,11 @@
             
             
                 <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="sensors.html">Sensors</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="sensors.html#kervi-device-library">Kervi Device library</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sensors.html#implementing-a-sensor-device">Implementing a sensor device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sensors.html#linking-to-dashboards">Linking to dashboards</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="sensors.html#sensor-api">Sensor api</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Sensors API</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
@@ -135,9 +123,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-          <li><a href="sensors.html">Sensors</a> &raquo;</li>
-      
-    <li>Sensors API</li>
+    <li>Devices API</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -150,7 +136,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-kervi.sensor">
-<span id="sensors-api"></span><h1>Sensors API<a class="headerlink" href="#module-kervi.sensor" title="Permalink to this headline">¶</a></h1>
+<span id="devices-api"></span><h1>Devices API<a class="headerlink" href="#module-kervi.sensor" title="Permalink to this headline">¶</a></h1>
 <p>Sensors in Kervi applications are handled via the classes Sensor and SensorThread. 
 The sensor handles sensor settings and reading the values and sensor threads polls the sensor.</p>
 <dl class="class">
@@ -434,15 +420,6 @@ This id is used in other components to reference this sesnor.</li>
            </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="controllers.html" class="btn btn-neutral float-right" title="Controllers" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="sensors.html" class="btn btn-neutral" title="Sensors" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

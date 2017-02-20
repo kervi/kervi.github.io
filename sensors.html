@@ -90,8 +90,10 @@
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Sensors</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#reading-sensors">Reading sensors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#linking-to-dashboards">Linking to dashboards</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#kervi-device-library">Kervi Device library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implementing-a-sensor-device">Implementing a sensor device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linking-to-dashboards">Linking to dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sensor-api">Sensor api</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
 </ul>
 </li>
@@ -99,6 +101,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 </ul>
@@ -145,91 +148,161 @@
             
   <div class="section" id="sensors">
 <h1>Sensors<a class="headerlink" href="#sensors" title="Permalink to this headline">¶</a></h1>
-<p>Sensors in Kervi are special classes that handles reading from different kind of probes.
-Kervis has a base class <em>Sensor</em> that handles the hevy lifting of storing readings in database,
-signal ui and send events to other kervi components.</p>
-<div class="section" id="reading-sensors">
-<h2>Reading sensors<a class="headerlink" href="#reading-sensors" title="Permalink to this headline">¶</a></h2>
-<p>Below is an example that shows the steps to create a sensor.
-Propperties of the sensor prope is applied in the constror (__init__) and the actual reading of a probe is handled in
-the abstract method read_sensor.</p>
-<p>The read_sensor method should just containt code that handles <strong>one</strong> reading of the probe and the result of that reading
-should be send to Kervi by calling the method new_sensor_reading.</p>
-<p>To poll your sensor create a SensorThread and specify the polling interval in seconds.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MySensor</span><span class="p">(</span><span class="n">Sensor</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">Sensor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;watertemp&quot;</span><span class="p">,</span> <span class="s2">&quot;Water temp&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;temperature&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="mi">100</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s2">&quot;C&quot;</span>
+<p>Sensors in Kervi are special classes that handles reading from different kind of probes and devices.
+Kervis has a base class <em>Sensor</em> that handles the hevy lifting of polling devices and notify other parts of the system about readings.</p>
+<div class="section" id="kervi-device-library">
+<h2>Kervi Device library<a class="headerlink" href="#kervi-device-library" title="Permalink to this headline">¶</a></h2>
+<p>A part of the Kervi framework is the device library that holds drivers for common devices.
+To use a device from the library import the device module and apply the driver to a sensor class.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.sensor</span> <span class="k">import</span> <span class="n">Sensor</span>
+<span class="kn">from</span> <span class="nn">kervi_devices.sensors</span> <span class="k">import</span> <span class="n">BMP085</span>
+<span class="n">SENSOR_1</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;roomtemp1&quot;</span><span class="p">,</span> <span class="s2">&quot;Room 1&quot;</span><span class="p">,</span> <span class="n">BMP085</span><span class="o">.</span><span class="n">BMP085DeviceDriver</span><span class="p">(</span><span class="n">BMP085</span><span class="o">.</span><span class="n">TEMPERATURE_SENSOR</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="implementing-a-sensor-device">
+<h2>Implementing a sensor device<a class="headerlink" href="#implementing-a-sensor-device" title="Permalink to this headline">¶</a></h2>
+<p>Below is an example that shows the steps to create a sensor device.</p>
+<p>A sensor device inherits from either kervi.hal.SensorDeviceDriver or kervi.hal.I2CSensorDeviceDriver.
+Fill in the abstract properties and the method read_value.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">kervi.hal</span> <span class="kn">import</span> <span class="n">I2CSensorDeviceDriver</span>
 
-    <span class="k">def</span> <span class="nf">read_sensor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1">#read_sensor is called by the SensorThread</span>
+<span class="k">class</span> <span class="nc">TSL2561SDeviceDriver</span><span class="p">(</span><span class="n">I2CSensorDeviceDriver</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="mh">0x39</span><span class="p">,</span> <span class="n">bus</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">I2CSensorDeviceDriver</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">bus</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gain</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i2c</span><span class="o">.</span><span class="n">write8</span><span class="p">(</span><span class="mh">0x80</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pause</span> <span class="o">=</span> <span class="mf">0.8</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gain</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="c1">#enter your real code here to read your sensor probe</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">device_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;TLS2561&quot;</span>
 
-        <span class="c1">#call new_sensor_reading to signal a new value to kervi</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">new_sensor_reading</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="p">)</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;lux&quot;</span>
 
-<span class="c1">#Add sensor to a SensorThread that polls the sensor by the specified interval</span>
-<span class="n">MY_SENSOR_THREAD</span> <span class="o">=</span> <span class="n">SensorThread</span><span class="p">(</span><span class="n">MySensor</span><span class="p">(),</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">unit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;LUX&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">1000000</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">read_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Grabs a lux reading either with autoranging (gain=0) or with a specified gain (1, 16)&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gain</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">gain</span> <span class="o">==</span> <span class="mi">16</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_gain</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gain</span><span class="p">)</span>
+            <span class="n">ambient</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_full</span><span class="p">()</span>
+            <span class="n">ir_reading</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_ir</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">gain</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_gain</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+            <span class="n">ambient</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_full</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">ambient</span> <span class="o">&lt;</span> <span class="mi">65535</span><span class="p">:</span>
+                <span class="n">ir_reading</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_ir</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">ambient</span> <span class="o">&gt;=</span> <span class="mi">65535</span> <span class="ow">or</span> <span class="n">ir_reading</span> <span class="o">&gt;=</span> <span class="mi">65535</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_gain</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">ambient</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_full</span><span class="p">()</span>
+                <span class="n">ir_reading</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_ir</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gain</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">ambient</span> <span class="o">*=</span> <span class="mi">16</span>
+            <span class="n">ir_reading</span> <span class="o">*=</span> <span class="mi">16</span>
+
+        <span class="n">ratio</span> <span class="o">=</span> <span class="p">(</span><span class="n">ir_reading</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">ambient</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">ratio</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ratio</span> <span class="o">&lt;=</span> <span class="mf">0.52</span><span class="p">):</span>
+            <span class="n">lux</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0315</span> <span class="o">*</span> <span class="n">ambient</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mf">0.0593</span> <span class="o">*</span> <span class="n">ambient</span> <span class="o">*</span> <span class="p">(</span><span class="n">ratio</span><span class="o">**</span><span class="mf">1.4</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">ratio</span> <span class="o">&lt;=</span> <span class="mf">0.65</span><span class="p">:</span>
+            <span class="n">lux</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0229</span> <span class="o">*</span> <span class="n">ambient</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mf">0.0291</span> <span class="o">*</span> <span class="n">ir_reading</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">ratio</span> <span class="o">&lt;=</span> <span class="mf">0.80</span><span class="p">:</span>
+            <span class="n">lux</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0157</span> <span class="o">*</span> <span class="n">ambient</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mf">0.018</span> <span class="o">*</span> <span class="n">ir_reading</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">ratio</span> <span class="o">&lt;=</span> <span class="mf">1.3</span><span class="p">:</span>
+            <span class="n">lux</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.00338</span> <span class="o">*</span> <span class="n">ambient</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mf">0.0026</span> <span class="o">*</span> <span class="n">ir_reading</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">ratio</span> <span class="o">&gt;</span> <span class="mf">1.3</span><span class="p">:</span>
+            <span class="n">lux</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">return</span> <span class="n">lux</span>
+
+    <span class="c1">#private methods use in the driver</span>
+
+    <span class="k">def</span> <span class="nf">set_gain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gain</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Set the gain &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">gain</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">i2c</span><span class="o">.</span><span class="n">write8</span><span class="p">(</span><span class="mh">0x81</span><span class="p">,</span> <span class="mh">0x02</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">i2c</span><span class="o">.</span><span class="n">write8</span><span class="p">(</span><span class="mh">0x81</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">)</span>
+
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pause</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">read_word</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reg</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">wordval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">i2c</span><span class="o">.</span><span class="n">read_U16</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span>
+            <span class="n">newval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">i2c</span><span class="o">.</span><span class="n">reverse_byte_order</span><span class="p">(</span><span class="n">wordval</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">newval</span>
+        <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Error accessing 0x</span><span class="si">%02X</span><span class="s2">: Check your I2C address&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">i2c</span><span class="o">.</span><span class="n">address</span><span class="p">)</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+
+    <span class="k">def</span> <span class="nf">read_full</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reg</span><span class="o">=</span><span class="mh">0x8C</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reads visible+IR diode from the I2C device&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_word</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">read_ir</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reg</span><span class="o">=</span><span class="mh">0x8E</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reads IR only diode from the I2C device&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_word</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="linking-to-dashboards">
 <h2>Linking to dashboards<a class="headerlink" href="#linking-to-dashboards" title="Permalink to this headline">¶</a></h2>
-<p>A sensor is linked to dashboard by calling the method link_to_dashboard.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MySensor</span><span class="p">(</span><span class="n">Sensor</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">Sensor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;watertemp&quot;</span><span class="p">,</span> <span class="s2">&quot;Water temp&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;temperature&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="mi">100</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s2">&quot;C&quot;</span>
+<p>A sensor is linked to a dashboard by calling the method link_to_dashboard.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
+<span class="kn">from</span> <span class="nn">kervi_devices.sensors</span> <span class="kn">import</span> <span class="n">BMP085</span>
+<span class="n">SENSOR_1</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;roomtemp1&quot;</span><span class="p">,</span> <span class="s2">&quot;Room 1&quot;</span><span class="p">,</span> <span class="n">BMP085</span><span class="o">.</span><span class="n">BMP085DeviceDriver</span><span class="p">(</span><span class="n">BMP085</span><span class="o">.</span><span class="n">TEMPERATURE_SENSOR</span><span class="p">))</span>
 
-        <span class="c1">#link this sensor to a dashboard called system on the panel with id=section1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">link_to_sensor</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">read_sensor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1">#read_sensor is called by the SensorThread</span>
-
-        <span class="c1">#enter your real code here to read your sensor probe</span>
-
-        <span class="c1">#call new_sensor_reading to signal a new value to kervi</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">new_sensor_reading</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="p">)</span>
+<span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">link_to_header</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;chart&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>A sensor can displayed in different ways: just value, value with sparkline, as an animated icon or different kind of gauges.</p>
+<p>A sensor can displayed in different ways: just value, value with sparkline, as an animated icon, chart or different kind of gauges.</p>
 <p><strong>Value and sparkline</strong></p>
 <p>If a sensor is linked with just dashboard and panel as parameters it will be displayed with name, sparkline and value.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">link_to_sensor</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_sensor</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="_images/sensor_sparkline.png" src="_images/sensor_sparkline.png" />
 <p><strong>Value and icon</strong></p>
 <p>It is possible to show an icon next to a value. Kervi uses Font awesome icons. Just enter the name of the icon without <em>fa-</em></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;thermometer-full&quot;</span><span class="p">,</span> <span class="n">show_sparkline</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">show_name</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;thermometer-full&quot;</span><span class="p">,</span> <span class="n">show_sparkline</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">show_name</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="_images/sensor_icon.png" src="_images/sensor_icon.png" />
 <p><strong>Value and no sparkline</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">link_to_sensor</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="n">show_sparkline</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_sensor</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="n">show_sparkline</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="_images/sensor_value.png" src="_images/sensor_value.png" />
 <p><strong>radial gauge</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">link_to_sensor</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;radial_gauge&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_sensor</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;radial_gauge&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="_images/sensor_radial.png" src="_images/sensor_radial.png" />
 <p><strong>Horizontal gauge</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">link_to_sensor</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;horizontal_linear_gauge&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_sensor</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;horizontal_linear_gauge&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="_images/sensor_horizontal.png" src="_images/sensor_horizontal.png" />
 <p><strong>Vertical gauge</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">link_to_sensor</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;vertical_linear_gauge&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_sensor</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;vertical_linear_gauge&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="_images/sensor_vertical.png" src="_images/sensor_vertical.png" />
@@ -238,73 +311,47 @@ should be send to Kervi by calling the method new_sensor_reading.</p>
 The sensor is linked twice first to the header with the animation and into the body as a chart.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span><span class="p">,</span> <span class="n">SensorThread</span>
 
-<span class="k">class</span> <span class="nc">MySensor</span><span class="p">(</span><span class="n">Sensor</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; My sensor &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">Sensor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;batterySensor1&quot;</span><span class="p">,</span> <span class="s2">&quot;Battery&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;battery&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="mi">100</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s2">&quot;%&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_ui_parameter</span><span class="p">(</span><span class="s2">&quot;icon&quot;</span><span class="p">,</span> <span class="p">[</span>
-            <span class="p">{</span>
-                <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
-                <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-empty&quot;</span>
-            <span class="p">},</span>
-            <span class="p">{</span>
-                <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
-                <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-quarter&quot;</span>
-            <span class="p">},</span>
-            <span class="p">{</span>
-                <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
-                <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-half&quot;</span>
-            <span class="p">},</span>
-            <span class="p">{</span>
-                <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">75</span><span class="p">],</span>
-                <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-three-quarter&quot;</span>
-            <span class="p">},</span>
-            <span class="p">{</span>
-                <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">75</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
-                <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-full&quot;</span>
-            <span class="p">}</span>
-        <span class="p">])</span>
 
-        <span class="c1">#link the sensor to the header</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span>
-            <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;battery&quot;</span><span class="p">,</span>
-            <span class="n">show_sparkline</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-            <span class="n">show_value</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-            <span class="n">link_to_header</span><span class="o">=</span><span class="bp">True</span>
-        <span class="p">)</span>
+<span class="n">SENSOR_1</span><span class="o">.</span><span class="n">set_ui_parameter</span><span class="p">(</span><span class="s2">&quot;icon&quot;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+        <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-empty&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
+        <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-quarter&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+        <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-half&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">75</span><span class="p">],</span>
+        <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-three-quarter&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">75</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+        <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-full&quot;</span>
+    <span class="p">}</span>
+<span class="p">])</span>
 
-        <span class="c1">#link the sensor as a chart</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;battery&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;chart&quot;</span><span class="p">)</span>
+<span class="c1">#link the sensor to the header</span>
+<span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span>
+    <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;battery&quot;</span><span class="p">,</span>
+    <span class="n">show_sparkline</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+    <span class="n">show_value</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+    <span class="n">link_to_header</span><span class="o">=</span><span class="bp">True</span>
+<span class="p">)</span>
 
-        <span class="c1">#variables needed for my sensor</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#dummy counter</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">counter_delta</span> <span class="o">=</span> <span class="mi">1</span>
-
-    <span class="k">def</span> <span class="nf">read_sensor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1">#read_sensor is called by the SensorThread</span>
-        <span class="c1">#snippet below is just dummy code</span>
-        <span class="c1">#enter your real code here to read your sensor</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter_delta</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">counter_delta</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">counter_delta</span> <span class="o">=</span> <span class="mi">1</span>
-
-        <span class="c1">#call new_sensor_reading to signal a new value</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">new_sensor_reading</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="p">)</span>
-
-<span class="c1">#Add sensor to a SensorThread that polls the sensor by the specified interval</span>
-<span class="n">MY_SENSOR_THREAD</span> <span class="o">=</span> <span class="n">SensorThread</span><span class="p">(</span><span class="n">MySensor</span><span class="p">(),</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1">#link the sensor as a chart</span>
+<span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;battery&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;chart&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="_images/sensor_animated.png" src="_images/sensor_animated.png" />
+</div>
+<div class="section" id="sensor-api">
+<h2>Sensor api<a class="headerlink" href="#sensor-api" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 </div>
 </div>
