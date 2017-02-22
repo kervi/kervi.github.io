@@ -90,11 +90,11 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#kervi-application-anatomy">Kervi application anatomy</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#single-file-application">Single file application</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#application-line-5-6">Application (line 5-6)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#dashboards-line-8-11">Dashboards (line 8-11)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#sensors-22-33">Sensors (22-33)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#controllers-line-38-59">Controllers (line 38-59)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#start-the-engines-line-61">Start the engines (line 61)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#application-line-1-6">Application (line 1-6)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dashboards-line-8-15">Dashboards (line 8-15)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sensors-22-43">Sensors (22-43)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controllers-line-48-69">Controllers (line 48-69)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#start-the-engines-line-71">Start the engines (line 71)</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#normal-application">Normal application</a></li>
@@ -221,7 +221,17 @@ The application has a system dashboard that shows sensors messauring cpu, memory
 58
 59
 60
-61</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span> <span class="c1">#This line is needed in windows</span>
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span> <span class="c1">#This line is needed in windows</span>
 
      <span class="c1">#Create the application object this must be the very first action</span>
      <span class="c1">#as it prepares the system.</span>
@@ -235,6 +245,16 @@ The application has a system dashboard that shows sensors messauring cpu, memory
 
      <span class="n">SYSTEMBOARD</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;System&quot;</span><span class="p">)</span>
      <span class="n">SYSTEMBOARD</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+     <span class="n">SYSTEMBOARD</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;cam&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+     <span class="c1">#Create a streaming camera server</span>
+     <span class="kn">from</span> <span class="nn">kervi.camera</span> <span class="kn">import</span> <span class="n">CameraStreamer</span>
+     <span class="n">CAMERA</span> <span class="o">=</span> <span class="n">CameraStreamer</span><span class="p">(</span><span class="s2">&quot;cam1&quot;</span><span class="p">,</span> <span class="s2">&quot;camera 1&quot;</span><span class="p">)</span>
+
+     <span class="c1">#link camera as background</span>
+     <span class="n">CAMERA</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">)</span>
+     <span class="c1">#link camera to a panel</span>
+     <span class="n">CAMERA</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cam&quot;</span><span class="p">)</span>
 
      <span class="c1">#Your are ready to create your application logic</span>
      <span class="c1">#Get the GPIO module. The gpio module is used to control</span>
@@ -284,8 +304,8 @@ The application has a system dashboard that shows sensors messauring cpu, memory
      <span class="n">APP</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
-<div class="section" id="application-line-5-6">
-<h4>Application (line 5-6)<a class="headerlink" href="#application-line-5-6" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="application-line-1-6">
+<h4>Application (line 1-6)<a class="headerlink" href="#application-line-1-6" title="Permalink to this headline">¶</a></h4>
 <p>The hart of a kervi application is the Application class.
 You must create an Application instance as the very first
 in your application.</p>
@@ -293,8 +313,8 @@ in your application.</p>
 if you are using a Raspberry Pi as your board and loads required
 driveres. It also loads a web server that serves the files to the browser.</p>
 </div>
-<div class="section" id="dashboards-line-8-11">
-<h4>Dashboards (line 8-11)<a class="headerlink" href="#dashboards-line-8-11" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="dashboards-line-8-15">
+<h4>Dashboards (line 8-15)<a class="headerlink" href="#dashboards-line-8-15" title="Permalink to this headline">¶</a></h4>
 <p>Dashboards are as such no at part of your application logic but you need to
 tell kervi how you want to organize your application in the browser.
 You can have multiple dashboards in an application. It can be floores in a house
@@ -302,9 +322,15 @@ if your are developing a house automation project or it can be a camera view and
 system information if you are creating a robot.</p>
 <p>In the example above two dashboards are defined APP and SYSTEM.</p>
 <p>Each dashboard has one or more panels where kervi components like sensors and controllers are linked to.</p>
+<p>################# ##
+camera (line 17-24)
+###################</p>
+<p>It is possible to stream your camera as a background on a dashboard or as content in a panel.
+Use the method link_to_dashboard where you specify the dashboard and panel that should display the camera.
+The camera will be displayed as a background if you omit the name of a panel in the call to link_to_dashboard.</p>
 </div>
-<div class="section" id="sensors-22-33">
-<h4>Sensors (22-33)<a class="headerlink" href="#sensors-22-33" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="sensors-22-43">
+<h4>Sensors (22-43)<a class="headerlink" href="#sensors-22-43" title="Permalink to this headline">¶</a></h4>
 <p>Sensors are used to sence the world and readings from sensors are handled thru the Sensor Class.
 You can program a sensor your self or you can utterlize one of the ready made sensor drivers from the Kervi Device Library (KDL).</p>
 <p>In the example above a <em>Cpu Load sensor</em> is fetched from KDL and applied to the Sensor class.
@@ -314,8 +340,8 @@ parts of the application via events.</p>
 This is done by calling the method link_to_dashboard where you specify dashboard/panel and display parameters.
 When a sensor is linked to a dashboard panel the UI logic will pick up sensor readings for the sensor and update the value on the screen.</p>
 </div>
-<div class="section" id="controllers-line-38-59">
-<h4>Controllers (line 38-59)<a class="headerlink" href="#controllers-line-38-59" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="controllers-line-48-69">
+<h4>Controllers (line 48-69)<a class="headerlink" href="#controllers-line-48-69" title="Permalink to this headline">¶</a></h4>
 <p>Controllers react to input from user and input channels.
 A custom controller inherits from the class Controller.
 In __init__ ( the constructor) you define inputs and setup the hardware.</p>
@@ -323,8 +349,8 @@ In __init__ ( the constructor) you define inputs and setup the hardware.</p>
 When the user pushes the button in the browser it will invoke the input_changed on the controller
 and the controller will set the state on a output channel.</p>
 </div>
-<div class="section" id="start-the-engines-line-61">
-<h4>Start the engines (line 61)<a class="headerlink" href="#start-the-engines-line-61" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="start-the-engines-line-71">
+<h4>Start the engines (line 71)<a class="headerlink" href="#start-the-engines-line-71" title="Permalink to this headline">¶</a></h4>
 <p>The work so far have bin to prepare your application to actually launch it you need to call APP.run().
 This will launch the web server, interprocess communication systems and start sensor readings.</p>
 </div>
@@ -332,7 +358,7 @@ This will launch the web server, interprocess communication systems and start se
 <div class="section" id="normal-application">
 <h3>Normal application<a class="headerlink" href="#normal-application" title="Permalink to this headline">¶</a></h3>
 <p>Below is the structure of a <em>normal</em> Kervi application. All the parts from a single file application are moved into
-seperate files and foldes. Kervi uses this structure to load each section in it own process in order to improve the performance.</p>
+seperate files and foldes. Kervi uses this structure to load each section in its own process in order to improve the performance.</p>
 <p>A second advantance to this model is that it is easier to maintain as the Kervi project grows bigger.</p>
 <div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="n">root</span>
 <span class="o">|</span>

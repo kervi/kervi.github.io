@@ -142,8 +142,11 @@
             
   <div class="section" id="controllers">
 <h1>Controllers<a class="headerlink" href="#controllers" title="Permalink to this headline">¶</a></h1>
-<p>A Kervi controller is a class that acts upon input from users, GPIO events or the underlaying os.</p>
-<p>Examples for controllers are motor control, servo control, output to IO.</p>
+<p>Controllers is the fun part of your Kervi application this is where you code the application logic.
+Your controller acts upon input from users, GPIO events or the underlaying os and initiates different actions based on the input.</p>
+<p>Basic controllers manages motors, light, servo and so on but you can also build more advanced controllers
+for <em>line following</em> and <em>self navigation</em> into your controllers.
+As your application grows your application will contain multiple controllers.</p>
 <p>User input comes from the following controller inputs:</p>
 <blockquote>
 <div><ul class="simple">
@@ -165,58 +168,74 @@
 </dd>
 </dl>
 <p>The controller it self or the controller inputs may be linked to dashboards.</p>
-<p><strong>Example</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.bootstrap</span> <span class="kn">import</span> <span class="n">Application</span>
-<span class="kn">from</span> <span class="nn">kervi.hal</span> <span class="kn">import</span> <span class="n">GPIO</span>
-<span class="kn">from</span> <span class="nn">kervi.controller</span> <span class="kn">import</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">UISwitchButtonControllerInput</span>
-<span class="kn">from</span> <span class="nn">kervi.dashboard</span> <span class="kn">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<p><strong>Example</strong>
+The example below shows how to create a light controller that uses pwm to change the level of the light</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">kervi.bootstrap</span> <span class="kn">import</span> <span class="n">Application</span>
     <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
     <span class="c1">#add dashboard and panel</span>
+    <span class="kn">from</span> <span class="nn">kervi.dashboard</span> <span class="kn">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
     <span class="n">DASHBOARD</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;System&quot;</span><span class="p">,</span> <span class="n">is_default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">DASHBOARD</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Light&quot;</span><span class="p">))</span>
 
     <span class="c1">#define a light controller</span>
+    <span class="kn">from</span> <span class="nn">kervi.hal</span> <span class="kn">import</span> <span class="n">GPIO</span>
+    <span class="kn">from</span> <span class="nn">kervi.controller</span> <span class="kn">import</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">UISwitchButtonControllerInput</span><span class="p">,</span> <span class="n">UINumberControllerInput</span>
+
     <span class="k">class</span> <span class="nc">LightController</span><span class="p">(</span><span class="n">Controller</span><span class="p">):</span>
         <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="n">Controller</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;lightController&quot;</span><span class="p">,</span> <span class="s2">&quot;Light&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;light&quot;</span>
 
             <span class="c1">#define an input and link it to the dashboard panel</span>
-            <span class="n">light1</span> <span class="o">=</span> <span class="n">UISwitchButtonControllerInput</span><span class="p">(</span><span class="s2">&quot;lightctrl.light1&quot;</span><span class="p">,</span> <span class="s2">&quot;Light&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-            <span class="n">light1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">light_button</span> <span class="o">=</span> <span class="n">UISwitchButtonControllerInput</span><span class="p">(</span><span class="s2">&quot;lightctrl.on&quot;</span><span class="p">,</span> <span class="s2">&quot;Light&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+            <span class="n">light_button</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">)</span>
 
             <span class="c1">#add the input to this controller</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_input</span><span class="p">(</span><span class="n">light1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_input</span><span class="p">(</span><span class="n">light_button</span><span class="p">)</span>
+
+            <span class="n">level_input</span><span class="o">=</span> <span class="n">UINumberControllerInput</span><span class="p">(</span><span class="s2">&quot;lightctrl.level&quot;</span><span class="p">,</span> <span class="s2">&quot;Level&quot;</span><span class="p">)</span>
+            <span class="n">level_input</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">level_input</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="mi">100</span>
+            <span class="n">level_input</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">100</span>
+            <span class="n">level_input</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_input</span><span class="p">(</span><span class="n">level_input</span><span class="p">)</span>
 
             <span class="c1">#define GPIO</span>
-            <span class="n">GPIO</span><span class="p">()</span><span class="o">.</span><span class="n">define_as_output</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">GPIO</span><span class="o">.</span><span class="n">define_as_pwm</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="o">=</span><span class="n">level_input</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="mi">20000</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">input_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">changed_input</span><span class="p">):</span>
-            <span class="n">GPIO</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">changed_input</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">changed_input</span><span class="o">.</span><span class="n">input_id</span> <span class="o">==</span> <span class="s2">&quot;lightctrl.on&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">changed_input</span><span class="o">.</span><span class="n">value</span>
+                    <span class="n">GPIO</span><span class="o">.</span><span class="n">pwn_start</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">GPIO</span><span class="o">.</span><span class="n">pwm_stop</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">changed_input</span><span class="o">.</span><span class="n">input_id</span> <span class="o">==</span> <span class="s2">&quot;lightctrl.level&quot;</span><span class="p">:</span>
+                <span class="c1">#change the duty_cycle on the pwm pin</span>
+                <span class="n">GPIO</span><span class="o">.</span><span class="n">pwm_start</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="o">=</span><span class="n">changed_input</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 
     <span class="n">MY_CONTROLLER</span> <span class="o">=</span> <span class="n">LightController</span><span class="p">()</span>
 
     <span class="n">APP</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>The same example where the controller logic is moved to the button</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.bootstrap</span> <span class="kn">import</span> <span class="n">Application</span>
-<span class="kn">from</span> <span class="nn">kervi.hal</span> <span class="kn">import</span> <span class="n">GPIO</span>
-<span class="kn">from</span> <span class="nn">kervi.controller</span> <span class="kn">import</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">UISwitchButtonControllerInput</span>
-<span class="kn">from</span> <span class="nn">kervi.dashboard</span> <span class="kn">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<p><strong>A light controller where logic is moved to the button</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">kervi.bootstrap</span> <span class="kn">import</span> <span class="n">Application</span>
     <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
     <span class="c1">#add dashboard and panel</span>
+    <span class="kn">from</span> <span class="nn">kervi.dashboard</span> <span class="kn">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
     <span class="n">DASHBOARD</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;System&quot;</span><span class="p">,</span> <span class="n">is_default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">DASHBOARD</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Light&quot;</span><span class="p">))</span>
 
-
     <span class="c1">#Switch button shown on a dashboard</span>
+    <span class="kn">from</span> <span class="nn">kervi.hal</span> <span class="kn">import</span> <span class="n">GPIO</span>
+    <span class="kn">from</span> <span class="nn">kervi.controller</span> <span class="kn">import</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">UISwitchButtonControllerInput</span>
+
     <span class="k">class</span> <span class="nc">LightButton</span><span class="p">(</span><span class="n">UISwitchButtonControllerInput</span><span class="p">):</span>
         <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller</span><span class="p">):</span>
             <span class="n">UISwitchButtonControllerInput</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>

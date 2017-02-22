@@ -1,9 +1,13 @@
 Controllers
 ==============
 
-A Kervi controller is a class that acts upon input from users, GPIO events or the underlaying os.
+Controllers is the fun part of your Kervi application this is where you code the application logic.
+Your controller acts upon input from users, GPIO events or the underlaying os and initiates different actions based on the input.
 
-Examples for controllers are motor control, servo control, output to IO.
+Basic controllers manages motors, light, servo and so on but you can also build more advanced controllers
+for *line following* and *self navigation* into your controllers.
+As your application grows your application will contain multiple controllers. 
+
 
 User input comes from the following controller inputs:
 
@@ -22,63 +26,83 @@ Input to controllers from devices is handled via
 The controller it self or the controller inputs may be linked to dashboards.
 
 **Example**
+The example below shows how to create a light controller that uses pwm to change the level of the light 
 
 .. code-block:: python
 
-    from kervi.bootstrap import Application
-    from kervi.hal import GPIO
-    from kervi.controller import Controller, UISwitchButtonControllerInput
-    from kervi.dashboard import Dashboard, DashboardPanel
+    
 
     if __name__ == '__main__':
+        from kervi.bootstrap import Application
         APP = Application()
-
+        
         #add dashboard and panel
+        from kervi.dashboard import Dashboard, DashboardPanel
         DASHBOARD = Dashboard("system", "System", is_default=True)
         DASHBOARD.add_panel(DashboardPanel("light", columns=2, rows=2, title="Light"))
-    
+        
         #define a light controller
+        from kervi.hal import GPIO
+        from kervi.controller import Controller, UISwitchButtonControllerInput, UINumberControllerInput
+
         class LightController(Controller):
             def __init__(self):
                 Controller.__init__(self, "lightController", "Light")
                 self.type = "light"
 
                 #define an input and link it to the dashboard panel
-                light1 = UISwitchButtonControllerInput("lightctrl.light1", "Light", self)
-                light1.link_to_dashboard("system", "light", icon="light", size=0)
+                light_button = UISwitchButtonControllerInput("lightctrl.on", "Light", self)
+                light_button.link_to_dashboard("system", "light", icon="light")
 
                 #add the input to this controller
-                self.add_input(light1)
+                self.add_input(light_button)
+
+                level_input= UINumberControllerInput("lightctrl.level", "Level")
+                level_input.min = 0
+                level_input.max = 100
+                level_input.value = 100
+                level_input.link_to_dashboard("system", "light")
+
+                self.add_input(level_input)
 
                 #define GPIO
-                GPIO().define_as_output(12)
+                GPIO.define_as_pwm(12, duty_cycle=level_input.value, frequency=20000)
 
             def input_changed(self, changed_input):
-                GPIO().set(12, changed_input.value)
+                if changed_input.input_id == "lightctrl.on":
+                    if changed_input.value
+                        GPIO.pwn_start(12)
+                    else:
+                        GPIO.pwm_stop(12)
+
+                if changed_input.input_id == "lightctrl.level":
+                    #change the duty_cycle on the pwm pin
+                    GPIO.pwm_start(12, duty_cycle=changed_input.value)
 
         MY_CONTROLLER = LightController()
 
         APP.run()
 
 
-**The same example where the controller logic is moved to the button**
+
+**A light controller where logic is moved to the button**
 
 .. code-block:: python
 
-    from kervi.bootstrap import Application
-    from kervi.hal import GPIO
-    from kervi.controller import Controller, UISwitchButtonControllerInput
-    from kervi.dashboard import Dashboard, DashboardPanel
-
+    
     if __name__ == '__main__':
+        from kervi.bootstrap import Application
         APP = Application()
 
         #add dashboard and panel
+        from kervi.dashboard import Dashboard, DashboardPanel
         DASHBOARD = Dashboard("system", "System", is_default=True)
         DASHBOARD.add_panel(DashboardPanel("light", columns=2, rows=2, title="Light"))
     
-    
         #Switch button shown on a dashboard
+        from kervi.hal import GPIO
+        from kervi.controller import Controller, UISwitchButtonControllerInput
+    
         class LightButton(UISwitchButtonControllerInput):
             def __init__(self, controller):
                 UISwitchButtonControllerInput.__init__(
@@ -113,8 +137,6 @@ The controller it self or the controller inputs may be linked to dashboards.
         MY_CONTROLLER = LightController()
 
         APP.run()
-
-
 
 .. toctree::
    :hidden:

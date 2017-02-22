@@ -142,77 +142,56 @@
             
   <div class="section" id="camera-and-video">
 <h1>Camera and video<a class="headerlink" href="#camera-and-video" title="Permalink to this headline">¶</a></h1>
-<p>Video and camera is managed via special Kervi Camera controllers.
-A camera controller capture frames from camera and feeds them into the system.</p>
-<p>It is possible to link a camera to dashboard panel or as a dashboard background.</p>
+<p>Cameras are managed via special Kervi Camera controllers and Kervi camera device drivers.
+A camera device driver capture frames from a camera and feeds them into the camera controller.</p>
+<p>The snippet below shows how to create a camera stream server and link it to a dashboard.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1">#Create a streaming camera server</span>
+<span class="kn">from</span> <span class="nn">kervi.camera</span> <span class="k">import</span> <span class="n">CameraStreamer</span>
+<span class="n">CAMERA</span> <span class="o">=</span> <span class="n">CameraStreamer</span><span class="p">(</span><span class="s2">&quot;cam1&quot;</span><span class="p">,</span> <span class="s2">&quot;camera 1&quot;</span><span class="p">)</span>
+
+<span class="c1">#link camera as background</span>
+<span class="n">CAMERA</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">)</span>
+<span class="c1">#link camera to a panel</span>
+<span class="n">CAMERA</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cam&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <a class="reference internal image-reference" href="_images/dashboard_cam.png"><img alt="_images/dashboard_cam.png" src="_images/dashboard_cam.png" style="width: 45%;" /></a>
 <a class="reference internal image-reference" href="_images/panel_cam.png"><img alt="_images/panel_cam.png" src="_images/panel_cam.png" style="width: 45%;" /></a>
-<p>There is a pan/tilt area at the center of the camera stream where it is possible to control the cameras
-pan and tilt if the camera is equiped with servos.</p>
-<p>Record and picture buttons are available for capturing single frames or video sequences from the camera.</p>
-<p>Changes to pan, tilt and buttons in the ui should be handled in abstract methods methods of the camera class.</p>
-<p><strong>Raspberry pi camera example</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
-<span class="kn">import</span> <span class="nn">picamera</span>
-<span class="kn">from</span> <span class="nn">kervi.camera</span> <span class="kn">import</span> <span class="n">FrameCamera</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">io</span>
+<p><strong>Size</strong></p>
+<p>It is possible to pass values for size and frames per second when you create the camera.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.camera</span> <span class="k">import</span> <span class="n">CameraStreamer</span>
+<span class="n">CAMERA</span> <span class="o">=</span> <span class="n">CameraStreamer</span><span class="p">(</span><span class="s2">&quot;cam1&quot;</span><span class="p">,</span> <span class="s2">&quot;camera 1&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Source</strong></p>
+<p>In the examples above the camera source is not specifyed and Kervi looks for the default camera on a Raspberry Pi it will be
+the on board camera. If you want to use another camera source than the default you need to specify it.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.camera</span> <span class="k">import</span> <span class="n">CameraStreamer</span>
+<span class="n">CAMERA</span> <span class="o">=</span> <span class="n">CameraStreamer</span><span class="p">(</span><span class="s2">&quot;cam1&quot;</span><span class="p">,</span> <span class="s2">&quot;camera 1&quot;</span><span class="p">,</span> <span class="n">camera_source</span><span class="o">=</span><span class="s2">&quot;/dev/video0&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Pan and tilt</strong></p>
+<p>If you want to control the cameras pan and tilt with servos you can use the following code</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.camera</span> <span class="k">import</span> <span class="n">CameraStreamer</span>
+<span class="k">class</span> <span class="nc">MyPanTiltCamera</span><span class="p">(</span><span class="n">CameraStreamer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">CameraStreamer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s2">&quot;cam1&quot;</span><span class="p">,</span> <span class="s2">&quot;Cam with pan and tilt&quot;</span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">Cam_1</span><span class="p">(</span><span class="n">FrameCamera</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">FrameCamera</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;cam1&quot;</span><span class="p">,</span> <span class="s2">&quot;camera 1&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fps</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="c1">#link the camera to the dashboard *app*</span>
+        <span class="c1">#enable the pan/tilt controllers in the browser</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="n">show_pan_tilt</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">capture_frames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">with</span> <span class="n">picamera</span><span class="o">.</span><span class="n">PiCamera</span><span class="p">()</span> <span class="k">as</span> <span class="n">camera</span><span class="p">:</span>
-            <span class="n">camera</span><span class="o">.</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
-            <span class="n">camera</span><span class="o">.</span><span class="n">framerate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fps</span>
+    <span class="k">def</span> <span class="nf">pan_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pan_value</span><span class="p">):</span>
+        <span class="c1">#event that is called when the user changes the pan in the browser.</span>
+        <span class="c1">#Add the code to move the pan servo.</span>
+        <span class="c1">#pan_value goes from - 100 to +100</span>
 
-            <span class="c1">#wait for camera to be ready</span>
-            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">tilt_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tilt_value</span><span class="p">):</span>
+        <span class="c1">#event that is called when the user changes the tilt in the browser.</span>
+        <span class="c1">#Add the code to move the tilt servo</span>
+        <span class="c1">#tilt_value goes from - 100 to +100</span>
 
-            <span class="n">stream</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">foo</span> <span class="ow">in</span> <span class="n">camera</span><span class="o">.</span><span class="n">capture_continuous</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s1">&#39;jpeg&#39;</span><span class="p">,</span> <span class="n">use_video_port</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
-                <span class="n">stream</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-                <span class="n">i</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
-                <span class="n">image</span><span class="o">=</span><span class="n">i</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-
-                <span class="bp">self</span><span class="o">.</span><span class="n">frame_ready</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-                <span class="n">stream</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">wait_next_frame</span><span class="p">()</span>
-
-                <span class="c1">#check if fps has changed</span>
-                <span class="k">if</span> <span class="n">camera</span><span class="o">.</span><span class="n">framerate</span> <span class="o">&lt;&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">fps</span><span class="p">:</span>
-                    <span class="n">camera</span><span class="o">.</span><span class="n">framerate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fps</span>
-                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">terminate</span><span class="p">:</span>
-                    <span class="k">break</span>
-
-
-    <span class="k">def</span> <span class="nf">pan_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pan_value</span><span class="p">,</span> <span class="n">old_value</span><span class="p">):</span>
-        <span class="c1">#The user has changed the pan in ui.</span>
-        <span class="c1">#If you have a pan servo you can control it from here.</span>
-        <span class="c1">#pan_value range is from -100 to 100 where zero is center.</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;pan changed&quot;</span><span class="p">,</span> <span class="n">pan_value</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">tilt_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tilt_value</span><span class="p">,</span> <span class="n">old_value</span><span class="p">):</span>
-        <span class="c1">#The user has changed the tilt in ui.</span>
-        <span class="c1">#If you have a tilt servo you can control it from here.</span>
-        <span class="c1">#tilt_value range is from -100 to 100 where zero is center.</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;tilt changed&quot;</span><span class="p">,</span> <span class="n">tilt_value</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">start_record</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1">#The user has clicked on the start record button in ui.</span>
-        <span class="c1">#Implement you save functionality here</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;start record&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">stop_record</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1">#The user has stopped the recording in ui.</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;stop record&quot;</span><span class="p">)</span>
-
-<span class="n">Cam_1</span><span class="p">()</span>
+<span class="n">MyPanTiltCamera</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="toctree-wrapper compound">

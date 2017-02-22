@@ -146,19 +146,17 @@
   <div class="section" id="module-kervi.camera">
 <span id="camera-api"></span><h1>Camera api<a class="headerlink" href="#module-kervi.camera" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="kervi.camera.FrameCamera">
-<em class="property">class </em><code class="descclassname">kervi.camera.</code><code class="descname">FrameCamera</code><span class="sig-paren">(</span><em>camera_id</em>, <em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.camera.FrameCamera" title="Permalink to this definition">¶</a></dt>
-<dd><p>Simple camera that streams video frame by frame to the ui.
-Colud be used with the Raspberry PI camera.
-Fill in the abstract method get_frame with functionality that graps one frame from the camera.
-Frames must be pil images.</p>
+<dt id="kervi.camera.CameraStreamer">
+<em class="property">class </em><code class="descclassname">kervi.camera.</code><code class="descname">CameraStreamer</code><span class="sig-paren">(</span><em>camera_id</em>, <em>name</em>, <em>camera_source=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.camera.CameraStreamer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Camera controller that streams video to the ui.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>camera_id</strong> &#8211; Id of the camera used to reference in dashboards.</li>
+<li><strong>camera_id</strong> (<em>str</em>) &#8211; Id of the camera. The id is used to reference the camera in other parts of the kervi application.</li>
 <li><strong>name</strong> (<em>str</em>) &#8211; Name of the camera used in ui.</li>
+<li><strong>camera_source</strong> (<em>The name of the camera source to use.</em>) &#8211; A frame driver that is used to capture frames from a camera.</li>
 <li><strong>**kwargs</strong> &#8211; See below</li>
 </ul>
 </td>
@@ -186,35 +184,46 @@ Frames must be pil images.</p>
 </tbody>
 </table>
 <dl class="method">
-<dt id="kervi.camera.FrameCamera.capture_frames">
-<code class="descname">capture_frames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.camera.FrameCamera.capture_frames" title="Permalink to this definition">¶</a></dt>
+<dt id="kervi.camera.CameraStreamer.frame_captured">
+<code class="descname">frame_captured</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.camera.CameraStreamer.frame_captured" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method that is called when a new frame is ready from the camera.
+You can use this method to post process images before they are streamed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.camera.CameraStreamer.get_font">
+<code class="descname">get_font</code><span class="sig-paren">(</span><em>name='Fanwood'</em>, <em>size=16</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.camera.CameraStreamer.get_font" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a font that can be used by pil image functions.
+This default font is &#8220;Fanwood&#8221; that is available on all platforms.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kervi.camera.FrameCameraDeviceDriver">
+<em class="property">class </em><code class="descclassname">kervi.camera.</code><code class="descname">FrameCameraDeviceDriver</code><a class="headerlink" href="#kervi.camera.FrameCameraDeviceDriver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for camera drivers that grap frames from a camera and streams them via the FrameCamera class.
+Could be used with the Raspberry PI camera.
+Fill in the abstract method capture_frames with functionality that graps
+frames from the camera and feeds them to the streamer.
+Frames must be pil images.</p>
+<dl class="method">
+<dt id="kervi.camera.FrameCameraDeviceDriver.capture_frames">
+<code class="descname">capture_frames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.camera.FrameCameraDeviceDriver.capture_frames" title="Permalink to this definition">¶</a></dt>
 <dd><p>Abstract method use it like the run method in a thread.
 capture frames from camera until the flag self.terminate is True.
 captured frames should be passed to the method frame_ready.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="kervi.camera.FrameCamera.frame_ready">
-<code class="descname">frame_ready</code><span class="sig-paren">(</span><em>frame</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.camera.FrameCamera.frame_ready" title="Permalink to this definition">¶</a></dt>
+<dt id="kervi.camera.FrameCameraDeviceDriver.frame_ready">
+<code class="descname">frame_ready</code><span class="sig-paren">(</span><em>frame</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.camera.FrameCameraDeviceDriver.frame_ready" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call this method when a frame is ready</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="kervi.camera.FrameCamera.get_font">
-<code class="descname">get_font</code><span class="sig-paren">(</span><em>name='Fanwood'</em>, <em>size=16</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.camera.FrameCamera.get_font" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a font that can be used by pil image functions.
-This default font is &#8220;Fanwood&#8221; that is available on all platforms.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="kervi.camera.FrameCamera.terminate">
-<code class="descname">terminate</code><a class="headerlink" href="#kervi.camera.FrameCamera.terminate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Flag to signal that the get_frames method should exit</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.camera.FrameCamera.wait_next_frame">
-<code class="descname">wait_next_frame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.camera.FrameCamera.wait_next_frame" title="Permalink to this definition">¶</a></dt>
+<dt id="kervi.camera.FrameCameraDeviceDriver.wait_next_frame">
+<code class="descname">wait_next_frame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.camera.FrameCameraDeviceDriver.wait_next_frame" title="Permalink to this definition">¶</a></dt>
 <dd><p>Waits for next frame.</p>
 </dd></dl>
 
