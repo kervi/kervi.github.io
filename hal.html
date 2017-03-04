@@ -152,9 +152,8 @@
   <div class="section" id="hardware-and-devices">
 <h1>Hardware and devices<a class="headerlink" href="#hardware-and-devices" title="Permalink to this headline">¶</a></h1>
 <p>A central feature in Kervi is platform independent access to hardware and devices.
-Kervi abstracts access to varius systems like GPIO and I2C in order to make Kervi solutions
-portable between different platforms and integrate device access into the framework.
-At the moment there is drivers for Raspberry Pi with more to come.</p>
+Kervi abstracts access to various systems like GPIO and I2C on your board in order to make Kervi solutions
+portable. At the moment there is drivers for Raspberry Pi with more to come.</p>
 <p>The kervi device library contains device drivers to common sensors, displays, gpio extenders.</p>
 <div class="section" id="select-platform">
 <h2>Select platform<a class="headerlink" href="#select-platform" title="Permalink to this headline">¶</a></h2>
@@ -167,7 +166,7 @@ initialise GPIO, I2C ect.</p>
 </div>
 <div class="section" id="gpio">
 <h2>GPIO<a class="headerlink" href="#gpio" title="Permalink to this headline">¶</a></h2>
-<p>Access to GPIO is done via the kervi.hal module. When Kervi starts it scans for installed Kervi platform drivers and loads the GPIO driver.</p>
+<p>Access to GPIO is done via the kervi.hal module. When your Kervi application starts it scans for installed Kervi platform drivers and loads the GPIO driver.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Sample controller &quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">kervi.controller</span> <span class="kn">import</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">ControllerSwitchButton</span>
 
