@@ -42,7 +42,7 @@ myapp.py
         #link camera as background
         CAMERA.link_to_dashboard("app")
         #link camera to a panel
-        #CAMERA.link_to_dashboard("system", "cam")
+        CAMERA.link_to_dashboard("system", "cam")
 
         from kervi.sensor import Sensor
         from kervi_devices.platforms.common.sensors.cpu_use import CPULoadSensorDeviceDriver
@@ -92,10 +92,10 @@ if you are using a Raspberry Pi as your board and loads required
 driveres. It also loads a web server that serves the files to the browser. 
 
 ######################
-Dashboards (line 8-15)
+Dashboards (line 7-13)
 ######################
 
-Dashboards are as such no at part of your application logic but you need to
+Dashboards are as such not at part of your application logic but you need to
 tell kervi how you want to organize your application in the browser. 
 You can have multiple dashboards in an application. It can be floores in a house
 if your are developing a house automation project or it can be a camera view and
@@ -105,8 +105,8 @@ In the example above two dashboards are defined APP and SYSTEM.
 
 Each dashboard has one or more panels where kervi components like sensors and controllers are linked to.
 
-################# ##
-camera (line 17-24) 
+###################
+camera (line 15-22) 
 ###################
 
 It is possible to stream your camera as a background on a dashboard or as content in a panel.
@@ -114,7 +114,7 @@ Use the method link_to_dashboard where you specify the dashboard and panel that 
 The camera will be displayed as a background if you omit the name of a panel in the call to link_to_dashboard.
 
 ###############
-Sensors (22-43)
+Sensors (24-35)
 ###############
 
 Sensors are used to sence the world and readings from sensors are handled thru the Sensor Class. 
@@ -129,7 +129,7 @@ This is done by calling the method link_to_dashboard where you specify dashboard
 When a sensor is linked to a dashboard panel the UI logic will pick up sensor readings for the sensor and update the value on the screen.
 
 ########################
-Controllers (line 48-69)
+Controllers (line 38-55)
 ########################
 
 Controllers react to input from user and input channels. 
@@ -141,7 +141,7 @@ When the user pushes the button in the browser it will invoke the input_changed 
 and the controller will set the state on a output channel.
 
 ###########################
-Start the engines (line 71)
+Start the engines (line 57)
 ###########################
 
 The work so far have been to prepare your application nothing is running yet to actually launch your app you need to call APP.run().
