@@ -149,7 +149,7 @@
 <dl class="class">
 <dt id="kervi.controller.AnalogGPIOControllerInput">
 <em class="property">class </em><code class="descclassname">kervi.controller.</code><code class="descname">AnalogGPIOControllerInput</code><span class="sig-paren">(</span><em>button_id</em>, <em>name</em>, <em>controller</em>, <em>channel</em>, <em>gpio_device=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.AnalogGPIOControllerInput" title="Permalink to this definition">¶</a></dt>
-<dd><p>Analog GPIO input component that listens to the signal level on analog input.
+<dd><p>Analog GPIO input that listens to the signal level on analog input.
 This input will show up as an UINumberControllerInput when linked to a dashboard panel
 and all ui settings for UINumberControllerInput applies to this input.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -157,10 +157,10 @@ and all ui settings for UINumberControllerInput applies to this input.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>button_id</strong> (<em>str</em>) &#8211; id of the input. This id used to reference this input in other parts of the kervi app.</li>
+<li><strong>input_id</strong> &#8211; id of the input. This id used to reference this input in other parts of the kervi app.</li>
 <li><strong>name</strong> (<em>str</em>) &#8211; Name of this component is used when displayed.</li>
 <li><strong>controller</strong> (<em>Controller instance.</em>) &#8211; The controller that this component belongs to.</li>
-<li><strong>channel</strong> (<em>int.</em>) &#8211; channel on the gpio device that should be used.</li>
+<li><strong>channel</strong> (<em>int</em><em> or </em><em>string.</em>) &#8211; channel on the gpio device that should be used.</li>
 <li><strong>gpio_device</strong> (<a class="reference internal" href="hal_gpio_api.html#kervi.utility.hal.gpio.IGPIODeviceDriver" title="kervi.utility.hal.gpio.IGPIODeviceDriver"><em>IGPIODeviceDriver</em></a><em> (</em><em>defined in kervi.utility.hal.gpio</em><em>)</em><em></em>) &#8211; GPIO device to use. Defaults to the host platforms gpio e.g the Raspbery PI&#8217;s gpio.</li>
 </ul>
 </td>
@@ -235,12 +235,81 @@ The width of the select box is ui_size * dashboard unit size.</dd>
 </dd></dl>
 
 <dl class="class">
-<dt id="kervi.controller.DateTimeControllerInput">
-<em class="property">class </em><code class="descclassname">kervi.controller.</code><code class="descname">DateTimeControllerInput</code><span class="sig-paren">(</span><em>input_id</em>, <em>name</em>, <em>input_type</em>, <em>controller</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.DateTimeControllerInput" title="Permalink to this definition">¶</a></dt>
+<dt id="kervi.controller.DigitalGPIOControllerInput">
+<em class="property">class </em><code class="descclassname">kervi.controller.</code><code class="descname">DigitalGPIOControllerInput</code><span class="sig-paren">(</span><em>button_id</em>, <em>name</em>, <em>controller</em>, <em>channel</em>, <em>gpio_device=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.DigitalGPIOControllerInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Digital GPIO input that listens to a digital input going high or low.
+This input will show up as an UISwitchButtonControllerInput when linked to a dashboard panel
+and all ui settings for UISwitchButtonControllerInput applies to this input.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>input_id</strong> (<em>str</em>) &#8211; id of the input. This id used to reference this input in other parts of the kervi app.</li>
+<li><strong>name</strong> (<em>str</em>) &#8211; Name of this component is used when displayed.</li>
+<li><strong>controller</strong> (<em>Controller instance.</em>) &#8211; The controller that this component belongs to.</li>
+<li><strong>channel</strong> (<em>int.</em>) &#8211; channel on the gpio device that should be used.</li>
+<li><strong>gpio_device</strong> (<a class="reference internal" href="hal_gpio_api.html#kervi.utility.hal.gpio.IGPIODeviceDriver" title="kervi.utility.hal.gpio.IGPIODeviceDriver"><em>IGPIODeviceDriver</em></a><em> (</em><em>defined in kervi.utility.hal.gpio</em><em>)</em><em></em>) &#8211; GPIO device to use. Defaults to the host platforms gpio e.g the Raspbery PI&#8217;s gpio.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kervi.controller.DigitalGPIOControllerInput.on_high">
+<code class="descname">on_high</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.DigitalGPIOControllerInput.on_high" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method that is executed when the channel is going high.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.controller.DigitalGPIOControllerInput.on_low">
+<code class="descname">on_low</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.DigitalGPIOControllerInput.on_low" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method that is executed when the channel is going low.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.controller.DigitalGPIOControllerInput.value">
+<code class="descname">value</code><a class="headerlink" href="#kervi.controller.DigitalGPIOControllerInput.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current state of the component</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kervi.controller.SensorControllerInput">
+<em class="property">class </em><code class="descclassname">kervi.controller.</code><code class="descname">SensorControllerInput</code><span class="sig-paren">(</span><em>input_id</em>, <em>name</em>, <em>sensor_id</em>, <em>controller</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.SensorControllerInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sensor input that listens to a sensor.
+This input will show up as an UINumberControllerInput when linked to a dashboard panel
+and all ui settings for UINumberControllerInput applies to this input.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>input_id</strong> &#8211; id of the input. This id used to reference this input in other parts of the kervi app.</li>
+<li><strong>name</strong> (<em>str</em>) &#8211; Name of this component is used when displayed.</li>
+<li><strong>controller</strong> (<em>Controller instance.</em>) &#8211; The controller that this component belongs to.</li>
+<li><strong>sensor_id</strong> &#8211; id of sensor to listen to.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="kervi.controller.SensorControllerInput.value">
+<code class="descname">value</code><a class="headerlink" href="#kervi.controller.SensorControllerInput.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current state of the component</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kervi.controller.UIDateTimeControllerInput">
+<em class="property">class </em><code class="descclassname">kervi.controller.</code><code class="descname">UIDateTimeControllerInput</code><span class="sig-paren">(</span><em>input_id</em>, <em>name</em>, <em>input_type</em>, <em>controller</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.UIDateTimeControllerInput" title="Permalink to this definition">¶</a></dt>
 <dd><p>A date and time component.</p>
 <dl class="method">
-<dt id="kervi.controller.DateTimeControllerInput.link_to_dashboard">
-<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.DateTimeControllerInput.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<dt id="kervi.controller.UIDateTimeControllerInput.link_to_dashboard">
+<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.UIDateTimeControllerInput.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
 <dd><p>Links this component to a dashboard section.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -274,55 +343,14 @@ The width of the select box is ui_size * dashboard unit size.</dd>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="kervi.controller.DateTimeControllerInput.persist_value">
-<code class="descname">persist_value</code><a class="headerlink" href="#kervi.controller.DateTimeControllerInput.persist_value" title="Permalink to this definition">¶</a></dt>
+<dt id="kervi.controller.UIDateTimeControllerInput.persist_value">
+<code class="descname">persist_value</code><a class="headerlink" href="#kervi.controller.UIDateTimeControllerInput.persist_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>If true the value is saved to kervi DB when it change</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="kervi.controller.DateTimeControllerInput.value">
-<code class="descname">value</code><a class="headerlink" href="#kervi.controller.DateTimeControllerInput.value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Current state of the component</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="kervi.controller.DigitalGPIOControllerInput">
-<em class="property">class </em><code class="descclassname">kervi.controller.</code><code class="descname">DigitalGPIOControllerInput</code><span class="sig-paren">(</span><em>button_id</em>, <em>name</em>, <em>controller</em>, <em>channel</em>, <em>gpio_device=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.DigitalGPIOControllerInput" title="Permalink to this definition">¶</a></dt>
-<dd><p>Digital GPIO input component that listens to a digital input going high or low.
-This input will show up as an UISwitchButtonControllerInput when linked to a dashboard panel
-and all ui settings for UISwitchButtonControllerInput applies to this input.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>button_id</strong> (<em>str</em>) &#8211; id of the input. This id used to reference this input in other parts of the kervi app.</li>
-<li><strong>name</strong> (<em>str</em>) &#8211; Name of this component is used when displayed.</li>
-<li><strong>controller</strong> (<em>Controller instance.</em>) &#8211; The controller that this component belongs to.</li>
-<li><strong>channel</strong> (<em>int.</em>) &#8211; channel on the gpio device that should be used.</li>
-<li><strong>gpio_device</strong> (<a class="reference internal" href="hal_gpio_api.html#kervi.utility.hal.gpio.IGPIODeviceDriver" title="kervi.utility.hal.gpio.IGPIODeviceDriver"><em>IGPIODeviceDriver</em></a><em> (</em><em>defined in kervi.utility.hal.gpio</em><em>)</em><em></em>) &#8211; GPIO device to use. Defaults to the host platforms gpio e.g the Raspbery PI&#8217;s gpio.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="kervi.controller.DigitalGPIOControllerInput.on_high">
-<code class="descname">on_high</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.DigitalGPIOControllerInput.on_high" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract method that is executed when the channel is going high.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.controller.DigitalGPIOControllerInput.on_low">
-<code class="descname">on_low</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.DigitalGPIOControllerInput.on_low" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract method that is executed when the channel is going low.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="kervi.controller.DigitalGPIOControllerInput.value">
-<code class="descname">value</code><a class="headerlink" href="#kervi.controller.DigitalGPIOControllerInput.value" title="Permalink to this definition">¶</a></dt>
+<dt id="kervi.controller.UIDateTimeControllerInput.value">
+<code class="descname">value</code><a class="headerlink" href="#kervi.controller.UIDateTimeControllerInput.value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Current state of the component</p>
 </dd></dl>
 

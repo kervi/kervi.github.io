@@ -153,7 +153,7 @@ Kervis has a base class <em>Sensor</em> that handles the hevy lifting of polling
 <div class="section" id="kervi-device-library">
 <h2>Kervi Device library<a class="headerlink" href="#kervi-device-library" title="Permalink to this headline">¶</a></h2>
 <p>A part of the Kervi framework is the device library that holds drivers for common devices.
-To use a device from the library import the device module and apply the driver to a sensor class.</p>
+To use a device from the library you need to import the device module and apply the driver to a sensor class.</p>
 <div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.sensor</span> <span class="k">import</span> <span class="n">Sensor</span>
 <span class="kn">from</span> <span class="nn">kervi_devices.sensors</span> <span class="k">import</span> <span class="n">BMP085</span>
 <span class="n">SENSOR_1</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;roomtemp1&quot;</span><span class="p">,</span> <span class="s2">&quot;Room 1&quot;</span><span class="p">,</span> <span class="n">BMP085</span><span class="o">.</span><span class="n">BMP085DeviceDriver</span><span class="p">(</span><span class="n">BMP085</span><span class="o">.</span><span class="n">TEMPERATURE_SENSOR</span><span class="p">))</span>

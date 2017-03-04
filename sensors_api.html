@@ -163,20 +163,11 @@ and linking to dashboards.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>sensor_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Id of the sensor.
 This id is used in other components to reference this sesnor.</li>
 <li><strong>name</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Name of the sensor. User in UI</li>
 <li><strong>**kwargs</strong> &#8211; See below</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
-<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
-<li><em>title</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Title of the section.</li>
-<li><em>columns</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Number of columns in this section, default is 1.</li>
-<li><em>rows</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Number of rows in this section, default is 1.</li>
-<li><em>add_user_log</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; This section shows user log messages.</li>
 </ul>
 </td>
 </tr>
@@ -306,19 +297,9 @@ This method handles DB storage and triggers different events.</p>
 </table>
 </dd></dl>
 
-<dl class="method">
-<dt id="kervi.sensor.Sensor.read_sensor">
-<code class="descname">read_sensor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.sensor.Sensor.read_sensor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract method that must be implementd if no device is set.
-This method is called by the sensor thread on regular intervals.</p>
-<p>There is no need to implement own polling systems or call time.sleep this
-is handles by the calling sensor thread.</p>
-<p>Use the method new_sensor_reading to store the value.</p>
-</dd></dl>
-
 <dl class="attribute">
-<dt id="kervi.sensor.Sensor.save_to_db">
-<code class="descname">save_to_db</code><a class="headerlink" href="#kervi.sensor.Sensor.save_to_db" title="Permalink to this definition">¶</a></dt>
+<dt id="kervi.sensor.Sensor.persist_to_db">
+<code class="descname">persist_to_db</code><a class="headerlink" href="#kervi.sensor.Sensor.persist_to_db" title="Permalink to this definition">¶</a></dt>
 <dd><p>If true the method new_sensor_reading
 will save the sensor reading to DB.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -331,19 +312,23 @@ will save the sensor reading to DB.</p>
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="kervi.sensor.Sensor.read_sensor">
+<code class="descname">read_sensor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.sensor.Sensor.read_sensor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method that must be implementd if no device is set.
+This method is called by the sensor thread on regular intervals.</p>
+<p>There is no need to implement own polling systems or call time.sleep this
+is handles by the calling sensor thread.</p>
+<p>Use the method new_sensor_reading to store the value.</p>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="kervi.sensor.Sensor.store_delta">
 <code class="descname">store_delta</code><a class="headerlink" href="#kervi.sensor.Sensor.store_delta" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enter how much a sensor value should change between readings before
-the method new_sensor_reading triggers db saving and send events.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">float</span></code></td>
-</tr>
-</tbody>
-</table>
+the method new_sensor_reading triggers db saving.
+Only relevant if persist_to_db is True.
+:type: <code class="docutils literal"><span class="pre">float</span></code></p>
 </dd></dl>
 
 <dl class="attribute">

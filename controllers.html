@@ -169,7 +169,8 @@ As your application grows your application will contain multiple controllers.</p
 </dl>
 <p>The controller it self or the controller inputs may be linked to dashboards.</p>
 <p><strong>Example</strong>
-The example below shows how to create a light controller that uses pwm to change the level of the light</p>
+The example below shows how to create a light controller that uses pwm to change the level of the light.
+The user controls the level via browser.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">kervi.bootstrap</span> <span class="kn">import</span> <span class="n">Application</span>
     <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
@@ -204,11 +205,11 @@ The example below shows how to create a light controller that uses pwm to change
             <span class="bp">self</span><span class="o">.</span><span class="n">add_input</span><span class="p">(</span><span class="n">level_input</span><span class="p">)</span>
 
             <span class="c1">#define GPIO</span>
-            <span class="n">GPIO</span><span class="o">.</span><span class="n">define_as_pwm</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="o">=</span><span class="n">level_input</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="mi">20000</span><span class="p">)</span>
+            <span class="n">GPIO</span><span class="o">.</span><span class="n">define_as_pwm</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">input_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">changed_input</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">changed_input</span><span class="o">.</span><span class="n">input_id</span> <span class="o">==</span> <span class="s2">&quot;lightctrl.on&quot;</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">changed_input</span><span class="o">.</span><span class="n">value</span>
+                <span class="k">if</span> <span class="n">changed_input</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
                     <span class="n">GPIO</span><span class="o">.</span><span class="n">pwn_start</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">GPIO</span><span class="o">.</span><span class="n">pwm_stop</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
@@ -217,12 +218,12 @@ The example below shows how to create a light controller that uses pwm to change
                 <span class="c1">#change the duty_cycle on the pwm pin</span>
                 <span class="n">GPIO</span><span class="o">.</span><span class="n">pwm_start</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="o">=</span><span class="n">changed_input</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 
-    <span class="n">MY_CONTROLLER</span> <span class="o">=</span> <span class="n">LightController</span><span class="p">()</span>
+    <span class="n">LightController</span><span class="p">()</span>
 
     <span class="n">APP</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>A light controller where logic is moved to the button</strong></p>
+<p><strong>A light controller where logic is moved to a on/off button</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">kervi.bootstrap</span> <span class="kn">import</span> <span class="n">Application</span>
     <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
@@ -270,6 +271,49 @@ The example below shows how to create a light controller that uses pwm to change
     <span class="n">MY_CONTROLLER</span> <span class="o">=</span> <span class="n">LightController</span><span class="p">()</span>
 
     <span class="n">APP</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Reading a sensor and control a pwm channel</strong>
+This controller listen to a temperature sensor and controls the speed by changing duty_cycle.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">kervi.bootstrap</span> <span class="kn">import</span> <span class="n">Application</span>
+    <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
+
+    <span class="c1">#add dashboard and panel</span>
+    <span class="kn">from</span> <span class="nn">kervi.dashboard</span> <span class="kn">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
+    <span class="n">DASHBOARD</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;dashboard.system&quot;</span><span class="p">,</span> <span class="s2">&quot;System&quot;</span><span class="p">,</span> <span class="n">is_default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">DASHBOARD</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;panel.system.fan&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Fan&quot;</span><span class="p">))</span>
+
+    <span class="kn">from</span> <span class="nn">kervi.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
+    <span class="kn">from</span> <span class="nn">kervi_devices.sensors</span> <span class="kn">import</span> <span class="n">BMP085</span>
+    <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;sensor.room1.temp&quot;</span><span class="p">,</span> <span class="s2">&quot;Room 1&quot;</span><span class="p">,</span> <span class="n">BMP085</span><span class="o">.</span><span class="n">BMP085DeviceDriver</span><span class="p">(</span><span class="n">BMP085</span><span class="o">.</span><span class="n">TEMPERATURE_SENSOR</span><span class="p">))</span>
+
+    <span class="k">class</span> <span class="nc">FanController</span><span class="p">(</span><span class="n">Controller</span><span class="p">):</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="n">Controller</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s2">&quot;fanctrl&quot;</span><span class="p">,</span> <span class="s2">&quot;Fan controller&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;fan&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;dashboard.system&quot;</span><span class="p">,</span> <span class="s2">&quot;panel.system.fan&quot;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_input</span><span class="p">(</span><span class="n">SensorControllerInput</span><span class="p">(</span><span class="s2">&quot;input.cputemp&quot;</span><span class="p">,</span> <span class="s2">&quot;Room 1 temp&quot;</span><span class="p">,</span> <span class="s2">&quot;sensor.room1.temp&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
+
+            <span class="c1">#define GPIO</span>
+            <span class="n">GPIO</span><span class="o">.</span><span class="n">define_as_pwm</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="mi">20000</span><span class="p">)</span>
+            <span class="n">GPIO</span><span class="o">.</span><span class="n">pwm_start</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">input_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">changed_input</span><span class="p">):</span>
+            <span class="c1">#stop fan if temperature is below 22 C</span>
+            <span class="c1">#Increase speed as temperature raises</span>
+            <span class="c1">#max speed is reached at 42 C</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">changed_input</span><span class="o">.</span><span class="n">component_id</span> <span class="o">==</span> <span class="s2">&quot;input.cpu.temp&quot;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">changed_input</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;</span> <span class="mi">22</span><span class="p">:</span>
+                    <span class="n">GPIO</span><span class="o">.</span><span class="n">pwm_stop</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">fan_speed</span> <span class="o">=</span> <span class="p">(</span><span class="n">changed_input</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="mi">22</span><span class="p">)</span> <span class="o">/</span> <span class="mi">20</span>
+                    <span class="k">if</span> <span class="n">fan_speed</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">fan_speed</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">GPIO</span><span class="o">.</span><span class="n">pwm_start</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">fan_speed</span><span class="p">)</span>
+
+    <span class="n">FanController</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="toctree-wrapper compound">

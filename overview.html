@@ -217,28 +217,12 @@ The application has a system dashboard that shows sensors messauring cpu, memory
 54
 55
 56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span> <span class="c1">#This line is needed in windows</span>
-
-     <span class="c1">#Create the application object this must be the very first action</span>
-     <span class="c1">#as it prepares the system.</span>
+57</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
      <span class="kn">from</span> <span class="nn">kervi.bootstrap</span> <span class="kn">import</span> <span class="n">Application</span>
      <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
+     <span class="c1">#Important GPIO must be imported after application creation</span>
+     <span class="kn">from</span> <span class="nn">kervi.hal</span> <span class="kn">import</span> <span class="n">GPIO</span>
 
-     <span class="c1">#create dashboards and panels</span>
      <span class="kn">from</span> <span class="nn">kervi.dashboard</span> <span class="kn">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
      <span class="n">DASHBOARD</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="s2">&quot;App&quot;</span><span class="p">,</span> <span class="n">is_default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
      <span class="n">DASHBOARD</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Light&quot;</span><span class="p">))</span>
@@ -254,32 +238,23 @@ The application has a system dashboard that shows sensors messauring cpu, memory
      <span class="c1">#link camera as background</span>
      <span class="n">CAMERA</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">)</span>
      <span class="c1">#link camera to a panel</span>
-     <span class="n">CAMERA</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cam&quot;</span><span class="p">)</span>
+     <span class="c1">#CAMERA.link_to_dashboard(&quot;system&quot;, &quot;cam&quot;)</span>
 
-     <span class="c1">#Your are ready to create your application logic</span>
-     <span class="c1">#Get the GPIO module. The gpio module is used to control</span>
-     <span class="c1">#input and output of your application</span>
-     <span class="kn">from</span> <span class="nn">kervi.hal</span> <span class="kn">import</span> <span class="n">GPIO</span>
-
-
-     <span class="c1">#Create a sensor this sensors uses a *cpu load device driver* build into kervi</span>
      <span class="kn">from</span> <span class="nn">kervi.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
      <span class="kn">from</span> <span class="nn">kervi_devices.platforms.common.sensors.cpu_use</span> <span class="kn">import</span> <span class="n">CPULoadSensorDeviceDriver</span>
+     <span class="c1">#build in sensor that measures cpu use</span>
      <span class="n">SENSOR_1</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;CPULoadSensor&quot;</span><span class="p">,</span> <span class="s2">&quot;CPU&quot;</span><span class="p">,</span> <span class="n">CPULoadSensorDeviceDriver</span><span class="p">())</span>
-
-     <span class="c1">#link the sensor to sys area top right</span>
+     <span class="c1">#link to sys area top right</span>
      <span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="s2">&quot;sys-header&quot;</span><span class="p">)</span>
-
-     <span class="c1">#link the sensor to a panel, show value in panel header and</span>
-     <span class="c1"># chart of sensor values in the panel body</span>
+     <span class="c1">#link to a panel, show value in panel header and chart in panel body</span>
      <span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">link_to_header</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
      <span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;chart&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 
      <span class="c1">#More on sensors https://kervi.github.io/sensors.html</span>
 
+
      <span class="c1">#define a light controller</span>
-     <span class="c1">#Import controller and a ui controller input.</span>
      <span class="kn">from</span> <span class="nn">kervi.controller</span> <span class="kn">import</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">UISwitchButtonControllerInput</span>
      <span class="k">class</span> <span class="nc">MyController</span><span class="p">(</span><span class="n">Controller</span><span class="p">):</span>
          <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -288,10 +263,7 @@ The application has a system dashboard that shows sensors messauring cpu, memory
 
              <span class="c1">#define an input and link it to the dashboard panel</span>
              <span class="n">light1</span> <span class="o">=</span> <span class="n">UISwitchButtonControllerInput</span><span class="p">(</span><span class="s2">&quot;lightctrl.light1&quot;</span><span class="p">,</span> <span class="s2">&quot;Light&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-             <span class="n">light1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
-             <span class="c1">#add the input to this controller</span>
-             <span class="bp">self</span><span class="o">.</span><span class="n">add_input</span><span class="p">(</span><span class="n">light1</span><span class="p">)</span>
+             <span class="n">light1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">label_icon</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
              <span class="c1">#define GPIO</span>
              <span class="n">GPIO</span><span class="o">.</span><span class="n">define_as_output</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
@@ -332,7 +304,7 @@ The camera will be displayed as a background if you omit the name of a panel in 
 <div class="section" id="sensors-22-43">
 <h4>Sensors (22-43)<a class="headerlink" href="#sensors-22-43" title="Permalink to this headline">¶</a></h4>
 <p>Sensors are used to sence the world and readings from sensors are handled thru the Sensor Class.
-You can program a sensor your self or you can utterlize one of the ready made sensor drivers from the Kervi Device Library (KDL).</p>
+You can program a sensor your self or you can utilize one of the ready made sensor drivers from the Kervi Device Library (KDL).</p>
 <p>In the example above a <em>Cpu Load sensor</em> is fetched from KDL and applied to the Sensor class.
 When the application is running the Sensor class polls <em>Cpu load sensor</em> device and notify other
 parts of the application via events.</p>
@@ -351,13 +323,13 @@ and the controller will set the state on a output channel.</p>
 </div>
 <div class="section" id="start-the-engines-line-71">
 <h4>Start the engines (line 71)<a class="headerlink" href="#start-the-engines-line-71" title="Permalink to this headline">¶</a></h4>
-<p>The work so far have bin to prepare your application to actually launch it you need to call APP.run().
+<p>The work so far have been to prepare your application nothing is running yet to actually launch your app you need to call APP.run().
 This will launch the web server, interprocess communication systems and start sensor readings.</p>
 </div>
 </div>
 <div class="section" id="normal-application">
 <h3>Normal application<a class="headerlink" href="#normal-application" title="Permalink to this headline">¶</a></h3>
-<p>Below is the structure of a <em>normal</em> Kervi application. All the parts from a single file application are moved into
+<p>Below is the structure of a multi file Kervi application. All the parts from a single file application are moved into
 seperate files and foldes. Kervi uses this structure to load each section in its own process in order to improve the performance.</p>
 <p>A second advantance to this model is that it is easier to maintain as the Kervi project grows bigger.</p>
 <div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="n">root</span>
@@ -403,7 +375,7 @@ seperate files and foldes. Kervi uses this structure to load each section in its
 </div>
 <p>The values for ports and secrets are generated by the Kervi commandline tool.
 When the Application.run is called the system looks for Kervi components in cam, controllers, dashboard and sensor folders.
-In each folder the __init__.py bootstraps and load the components that resides in the local folder.</p>
+In each folder the __init__.py file bootstraps and load the components that resides in the local folder.</p>
 </div>
 </div>
 </div>
