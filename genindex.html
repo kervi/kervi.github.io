@@ -94,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
 
             
@@ -148,13 +149,10 @@
  | <a href="#I"><strong>I</strong></a>
  | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
- | <a href="#M"><strong>M</strong></a>
- | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
- | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
  | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
@@ -177,14 +175,12 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dashboards_api.html#kervi.dashboard.Camboard">Camboard (class in kervi.dashboard)</a>
-</li>
       <li><a href="camera_api.html#kervi.camera.CameraStreamer">CameraStreamer (class in kervi.camera)</a>
+</li>
+      <li><a href="camera_api.html#kervi.camera.FrameCameraDeviceDriver.capture_frames">capture_frames() (kervi.camera.FrameCameraDeviceDriver method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="camera_api.html#kervi.camera.FrameCameraDeviceDriver.capture_frames">capture_frames() (kervi.camera.FrameCameraDeviceDriver method)</a>
-</li>
       <li><a href="controllers_api.html#kervi.controller.UISelectControllerInput.change">change() (kervi.controller.UISelectControllerInput method)</a>
 </li>
       <li><a href="controllers_api.html#kervi.controller.Controller">Controller (class in kervi.controller)</a>
@@ -206,8 +202,6 @@
       <li><a href="hal_gpio_api.html#kervi.utility.hal.gpio.IGPIODeviceDriver.define_as_output">define_as_output() (kervi.utility.hal.gpio.IGPIODeviceDriver method)</a>
 </li>
       <li><a href="hal_gpio_api.html#kervi.utility.hal.gpio.IGPIODeviceDriver.define_as_pwm">define_as_pwm() (kervi.utility.hal.gpio.IGPIODeviceDriver method)</a>
-</li>
-      <li><a href="hal_devices_api.html#kervi.sensor.Sensor.device">device (kervi.sensor.Sensor attribute)</a>, <a href="sensors_api.html#kervi.sensor.Sensor.device">[1]</a>
 </li>
       <li><a href="controllers_api.html#kervi.controller.DigitalGPIOControllerInput">DigitalGPIOControllerInput (class in kervi.controller)</a>
 </li>
@@ -261,11 +255,9 @@
 </li>
       <li><a href="controllers_api.html#module-kervi.controller">kervi.controller (module)</a>
 </li>
-      <li><a href="dashboards_api.html#module-kervi.dashboard">kervi.dashboard (module)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="hal_devices_api.html#module-kervi.sensor">kervi.sensor (module)</a>, <a href="sensors_api.html#module-kervi.sensor">[1]</a>
+      <li><a href="dashboards_api.html#module-kervi.dashboard">kervi.dashboard (module)</a>
 </li>
       <li><a href="hal_gpio_api.html#module-kervi.utility.hal.gpio">kervi.utility.hal.gpio (module)</a>
 </li>
@@ -290,8 +282,6 @@
 </li>
         <li><a href="controllers_api.html#kervi.controller.UITextControllerInput.link_to_dashboard">(kervi.controller.UITextControllerInput method)</a>
 </li>
-        <li><a href="hal_devices_api.html#kervi.sensor.Sensor.link_to_dashboard">(kervi.sensor.Sensor method)</a>, <a href="sensors_api.html#kervi.sensor.Sensor.link_to_dashboard">[1]</a>
-</li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -300,30 +290,6 @@
       <li><a href="hal_gpio_api.html#kervi.utility.hal.gpio.IGPIODeviceDriver.listen_falling">listen_falling() (kervi.utility.hal.gpio.IGPIODeviceDriver method)</a>
 </li>
       <li><a href="hal_gpio_api.html#kervi.utility.hal.gpio.IGPIODeviceDriver.listen_rising">listen_rising() (kervi.utility.hal.gpio.IGPIODeviceDriver method)</a>
-</li>
-      <li><a href="hal_devices_api.html#kervi.sensor.Sensor.lower_fatal_limit">lower_fatal_limit (kervi.sensor.Sensor attribute)</a>, <a href="sensors_api.html#kervi.sensor.Sensor.lower_fatal_limit">[1]</a>
-</li>
-      <li><a href="hal_devices_api.html#kervi.sensor.Sensor.lower_warning_limit">lower_warning_limit (kervi.sensor.Sensor attribute)</a>, <a href="sensors_api.html#kervi.sensor.Sensor.lower_warning_limit">[1]</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="M">M</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="hal_devices_api.html#kervi.sensor.Sensor.max">max (kervi.sensor.Sensor attribute)</a>, <a href="sensors_api.html#kervi.sensor.Sensor.max">[1]</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="hal_devices_api.html#kervi.sensor.Sensor.min">min (kervi.sensor.Sensor attribute)</a>, <a href="sensors_api.html#kervi.sensor.Sensor.min">[1]</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="N">N</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="hal_devices_api.html#kervi.sensor.Sensor.new_sensor_reading">new_sensor_reading() (kervi.sensor.Sensor method)</a>, <a href="sensors_api.html#kervi.sensor.Sensor.new_sensor_reading">[1]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -347,8 +313,6 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="hal_devices_api.html#kervi.sensor.Sensor.persist_to_db">persist_to_db (kervi.sensor.Sensor attribute)</a>, <a href="sensors_api.html#kervi.sensor.Sensor.persist_to_db">[1]</a>
-</li>
       <li><a href="controllers_api.html#kervi.controller.UIDateTimeControllerInput.persist_value">persist_value (kervi.controller.UIDateTimeControllerInput attribute)</a>
 
       <ul>
@@ -383,11 +347,9 @@
 </li>
       <li><a href="hal_i2c_api.html#kervi.utility.hal.i2c.II2CDeviceDriver.read_S16LE">read_S16LE() (kervi.utility.hal.i2c.II2CDeviceDriver method)</a>
 </li>
-      <li><a href="hal_i2c_api.html#kervi.utility.hal.i2c.II2CDeviceDriver.read_S8">read_S8() (kervi.utility.hal.i2c.II2CDeviceDriver method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="hal_devices_api.html#kervi.sensor.Sensor.read_sensor">read_sensor() (kervi.sensor.Sensor method)</a>, <a href="sensors_api.html#kervi.sensor.Sensor.read_sensor">[1]</a>
+      <li><a href="hal_i2c_api.html#kervi.utility.hal.i2c.II2CDeviceDriver.read_S8">read_S8() (kervi.utility.hal.i2c.II2CDeviceDriver method)</a>
 </li>
       <li><a href="hal_i2c_api.html#kervi.utility.hal.i2c.II2CDeviceDriver.read_U16">read_U16() (kervi.utility.hal.i2c.II2CDeviceDriver method)</a>
 </li>
@@ -405,25 +367,11 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="hal_devices_api.html#kervi.sensor.Sensor">Sensor (class in kervi.sensor)</a>, <a href="sensors_api.html#kervi.sensor.Sensor">[1]</a>
-</li>
       <li><a href="controllers_api.html#kervi.controller.SensorControllerInput">SensorControllerInput (class in kervi.controller)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="hal_devices_api.html#kervi.sensor.SensorThread">SensorThread (class in kervi.sensor)</a>, <a href="sensors_api.html#kervi.sensor.SensorThread">[1]</a>
-</li>
       <li><a href="hal_gpio_api.html#kervi.utility.hal.gpio.IGPIODeviceDriver.set">set() (kervi.utility.hal.gpio.IGPIODeviceDriver method)</a>
-</li>
-      <li><a href="hal_devices_api.html#kervi.sensor.Sensor.store_delta">store_delta (kervi.sensor.Sensor attribute)</a>, <a href="sensors_api.html#kervi.sensor.Sensor.store_delta">[1]</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="T">T</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="hal_devices_api.html#kervi.sensor.Sensor.type">type (kervi.sensor.Sensor attribute)</a>, <a href="sensors_api.html#kervi.sensor.Sensor.type">[1]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -435,19 +383,13 @@
 </li>
       <li><a href="controllers_api.html#kervi.controller.UINumberControllerInput">UINumberControllerInput (class in kervi.controller)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="controllers_api.html#kervi.controller.UISelectControllerInput">UISelectControllerInput (class in kervi.controller)</a>
 </li>
       <li><a href="controllers_api.html#kervi.controller.UISwitchButtonControllerInput">UISwitchButtonControllerInput (class in kervi.controller)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="controllers_api.html#kervi.controller.UITextControllerInput">UITextControllerInput (class in kervi.controller)</a>
-</li>
-      <li><a href="hal_devices_api.html#kervi.sensor.Sensor.unit">unit (kervi.sensor.Sensor attribute)</a>, <a href="sensors_api.html#kervi.sensor.Sensor.unit">[1]</a>
-</li>
-      <li><a href="hal_devices_api.html#kervi.sensor.Sensor.upper_fatal_limit">upper_fatal_limit (kervi.sensor.Sensor attribute)</a>, <a href="sensors_api.html#kervi.sensor.Sensor.upper_fatal_limit">[1]</a>
-</li>
-      <li><a href="hal_devices_api.html#kervi.sensor.Sensor.upper_warning_limit">upper_warning_limit (kervi.sensor.Sensor attribute)</a>, <a href="sensors_api.html#kervi.sensor.Sensor.upper_warning_limit">[1]</a>
 </li>
   </ul></td>
 </tr></table>
