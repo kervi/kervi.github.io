@@ -1,4 +1,0 @@
-Dashboards
-=================================
-.. automodule:: kervi.dashboard
-   :members:

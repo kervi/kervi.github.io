@@ -99,6 +99,7 @@
 <li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
 
             
@@ -310,31 +311,37 @@ and all ui settings for UINumberControllerInput applies to this input.</p>
 <dl class="method">
 <dt id="kervi.controller.UIDateTimeControllerInput.link_to_dashboard">
 <code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.UIDateTimeControllerInput.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
-<dd><p>Links this component to a dashboard section.</p>
+<dd><p>Links this input to a dashboard panel.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>dashboard_id</strong> &#8211; id of the dashboard to link to.</li>
-<li><strong>section_id</strong> (<em>str</em>) &#8211; id of the section.</li>
-<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values set in ui_parameters</li>
+<li><strong>dashboard_id</strong> (<em>str</em>) &#8211; Id of the dashboard to link to.</li>
+<li><strong>panel_id</strong> (<em>str</em>) &#8211; Id of the panel on the dashboard to link to.</li>
+<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values for ui parameters</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
 <li><dl class="first docutils">
-<dt><em>ui_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Size of the component in dashboard unit size.</dt>
-<dd>In order to make the sections and components align correct a dashboard unit is defined.
-Default the dashboard unit is a square that is 150 x 150 pixels.
-The width of the select box is ui_size * dashboard unit size.</dd>
+<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The number of dashboard cells the input should occupy horizontal.</dt>
+<dd>If size is 0 (default) the input and label will expand to the width of the panel.</dd>
 </dl>
 </li>
-<li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Type of select box, dropdown or list.</li>
-<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Add this component to header of section.</li>
-<li><em>icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
+<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Link this input to header of the panel.</li>
+<li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
+<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Label text, default value is the name of the input.</li>
 <li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Flat look and feel.</li>
+<li><dl class="first docutils">
+<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Display input and label in its actual size</dt>
+<dd>If you set inline to true the size parameter is ignored.
+The input will only occupy as much space as the label and input takes.</dd>
+</dl>
+</li>
+<li><em>input_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; width of the slider as a percentage of the total container it sits in.</li>
+<li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Kind of input either &#8216;date&#8217; or &#8216;time&#8217;.</li>
 </ul>
 </td>
 </tr>
@@ -363,32 +370,38 @@ The width of the select box is ui_size * dashboard unit size.</dd>
 <dl class="method">
 <dt id="kervi.controller.UINumberControllerInput.link_to_dashboard">
 <code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.UINumberControllerInput.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
-<dd><p>Links this component to a dashboard section.</p>
+<dd><p>Links this input to a dashboard panel.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>dashboard_id</strong> &#8211; id of the dashboard to link to.</li>
-<li><strong>section_id</strong> (<em>str</em>) &#8211; id of the section.</li>
-<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values set in ui_parameters</li>
+<li><strong>dashboard_id</strong> (<em>str</em>) &#8211; Id of the dashboard to link to.</li>
+<li><strong>panel_id</strong> (<em>str</em>) &#8211; Id of the panel on the dashboard to link to.</li>
+<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values for ui parameters</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
 <li><dl class="first docutils">
-<dt><em>ui_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Size of the component in dashboard unit size.</dt>
-<dd>In order to make the sections and components align correct a dashboard unit is defined.
-Default the dashboard unit is a square that is 150 x 150 pixels.
-The width of the select box is ui_size * dashboard unit size.</dd>
+<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The number of dashboard cells the input should occupy horizontal.</dt>
+<dd>If size is 0 (default) the input and label will expand to the width of the panel.</dd>
 </dl>
 </li>
-<li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Type of select box, dropdown or list.</li>
-<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Add this component to header of section.</li>
-<li><em>icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
+<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Link this input to header of the panel.</li>
+<li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
+<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Label text, default value is the name of the input.</li>
 <li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Flat look and feel.</li>
-<li><em>read_only</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; The user will not be able to change the value of this component.</li>
+<li><dl class="first docutils">
+<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Display input and label in its actual size</dt>
+<dd>If you set inline to true the size parameter is ignored.
+The input will only occupy as much space as the label and input takes.</dd>
+</dl>
+</li>
+<li><em>input_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; width of the slider as a percentage of the total container it sits in.</li>
+<li><em>value_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; width of the value area as a percentage of the total container it sits in.</li>
+<li><em>type</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; &#8216;vertical_slider&#8217; or &#8216;horizontal_slider.</li>
 </ul>
 </td>
 </tr>
@@ -440,32 +453,38 @@ The width of the select box is ui_size * dashboard unit size.</dd>
 
 <dl class="method">
 <dt id="kervi.controller.UISelectControllerInput.link_to_dashboard">
-<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.UISelectControllerInput.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
-<dd><p>Links this component to a dashboard section.</p>
+<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>panel_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.UISelectControllerInput.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Links this input to a dashboard panel.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>dashboard_id</strong> &#8211; id of the dashboard to link to.</li>
-<li><strong>section_id</strong> (<em>str</em>) &#8211; id of the section.</li>
-<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values set in ui_parameters</li>
+<li><strong>dashboard_id</strong> (<em>str</em>) &#8211; Id of the dashboard to link to.</li>
+<li><strong>panel_id</strong> (<em>str</em>) &#8211; Id of the panel on the dashboard to link to.</li>
+<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values for ui parameters</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
 <li><dl class="first docutils">
-<dt><em>ui_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Size of the component in dashboard unit size.</dt>
-<dd>In order to make the sections and components align correct a dashboard unit is defined.
-Default the dashboard unit is a square that is 150 x 150 pixels.
-The width of the select box is ui_size * dashboard unit size.</dd>
+<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The number of dashboard cells the input should occupy horizontal.</dt>
+<dd>If size is 0 (default) the input and label will expand to the width of the panel.</dd>
 </dl>
 </li>
 <li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Type of select box, dropdown or list.</li>
-<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Add this component to header of section.</li>
-<li><em>icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
+<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Link this input to header of the panel.</li>
+<li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
+<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Label text, default value is the name of the input.</li>
 <li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Flat look and feel.</li>
+<li><dl class="first docutils">
+<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Display input and label in its actual size</dt>
+<dd>If you set inline to true the size parameter is ignored.
+The input will only occupy as much space as the label and input takes.</dd>
+</dl>
+</li>
+<li><em>input_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; width of the select box as a percentage of the total container it sits in.</li>
 </ul>
 </td>
 </tr>
@@ -494,39 +513,41 @@ The width of the select box is ui_size * dashboard unit size.</dd>
 <dl class="method">
 <dt id="kervi.controller.UISwitchButtonControllerInput.link_to_dashboard">
 <code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.UISwitchButtonControllerInput.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
-<dd><p>Links this component to a dashboard section.</p>
+<dd><p>Links this input to a dashboard panel.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>dashboard_id</strong> &#8211; id of the dashboard to link to.</li>
-<li><strong>section_id</strong> (<em>str</em>) &#8211; id of the section.</li>
-<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values set in ui_parameters</li>
+<li><strong>dashboard_id</strong> (<em>str</em>) &#8211; Id of the dashboard to link to.</li>
+<li><strong>panel_id</strong> (<em>str</em>) &#8211; Id of the panel on the dashboard to link to.</li>
+<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values for ui parameters</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
 <li><dl class="first docutils">
-<dt><em>ui_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Size of the component in dashboard unit size.</dt>
-<dd>In order to make the sections and components align correct a dashboard unit is defined.
-Default the dashboard unit is a square that is 150 x 150 pixels.
-The width of the select box is ui_size * dashboard unit size.</dd>
+<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The number of dashboard cells the input should occupy horizontal.</dt>
+<dd>If size is 0 (default) the input and label will expand to the width of the panel.</dd>
 </dl>
 </li>
-<li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Type of select box, dropdown or list.</li>
-<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Add this component to header of section.</li>
-<li><em>icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
+<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Link this input to header of the panel.</li>
+<li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
+<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Label text, default value is the name of the input.</li>
 <li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Flat look and feel.</li>
-<li><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; the size of the button including label and icon. If 0 full width of container</li>
+<li><dl class="first docutils">
+<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Display input and label in its actual size</dt>
+<dd>If you set inline to true the size parameter is ignored.
+The input will only occupy as much space as the label and input takes.</dd>
+</dl>
+</li>
+<li><em>input_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; width of the switch as a percentage of the total container it sits in.</li>
 <li><em>on_text</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Text to show on button when on.</li>
 <li><em>off_text</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Text to show on button when off.</li>
 <li><em>on_icon</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Icon to show on button when on.</li>
 <li><em>off_icon</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Icon to show on button when off.</li>
-<li><em>show_name</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Show the name of button as label.</li>
 <li><em>read_only</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; If true the user is not able to change state.</li>
-<li><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Let the button flow in line with other components.</li>
 </ul>
 </td>
 </tr>
@@ -567,31 +588,36 @@ The width of the select box is ui_size * dashboard unit size.</dd>
 <dl class="method">
 <dt id="kervi.controller.UITextControllerInput.link_to_dashboard">
 <code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.UITextControllerInput.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
-<dd><p>Links this component to a dashboard section.</p>
+<dd><p>Links this input to a dashboard panel.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>dashboard_id</strong> &#8211; id of the dashboard to link to.</li>
-<li><strong>section_id</strong> (<em>str</em>) &#8211; id of the section.</li>
-<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values set in ui_parameters</li>
+<li><strong>dashboard_id</strong> (<em>str</em>) &#8211; Id of the dashboard to link to.</li>
+<li><strong>panel_id</strong> (<em>str</em>) &#8211; Id of the panel on the dashboard to link to.</li>
+<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values for ui parameters</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
 <li><dl class="first docutils">
-<dt><em>ui_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Size of the component in dashboard unit size.</dt>
-<dd>In order to make the sections and components align correct a dashboard unit is defined.
-Default the dashboard unit is a square that is 150 x 150 pixels.
-The width of the select box is ui_size * dashboard unit size.</dd>
+<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The number of dashboard cells the input should occupy horizontal.</dt>
+<dd>If size is 0 (default) the input and label will expand to the width of the panel.</dd>
 </dl>
 </li>
-<li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Type of select box, dropdown or list.</li>
-<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Add this component to header of section.</li>
-<li><em>icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
+<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Link this input to header of the panel.</li>
+<li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
+<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Label text, default value is the name of the input.</li>
 <li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Flat look and feel.</li>
+<li><dl class="first docutils">
+<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Display input and label in its actual size</dt>
+<dd>If you set inline to true the size parameter is ignored.
+The input will only occupy as much space as the label and input takes.</dd>
+</dl>
+</li>
+<li><em>input_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; width of the slider as a percentage of the total container it sits in.</li>
 </ul>
 </td>
 </tr>

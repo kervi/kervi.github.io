@@ -86,7 +86,17 @@
             
                 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Get started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Get started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prequisits">Prequisits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-application">Create application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#single-file-application">Single file application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-file-application">Multi file application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#start-application">Start application</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
@@ -95,6 +105,7 @@
 <li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
 
             
@@ -139,13 +150,16 @@
             
   <div class="section" id="get-started">
 <h1>Get started<a class="headerlink" href="#get-started" title="Permalink to this headline">¶</a></h1>
-<p><strong>Prequisits</strong></p>
+<div class="section" id="prequisits">
+<h2>Prequisits<a class="headerlink" href="#prequisits" title="Permalink to this headline">¶</a></h2>
 <p>Kervi is a python framework and needs python 3.4+ and the python package manager pip.</p>
 <p>Raspberry Pi comes with python and pip preinstalled if you are able to start your Raspberry Pi you are ready to install Kervi.</p>
 <p>If you install on other platforms like windows and linux you have to install python and pip. Please follow the instructions on python.org to get python installed.
 Notice there are no native support for hardware when your install on these platforms but you will be able to
 create dashboards and let users interact with your python kervi application via a browser.</p>
-<p><strong>install</strong></p>
+</div>
+<div class="section" id="install">
+<h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
 <p>Open a terminal window and run the pip command below.</p>
 <p>Raspberry Pi:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip3</span> <span class="n">install</span> <span class="n">kervi</span><span class="p">[</span><span class="n">rpi</span><span class="p">]</span>
@@ -155,6 +169,9 @@ create dashboards and let users interact with your python kervi application via 
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">kervi</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="create-application">
+<h2>Create application<a class="headerlink" href="#create-application" title="Permalink to this headline">¶</a></h2>
 <p>Next your create a folder for your application:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">myapp</span>
 <span class="n">cd</span> <span class="n">myapp</span>
@@ -162,19 +179,25 @@ create dashboards and let users interact with your python kervi application via 
 </div>
 <p>After kervi is installed a commandline tool <em>kervi</em> is available that helps with creating the sceleton for your Kervi apps.
 You have two choices when it comes to create a kervi applications via the commandline tool.</p>
-<p><strong>1) Single file application</strong></p>
+<div class="section" id="single-file-application">
+<h3>Single file application<a class="headerlink" href="#single-file-application" title="Permalink to this headline">¶</a></h3>
 <p>If you are new to Kervi or just wants to make a quick test application then a single file kervi application is a good chooice to get going.
 You create the single file app via the following command in the terminal window:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">kervi</span> <span class="n">create</span> <span class="n">application</span> <span class="n">myapp</span> <span class="s2">&quot;My first app&quot;</span> <span class="o">--</span><span class="n">single_file_app</span>
 </pre></div>
 </div>
-<p><strong>2) Multi file application</strong></p>
+</div>
+<div class="section" id="multi-file-application">
+<h3>Multi file application<a class="headerlink" href="#multi-file-application" title="Permalink to this headline">¶</a></h3>
 <p>If you are planning to build a robot or home automation system it is recommanded to create a normal Kervi application.
 Such an application consists of several files and the Kervi framework is able to spread the load on all the cores on your board.</p>
 <p>To create a full kervi application write the following command in the terminal:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">kervi</span> <span class="n">create</span> <span class="n">application</span> <span class="n">myapp</span> <span class="s2">&quot;My first app&quot;</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="start-application">
+<h3>Start application<a class="headerlink" href="#start-application" title="Permalink to this headline">¶</a></h3>
 <p>If you use Raspberry pi you start your new app by executing:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="n">myapp</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
@@ -194,6 +217,8 @@ Such an application consists of several files and the Kervi framework is able to
 </div>
 <p>If you enter the url into at browser you should see something like this</p>
 <img alt="_images/dashboard.png" src="_images/dashboard.png" />
+</div>
+</div>
 </div>
 
 

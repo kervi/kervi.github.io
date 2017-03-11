@@ -99,6 +99,7 @@
 <li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
 
             
@@ -147,27 +148,6 @@
 <span id="dashboards-api"></span><h1>Dashboards api<a class="headerlink" href="#module-kervi.dashboard" title="Permalink to this headline">¶</a></h1>
 <p>A dashboard is the main ui component in a kervi application.</p>
 <dl class="class">
-<dt id="kervi.dashboard.Camboard">
-<em class="property">class </em><code class="descclassname">kervi.dashboard.</code><code class="descname">Camboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>name</em>, <em>camera_id</em>, <em>is_default=False</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.dashboard.Camboard" title="Permalink to this definition">¶</a></dt>
-<dd><p>A Camboard is a specialized dashboard that has a video feed as background
-and controllers for pan/tilt at the center of the dashboard.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>dashboard_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Unique id of the dashboard. Used when referencing this dashboard.</li>
-<li><strong>name</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Name of the dahsboard used in dashboard menu in UI.</li>
-<li><strong>camera_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Id of a camera to use as background.</li>
-<li><strong>is_default</strong> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; If true this dashboard will show up as the active dashboard when UI loads.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="class">
 <dt id="kervi.dashboard.Dashboard">
 <em class="property">class </em><code class="descclassname">kervi.dashboard.</code><code class="descname">Dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.dashboard.Dashboard" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a UI dashboard. The dashboard will show up in the dashboard menu in the UI.</p>
@@ -197,7 +177,7 @@ and controllers for pan/tilt at the center of the dashboard.</p>
 <tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
 <li><dl class="first docutils">
 <dt><em>is_default</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211;</dt>
-<dd>If true this dashboard will show up as the active dashboard when UI loads.</dd>
+<dd>If true this dashboard will show up as the active dashboard when web dashboards loads.</dd>
 </dl>
 </li>
 </ul>

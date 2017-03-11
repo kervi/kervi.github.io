@@ -108,6 +108,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
 
             
@@ -204,7 +205,7 @@ In your application you access GPIO via:</p>
 
 <dl class="method">
 <dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.listen">
-<code class="descname">listen</code><span class="sig-paren">(</span><em>channel</em>, <em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.listen" title="Permalink to this definition">¶</a></dt>
+<code class="descname">listen</code><span class="sig-paren">(</span><em>channel</em>, <em>callback</em>, <em>bounce_time=0.2</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.listen" title="Permalink to this definition">¶</a></dt>
 <dd><p>Listen on a channel for state change.
 The callback function is called when a channel is going high and low.</p>
 <table class="docutils field-list" frame="void" rules="none">
