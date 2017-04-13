@@ -139,18 +139,41 @@
             
   <div class="section" id="kervi">
 <h1>Kervi!<a class="headerlink" href="#kervi" title="Permalink to this headline">¶</a></h1>
-<p>Kervi is a Python framework that makes it very easy to create robotic and automation projects with web based dashboards.
-It runs on all platforms that supports Python and is optimized for Raspberry pi.</p>
+<p>Kervi is a Python framework that makes it very easy to create robotic and automation projects.
+Wire up sensors, controllers and other devices to your Raspberry PI and link them to web based dashboard
+and internal application logic.</p>
+<p>It runs on all platforms that supports Python and is optimized for Raspberry pi.</p>
 <p>Features of the framework are:</p>
 <ul class="simple">
 <li>Python classes for handling sensor readings and display on dashboards.</li>
-<li>Python classes for handlinge user interactions from controllers on dashboards.</li>
+<li>Python classes for handling user interactions from controllers on dashboards.</li>
 <li>Integrated camera handling (Raspberry PI camera at the moment)</li>
-<li>Easy dahsboard setup.</li>
+<li>Easy dashboard setup.</li>
 <li>Dashboard UI is responsive and scales from mobile phones to desktop.</li>
 <li>Multi process oriented by spreading over more than one core.</li>
+<li>Multi device oriented by connecting multiple Raspberry Pi&#8217;s in one large application</li>
 <li>No web development knowledge is required as dashboard layout is handled in python.</li>
 </ul>
+<p>Below is the a complete example to show a sensor on a dashboard with chart</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">kervi.bootstrap</span> <span class="kn">import</span> <span class="n">Application</span>
+    <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
+
+    <span class="c1">#add dashboard and panel</span>
+    <span class="kn">from</span> <span class="nn">kervi.dashboard</span> <span class="kn">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
+    <span class="n">DASHBOARD</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;Sensors&quot;</span><span class="p">,</span> <span class="n">is_default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">DASHBOARD</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;sensors&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+
+    <span class="kn">from</span> <span class="nn">kervi.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
+    <span class="kn">from</span> <span class="nn">kervi_devices.platforms.common.sensors.cpu_use</span> <span class="kn">import</span> <span class="n">CPULoadSensorDeviceDriver</span>
+
+    <span class="n">cpu_sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;CPULoadSensor&quot;</span><span class="p">,</span><span class="s2">&quot;CPU&quot;</span><span class="p">,</span> <span class="n">CPULoadSensorDeviceDriver</span><span class="p">())</span>
+    <span class="n">cpu_sensor</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;sensors&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">link_to_header</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">cpu_sensor</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;sensors&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;chart&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">APP</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>

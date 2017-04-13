@@ -150,8 +150,116 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="sensors-api">
-<h1>Sensors API<a class="headerlink" href="#sensors-api" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-kervi.sensor">
+<span id="sensors-api"></span><h1>Sensors API<a class="headerlink" href="#module-kervi.sensor" title="Permalink to this headline">¶</a></h1>
+<p>Sensor handling in Kervi is split in two parts. 
+The first part is sensor device drivers that handles physical access to a sensors hardware.
+The second part is the Sensor class that reads a sensor devices and triggers events, store readings to DB.</p>
+<dl class="class">
+<dt id="kervi.sensor.Sensor">
+<em class="property">class </em><code class="descclassname">kervi.sensor.</code><code class="descname">Sensor</code><span class="sig-paren">(</span><em>sensor_id</em>, <em>name</em>, <em>device=None</em>, <em>use_thread=True</em>, <em>parent=None</em>, <em>index=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.sensor.Sensor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sensor is the base class that all sensors inherits from.
+This class handles storage in DB, trigger events when value change
+and linking to dashboards.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>sensor_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Id of the sensor.
+This id is used in other components to reference this sesnor.</li>
+<li><strong>name</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Name of the sensor. Used in web dashbaords</li>
+<li><strong>device</strong> (<code class="docutils literal"><span class="pre">SensorDeviceDriver</span></code>) &#8211; The sensor device that should be monitored. Could be one of the sensors from the kervi device library
+or a sensor device driver that inherits from kervi.hal.SensorDeviceDriver</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>(self, name, input_id=None, is_input=True, parent=None, index = None):</p>
+<dl class="attribute">
+<dt id="kervi.sensor.Sensor.device">
+<code class="descname">device</code><a class="headerlink" href="#kervi.sensor.Sensor.device" title="Permalink to this definition">¶</a></dt>
+<dd><p>A hardware device from the kervi device library. Or a class that inherits from kervi.hal.SensorDeviceDriver</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.sensor.Sensor.link_to_dashboard">
+<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>panel_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.sensor.Sensor.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Links the sensor to a dashboard.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dashboard_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Id of the dashboard to link to.
+Enter a * if the sensor should be linked to all dashboards.</li>
+<li><strong>panel_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Id of the panel to link to.
+This is the id of a panel you have added your self to a dashboard or one of the
+system panels <em>sys-header</em>, <em>header</em> or <em>footer</em></li>
+<li><strong>**kwargs</strong> &#8211; See below</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><table class="first docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<ul class="last simple">
+<li><dl class="first docutils">
+<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The number of dashboard cells the sensor should occupy horizontal or vertical.</dt>
+<dd>If size is 0 (default) the input and label will expand to the width of the panel.</dd>
+</dl>
+</li>
+<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Link this input to header of the panel.</li>
+<li><dl class="first docutils">
+<dt><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label. </dt>
+<dd>All Font Awesome icons are valid just enter the name of the icon without <em>fa-</em></dd>
+</dl>
+</li>
+<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Label text, default value is the name of the sensor.</li>
+<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Flat look and feel.</li>
+<li><dl class="first docutils">
+<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Display value, sparkline and label in its actual size</dt>
+<dd>If you set inline to true the size parameter is ignored.
+The input will only occupy as much space as the label and sensor takes.</dd>
+</dl>
+</li>
+<li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; One of the following values <em>radial_gauge</em>, <em>vertical_gauge</em>, <em>horizontal_gauge</em>, <em>chart</em> or <em>value</em>.</li>
+<li><em>chart_points</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Maximun number of points in the chart.</li>
+<li><em>show_sparkline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Show a sparkline next to the value.</li>
+<li><em>icon</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Icon to show. All Font Awesome icons are valid just enter the name of the icon without <em>fa-</em>.</li>
+<li><em>show_value</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Show the numeric value and unit.</li>
+<li><em>label</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Show the numeric value and unit.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.sensor.Sensor.type">
+<code class="descname">type</code><a class="headerlink" href="#kervi.sensor.Sensor.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sensor type enter values like temperature, pressure, counter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">str</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 

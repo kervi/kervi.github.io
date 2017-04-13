@@ -91,7 +91,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#install">Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-application">Create application</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#single-file-application">Single file application</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#multi-file-application">Multi file application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-process-file-application">Multi process/file application</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#start-application">Start application</a></li>
 </ul>
 </li>
@@ -187,9 +187,9 @@ You create the single file app via the following command in the terminal window:
 </pre></div>
 </div>
 </div>
-<div class="section" id="multi-file-application">
-<h3>Multi file application<a class="headerlink" href="#multi-file-application" title="Permalink to this headline">¶</a></h3>
-<p>If you are planning to build a robot or home automation system it is recommanded to create a normal Kervi application.
+<div class="section" id="multi-process-file-application">
+<h3>Multi process/file application<a class="headerlink" href="#multi-process-file-application" title="Permalink to this headline">¶</a></h3>
+<p>If you are planning to build a robot or home automation system it is recommended to create a normal Kervi application.
 Such an application consists of several files and the Kervi framework is able to spread the load on all the cores on your board.</p>
 <p>To create a full kervi application write the following command in the terminal:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">kervi</span> <span class="n">create</span> <span class="n">application</span> <span class="n">myapp</span> <span class="s2">&quot;My first app&quot;</span>
@@ -198,15 +198,11 @@ Such an application consists of several files and the Kervi framework is able to
 </div>
 <div class="section" id="start-application">
 <h3>Start application<a class="headerlink" href="#start-application" title="Permalink to this headline">¶</a></h3>
-<p>If you use Raspberry pi you start your new app by executing:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="n">myapp</span><span class="o">.</span><span class="n">py</span>
+<p>You start your new app by executing:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">myapp</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
-<p>On other platforms you run this command:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">myapp</span><span class="o">.</span><span class="n">py</span>
-</pre></div>
-</div>
-<p>The following output shuld be displayed (example):</p>
+<p>The following output should be displayed (example):</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Starting</span> <span class="n">kervi</span> <span class="n">application</span><span class="p">,</span> <span class="n">please</span> <span class="n">wait</span>
 <span class="n">load</span> <span class="n">sensors</span>
 <span class="n">load</span> <span class="n">controllers</span>

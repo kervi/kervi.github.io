@@ -102,6 +102,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="hal.html#hal-api">Hal API</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">GPIO API</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hal_i2c_api.html">I2C API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hal_devices_api.html">Devices API</a></li>
 </ul>
 </li>
 </ul>
@@ -153,158 +154,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-kervi.utility.hal.gpio">
-<span id="gpio-api"></span><h1>GPIO API<a class="headerlink" href="#module-kervi.utility.hal.gpio" title="Permalink to this headline">¶</a></h1>
-<p>When Kervi starts it scans for installed Kervi platform drivers and loads the GPIO driver.
-In your application you access GPIO via:</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">kervi.hal.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
-
-<span class="c1">#define channel 23 as input</span>
-<span class="n">GPIO</span><span class="o">.</span><span class="n">define_as_input</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>
-</pre></div>
-</div>
-<dl class="class">
-<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver">
-<em class="property">class </em><code class="descclassname">kervi.utility.hal.gpio.</code><code class="descname">IGPIODeviceDriver</code><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.define_as_input">
-<code class="descname">define_as_input</code><span class="sig-paren">(</span><em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.define_as_input" title="Permalink to this definition">¶</a></dt>
-<dd><p>Define a channel as input</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.define_as_output">
-<code class="descname">define_as_output</code><span class="sig-paren">(</span><em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.define_as_output" title="Permalink to this definition">¶</a></dt>
-<dd><p>Define a channel as output</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.define_as_pwm">
-<code class="descname">define_as_pwm</code><span class="sig-paren">(</span><em>channel</em>, <em>frequency</em>, <em>duty_cycle=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.define_as_pwm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Defines a channel as pwm output.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The channel to define as a pwm output.</li>
-<li><strong>frequency</strong> &#8211; The pwn frequency.</li>
-<li><strong>duty_cycle</strong> &#8211; The duty_cycle to use, can be changed in call to pwm_start</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.get">
-<code class="descname">get</code><span class="sig-paren">(</span><em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the state of a channel.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.listen">
-<code class="descname">listen</code><span class="sig-paren">(</span><em>channel</em>, <em>callback</em>, <em>bounce_time=0.2</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.listen" title="Permalink to this definition">¶</a></dt>
-<dd><p>Listen on a channel for state change.
-The callback function is called when a channel is going high and low.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The channel to listen on.</li>
-<li><strong>callback</strong> (<code class="docutils literal"><span class="pre">function</span> <span class="pre">or</span> <span class="pre">method</span></code>) &#8211; The function or method to call when the state of the channel change.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.listen_falling">
-<code class="descname">listen_falling</code><span class="sig-paren">(</span><em>channel</em>, <em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.listen_falling" title="Permalink to this definition">¶</a></dt>
-<dd><p>calls the callback when a channel is going low.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">function</span> <span class="pre">or</span> <span class="pre">method</span></code>) &#8211; The channel to listen on.</li>
-<li><strong>callback</strong> &#8211; The function or method to call when the state of the channel change.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.listen_rising">
-<code class="descname">listen_rising</code><span class="sig-paren">(</span><em>channel</em>, <em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.listen_rising" title="Permalink to this definition">¶</a></dt>
-<dd><p>calls the callback when a channel is going high.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">function</span> <span class="pre">or</span> <span class="pre">method</span></code>) &#8211; The channel to listen on.</li>
-<li><strong>callback</strong> &#8211; The function or method to call when the state of the channel change.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.pwm_start">
-<code class="descname">pwm_start</code><span class="sig-paren">(</span><em>channel</em>, <em>duty_cycle=None</em>, <em>frequency=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.pwm_start" title="Permalink to this definition">¶</a></dt>
-<dd><p>Starts the pwm signal on a channel. The channel should be defined as pwm prior to this call.
-If no duty_cycle or frequency is passed in this call previous values from call to
-define_as_pwm or pwm_start is used.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The channel to start the pwm signal on.</li>
-<li><strong>duty_cycle</strong> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The duty cycle use on the channel.</li>
-<li><strong>frequency</strong> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The frequency to be used on the pwm channel.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.pwm_stop">
-<code class="descname">pwm_stop</code><span class="sig-paren">(</span><em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.pwm_stop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stop pwm signal on channel.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.utility.hal.gpio.IGPIODeviceDriver.set">
-<code class="descname">set</code><span class="sig-paren">(</span><em>channel</em>, <em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.utility.hal.gpio.IGPIODeviceDriver.set" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the state of a channel that is defined as output.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; The channel that should be changed.</li>
-<li><strong>state</strong> &#8211; The state of the channel.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
+  <div class="section" id="gpio-api">
+<h1>GPIO API<a class="headerlink" href="#gpio-api" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
