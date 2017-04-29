@@ -92,6 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamic_values.html">Dynamic values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="hal.html">Hardware and devices</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="hal.html#select-platform">Select platform</a></li>
@@ -154,8 +155,118 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="i2c-api">
-<h1>I2C API<a class="headerlink" href="#i2c-api" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-kervi.hal.i2c">
+<span id="i2c-api"></span><h1>I2C API<a class="headerlink" href="#module-kervi.hal.i2c" title="Permalink to this headline">¶</a></h1>
+<p>It is possible to communicate with devices via I2C.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1">#create i2c device on i2c address 0x77</span>
+<span class="n">i2c</span> <span class="o">=</span> <span class="n">I2C</span><span class="p">(</span><span class="mh">0x77</span><span class="p">)</span>
+<span class="n">i2c</span><span class="o">.</span><span class="n">write_raw8</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="kervi.hal.i2c.II2CDeviceDriver">
+<em class="property">class </em><code class="descclassname">kervi.hal.i2c.</code><code class="descname">II2CDeviceDriver</code><a class="headerlink" href="#kervi.hal.i2c.II2CDeviceDriver" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="kervi.hal.i2c.II2CDeviceDriver.read_S16">
+<code class="descname">read_S16</code><span class="sig-paren">(</span><em>register</em>, <em>little_endian=True</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.i2c.II2CDeviceDriver.read_S16" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a signed 16-bit value from the specified register, with the
+specified endianness (default little endian, or least significant byte
+first).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.hal.i2c.II2CDeviceDriver.read_S16BE">
+<code class="descname">read_S16BE</code><span class="sig-paren">(</span><em>register</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.i2c.II2CDeviceDriver.read_S16BE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a signed 16-bit value from the specified register, in big
+endian byte order.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.hal.i2c.II2CDeviceDriver.read_S16LE">
+<code class="descname">read_S16LE</code><span class="sig-paren">(</span><em>register</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.i2c.II2CDeviceDriver.read_S16LE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a signed 16-bit value from the specified register, in little
+endian byte order.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.hal.i2c.II2CDeviceDriver.read_S8">
+<code class="descname">read_S8</code><span class="sig-paren">(</span><em>register</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.i2c.II2CDeviceDriver.read_S8" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a signed byte from the specified register.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.hal.i2c.II2CDeviceDriver.read_U16">
+<code class="descname">read_U16</code><span class="sig-paren">(</span><em>register</em>, <em>little_endian=True</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.i2c.II2CDeviceDriver.read_U16" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read an unsigned 16-bit value from the specified register, with the
+specified endianness (default little endian, or least significant byte
+first).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.hal.i2c.II2CDeviceDriver.read_U16BE">
+<code class="descname">read_U16BE</code><span class="sig-paren">(</span><em>register</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.i2c.II2CDeviceDriver.read_U16BE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read an unsigned 16-bit value from the specified register, in big
+endian byte order.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.hal.i2c.II2CDeviceDriver.read_U16LE">
+<code class="descname">read_U16LE</code><span class="sig-paren">(</span><em>register</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.i2c.II2CDeviceDriver.read_U16LE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read an unsigned 16-bit value from the specified register, in little
+endian byte order.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.hal.i2c.II2CDeviceDriver.read_U8">
+<code class="descname">read_U8</code><span class="sig-paren">(</span><em>register</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.i2c.II2CDeviceDriver.read_U8" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read an unsigned byte from the specified register.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.hal.i2c.II2CDeviceDriver.read_list">
+<code class="descname">read_list</code><span class="sig-paren">(</span><em>register</em>, <em>length</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.i2c.II2CDeviceDriver.read_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a length number of bytes from the specified register.  Results
+will be returned as a bytearray.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.hal.i2c.II2CDeviceDriver.read_raw8">
+<code class="descname">read_raw8</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.i2c.II2CDeviceDriver.read_raw8" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read an 8-bit value on the bus (without register).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.hal.i2c.II2CDeviceDriver.reverse_byte_order">
+<code class="descname">reverse_byte_order</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.i2c.II2CDeviceDriver.reverse_byte_order" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverses the byte order of an int (16-bit) or long (32-bit) value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.hal.i2c.II2CDeviceDriver.write16">
+<code class="descname">write16</code><span class="sig-paren">(</span><em>register</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.i2c.II2CDeviceDriver.write16" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write a 16-bit value to the specified register.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.hal.i2c.II2CDeviceDriver.write8">
+<code class="descname">write8</code><span class="sig-paren">(</span><em>register</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.i2c.II2CDeviceDriver.write8" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write an 8-bit value to the specified register.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.hal.i2c.II2CDeviceDriver.write_list">
+<code class="descname">write_list</code><span class="sig-paren">(</span><em>register</em>, <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.i2c.II2CDeviceDriver.write_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write bytes to the specified register.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.hal.i2c.II2CDeviceDriver.write_raw8">
+<code class="descname">write_raw8</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.i2c.II2CDeviceDriver.write_raw8" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write an 8-bit value on the bus (without register).</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 

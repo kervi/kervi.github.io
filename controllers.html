@@ -91,9 +91,14 @@
 <li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Controllers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="controllers_api.html">Controllers api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-and-output-interfaces">Input and output interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linking-controllers">Linking controllers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controllers_api.html">Controllers api</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dynamic_values.html">Dynamic values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
@@ -145,179 +150,182 @@
 <h1>Controllers<a class="headerlink" href="#controllers" title="Permalink to this headline">¶</a></h1>
 <p>Controllers is the fun part of your Kervi application this is where you code the application logic.
 Your controller acts upon input from users, GPIO events or the underlaying os and initiates different actions based on the input.</p>
-<p>Basic controllers manages motors, light, servo and so on but you can also build more advanced controllers
+<p>Basic controllers manages motors, light, servos and so on but you can also build more advanced controllers
 for <em>line following</em> and <em>self navigation</em> into your controllers.
 As your application grows your application will contain multiple controllers.</p>
-<p>User input comes from the following controller inputs:</p>
-<blockquote>
-<div><ul class="simple">
-<li>UISelectControllerInput</li>
-<li>UIButtonControllerInput</li>
-<li>UISwitchButtonControllerInput</li>
-<li>UINumberControllerInput</li>
-<li>UITextControllerInput</li>
-<li>UIDateTimeControllerInput</li>
-</ul>
-</div></blockquote>
-<dl class="docutils">
-<dt>Input to controllers from devices is handled via</dt>
-<dd><ul class="first last simple">
-<li>DigitalGPIOControllerInput</li>
-<li>AnalogGPIOControllerInput</li>
-<li>SensorControllerInput</li>
-</ul>
-</dd>
-</dl>
-<p>The controller it self or the controller inputs may be linked to dashboards.</p>
-<p><strong>Example</strong>
-The example below shows how to create a light controller that uses pwm to change the level of the light.
-The user controls the level via browser.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">kervi.bootstrap</span> <span class="kn">import</span> <span class="n">Application</span>
-    <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
+<div class="section" id="input-and-output-interfaces">
+<h2>Input and output interfaces<a class="headerlink" href="#input-and-output-interfaces" title="Permalink to this headline">¶</a></h2>
+<p>Basicly a controller reads a set of inputs and generates one or more outputs.
+Below is an example of a steering controller, that takes speed, and left/right balance between motors as inputs
+and calculates the speed of the left and right motors.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="kn">from</span> <span class="nn">kervi.controller</span> <span class="kn">import</span> <span class="n">Controller</span>
+ <span class="kn">from</span> <span class="nn">kervi.tasks</span> <span class="kn">import</span> <span class="n">TaskHandler</span>
+ <span class="kn">from</span> <span class="nn">kervi.values</span> <span class="kn">import</span> <span class="o">*</span>
 
-    <span class="c1">#add dashboard and panel</span>
-    <span class="kn">from</span> <span class="nn">kervi.dashboard</span> <span class="kn">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
-    <span class="n">DASHBOARD</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;System&quot;</span><span class="p">,</span> <span class="n">is_default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">DASHBOARD</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Light&quot;</span><span class="p">))</span>
+ <span class="k">class</span> <span class="nc">MotorSteering</span><span class="p">(</span><span class="n">Controller</span><span class="p">):</span>
+     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">     Control the speed and direction of two motors.</span>
+<span class="sd">     &quot;&quot;&quot;</span>
+     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller_id</span><span class="o">=</span><span class="s2">&quot;steering&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Steering&quot;</span><span class="p">):</span>
+         <span class="n">TaskHandler</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller_id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;steering&quot;</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">left_speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;left_speed&quot;</span><span class="p">,</span> <span class="s2">&quot;Left speed&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">right_speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;right_speed&quot;</span><span class="p">,</span> <span class="s2">&quot;Right speed&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
 
-    <span class="c1">#define a light controller</span>
-    <span class="kn">from</span> <span class="nn">kervi.hal</span> <span class="kn">import</span> <span class="n">GPIO</span>
-    <span class="kn">from</span> <span class="nn">kervi.controller</span> <span class="kn">import</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">UISwitchButtonControllerInput</span><span class="p">,</span> <span class="n">UINumberControllerInput</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;left_encoder&quot;</span><span class="p">,</span> <span class="s2">&quot;Left encoder&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;right_encoder&quot;</span><span class="p">,</span> <span class="s2">&quot;Right encoder&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">adjust</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;adjust&quot;</span><span class="p">,</span> <span class="s2">&quot;Left right adjust&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
 
-    <span class="k">class</span> <span class="nc">LightController</span><span class="p">(</span><span class="n">Controller</span><span class="p">):</span>
-        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="n">Controller</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;lightController&quot;</span><span class="p">,</span> <span class="s2">&quot;Light&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;light&quot;</span>
 
-            <span class="c1">#define an input and link it to the dashboard panel</span>
-            <span class="n">light_button</span> <span class="o">=</span> <span class="n">UISwitchButtonControllerInput</span><span class="p">(</span><span class="s2">&quot;lightctrl.on&quot;</span><span class="p">,</span> <span class="s2">&quot;Light&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-            <span class="n">light_button</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">)</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;speed&quot;</span><span class="p">,</span> <span class="s2">&quot;Speed&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;direction&quot;</span><span class="p">,</span> <span class="s2">&quot;Direction&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">all_off</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;all_off&quot;</span><span class="p">,</span> <span class="s2">&quot;All off&quot;</span><span class="p">,</span> <span class="n">DynamicBoolean</span><span class="p">)</span>
 
-            <span class="c1">#add the input to this controller</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_input</span><span class="p">(</span><span class="n">light_button</span><span class="p">)</span>
+     <span class="nd">@property</span>
+     <span class="k">def</span> <span class="nf">adjust</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_adjust</span>
 
-            <span class="n">level_input</span><span class="o">=</span> <span class="n">UINumberControllerInput</span><span class="p">(</span><span class="s2">&quot;lightctrl.level&quot;</span><span class="p">,</span> <span class="s2">&quot;Level&quot;</span><span class="p">)</span>
-            <span class="n">level_input</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="n">level_input</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="mi">100</span>
-            <span class="n">level_input</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">100</span>
-            <span class="n">level_input</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">)</span>
+     <span class="nd">@adjust.setter</span>
+     <span class="k">def</span> <span class="nf">adjust</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">_adjust</span> <span class="o">=</span> <span class="n">value</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_input</span><span class="p">(</span><span class="n">level_input</span><span class="p">)</span>
+     <span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">wheel_rotations</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="bp">None</span> <span class="p">):</span>
+         <span class="n">new_direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adjust</span><span class="o">.</span><span class="n">value</span>
+         <span class="n">left_speed</span> <span class="o">=</span> <span class="n">speed</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="n">new_direction</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+         <span class="n">right_speed</span> <span class="o">=</span> <span class="n">speed</span> <span class="o">*</span> <span class="p">(</span><span class="n">new_direction</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
 
-            <span class="c1">#define GPIO</span>
-            <span class="n">GPIO</span><span class="o">.</span><span class="n">define_as_pwm</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">&quot;left_speed&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">left_speed</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">&quot;right_speed&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">right_speed</span>
 
-        <span class="k">def</span> <span class="nf">input_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">changed_input</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">changed_input</span><span class="o">.</span><span class="n">input_id</span> <span class="o">==</span> <span class="s2">&quot;lightctrl.on&quot;</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">changed_input</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
-                    <span class="n">GPIO</span><span class="o">.</span><span class="n">pwn_start</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">GPIO</span><span class="o">.</span><span class="n">pwm_stop</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">left_right_balance</span><span class="p">,</span> <span class="n">wheel_rotations</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+         <span class="n">new_direction</span> <span class="o">=</span> <span class="n">left_right_balance</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">adjust</span><span class="o">.</span><span class="n">value</span>
 
-            <span class="k">if</span> <span class="n">changed_input</span><span class="o">.</span><span class="n">input_id</span> <span class="o">==</span> <span class="s2">&quot;lightctrl.level&quot;</span><span class="p">:</span>
-                <span class="c1">#change the duty_cycle on the pwm pin</span>
-                <span class="n">GPIO</span><span class="o">.</span><span class="n">pwm_start</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="o">=</span><span class="n">changed_input</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+         <span class="k">if</span> <span class="n">left_right_balance</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+             <span class="n">left_speed</span> <span class="o">=</span> <span class="n">speed</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">new_direction</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+             <span class="n">right_speed</span> <span class="o">=</span> <span class="n">speed</span>
+         <span class="k">elif</span> <span class="n">left_right_balance</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+             <span class="n">left_speed</span> <span class="o">=</span> <span class="n">speed</span>
+             <span class="n">right_speed</span> <span class="o">=</span> <span class="n">speed</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">new_direction</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+         <span class="k">elif</span> <span class="n">left_right_balance</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+             <span class="n">left_speed</span> <span class="o">=</span> <span class="n">speed</span>
+             <span class="n">right_speed</span> <span class="o">=</span> <span class="n">speed</span>
 
-    <span class="n">LightController</span><span class="p">()</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">&quot;left_speed&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">left_speed</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">&quot;right_speed&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">right_speed</span>
 
-    <span class="n">APP</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+     <span class="k">def</span> <span class="nf">dynamic_value_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">changed_input</span><span class="p">):</span>
+         <span class="c1">#print(&quot;steering input changed:&quot;, changed_input.input_id, changed_input.value)</span>
+         <span class="k">if</span> <span class="n">changed_input</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_off</span><span class="p">:</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">left_speed</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">right_speed</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+
+         <span class="k">if</span> <span class="n">changed_input</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="ow">or</span> <span class="n">changed_input</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">:</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">speed</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>In the example above the inputs and outputs are defined via:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;speed&quot;</span><span class="p">,</span> <span class="s2">&quot;Speed&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
+
+<span class="bp">self</span><span class="o">.</span><span class="n">left_speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;left_speed&quot;</span><span class="p">,</span> <span class="s2">&quot;Left speed&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>A light controller where logic is moved to a on/off button</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">kervi.bootstrap</span> <span class="kn">import</span> <span class="n">Application</span>
-    <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
-
-    <span class="c1">#add dashboard and panel</span>
-    <span class="kn">from</span> <span class="nn">kervi.dashboard</span> <span class="kn">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
-    <span class="n">DASHBOARD</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;System&quot;</span><span class="p">,</span> <span class="n">is_default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">DASHBOARD</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Light&quot;</span><span class="p">))</span>
-
-    <span class="c1">#Switch button shown on a dashboard</span>
-    <span class="kn">from</span> <span class="nn">kervi.hal</span> <span class="kn">import</span> <span class="n">GPIO</span>
-    <span class="kn">from</span> <span class="nn">kervi.controller</span> <span class="kn">import</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">UISwitchButtonControllerInput</span>
-
-    <span class="k">class</span> <span class="nc">LightButton</span><span class="p">(</span><span class="n">UISwitchButtonControllerInput</span><span class="p">):</span>
-        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller</span><span class="p">):</span>
-            <span class="n">UISwitchButtonControllerInput</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-                <span class="bp">self</span><span class="p">,</span>
-                <span class="n">controller</span><span class="o">.</span><span class="n">component_id</span><span class="o">+</span><span class="s2">&quot;.light&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;Light 1&quot;</span><span class="p">,</span>
-                <span class="n">controller</span>
-            <span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">)</span>
-            <span class="n">GPIO</span><span class="p">()</span><span class="o">.</span><span class="n">define_as_output</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
-
-        <span class="k">def</span> <span class="nf">on</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="c1">#event fired when user click the button in UI</span>
-            <span class="c1">#set GPIO pin high</span>
-            <span class="n">GPIO</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
-
-        <span class="k">def</span> <span class="nf">off</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="c1">#event fired when user click the button in UI</span>
-            <span class="c1">#set GPIO pin low</span>
-            <span class="n">GPIO</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
-
-
-    <span class="c1">#define a light controller</span>
-    <span class="k">class</span> <span class="nc">LightController</span><span class="p">(</span><span class="n">Controller</span><span class="p">):</span>
-        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="n">Controller</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;lightController&quot;</span><span class="p">,</span> <span class="s2">&quot;Light&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;light&quot;</span>
-
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_input</span><span class="p">(</span><span class="n">LightButton</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
-
-
-    <span class="n">MY_CONTROLLER</span> <span class="o">=</span> <span class="n">LightController</span><span class="p">()</span>
-
-    <span class="n">APP</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-</pre></div>
+<p>self.inputs.add and self.outputs.add are factory functions that creates dynamic values that are special Kervi value classes that
+may be linked to dashboards or to another dynamic value.</p>
+<p>When an input value is changed by a user or other part of your application the dynamic_value_changed event is fired and your controller may
+calculate its outputs.</p>
 </div>
-<p><strong>Reading a sensor and control a pwm channel</strong>
-This controller listen to a temperature sensor and controls the speed by changing duty_cycle.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">kervi.bootstrap</span> <span class="kn">import</span> <span class="n">Application</span>
-    <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
+<div class="section" id="linking-controllers">
+<h2>Linking controllers<a class="headerlink" href="#linking-controllers" title="Permalink to this headline">¶</a></h2>
+<p>A controller that works entirely on in- and outputs that are dynamic values
+is agnostic to how it is linked to user interface and hardware.
+In that way it is easy to change hardware and make changes to UI without re-coding the controller.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="n">steering</span> <span class="o">=</span> <span class="n">MotorSteering</span><span class="p">()</span>
 
-    <span class="c1">#add dashboard and panel</span>
-    <span class="kn">from</span> <span class="nn">kervi.dashboard</span> <span class="kn">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
-    <span class="n">DASHBOARD</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;dashboard.system&quot;</span><span class="p">,</span> <span class="s2">&quot;System&quot;</span><span class="p">,</span> <span class="n">is_default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">DASHBOARD</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;panel.system.fan&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Fan&quot;</span><span class="p">))</span>
+ <span class="c1">#Link to ui</span>
+ <span class="n">steering</span><span class="o">.</span><span class="n">speed</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="s2">&quot;steering&quot;</span><span class="p">)</span>
+ <span class="n">steering</span><span class="o">.</span><span class="n">direction</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="s2">&quot;steering&quot;</span><span class="p">)</span>
+ <span class="n">steering</span><span class="o">.</span><span class="n">all_off</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="s2">&quot;steering&quot;</span><span class="p">)</span>
 
-    <span class="kn">from</span> <span class="nn">kervi.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
-    <span class="kn">from</span> <span class="nn">kervi_devices.sensors</span> <span class="kn">import</span> <span class="n">BMP085</span>
-    <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;sensor.room1.temp&quot;</span><span class="p">,</span> <span class="s2">&quot;Room 1&quot;</span><span class="p">,</span> <span class="n">BMP085</span><span class="o">.</span><span class="n">BMP085DeviceDriver</span><span class="p">(</span><span class="n">BMP085</span><span class="o">.</span><span class="n">TEMPERATURE_SENSOR</span><span class="p">))</span>
-
-    <span class="k">class</span> <span class="nc">FanController</span><span class="p">(</span><span class="n">Controller</span><span class="p">):</span>
-        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="n">Controller</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s2">&quot;fanctrl&quot;</span><span class="p">,</span> <span class="s2">&quot;Fan controller&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;fan&quot;</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;dashboard.system&quot;</span><span class="p">,</span> <span class="s2">&quot;panel.system.fan&quot;</span><span class="p">)</span>
-
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_input</span><span class="p">(</span><span class="n">SensorControllerInput</span><span class="p">(</span><span class="s2">&quot;input.cputemp&quot;</span><span class="p">,</span> <span class="s2">&quot;Room 1 temp&quot;</span><span class="p">,</span> <span class="s2">&quot;sensor.room1.temp&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
-
-            <span class="c1">#define GPIO</span>
-            <span class="n">GPIO</span><span class="o">.</span><span class="n">define_as_pwm</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="mi">20000</span><span class="p">)</span>
-            <span class="n">GPIO</span><span class="o">.</span><span class="n">pwm_start</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
-
-        <span class="k">def</span> <span class="nf">input_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">changed_input</span><span class="p">):</span>
-            <span class="c1">#stop fan if temperature is below 22 C</span>
-            <span class="c1">#Increase speed as temperature raises</span>
-            <span class="c1">#max speed is reached at 42 C</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">changed_input</span><span class="o">.</span><span class="n">component_id</span> <span class="o">==</span> <span class="s2">&quot;input.cpu.temp&quot;</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">changed_input</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;</span> <span class="mi">22</span><span class="p">:</span>
-                    <span class="n">GPIO</span><span class="o">.</span><span class="n">pwm_stop</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">fan_speed</span> <span class="o">=</span> <span class="p">(</span><span class="n">changed_input</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="mi">22</span><span class="p">)</span> <span class="o">/</span> <span class="mi">20</span>
-                    <span class="k">if</span> <span class="n">fan_speed</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-                        <span class="n">fan_speed</span> <span class="o">=</span> <span class="mi">1</span>
-                    <span class="n">GPIO</span><span class="o">.</span><span class="n">pwm_start</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">fan_speed</span><span class="p">)</span>
-
-    <span class="n">FanController</span><span class="p">()</span>
+ <span class="c1">#link to hardware</span>
+ <span class="n">motor_board</span> <span class="o">=</span> <span class="n">AdafruitMotorHAT</span><span class="p">()</span>
+ <span class="n">motor_board</span><span class="o">.</span><span class="n">dc_motors</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">speed</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">steering</span><span class="o">.</span><span class="n">left_speed</span><span class="p">)</span>
+ <span class="n">motor_board</span><span class="o">.</span><span class="n">dc_motors</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">speed</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">steering</span><span class="o">.</span><span class="n">right_speed</span><span class="p">)</span>
 </pre></div>
-</div>
+</td></tr></table></div>
 <div class="toctree-wrapper compound">
+</div>
 </div>
 </div>
 

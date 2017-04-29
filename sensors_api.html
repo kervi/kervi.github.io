@@ -101,6 +101,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamic_values.html">Dynamic values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
@@ -153,14 +154,16 @@
   <div class="section" id="module-kervi.sensor">
 <span id="sensors-api"></span><h1>Sensors API<a class="headerlink" href="#module-kervi.sensor" title="Permalink to this headline">¶</a></h1>
 <p>Sensor handling in Kervi is split in two parts. 
-The first part is sensor device drivers that handles physical access to a sensors hardware.
-The second part is the Sensor class that reads a sensor devices and triggers events, store readings to DB.</p>
+The first part is sensor device drivers that handles physical access to sensor hardware.
+The second part is the Sensor class that reads a sensor device and triggers events, store readings to DB.</p>
 <dl class="class">
 <dt id="kervi.sensor.Sensor">
-<em class="property">class </em><code class="descclassname">kervi.sensor.</code><code class="descname">Sensor</code><span class="sig-paren">(</span><em>sensor_id</em>, <em>name</em>, <em>device=None</em>, <em>use_thread=True</em>, <em>parent=None</em>, <em>index=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.sensor.Sensor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sensor is the base class that all sensors inherits from.
-This class handles storage in DB, trigger events when value change
-and linking to dashboards.</p>
+<em class="property">class </em><code class="descclassname">kervi.sensor.</code><code class="descname">Sensor</code><span class="sig-paren">(</span><em>sensor_id</em>, <em>name</em>, <em>device=None</em>, <em>use_thread=True</em>, <em>parent=None</em>, <em>index=None</em>, <em>polling_interval=1</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.sensor.Sensor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sensor is a class that exposes a sensor device as a dynamic value.
+The Sensor class polls the associated sensor device and updates it self when
+the value of the sensor device change.</p>
+<p>All the possibilities for linking to other dynamic values and dashboards is inherit from DynamicNumber.</p>
+<p>Some sensor devices are multi dimensional and each dimension are reached by a numeric index of the sensor it self.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -168,9 +171,10 @@ and linking to dashboards.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>sensor_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Id of the sensor.
 This id is used in other components to reference this sesnor.</li>
-<li><strong>name</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Name of the sensor. Used in web dashbaords</li>
-<li><strong>device</strong> (<code class="docutils literal"><span class="pre">SensorDeviceDriver</span></code>) &#8211; The sensor device that should be monitored. Could be one of the sensors from the kervi device library
+<li><strong>name</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Name of the sensor. Used in web dashboards</li>
+<li><strong>device</strong> (<code class="docutils literal"><span class="pre">float</span></code>) &#8211; The sensor device that should be monitored. Could be one of the sensors from the kervi device library
 or a sensor device driver that inherits from kervi.hal.SensorDeviceDriver</li>
+<li><strong>polling_interval</strong> &#8211; Polling interval in seconds. Set to zero to disable polling.</li>
 </ul>
 </td>
 </tr>
@@ -180,7 +184,9 @@ or a sensor device driver that inherits from kervi.hal.SensorDeviceDriver</li>
 <dl class="attribute">
 <dt id="kervi.sensor.Sensor.device">
 <code class="descname">device</code><a class="headerlink" href="#kervi.sensor.Sensor.device" title="Permalink to this definition">¶</a></dt>
-<dd><p>A hardware device from the kervi device library. Or a class that inherits from kervi.hal.SensorDeviceDriver</p>
+<dd><p>The device that is linked to this sensor class.
+It may be a hardware device from the kervi device library
+or a class that inherits from kervi.hal.SensorDeviceDriver</p>
 </dd></dl>
 
 <dl class="method">
@@ -239,6 +245,34 @@ The input will only occupy as much space as the label and sensor takes.</dd>
 <li><em>label</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Show the numeric value and unit.</li>
 </ul>
 </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.sensor.Sensor.polling_interval">
+<code class="descname">polling_interval</code><a class="headerlink" href="#kervi.sensor.Sensor.polling_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>The polling interval of the sensor in seconds.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">float</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.sensor.Sensor.reading_interval">
+<code class="descname">reading_interval</code><a class="headerlink" href="#kervi.sensor.Sensor.reading_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>The polling interval of the sensor in seconds.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">float</span></code></td>
 </tr>
 </tbody>
 </table>
