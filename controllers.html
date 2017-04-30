@@ -153,11 +153,11 @@
 <p>Controllers is the fun part of your Kervi application this is where you code the application logic.
 Your controller acts upon input from users, GPIO events or the underlaying os and initiates different actions based on the input.</p>
 <p>Basic controllers manages motors, light, servos and so on but you can also build more advanced controllers
-for <em>line following</em> and <em>self navigation</em> into your controllers.
+for <em>line following</em> and <em>self navigation</em>.
 As your application grows your application will contain multiple controllers.</p>
 <div class="section" id="input-and-output-interfaces">
 <h2>Input and output interfaces<a class="headerlink" href="#input-and-output-interfaces" title="Permalink to this headline">¶</a></h2>
-<p>Basicly a controller reads a set of inputs and generates one or more outputs.
+<p>Basically a controller reads a set of inputs and generates one or more outputs.
 Below is an example of a steering controller, that takes speed, and left/right balance between motors as inputs
 and calculates the speed of the left and right motors.</p>
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -210,19 +210,7 @@ and calculates the speed of the left and right motors.</p>
 48
 49
 50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="kn">from</span> <span class="nn">kervi.controller</span> <span class="kn">import</span> <span class="n">Controller</span>
+51</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="kn">from</span> <span class="nn">kervi.controller</span> <span class="kn">import</span> <span class="n">Controller</span>
  <span class="kn">from</span> <span class="nn">kervi.tasks</span> <span class="kn">import</span> <span class="n">TaskHandler</span>
  <span class="kn">from</span> <span class="nn">kervi.values</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -236,10 +224,7 @@ and calculates the speed of the left and right motors.</p>
          <span class="bp">self</span><span class="o">.</span><span class="n">left_speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;left_speed&quot;</span><span class="p">,</span> <span class="s2">&quot;Left speed&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
          <span class="bp">self</span><span class="o">.</span><span class="n">right_speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;right_speed&quot;</span><span class="p">,</span> <span class="s2">&quot;Right speed&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
 
-         <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;left_encoder&quot;</span><span class="p">,</span> <span class="s2">&quot;Left encoder&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;right_encoder&quot;</span><span class="p">,</span> <span class="s2">&quot;Right encoder&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
          <span class="bp">self</span><span class="o">.</span><span class="n">adjust</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;adjust&quot;</span><span class="p">,</span> <span class="s2">&quot;Left right adjust&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
-
 
          <span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;speed&quot;</span><span class="p">,</span> <span class="s2">&quot;Speed&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
          <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;direction&quot;</span><span class="p">,</span> <span class="s2">&quot;Direction&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
@@ -253,16 +238,8 @@ and calculates the speed of the left and right motors.</p>
      <span class="k">def</span> <span class="nf">adjust</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
          <span class="bp">self</span><span class="o">.</span><span class="n">_adjust</span> <span class="o">=</span> <span class="n">value</span>
 
-     <span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">wheel_rotations</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="bp">None</span> <span class="p">):</span>
-         <span class="n">new_direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adjust</span><span class="o">.</span><span class="n">value</span>
-         <span class="n">left_speed</span> <span class="o">=</span> <span class="n">speed</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="n">new_direction</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
-         <span class="n">right_speed</span> <span class="o">=</span> <span class="n">speed</span> <span class="o">*</span> <span class="p">(</span><span class="n">new_direction</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
-
-         <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">&quot;left_speed&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">left_speed</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">&quot;right_speed&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">right_speed</span>
-
-     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">left_right_balance</span><span class="p">,</span> <span class="n">wheel_rotations</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-         <span class="n">new_direction</span> <span class="o">=</span> <span class="n">left_right_balance</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">adjust</span><span class="o">.</span><span class="n">value</span>
+     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+         <span class="n">new_direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="o">.</span><span class="n">value</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">adjust</span><span class="o">.</span><span class="n">value</span>
 
          <span class="k">if</span> <span class="n">left_right_balance</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
              <span class="n">left_speed</span> <span class="o">=</span> <span class="n">speed</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">new_direction</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
@@ -274,17 +251,16 @@ and calculates the speed of the left and right motors.</p>
              <span class="n">left_speed</span> <span class="o">=</span> <span class="n">speed</span>
              <span class="n">right_speed</span> <span class="o">=</span> <span class="n">speed</span>
 
-         <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">&quot;left_speed&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">left_speed</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">&quot;right_speed&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">right_speed</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">left_speed</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">left_speed</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">right_speed</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">right_speed</span>
 
      <span class="k">def</span> <span class="nf">input_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">changed_input</span><span class="p">):</span>
-         <span class="c1">#print(&quot;steering input changed:&quot;, changed_input.input_id, changed_input.value)</span>
-         <span class="k">if</span> <span class="n">changed_input</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_off</span><span class="p">:</span>
+         <span class="k">if</span> <span class="n">changed_input</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_off</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_off</span><span class="o">.</span><span class="n">value</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
              <span class="bp">self</span><span class="o">.</span><span class="n">left_speed</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
              <span class="bp">self</span><span class="o">.</span><span class="n">right_speed</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
 
          <span class="k">if</span> <span class="n">changed_input</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="ow">or</span> <span class="n">changed_input</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">:</span>
-             <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">speed</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
 <p>In the example above the inputs and outputs are defined via:</p>

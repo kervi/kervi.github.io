@@ -161,11 +161,6 @@ A camera device driver capture frames from a camera and feeds them into the came
 <span class="n">CAM1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">)</span>
 <span class="c1">#link camera to a panel</span>
 <span class="n">CAM1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cam&quot;</span><span class="p">)</span>
-
-<span class="c1">#link pan and tilt to servos</span>
-<span class="n">motor_board</span> <span class="o">=</span> <span class="n">PCA9685ServoBoard</span><span class="p">()</span>
-<span class="n">motor_board</span><span class="o">.</span><span class="n">servo_motors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">CAM1</span><span class="o">.</span><span class="n">pan</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">x</span><span class="p">)</span>
-<span class="n">motor_board</span><span class="o">.</span><span class="n">servo_motors</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">CAM1</span><span class="o">.</span><span class="n">tilt</span><span class="p">)</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/dashboard_cam.png"><img alt="_images/dashboard_cam.png" src="_images/dashboard_cam.png" style="width: 45%;" /></a>
@@ -177,34 +172,34 @@ A camera device driver capture frames from a camera and feeds them into the came
 </pre></div>
 </div>
 <p><strong>Source</strong></p>
-<p>In the examples above the camera source is not specifyed and Kervi looks for the default camera on a Raspberry Pi it will be
+<p>In the examples above the camera source is not specified and Kervi looks for the default camera. On a Raspberry Pi it will be
 the on board camera. If you want to use another camera source than the default you need to specify it.</p>
 <div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.camera</span> <span class="k">import</span> <span class="n">CameraStreamer</span>
 <span class="n">CAMERA</span> <span class="o">=</span> <span class="n">CameraStreamer</span><span class="p">(</span><span class="s2">&quot;cam1&quot;</span><span class="p">,</span> <span class="s2">&quot;camera 1&quot;</span><span class="p">,</span> <span class="n">camera_source</span><span class="o">=</span><span class="s2">&quot;/dev/video0&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Pan and tilt</strong></p>
-<p>If you want to control the cameras pan and tilt with servos you can use the following code</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.camera</span> <span class="k">import</span> <span class="n">CameraStreamer</span>
-<span class="k">class</span> <span class="nc">MyPanTiltCamera</span><span class="p">(</span><span class="n">CameraStreamer</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">CameraStreamer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s2">&quot;cam1&quot;</span><span class="p">,</span> <span class="s2">&quot;Cam with pan and tilt&quot;</span><span class="p">)</span>
+<p>The cam viewer in the dashboards have a pan/tilt area at the center of the image.
+If you have rigged up the camera with pan and tilt servos you can connect the servos with the pan/tilt area
+by using the following code.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">kervi.camera</span> <span class="k">import</span> <span class="n">CameraStreamer</span>
+<span class="kn">from</span> <span class="nn">kervi_devices.motors.PCA9685_i2c_servo</span> <span class="k">import</span> <span class="n">PCA9685ServoBoard</span>
 
-        <span class="c1">#link the camera to the dashboard *app*</span>
-        <span class="c1">#enable the pan/tilt controllers in the browser</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="n">show_pan_tilt</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1">#Create a streaming camera server</span>
+<span class="n">CAM1</span> <span class="o">=</span> <span class="n">CameraStreamer</span><span class="p">(</span><span class="s2">&quot;cam1&quot;</span><span class="p">,</span> <span class="s2">&quot;camera 1&quot;</span><span class="p">)</span>
+<span class="n">CAM1</span><span class="o">.</span><span class="n">flip_vertical</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">CAM1</span><span class="o">.</span><span class="n">flip_horizontal</span> <span class="o">=</span> <span class="kc">True</span>
 
-    <span class="k">def</span> <span class="nf">pan_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pan_value</span><span class="p">):</span>
-        <span class="c1">#event that is called when the user changes the pan in the browser.</span>
-        <span class="c1">#Add the code to move the pan servo.</span>
-        <span class="c1">#pan_value goes from - 100 to +100</span>
+<span class="c1">#link camera as background</span>
+<span class="n">CAM1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">)</span>
+<span class="c1">#link camera to a panel</span>
+<span class="n">CAM1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cam&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">tilt_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tilt_value</span><span class="p">):</span>
-        <span class="c1">#event that is called when the user changes the tilt in the browser.</span>
-        <span class="c1">#Add the code to move the tilt servo</span>
-        <span class="c1">#tilt_value goes from - 100 to +100</span>
-
-<span class="n">MyPanTiltCamera</span><span class="p">()</span>
+<span class="c1">#link pan and tilt to servos</span>
+<span class="n">motor_board</span> <span class="o">=</span> <span class="n">PCA9685ServoBoard</span><span class="p">()</span>
+<span class="n">motor_board</span><span class="o">.</span><span class="n">servo_motors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">CAM1</span><span class="o">.</span><span class="n">pan</span><span class="p">)</span>
+<span class="n">motor_board</span><span class="o">.</span><span class="n">servo_motors</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">CAM1</span><span class="o">.</span><span class="n">tilt</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="toctree-wrapper compound">

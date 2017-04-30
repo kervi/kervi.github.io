@@ -99,7 +99,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#start-the-engines-line-84">Start the engines (line 84)</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#multi-file-application">Multi file application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-file-process-application">Multi file/process application</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#distributed-application">Distributed application</a></li>
 </ul>
 </li>
@@ -107,6 +107,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dynamic_values.html">Dynamic values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
@@ -375,8 +376,8 @@ When a sensor is linked to a dashboard panel the UI logic will pick up sensor re
 <p>A controller reacts to one or more inputs and generates one or more outputs.
 The input could come from the user via the web based UI, sensors or other application logic.</p>
 <p>The example above implements a fan controller that calculates speed of a fan by reading the temperature of a sensor.
-The controller is agnostic to how it is linked to user interface and hardware it only works in the interface of inputs it
-defines and the output it produces. In that way it is easy to change hardware and UI without recoding the controller.</p>
+The controller only works on its interfaces and is agnostic to how it is linked to user interface and hardware.
+In that way it is easy to change hardware and UI without recoding the controller.</p>
 <p>In order to do the calculation the controller uses the following inputs:</p>
 <ul class="simple">
 <li>temp, the temperature that should be used in the calculation.</li>
@@ -398,8 +399,8 @@ A controller input is defined by calling self.inputs.add and specify the id, nam
 </div>
 <div class="section" id="linking-controller-inputs-line-72-77">
 <h4>Linking controller inputs (line 72 - 77)<a class="headerlink" href="#linking-controller-inputs-line-72-77" title="Permalink to this headline">¶</a></h4>
-<p>The next step is to link the controller to the cpu sensor:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">FAN_CONTROLLER</span><span class="o">.</span><span class="n">temp</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">SENSOR_CPU_TEMP</span><span class="p">)</span>
+<p>The next step is to link the controller to the cpu sensor.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">FAN_CONTROLLER</span><span class="o">.</span><span class="n">temp</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">SENSOR_CPU_TEMP</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now the temp input listen to changes in cpu temperature, when the the temperature changes the input_changed event is fired.</p>
@@ -417,12 +418,11 @@ When the user changes one of the inputs the input_changed event is fired.</p>
 </div>
 <div class="section" id="start-the-engines-line-84">
 <h4>Start the engines (line 84)<a class="headerlink" href="#start-the-engines-line-84" title="Permalink to this headline">¶</a></h4>
-<p>The work so far have been to prepare your application nothing is running yet to actually launch your app you need to call APP.run().
-This will launch the web server, interprocess communication systems and start sensor readings.</p>
+<p>The work so far have been to prepare your application call APP.run() keep your application going.</p>
 </div>
 </div>
-<div class="section" id="multi-file-application">
-<h3>Multi file application<a class="headerlink" href="#multi-file-application" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="multi-file-process-application">
+<h3>Multi file/process application<a class="headerlink" href="#multi-file-process-application" title="Permalink to this headline">¶</a></h3>
 <p>Below is the structure of a multi file Kervi application. All the parts from a single file application are moved into
 seperate files and foldes. Kervi uses this structure to load each section in its own process in order to improve the performance.</p>
 <p>A second advantance to this model is that it is easier to maintain as the Kervi project grows bigger.</p>
@@ -455,6 +455,7 @@ seperate files and foldes. Kervi uses this structure to load each section in its
             <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;My app&quot;</span><span class="p">,</span>
             <span class="s2">&quot;appKey&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="p">},</span>
+        <span class="s2">&quot;modules&quot;</span><span class="p">:[</span><span class="s2">&quot;sensors&quot;</span><span class="p">,</span> <span class="s2">&quot;controllers&quot;</span><span class="p">,</span> <span class="s2">&quot;cams&quot;</span><span class="p">],</span>
         <span class="s2">&quot;network&quot;</span><span class="p">:{</span>
             <span class="s2">&quot;IPAddress&quot;</span><span class="p">:</span> <span class="n">nethelper</span><span class="o">.</span><span class="n">get_ip_address</span><span class="p">(),</span>
             <span class="s2">&quot;IPCBasePort&quot;</span><span class="p">:</span><span class="mi">9500</span><span class="p">,</span>
@@ -468,8 +469,10 @@ seperate files and foldes. Kervi uses this structure to load each section in its
 </pre></div>
 </div>
 <p>The values for ports and secrets are generated by the Kervi commandline tool.
-When the Application.run is called the system looks for Kervi components in cam, controllers, dashboard and sensor folders.
-In each folder the __init__.py file bootstraps and load the components that resides in the local folder.</p>
+When the Application is instantiated it looks for in the dashboard folder next it loads
+the modules specified in the modules parameter.
+In each of the loaded modules folders the __init__.py file bootstraps and load the
+components that resides in the local folder.</p>
 </div>
 <div class="section" id="distributed-application">
 <h3>Distributed application<a class="headerlink" href="#distributed-application" title="Permalink to this headline">¶</a></h3>

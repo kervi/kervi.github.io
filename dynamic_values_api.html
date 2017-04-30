@@ -91,9 +91,18 @@
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="dynamic_values.html">Dynamic values</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Dynamic values api</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="dynamic_values.html#linking">Linking</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dynamic_values.html#dashboard-linking">Dashboard linking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dynamic_values.html#value-linking">Value linking</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dynamic_values.html#value-link-transformation">Value link transformation</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Dynamic values api</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
@@ -188,7 +197,7 @@ The DynamicValue will only occupy as much space as the label and input takes.</d
 <li><em>value_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; width of the value area as a percentage of the total container it sits in.</li>
 <li><em>type</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; if value should be displayes as a &#8216;switch&#8217; (default) or &#8216;push&#8217; for push button.</li>
 <li><em>on_text</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; Text to display when switch is on.</li>
-<li><a href="#id1"><span class="problematic" id="id2">*</span></a>off_text (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; Text to display when switch is off.</li>
+<li><em>off_text</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; Text to display when switch is off.</li>
 <li><em>on_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; Icon to display when switch is on.</li>
 <li><em>off_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; Icon to display when switch is off.</li>
 <li><em>button_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; Icon to display on button.</li>
