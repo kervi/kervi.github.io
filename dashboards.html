@@ -34,7 +34,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Kervi 0.8 documentation" href="index.html"/>
-        <link rel="next" title="Dynamic values api" href="dashboards_api.html"/>
+        <link rel="next" title="Dashboards api" href="dashboards_api.html"/>
         <link rel="prev" title="Overview" href="overview.html"/> 
 
   
@@ -89,7 +89,15 @@
 <li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Dashboards</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dynamic values api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linking">Linking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sensors-and-dynamic-numbers">Sensors and dynamic numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gpio-and-dynamic-boolean">GPIO and dynamic boolean</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#controller-pads">Controller pads</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
@@ -146,8 +154,8 @@
 <h1>Dashboards<a class="headerlink" href="#dashboards" title="Permalink to this headline">¶</a></h1>
 <p>An application may define one or more dashboards if it is a home automation application
 A dashboard could be a room or a floor.</p>
-<p>Each dashbord contains one or more panels where it is possible to link sensors, controllers and camera output.</p>
-<p>The dashboards are responsive and ajust to the width of the browser. Below is the same dashbord in mobile and browser view.</p>
+<p>Each dashbord contains one or more panels where it is possible to link sensors, controllers, camera and other components.</p>
+<p>The dashboards are responsive and adjust to the width of the browser. Below is the same dashboard in mobile and browser view.</p>
 <a class="reference internal image-reference" href="_images/dashboard_mobile.png"><img alt="_images/dashboard_mobile.png" src="_images/dashboard_mobile.png" style="width: 35%;" /></a>
 <a class="reference internal image-reference" href="_images/dashboard_browser.png"><img alt="_images/dashboard_browser.png" src="_images/dashboard_browser.png" style="width: 45%;" /></a>
 <p>The code below shows how to configure the dashboard above</p>
@@ -159,20 +167,122 @@ A dashboard could be a room or a floor.</p>
 <span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;power&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Power&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>On large displays the columns and rows specify the size of a panel where the cell size is 150x150 pixels.
-When a component is linked to a panel it is specified how many cells that component should occupy in that panel.</p>
+<p>On large displays the columns and rows specify the size of a panel where the cell size is 150x150 pixels.</p>
+<p>I a title is set for a panel it will be displayed in a header.</p>
+<p>Collapsed specify if the panel should be collapsed when a panel is first shown.</p>
+<p>If user_log is set to true the panel will show the content of the user log for the application.</p>
+<div class="section" id="linking">
+<h2>Linking<a class="headerlink" href="#linking" title="Permalink to this headline">¶</a></h2>
+<p>A kervi component is linked to a panel by calling the link_to_dashboard method on the component.
+This method takes several parameters that specify how the component should be displayed.</p>
+<p>When a component is linked to a panel it is specified how many cells that component should occupy in that panel via the size parameter.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1">#sensor that links as a radial guage</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;cam&quot;</span><span class="p">,</span> <span class="s2">&quot;panel1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;radial_gauge&quot;</span><span class="p">)</span>
+<span class="n">cpu_temp</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;cam&quot;</span><span class="p">,</span> <span class="s2">&quot;panel1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;radial_gauge&quot;</span><span class="p">)</span>
 
 <span class="c1">#A sensor that links to the header of a panel and into the body.</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">link_to_header</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;chart&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">cpu_temp</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">link_to_header</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">cpu_temp</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;chart&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="c1">#A button that links to a panel with an icon.</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;power&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;power-off&quot;</span><span class="p">)</span>
+<span class="n">GPIO</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;power&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;power-off&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="sensors-and-dynamic-numbers">
+<h3>Sensors and dynamic numbers<a class="headerlink" href="#sensors-and-dynamic-numbers" title="Permalink to this headline">¶</a></h3>
+<p>Linked output components like sensors, controller outputs and analog GPIO input channels can displayed in different ways: just value, value with sparkline, as an animated icon, chart or different kind of gauges.</p>
+<p><strong>Value and sparkline</strong></p>
+<p>If a sensor is linked with just dashboard and panel as parameters it will be displayed with name, sparkline and value.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/sensor_sparkline.png" src="_images/sensor_sparkline.png" />
+<p><strong>Value and icon</strong></p>
+<p>It is possible to show an icon next to a value. Kervi uses Font awesome icons. Just enter the name of the icon without <em>fa-</em></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;thermometer-full&quot;</span><span class="p">,</span> <span class="n">show_sparkline</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">show_name</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/sensor_icon.png" src="_images/sensor_icon.png" />
+<p><strong>Value and no sparkline</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="n">show_sparkline</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/sensor_value.png" src="_images/sensor_value.png" />
+<p><strong>radial gauge</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;radial_gauge&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/sensor_radial.png" src="_images/sensor_radial.png" />
+<p><strong>Horizontal gauge</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;horizontal_linear_gauge&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/sensor_horizontal.png" src="_images/sensor_horizontal.png" />
+<p><strong>Vertical gauge</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;vertical_linear_gauge&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/sensor_vertical.png" src="_images/sensor_vertical.png" />
+<p><strong>Animated icon</strong></p>
+<p>Below is a full example of a battery sensor where the icon change depending on value.
+The sensor is linked twice first to the header with the animation and into the body as a chart.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
+
+
+<span class="n">SENSOR_1</span><span class="o">.</span><span class="n">set_ui_parameter</span><span class="p">(</span><span class="s2">&quot;icon&quot;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+        <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-empty&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
+        <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-quarter&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+        <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-half&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">75</span><span class="p">],</span>
+        <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-three-quarter&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">75</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+        <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-full&quot;</span>
+    <span class="p">}</span>
+<span class="p">])</span>
+
+<span class="c1">#link the sensor to the header</span>
+<span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span>
+    <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;battery&quot;</span><span class="p">,</span>
+    <span class="n">show_sparkline</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+    <span class="n">show_value</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+    <span class="n">link_to_header</span><span class="o">=</span><span class="bp">True</span>
+<span class="p">)</span>
+
+<span class="c1">#link the sensor as a chart</span>
+<span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;battery&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;chart&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/sensor_animated.png" src="_images/sensor_animated.png" />
+</div>
+<div class="section" id="gpio-and-dynamic-boolean">
+<h3>GPIO and dynamic boolean<a class="headerlink" href="#gpio-and-dynamic-boolean" title="Permalink to this headline">¶</a></h3>
+<p>Linked output components like digital GPIO channels and boolean controller input/outputs
+are displayed as a switch button or push button.
+If it is an input GPIO channel or a controller output the button is read only.</p>
+<p>If it is a output GPIO channel or a controller input the user will be able to switch/push the button.</p>
+</div>
+</div>
+<div class="section" id="controller-pads">
+<h2>Controller pads<a class="headerlink" href="#controller-pads" title="Permalink to this headline">¶</a></h2>
+<p>Each dashboard has two controller pads each with an x and y axis.
+It is possible to link DynamicNumber values to these axes
+by using the panel names left_pad_x, left_pad_y, right_pad_x, right_pad_y.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">motor_controller</span><span class="o">.</span><span class="n">dc_motors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">speed</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;main&quot;</span><span class="p">,</span> <span class="s2">&quot;left_pad_x&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="toctree-wrapper compound">
+</div>
 </div>
 </div>
 
@@ -183,7 +293,7 @@ When a component is linked to a panel it is specified how many cells that compon
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dashboards_api.html" class="btn btn-neutral float-right" title="Dynamic values api" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="dashboards_api.html" class="btn btn-neutral float-right" title="Dashboards api" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="overview.html" class="btn btn-neutral" title="Overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

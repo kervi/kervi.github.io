@@ -89,6 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dynamic_values.html">Dynamic values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
@@ -164,13 +165,15 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dashboards_api.html#kervi.values.DynamicValue.add_observer">add_observer() (kervi.values.DynamicValue method)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicValue.add_observer">[1]</a>
+      <li><a href="dynamic_values_api.html#kervi.values.DynamicValue.add_observer">add_observer() (kervi.values.DynamicValue method)</a>
+</li>
+      <li><a href="dynamic_values_api.html#kervi.values.DynamicEnum.add_option">add_option() (kervi.values.DynamicEnum method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dashboards_api.html#kervi.values.DynamicEnum.add_option">add_option() (kervi.values.DynamicEnum method)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicEnum.add_option">[1]</a>
+      <li><a href="dashboards_api.html#kervi.dashboard.Dashboard.add_panel">add_panel() (kervi.dashboard.Dashboard method)</a>
 </li>
-      <li><a href="dashboards_api.html#kervi.values.DynamicValue.add_value_event">add_value_event() (kervi.values.DynamicValue method)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicValue.add_value_event">[1]</a>
+      <li><a href="dynamic_values_api.html#kervi.values.DynamicValue.add_value_event">add_value_event() (kervi.values.DynamicValue method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -192,29 +195,33 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dashboards_api.html#kervi.dashboard.Dashboard">Dashboard (class in kervi.dashboard)</a>
+</li>
+      <li><a href="dashboards_api.html#kervi.dashboard.DashboardPanel">DashboardPanel (class in kervi.dashboard)</a>
+</li>
       <li><a href="hal_gpio_api.html#kervi.hal.gpio.IGPIODeviceDriver.define_as_input">define_as_input() (kervi.hal.gpio.IGPIODeviceDriver method)</a>
 </li>
       <li><a href="hal_gpio_api.html#kervi.hal.gpio.IGPIODeviceDriver.define_as_output">define_as_output() (kervi.hal.gpio.IGPIODeviceDriver method)</a>
 </li>
       <li><a href="hal_gpio_api.html#kervi.hal.gpio.IGPIODeviceDriver.define_as_pwm">define_as_pwm() (kervi.hal.gpio.IGPIODeviceDriver method)</a>
 </li>
-      <li><a href="dashboards_api.html#kervi.values.DynamicNumber.delta">delta (kervi.values.DynamicNumber attribute)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicNumber.delta">[1]</a>
-</li>
-      <li><a href="sensors_api.html#kervi.sensor.Sensor.device">device (kervi.sensor.Sensor attribute)</a>
+      <li><a href="dynamic_values_api.html#kervi.values.DynamicNumber.delta">delta (kervi.values.DynamicNumber attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dashboards_api.html#kervi.values.DynamicBoolean">DynamicBoolean (class in kervi.values)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicBoolean">[1]</a>
+      <li><a href="sensors_api.html#kervi.sensor.Sensor.device">device (kervi.sensor.Sensor attribute)</a>
 </li>
-      <li><a href="dashboards_api.html#kervi.values.DynamicDateTime">DynamicDateTime (class in kervi.values)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicDateTime">[1]</a>
+      <li><a href="dynamic_values_api.html#kervi.values.DynamicBoolean">DynamicBoolean (class in kervi.values)</a>
 </li>
-      <li><a href="dashboards_api.html#kervi.values.DynamicEnum">DynamicEnum (class in kervi.values)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicEnum">[1]</a>
+      <li><a href="dynamic_values_api.html#kervi.values.DynamicDateTime">DynamicDateTime (class in kervi.values)</a>
 </li>
-      <li><a href="dashboards_api.html#kervi.values.DynamicNumber">DynamicNumber (class in kervi.values)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicNumber">[1]</a>
+      <li><a href="dynamic_values_api.html#kervi.values.DynamicEnum">DynamicEnum (class in kervi.values)</a>
 </li>
-      <li><a href="dashboards_api.html#kervi.values.DynamicString">DynamicString (class in kervi.values)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicString">[1]</a>
+      <li><a href="dynamic_values_api.html#kervi.values.DynamicNumber">DynamicNumber (class in kervi.values)</a>
 </li>
-      <li><a href="dashboards_api.html#kervi.values.DynamicValue">DynamicValue (class in kervi.values)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicValue">[1]</a>
+      <li><a href="dynamic_values_api.html#kervi.values.DynamicString">DynamicString (class in kervi.values)</a>
+</li>
+      <li><a href="dynamic_values_api.html#kervi.values.DynamicValue">DynamicValue (class in kervi.values)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -262,7 +269,7 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dashboards_api.html#kervi.values.DynamicValue.index">index (kervi.values.DynamicValue attribute)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicValue.index">[1]</a>
+      <li><a href="dynamic_values_api.html#kervi.values.DynamicValue.index">index (kervi.values.DynamicValue attribute)</a>
 </li>
       <li><a href="controllers_api.html#kervi.controller.Controller.input_changed">input_changed() (kervi.controller.Controller method)</a>
 </li>
@@ -276,6 +283,8 @@
 </li>
       <li><a href="controllers_api.html#module-kervi.controller">kervi.controller (module)</a>
 </li>
+      <li><a href="dashboards_api.html#module-kervi.dashboard">kervi.dashboard (module)</a>
+</li>
       <li><a href="hal_devices_api.html#module-kervi.hal">kervi.hal (module)</a>
 </li>
   </ul></td>
@@ -286,7 +295,7 @@
 </li>
       <li><a href="sensors_api.html#module-kervi.sensor">kervi.sensor (module)</a>
 </li>
-      <li><a href="dashboards_api.html#module-kervi.values">kervi.values (module)</a>, <a href="dynamic_values_api.html#module-kervi.values">[1]</a>
+      <li><a href="dynamic_values_api.html#module-kervi.values">kervi.values (module)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -294,18 +303,18 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dashboards_api.html#kervi.values.DynamicValue.link_to">link_to() (kervi.values.DynamicValue method)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicValue.link_to">[1]</a>
+      <li><a href="dynamic_values_api.html#kervi.values.DynamicValue.link_to">link_to() (kervi.values.DynamicValue method)</a>
 </li>
       <li><a href="controllers_api.html#kervi.controller.Controller.link_to_dashboard">link_to_dashboard() (kervi.controller.Controller method)</a>
 
       <ul>
         <li><a href="sensors_api.html#kervi.sensor.Sensor.link_to_dashboard">(kervi.sensor.Sensor method)</a>
 </li>
-        <li><a href="dashboards_api.html#kervi.values.DynamicBoolean.link_to_dashboard">(kervi.values.DynamicBoolean method)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicBoolean.link_to_dashboard">[1]</a>
+        <li><a href="dynamic_values_api.html#kervi.values.DynamicBoolean.link_to_dashboard">(kervi.values.DynamicBoolean method)</a>
 </li>
-        <li><a href="dashboards_api.html#kervi.values.DynamicNumber.link_to_dashboard">(kervi.values.DynamicNumber method)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicNumber.link_to_dashboard">[1]</a>
+        <li><a href="dynamic_values_api.html#kervi.values.DynamicNumber.link_to_dashboard">(kervi.values.DynamicNumber method)</a>
 </li>
-        <li><a href="dashboards_api.html#kervi.values.DynamicValue.link_to_dashboard">(kervi.values.DynamicValue method)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicValue.link_to_dashboard">[1]</a>
+        <li><a href="dynamic_values_api.html#kervi.values.DynamicValue.link_to_dashboard">(kervi.values.DynamicValue method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -316,7 +325,7 @@
 </li>
       <li><a href="hal_gpio_api.html#kervi.hal.gpio.IGPIODeviceDriver.listen_rising">listen_rising() (kervi.hal.gpio.IGPIODeviceDriver method)</a>
 </li>
-      <li><a href="dashboards_api.html#kervi.values.DynamicValue.log_values">log_values (kervi.values.DynamicValue attribute)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicValue.log_values">[1]</a>
+      <li><a href="dynamic_values_api.html#kervi.values.DynamicValue.log_values">log_values (kervi.values.DynamicValue attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -324,11 +333,11 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dashboards_api.html#kervi.values.DynamicNumber.max">max (kervi.values.DynamicNumber attribute)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicNumber.max">[1]</a>
+      <li><a href="dynamic_values_api.html#kervi.values.DynamicNumber.max">max (kervi.values.DynamicNumber attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dashboards_api.html#kervi.values.DynamicNumber.min">min (kervi.values.DynamicNumber attribute)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicNumber.min">[1]</a>
+      <li><a href="dynamic_values_api.html#kervi.values.DynamicNumber.min">min (kervi.values.DynamicNumber attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -336,7 +345,7 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dashboards_api.html#kervi.values.DynamicValue.persist_value">persist_value (kervi.values.DynamicValue attribute)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicValue.persist_value">[1]</a>
+      <li><a href="dynamic_values_api.html#kervi.values.DynamicValue.persist_value">persist_value (kervi.values.DynamicValue attribute)</a>
 </li>
       <li><a href="sensors_api.html#kervi.sensor.Sensor.polling_interval">polling_interval (kervi.sensor.Sensor attribute)</a>
 </li>
@@ -406,7 +415,7 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dashboards_api.html#kervi.values.DynamicNumber.unit">unit (kervi.values.DynamicNumber attribute)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicNumber.unit">[1]</a>
+      <li><a href="dynamic_values_api.html#kervi.values.DynamicNumber.unit">unit (kervi.values.DynamicNumber attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -414,7 +423,7 @@
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dashboards_api.html#kervi.values.DynamicValue.value">value (kervi.values.DynamicValue attribute)</a>, <a href="dynamic_values_api.html#kervi.values.DynamicValue.value">[1]</a>
+      <li><a href="dynamic_values_api.html#kervi.values.DynamicValue.value">value (kervi.values.DynamicValue attribute)</a>
 </li>
   </ul></td>
 </tr></table>

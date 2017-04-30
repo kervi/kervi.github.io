@@ -186,7 +186,7 @@ The DynamicValue will only occupy as much space as the label and input takes.</d
 </li>
 <li><em>input_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; width of the slider as a percentage of the total container it sits in.</li>
 <li><em>value_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; width of the value area as a percentage of the total container it sits in.</li>
-<li><em>type</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; if input &#8216;switch&#8217; (default) or &#8216;push&#8217;.</li>
+<li><em>type</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; if value should be displayes as a &#8216;switch&#8217; (default) or &#8216;push&#8217; for push button.</li>
 <li><em>on_text</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; Text to display when switch is on.</li>
 <li><a href="#id1"><span class="problematic" id="id2">*</span></a>off_text (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; Text to display when switch is off.</li>
 <li><em>on_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; Icon to display when switch is on.</li>
@@ -211,23 +211,32 @@ The DynamicValue will only occupy as much space as the label and input takes.</d
 <dl class="class">
 <dt id="kervi.values.DynamicEnum">
 <em class="property">class </em><code class="descclassname">kervi.values.</code><code class="descname">DynamicEnum</code><span class="sig-paren">(</span><em>name</em>, <em>input_id=None</em>, <em>is_input=True</em>, <em>parent=None</em>, <em>index=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicEnum" title="Permalink to this definition">¶</a></dt>
-<dd><p>EnumControllerValue holds a selection of predefined values to select amount.</p>
+<dd><p>A DynamicEnum value holds a selection of predefined values to select between.
+The DynamicValue is presented as a dropdown on dashboards.</p>
 <p>Usage:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CameraFrameRate</span><span class="p">(</span><span class="n">EnumControllerValue</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller</span><span class="p">):</span>
-    <span class="n">EnumControllerValue</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller</span><span class="o">.</span><span class="n">controllerId</span><span class="o">+</span><span class="s2">&quot;.framerate&quot;</span><span class="p">,</span> <span class="s2">&quot;Framerate&quot;</span> <span class="p">,</span> <span class="n">controller</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">addOption</span><span class="p">(</span><span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;5 / sec&quot;</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">addOption</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="s2">&quot;10 / sec&quot;</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">addOption</span><span class="p">(</span><span class="s2">&quot;15&quot;</span><span class="p">,</span> <span class="s2">&quot;15 / sec&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">selectedOptions</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Frame rate changed&quot;</span><span class="p">,</span> <span class="n">selectedOptions</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">framerate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;frame_rate&quot;</span><span class="p">,</span> <span class="s2">&quot;Frame rate&quot;</span><span class="p">,</span> <span class="n">DynamicEnum</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">framerate</span><span class="o">.</span><span class="n">addOption</span><span class="p">(</span><span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;5 / sec&quot;</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">framerate</span><span class="o">.</span><span class="n">addOption</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="s2">&quot;10 / sec&quot;</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">framerate</span><span class="o">.</span><span class="n">addOption</span><span class="p">(</span><span class="s2">&quot;15&quot;</span><span class="p">,</span> <span class="s2">&quot;15 / sec&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="method">
 <dt id="kervi.values.DynamicEnum.add_option">
 <code class="descname">add_option</code><span class="sig-paren">(</span><em>value</em>, <em>text</em>, <em>selected=False</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicEnum.add_option" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add option to select</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> &#8211; The value that the option represent.</li>
+<li><strong>text</strong> &#8211; The text that should be displayer in dropdown</li>
+<li><strong>selected</strong> &#8211; True if the option should be the default value.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>

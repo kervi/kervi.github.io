@@ -35,7 +35,7 @@
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Kervi 0.8 documentation" href="index.html"/>
         <link rel="next" title="Sensors API" href="sensors_api.html"/>
-        <link rel="prev" title="Dynamic values api" href="dashboards_api.html"/> 
+        <link rel="prev" title="Dashboards api" href="dashboards_api.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -92,13 +92,10 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Sensors</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#kervi-device-library">Kervi Device library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#implementing-a-sensor-device">Implementing a sensor device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#linking-to-dashboards">Linking to dashboards</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#sensor-api">Sensor api</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linking-sensors">Linking sensors</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dynamic_values.html">Dynamic values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
@@ -264,8 +261,8 @@ Fill in the abstract properties and the method read_value.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="linking-to-dashboards">
-<h2>Linking to dashboards<a class="headerlink" href="#linking-to-dashboards" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="linking-sensors">
+<h2>Linking sensors<a class="headerlink" href="#linking-sensors" title="Permalink to this headline">¶</a></h2>
 <p>A sensor is linked to a dashboard by calling the method link_to_dashboard.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
 <span class="kn">from</span> <span class="nn">kervi_devices.sensors</span> <span class="kn">import</span> <span class="n">BMP085</span>
@@ -274,87 +271,6 @@ Fill in the abstract properties and the method read_value.</p>
 <span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">link_to_header</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;chart&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
-</div>
-<p>A sensor can displayed in different ways: just value, value with sparkline, as an animated icon, chart or different kind of gauges.</p>
-<p><strong>Value and sparkline</strong></p>
-<p>If a sensor is linked with just dashboard and panel as parameters it will be displayed with name, sparkline and value.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_sensor</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="_images/sensor_sparkline.png" src="_images/sensor_sparkline.png" />
-<p><strong>Value and icon</strong></p>
-<p>It is possible to show an icon next to a value. Kervi uses Font awesome icons. Just enter the name of the icon without <em>fa-</em></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;thermometer-full&quot;</span><span class="p">,</span> <span class="n">show_sparkline</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">show_name</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="_images/sensor_icon.png" src="_images/sensor_icon.png" />
-<p><strong>Value and no sparkline</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_sensor</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="n">show_sparkline</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="_images/sensor_value.png" src="_images/sensor_value.png" />
-<p><strong>radial gauge</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_sensor</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;radial_gauge&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="_images/sensor_radial.png" src="_images/sensor_radial.png" />
-<p><strong>Horizontal gauge</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_sensor</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;horizontal_linear_gauge&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="_images/sensor_horizontal.png" src="_images/sensor_horizontal.png" />
-<p><strong>Vertical gauge</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_sensor</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;vertical_linear_gauge&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="_images/sensor_vertical.png" src="_images/sensor_vertical.png" />
-<p><strong>Animated icon</strong></p>
-<p>Below is a full example of a battery sensor where the icon change depending on value.
-The sensor is linked twice first to the header with the animation and into the body as a chart.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span><span class="p">,</span> <span class="n">SensorThread</span>
-
-
-
-<span class="n">SENSOR_1</span><span class="o">.</span><span class="n">set_ui_parameter</span><span class="p">(</span><span class="s2">&quot;icon&quot;</span><span class="p">,</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
-        <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-empty&quot;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
-        <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-quarter&quot;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
-        <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-half&quot;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">75</span><span class="p">],</span>
-        <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-three-quarter&quot;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">75</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
-        <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-full&quot;</span>
-    <span class="p">}</span>
-<span class="p">])</span>
-
-<span class="c1">#link the sensor to the header</span>
-<span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span>
-    <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;battery&quot;</span><span class="p">,</span>
-    <span class="n">show_sparkline</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-    <span class="n">show_value</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-    <span class="n">link_to_header</span><span class="o">=</span><span class="bp">True</span>
-<span class="p">)</span>
-
-<span class="c1">#link the sensor as a chart</span>
-<span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;battery&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;chart&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="_images/sensor_animated.png" src="_images/sensor_animated.png" />
-</div>
-<div class="section" id="sensor-api">
-<h2>Sensor api<a class="headerlink" href="#sensor-api" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
 </div>
 </div>
 </div>
@@ -369,7 +285,7 @@ The sensor is linked twice first to the header with the animation and into the b
         <a href="sensors_api.html" class="btn btn-neutral float-right" title="Sensors API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="dashboards_api.html" class="btn btn-neutral" title="Dynamic values api" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dashboards_api.html" class="btn btn-neutral" title="Dashboards api" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

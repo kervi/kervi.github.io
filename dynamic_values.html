@@ -90,9 +90,18 @@
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Dynamic values</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dynamic_values_api.html">Dynamic values api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linking">Linking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dashboard-linking">Dashboard linking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#value-linking">Value linking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#value-link-transformation">Value link transformation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dynamic_values_api.html">Dynamic values api</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
@@ -144,8 +153,101 @@
             
   <div class="section" id="dynamic-values">
 <h1>Dynamic values<a class="headerlink" href="#dynamic-values" title="Permalink to this headline">¶</a></h1>
-<p>Dynamic values are the glue of your kervi application.</p>
+<p>Dynamic values is a core concept in the kervi framework as they are
+used to flow the signals in your kervi application.</p>
+<p>Sensors, controller input/output, GPIO and motors are all dynamic values
+or implements one or more dynamic value.</p>
+<p>A dynamic value may be a number, string, boolean, datetime or an enum.
+In addition to is base type it also have a direction it may be an input or
+output value.
+If it is possible to change the dynamic value it is an input otherwise it is an output.</p>
+<p>A sensor is an output of type DynamicNumber. It is an output because its value
+is determined by the sensor device.</p>
+<p>The speed parameter of a DC motor is a DynamicNumber.
+It is an input because you as an user/programmer is able to change the value.</p>
+<p>A digital GPIO channel is a DynamicBoolean.
+If the GPIO channel is an output where you control the state of the physical
+channel/pin then the dynamic value is an input. It may sound confusing but the
+dynamic value is an input to the GPIO controller of your device and that controller
+changes the state of the physical pin.</p>
+<div class="section" id="linking">
+<h2>Linking<a class="headerlink" href="#linking" title="Permalink to this headline">¶</a></h2>
+<p>Signals are flown thru your application by linking them to dahsboards or other dynamic values.</p>
+<div class="section" id="dashboard-linking">
+<h3>Dashboard linking<a class="headerlink" href="#dashboard-linking" title="Permalink to this headline">¶</a></h3>
+<p>Dynamic values may be linked to dashboards.
+When linked they will show up as either inputs that the user can change or
+a read only representation.</p>
+<p>Details about dashboard linking are found in the dashboard section.</p>
+</div>
+<div class="section" id="value-linking">
+<h3>Value linking<a class="headerlink" href="#value-linking" title="Permalink to this headline">¶</a></h3>
+<p>Value linking is the process of connecting dynamic values that are outputs to
+values that are input.</p>
+<p><em>Direct linking</em></p>
+<p>In the example below is a short snippet that shows how to make
+a self balancing robot. This is done as direct linking where all values are
+in the same process.</p>
+<p>The orientation of the robot is obtained by a LSM9DS0 sensor reading its gyros to establish the robots
+orientation. The output of the sensor is send to a pid controller that calculates
+how much the wheels must be moved to keep the robot in balance.
+The pid controllers result is send to the steering controller that in turn send it to
+the a dc motor controller.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1">#create orientation sensor</span>
+<span class="n">orientation_sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;orientation&quot;</span><span class="p">,</span> <span class="s2">&quot;Orientation&quot;</span><span class="p">,</span> <span class="n">LSM9DS0OrientationDeviceDriver</span><span class="p">(),</span> <span class="n">reading_interval</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">#create pid controller</span>
+<span class="n">pid_controller</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="s2">&quot;balance_pid&quot;</span><span class="p">,</span> <span class="s2">&quot;Balance pid&quot;</span><span class="p">)</span>
+
+<span class="c1">#link sensor roll value and pid controller</span>
+<span class="n">pid_controller</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">orientation_sensor</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="c1">#create the steering controller</span>
+<span class="n">steering</span> <span class="o">=</span> <span class="n">MotorSteering</span><span class="p">()</span>
+<span class="c1">#link adaptive_speed controller input to steering controller</span>
+<span class="n">steering</span><span class="o">.</span><span class="n">adaptive_speed</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">pid_controller</span><span class="o">.</span><span class="n">result</span><span class="p">)</span>
+
+<span class="c1">#create motor controller</span>
+<span class="n">motor_board</span> <span class="o">=</span> <span class="n">AdafruitMotorHAT</span><span class="p">()</span>
+<span class="c1">#link dc motors to the steering controller outputs</span>
+<span class="n">motor_board</span><span class="o">.</span><span class="n">dc_motors</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">speed</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">steering</span><span class="o">.</span><span class="n">left_speed</span><span class="p">)</span>
+<span class="n">motor_board</span><span class="o">.</span><span class="n">dc_motors</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">speed</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">steering</span><span class="o">.</span><span class="n">right_speed</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><em>Indirect linking</em></p>
+<p>It is not possible to use direct linking if the two dynamic values that should
+be connected are in different processes or maybe on different devices/computers.
+In this situation it is possible use utilize the build in inter process communication
+in Kervi.</p>
+<p>In the snippet below the link is done by passing the id of the sensor to the link_to
+method. As this may cross network it is not as fast as direct linking.</p>
+<p>An indirect link must be established on the input side in the link.</p>
+<p>Process one code</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1">#create orientation sensor</span>
+<span class="n">orientation_sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;orientation&quot;</span><span class="p">,</span> <span class="s2">&quot;Orientation&quot;</span><span class="p">,</span> <span class="n">LSM9DS0OrientationDeviceDriver</span><span class="p">(),</span> <span class="n">reading_interval</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>process two code</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">pid_controller</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="s2">&quot;balance_pid&quot;</span><span class="p">,</span> <span class="s2">&quot;Balance pid&quot;</span><span class="p">)</span>
+<span class="n">pid_controller</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="s2">&quot;orientation.roll&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="value-link-transformation">
+<h3>Value link transformation<a class="headerlink" href="#value-link-transformation" title="Permalink to this headline">¶</a></h3>
+<p>It is possible to transform the values in the link by apply a transformation
+function or lambda expression. This is useful if the value ranges of the two
+dynamic values are not the same or if you need to change the sign of the
+values that are exchanged in the link.</p>
+<p>Below is an example where a servo motor is mounted opposite to the on screen pan
+controller. By changing the sign the in the link the servo will rotate as expected on
+the screen.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">motor_board</span><span class="o">.</span><span class="n">servo_motors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">CAM1</span><span class="o">.</span><span class="n">pan</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
 <div class="toctree-wrapper compound">
+</div>
+</div>
 </div>
 </div>
 

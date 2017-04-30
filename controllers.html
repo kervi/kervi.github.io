@@ -90,9 +90,11 @@
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Controllers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#input-and-output-interfaces">Input and output interfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#linking-controllers">Linking controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#linking-controllers">Linking controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#controller-api">Controller api</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="controllers_api.html">Controllers api</a></li>
 </ul>
 </li>
@@ -229,7 +231,7 @@ and calculates the speed of the left and right motors.</p>
 <span class="sd">     Control the speed and direction of two motors.</span>
 <span class="sd">     &quot;&quot;&quot;</span>
      <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller_id</span><span class="o">=</span><span class="s2">&quot;steering&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Steering&quot;</span><span class="p">):</span>
-         <span class="n">TaskHandler</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller_id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+         <span class="n">Controller</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller_id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
          <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;steering&quot;</span>
          <span class="bp">self</span><span class="o">.</span><span class="n">left_speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;left_speed&quot;</span><span class="p">,</span> <span class="s2">&quot;Left speed&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
          <span class="bp">self</span><span class="o">.</span><span class="n">right_speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;right_speed&quot;</span><span class="p">,</span> <span class="s2">&quot;Right speed&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
@@ -275,7 +277,7 @@ and calculates the speed of the left and right motors.</p>
          <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">&quot;left_speed&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">left_speed</span>
          <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">&quot;right_speed&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">right_speed</span>
 
-     <span class="k">def</span> <span class="nf">dynamic_value_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">changed_input</span><span class="p">):</span>
+     <span class="k">def</span> <span class="nf">input_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">changed_input</span><span class="p">):</span>
          <span class="c1">#print(&quot;steering input changed:&quot;, changed_input.input_id, changed_input.value)</span>
          <span class="k">if</span> <span class="n">changed_input</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_off</span><span class="p">:</span>
              <span class="bp">self</span><span class="o">.</span><span class="n">left_speed</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
@@ -293,7 +295,7 @@ and calculates the speed of the left and right motors.</p>
 </div>
 <p>self.inputs.add and self.outputs.add are factory functions that creates dynamic values that are special Kervi value classes that
 may be linked to dashboards or to another dynamic value.</p>
-<p>When an input value is changed by a user or other part of your application the dynamic_value_changed event is fired and your controller may
+<p>When an input value is changed by a user or other part of your application the input_changed event is fired and your controller may
 calculate its outputs.</p>
 </div>
 <div class="section" id="linking-controllers">
@@ -324,6 +326,9 @@ In that way it is easy to change hardware and make changes to UI without re-codi
  <span class="n">motor_board</span><span class="o">.</span><span class="n">dc_motors</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">speed</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">steering</span><span class="o">.</span><span class="n">right_speed</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
+</div>
+<div class="section" id="controller-api">
+<h2>Controller api<a class="headerlink" href="#controller-api" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 </div>
 </div>
