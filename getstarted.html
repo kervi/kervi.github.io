@@ -110,6 +110,7 @@
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dynamic_values.html">Dynamic values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
@@ -185,6 +186,12 @@ If you are able to start your Raspberry Pi you are ready to install Kervi.</p>
 <p>If you install on other platforms like windows and linux you have to install python and pip. Please follow the instructions on python.org to get python installed.
 Notice there are no native support for hardware when your install on these platforms but you will be able to
 create dashboards and let users interact with your python kervi application via a browser.</p>
+<p>There is a requirement for libjpeg-dev on certain versions of python on the raspberry pi.
+To besure of correct kervi installation please run these commands first.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libjpeg</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
