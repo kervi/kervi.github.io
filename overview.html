@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview &mdash; Kervi 0.8 documentation</title>
+  <title>Overview &mdash; Kervi 0.11.1 - beta documentation</title>
   
 
+  
+  
   
   
 
@@ -33,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Kervi 0.8 documentation" href="index.html"/>
+    <link rel="top" title="Kervi 0.11.1 - beta documentation" href="index.html"/>
         <link rel="next" title="Dashboards" href="dashboards.html"/>
         <link rel="prev" title="Get started" href="getstarted.html"/> 
 
@@ -44,6 +46,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -63,7 +66,7 @@
             
             
               <div class="version">
-                0.8
+                0.11.1
               </div>
             
           
@@ -84,7 +87,10 @@
           
             
             
-                <p class="caption"><span class="caption-text">Contents:</span></p>
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
@@ -127,8 +133,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">Kervi</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Kervi</a>
+        
       </nav>
 
 
@@ -137,21 +145,38 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Overview</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Overview</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -344,11 +369,11 @@
 <div class="section" id="application-line-1-3">
 <h4>Application (line 1-3)<a class="headerlink" href="#application-line-1-3" title="Permalink to this headline">¶</a></h4>
 <p>The hart of a kervi application is the Application class.
-You must create an Application instance as the very first
+You must create an Application instance as the very first  operation
 in your application.</p>
-<p>The Application class prepares your application it figures out
+<p>The Application class prepares your application. It figures out
 if you are using a Raspberry Pi as your board and loads required
-driveres. It also loads a web server that serves the files to the browser.</p>
+driveres. It also loads a web server that serves the UI files to the browser.</p>
 </div>
 <div class="section" id="dashboards-line-5-11">
 <h4>Dashboards (line 5-11)<a class="headerlink" href="#dashboards-line-5-11" title="Permalink to this headline">¶</a></h4>
@@ -357,8 +382,8 @@ tell kervi how you want to organize your dashboards in the browser.
 You can have multiple dashboards in an application. It can be floors in a house
 if your are developing a house automation project or it can be a camera view and
 system information if you are creating a robot.</p>
-<p>In the example above two dashboards are defined APP and SYSTEM.</p>
-<p>Each dashboard has one or more panels where kervi components like sensors and controllers are linked to.</p>
+<p>In the example above two dashboards are defined: APP and SYSTEM.</p>
+<p>Each dashboard has one or more panels where it is possible to link kervi components like sensors and controllers.</p>
 </div>
 <div class="section" id="sensors-13-26">
 <h4>Sensors (13-26)<a class="headerlink" href="#sensors-13-26" title="Permalink to this headline">¶</a></h4>
@@ -377,7 +402,7 @@ When a sensor is linked to a dashboard panel the UI logic will pick up sensor re
 The input could come from the user via the web based UI, sensors or other application logic.</p>
 <p>The example above implements a fan controller that calculates speed of a fan by reading the temperature of a sensor.
 The controller only works on its interfaces and is agnostic to how it is linked to user interface and hardware.
-In that way it is easy to change hardware and UI without recoding the controller.</p>
+In that way it is easy to change hardware and UI without the need for recoding the controller.</p>
 <p>In order to do the calculation the controller uses the following inputs:</p>
 <ul class="simple">
 <li>temp, the temperature that should be used in the calculation.</li>
@@ -418,14 +443,14 @@ When the user changes one of the inputs the input_changed event is fired.</p>
 </div>
 <div class="section" id="start-the-engines-line-84">
 <h4>Start the engines (line 84)<a class="headerlink" href="#start-the-engines-line-84" title="Permalink to this headline">¶</a></h4>
-<p>The work so far have been to prepare your application call APP.run() keep your application going.</p>
+<p>The work so far have been to prepare your application call APP.run() to keep your application going.</p>
 </div>
 </div>
 <div class="section" id="multi-file-process-application">
 <h3>Multi file/process application<a class="headerlink" href="#multi-file-process-application" title="Permalink to this headline">¶</a></h3>
 <p>Below is the structure of a multi file Kervi application. All the parts from a single file application are moved into
-seperate files and foldes. Kervi uses this structure to load each section in its own process in order to improve the performance.</p>
-<p>A second advantance to this model is that it is easier to maintain as the Kervi project grows bigger.</p>
+separate files and folders. Kervi uses this structure to load each section in its own process in order to improve the performance.</p>
+<p>A second advantage to this model is that it is easier to maintain the code as the Kervi project grows bigger.</p>
 <div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="n">root</span>
 <span class="o">|</span>
 <span class="o">|-</span> <span class="n">cams</span>
@@ -486,15 +511,18 @@ The web interface will update it self as modules starts and stops.</p>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dashboards.html" class="btn btn-neutral float-right" title="Dashboards" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="dashboards.html" class="btn btn-neutral float-right" title="Dashboards" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="getstarted.html" class="btn btn-neutral" title="Get started" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="getstarted.html" class="btn btn-neutral" title="Get started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -525,10 +553,11 @@ The web interface will update it self as modules starts and stops.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.8',
+            VERSION:'0.11.1 - beta',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>

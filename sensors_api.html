@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sensors API &mdash; Kervi 0.8 documentation</title>
+  <title>Sensors API &mdash; Kervi 0.11.1 - beta documentation</title>
   
 
+  
+  
   
   
 
@@ -33,8 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Kervi 0.8 documentation" href="index.html"/>
-        <link rel="up" title="Sensors" href="sensors.html"/>
+    <link rel="top" title="Kervi 0.11.1 - beta documentation" href="index.html"/>
         <link rel="next" title="Controllers" href="controllers.html"/>
         <link rel="prev" title="Sensors" href="sensors.html"/> 
 
@@ -45,6 +46,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -64,7 +66,7 @@
             
             
               <div class="version">
-                0.8
+                0.11.1
               </div>
             
           
@@ -85,21 +87,16 @@
           
             
             
-                <p class="caption"><span class="caption-text">Contents:</span></p>
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="sensors.html">Sensors</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="sensors.html#kervi-device-library">Kervi Device library</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sensors.html#implementing-a-sensor-device">Implementing a sensor device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sensors.html#linking-to-dashboards">Linking to dashboards</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="sensors.html#sensor-api">Sensor api</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Sensors API</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sensors API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dynamic_values.html">Dynamic values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
@@ -119,8 +116,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">Kervi</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Kervi</a>
+        
       </nav>
 
 
@@ -129,23 +128,38 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-          <li><a href="sensors.html">Sensors</a> &raquo;</li>
-      
-    <li>Sensors API</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Sensors API</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -169,12 +183,12 @@ the value of the sensor device change.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>sensor_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Id of the sensor.
+<li><strong>sensor_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Id of the sensor.
 This id is used in other components to reference this sesnor.</li>
-<li><strong>name</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Name of the sensor. Used in web dashboards</li>
-<li><strong>device</strong> (<code class="docutils literal"><span class="pre">float</span></code>) &#8211; The sensor device that should be monitored. Could be one of the sensors from the kervi device library
+<li><strong>name</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Name of the sensor. Used in web dashboards</li>
+<li><strong>device</strong> (<code class="docutils literal"><span class="pre">float</span></code>) – The sensor device that should be monitored. Could be one of the sensors from the kervi device library
 or a sensor device driver that inherits from kervi.hal.SensorDeviceDriver</li>
-<li><strong>polling_interval</strong> &#8211; Polling interval in seconds. Set to zero to disable polling.</li>
+<li><strong>polling_interval</strong> – Polling interval in seconds. Set to zero to disable polling.</li>
 </ul>
 </td>
 </tr>
@@ -198,51 +212,51 @@ or a class that inherits from kervi.hal.SensorDeviceDriver</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>dashboard_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Id of the dashboard to link to.
+<li><strong>dashboard_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Id of the dashboard to link to.
 Enter a * if the sensor should be linked to all dashboards.</li>
-<li><strong>panel_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Id of the panel to link to.
+<li><strong>panel_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Id of the panel to link to.
 This is the id of a panel you have added your self to a dashboard or one of the
 system panels <em>sys-header</em>, <em>header</em> or <em>footer</em></li>
-<li><strong>**kwargs</strong> &#8211; See below</li>
+<li><strong>**kwargs</strong> – See below</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
-<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><table class="first docutils field-list" frame="void" rules="none">
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><table class="first docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
-<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"></td>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"></td>
 </tr>
 </tbody>
 </table>
 <ul class="last simple">
 <li><dl class="first docutils">
-<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The number of dashboard cells the sensor should occupy horizontal or vertical.</dt>
+<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – The number of dashboard cells the sensor should occupy horizontal or vertical.</dt>
 <dd>If size is 0 (default) the input and label will expand to the width of the panel.</dd>
 </dl>
 </li>
-<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Link this input to header of the panel.</li>
+<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Link this input to header of the panel.</li>
 <li><dl class="first docutils">
-<dt><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label. </dt>
+<dt><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Icon that should be displayed together with label. </dt>
 <dd>All Font Awesome icons are valid just enter the name of the icon without <em>fa-</em></dd>
 </dl>
 </li>
-<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Label text, default value is the name of the sensor.</li>
-<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Flat look and feel.</li>
+<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Label text, default value is the name of the sensor.</li>
+<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Flat look and feel.</li>
 <li><dl class="first docutils">
-<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Display value, sparkline and label in its actual size</dt>
+<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Display value, sparkline and label in its actual size</dt>
 <dd>If you set inline to true the size parameter is ignored.
 The input will only occupy as much space as the label and sensor takes.</dd>
 </dl>
 </li>
-<li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; One of the following values <em>radial_gauge</em>, <em>vertical_gauge</em>, <em>horizontal_gauge</em>, <em>chart</em> or <em>value</em>.</li>
-<li><em>chart_points</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Maximun number of points in the chart.</li>
-<li><em>show_sparkline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Show a sparkline next to the value.</li>
-<li><em>icon</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Icon to show. All Font Awesome icons are valid just enter the name of the icon without <em>fa-</em>.</li>
-<li><em>show_value</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Show the numeric value and unit.</li>
-<li><em>label</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Show the numeric value and unit.</li>
+<li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) – One of the following values <em>radial_gauge</em>, <em>vertical_gauge</em>, <em>horizontal_gauge</em>, <em>chart</em> or <em>value</em>.</li>
+<li><em>chart_points</em> (<code class="docutils literal"><span class="pre">int</span></code>) – Maximun number of points in the chart.</li>
+<li><em>show_sparkline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Show a sparkline next to the value.</li>
+<li><em>icon</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Icon to show. All Font Awesome icons are valid just enter the name of the icon without <em>fa-</em>.</li>
+<li><em>show_value</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Show the numeric value and unit.</li>
+<li><em>label</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Show the numeric value and unit.</li>
 </ul>
 </td>
 </tr>
@@ -298,15 +312,18 @@ The input will only occupy as much space as the label and sensor takes.</dd>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="controllers.html" class="btn btn-neutral float-right" title="Controllers" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="controllers.html" class="btn btn-neutral float-right" title="Controllers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="sensors.html" class="btn btn-neutral" title="Sensors" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="sensors.html" class="btn btn-neutral" title="Sensors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -337,10 +354,11 @@ The input will only occupy as much space as the label and sensor takes.</dd>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.8',
+            VERSION:'0.11.1 - beta',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>

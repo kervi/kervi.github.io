@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Controllers api &mdash; Kervi 0.8 documentation</title>
+  <title>Controllers api &mdash; Kervi 0.11.1 - beta documentation</title>
   
 
+  
+  
   
   
 
@@ -33,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Kervi 0.8 documentation" href="index.html"/>
+    <link rel="top" title="Kervi 0.11.1 - beta documentation" href="index.html"/>
         <link rel="up" title="Controllers" href="controllers.html"/>
         <link rel="next" title="Dynamic values" href="dynamic_values.html"/>
         <link rel="prev" title="Controllers" href="controllers.html"/> 
@@ -45,6 +47,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -64,7 +67,7 @@
             
             
               <div class="version">
-                0.8
+                0.11.1
               </div>
             
           
@@ -85,15 +88,20 @@
           
             
             
-                <p class="caption"><span class="caption-text">Contents:</span></p>
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="controllers.html">Controllers</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="controllers.html#input-and-output-interfaces">Input and output interfaces</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="controllers.html#linking-controllers">Linking controllers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="controllers.html#linking-controllers">Linking controllers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="controllers.html#controller-api">Controller api</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Controllers api</a></li>
 </ul>
 </li>
@@ -117,8 +125,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">Kervi</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Kervi</a>
+        
       </nav>
 
 
@@ -127,23 +137,40 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
           <li><a href="controllers.html">Controllers</a> &raquo;</li>
-      
-    <li>Controllers api</li>
+        
+      <li>Controllers api</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -155,13 +182,25 @@
 <dl class="class">
 <dt id="kervi.controller.Controller">
 <em class="property">class </em><code class="descclassname">kervi.controller.</code><code class="descname">Controller</code><span class="sig-paren">(</span><em>controller_id</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.Controller" title="Permalink to this definition">¶</a></dt>
-<dd><p>A Kervi controller is a class that acts upon input from users or events or the underlaying os.</p>
+<dd><p>A Kervi controller is a class that acts upon input from users, hardware events or the underlaying os.</p>
 <p>Examples for controllers are motor control, servo control, output to IO.</p>
 <p>A controller my define one or more dynamic values as input and output.</p>
+<dl class="staticmethod">
+<dt id="kervi.controller.Controller.create">
+<em class="property">static </em><code class="descname">create</code><span class="sig-paren">(</span><em>controller_id</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.Controller.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn class into a kervi controller</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="kervi.controller.Controller.exit">
 <code class="descname">exit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.Controller.exit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Abstract method that is called when the kervi application stops.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="kervi.controller.Controller.input">
+<em class="property">static </em><code class="descname">input</code><span class="sig-paren">(</span><em>input_id</em>, <em>name</em>, <em>value_class=&lt;class 'kervi.values.DynamicNumber'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.Controller.input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add input to controller</p>
 </dd></dl>
 
 <dl class="method">
@@ -174,7 +213,7 @@ changes in multiple inputs.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>changed_input</strong> (<a class="reference internal" href="dashboards_api.html#kervi.values.DynamicValue" title="kervi.values.DynamicValue"><em>DynamicValue</em></a>) &#8211; Input that has changed. You can read the value of the changed input
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>changed_input</strong> (<a class="reference internal" href="dynamic_values_api.html#kervi.values.DynamicValue" title="kervi.values.DynamicValue"><em>DynamicValue</em></a>) – Input that has changed. You can read the value of the changed input
 via the inputs value property.</td>
 </tr>
 </tbody>
@@ -184,36 +223,42 @@ via the inputs value property.</td>
 <dl class="method">
 <dt id="kervi.controller.Controller.link_to_dashboard">
 <code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.Controller.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
-<dd><p>Links this component to a dashboard section.</p>
+<dd><p>Links this component to a dashboard section all input are displayed.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>dashboard_id</strong> &#8211; id of the dashboard to link to.</li>
-<li><strong>section_id</strong> (<em>str</em>) &#8211; id of the section.</li>
-<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values set in ui_parameters</li>
+<li><strong>dashboard_id</strong> – id of the dashboard to link to.</li>
+<li><strong>section_id</strong> (<em>str</em>) – id of the section.</li>
+<li><strong>**kwargs</strong> – Use the kwargs below to override default values set in ui_parameters</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
-<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><dl class="first docutils">
-<dt><em>ui_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; Size of the component in dashboard unit size.</dt>
+<dt><em>ui_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – Size of the component in dashboard unit size.</dt>
 <dd>In order to make the sections and components align correct a dashboard unit is defined.
 Default the dashboard unit is a square that is 150 x 150 pixels.
 The width of the select box is ui_size * dashboard unit size.</dd>
 </dl>
 </li>
-<li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Type of select box, dropdown or list.</li>
-<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Add this component to header of section.</li>
-<li><em>icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
-<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Flat look and feel.</li>
+<li><em>type</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Type of select box, dropdown or list.</li>
+<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Add this component to header of section.</li>
+<li><em>icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</li>
+<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Flat look and feel.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="kervi.controller.Controller.output">
+<em class="property">static </em><code class="descname">output</code><span class="sig-paren">(</span><em>output_id</em>, <em>name</em>, <em>value_class=&lt;class 'kervi.values.DynamicNumber'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.Controller.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add output to controller</p>
 </dd></dl>
 
 </dd></dl>
@@ -222,15 +267,18 @@ The width of the select box is ui_size * dashboard unit size.</dd>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dynamic_values.html" class="btn btn-neutral float-right" title="Dynamic values" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="dynamic_values.html" class="btn btn-neutral float-right" title="Dynamic values" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="controllers.html" class="btn btn-neutral" title="Controllers" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="controllers.html" class="btn btn-neutral" title="Controllers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -261,10 +309,11 @@ The width of the select box is ui_size * dashboard unit size.</dd>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.8',
+            VERSION:'0.11.1 - beta',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>

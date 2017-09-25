@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Dynamic values api &mdash; Kervi 0.8 documentation</title>
+  <title>Dynamic values api &mdash; Kervi 0.11.1 - beta documentation</title>
   
 
+  
+  
   
   
 
@@ -33,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Kervi 0.8 documentation" href="index.html"/>
+    <link rel="top" title="Kervi 0.11.1 - beta documentation" href="index.html"/>
         <link rel="up" title="Dynamic values" href="dynamic_values.html"/>
         <link rel="next" title="Camera and video" href="camera.html"/>
         <link rel="prev" title="Dynamic values" href="dynamic_values.html"/> 
@@ -45,6 +47,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -64,7 +67,7 @@
             
             
               <div class="version">
-                0.8
+                0.11.1
               </div>
             
           
@@ -85,7 +88,10 @@
           
             
             
-                <p class="caption"><span class="caption-text">Contents:</span></p>
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
@@ -122,8 +128,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">Kervi</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Kervi</a>
+        
       </nav>
 
 
@@ -132,23 +140,40 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
           <li><a href="dynamic_values.html">Dynamic values</a> &raquo;</li>
-      
-    <li>Dynamic values api</li>
+        
+      <li>Dynamic values api</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -170,38 +195,38 @@ When linked to a dashboard it is represented as a switch button or push button.<
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>dashboard_id</strong> (<em>str</em>) &#8211; Id of the dashboard to link to.</li>
-<li><strong>panel_id</strong> (<em>str</em>) &#8211; Id of the panel on the dashboard to link to.</li>
-<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values for ui parameters</li>
+<li><strong>dashboard_id</strong> (<em>str</em>) – Id of the dashboard to link to.</li>
+<li><strong>panel_id</strong> (<em>str</em>) – Id of the panel on the dashboard to link to.</li>
+<li><strong>**kwargs</strong> – Use the kwargs below to override default values for ui parameters</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
-<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><dl class="first docutils">
-<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The number of dashboard cells the value should occupy horizontal.</dt>
+<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – The number of dashboard cells the value should occupy horizontal.</dt>
 <dd>If size is 0 (default) the DynamicValue and label will expand to the width of the panel.</dd>
 </dl>
 </li>
-<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Link this DynamicValue to the header of the panel.</li>
-<li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
-<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Label text, default value is the name of the DynamicValue.</li>
-<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Flat look and feel.</li>
+<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Link this DynamicValue to the header of the panel.</li>
+<li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</li>
+<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Label text, default value is the name of the DynamicValue.</li>
+<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Flat look and feel.</li>
 <li><dl class="first docutils">
-<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Display DynamicValue and label in its actual size</dt>
+<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Display DynamicValue and label in its actual size</dt>
 <dd>If you set inline to true the size parameter is ignored.
 The DynamicValue will only occupy as much space as the label and input takes.</dd>
 </dl>
 </li>
-<li><em>input_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; width of the slider as a percentage of the total container it sits in.</li>
-<li><em>value_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; width of the value area as a percentage of the total container it sits in.</li>
-<li><em>type</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; if value should be displayes as a &#8216;switch&#8217; (default) or &#8216;push&#8217; for push button.</li>
-<li><em>on_text</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; Text to display when switch is on.</li>
-<li><em>off_text</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; Text to display when switch is off.</li>
-<li><em>on_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; Icon to display when switch is on.</li>
-<li><em>off_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; Icon to display when switch is off.</li>
-<li><em>button_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; Icon to display on button.</li>
-<li><em>button_text</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; Text to display on button, default is name.</li>
+<li><em>input_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – width of the slider as a percentage of the total container it sits in.</li>
+<li><em>value_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – width of the value area as a percentage of the total container it sits in.</li>
+<li><em>type</em> (<code class="docutils literal"><span class="pre">string</span></code>) – if value should be displayes as a ‘switch’ (default) or ‘push’ for push button.</li>
+<li><em>on_text</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Text to display when switch is on.</li>
+<li><em>off_text</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Text to display when switch is off.</li>
+<li><em>on_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Icon to display when switch is on.</li>
+<li><em>off_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Icon to display when switch is off.</li>
+<li><em>button_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Icon to display on button.</li>
+<li><em>button_text</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Text to display on button, default is name.</li>
 </ul>
 </td>
 </tr>
@@ -238,9 +263,9 @@ The DynamicValue is presented as a dropdown on dashboards.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>value</strong> &#8211; The value that the option represent.</li>
-<li><strong>text</strong> &#8211; The text that should be displayer in dropdown</li>
-<li><strong>selected</strong> &#8211; True if the option should be the default value.</li>
+<li><strong>value</strong> – The value that the option represent.</li>
+<li><strong>text</strong> – The text that should be displayer in dropdown</li>
+<li><strong>selected</strong> – True if the option should be the default value.</li>
 </ul>
 </td>
 </tr>
@@ -272,32 +297,32 @@ If is an output it is possible to specify different kinds of gauges.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>dashboard_id</strong> (<em>str</em>) &#8211; Id of the dashboard to link to.</li>
-<li><strong>panel_id</strong> (<em>str</em>) &#8211; Id of the panel on the dashboard to link to.</li>
-<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values for ui parameters</li>
+<li><strong>dashboard_id</strong> (<em>str</em>) – Id of the dashboard to link to.</li>
+<li><strong>panel_id</strong> (<em>str</em>) – Id of the panel on the dashboard to link to.</li>
+<li><strong>**kwargs</strong> – Use the kwargs below to override default values for ui parameters</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
-<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><dl class="first docutils">
-<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The number of dashboard cells the value should occupy horizontal.</dt>
+<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – The number of dashboard cells the value should occupy horizontal.</dt>
 <dd>If size is 0 (default) the DynamicValue and label will expand to the width of the panel.</dd>
 </dl>
 </li>
-<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Link this DynamicValue to the header of the panel.</li>
-<li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
-<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Label text, default value is the name of the DynamicValue.</li>
-<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Flat look and feel.</li>
+<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Link this DynamicValue to the header of the panel.</li>
+<li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</li>
+<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Label text, default value is the name of the DynamicValue.</li>
+<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Flat look and feel.</li>
 <li><dl class="first docutils">
-<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Display DynamicValue and label in its actual size</dt>
+<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Display DynamicValue and label in its actual size</dt>
 <dd>If you set inline to true the size parameter is ignored.
 The DynamicValue will only occupy as much space as the label and input takes.</dd>
 </dl>
 </li>
-<li><em>input_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; width of the slider as a percentage of the total container it sits in.</li>
-<li><em>value_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; width of the value area as a percentage of the total container it sits in.</li>
-<li><em>type</em> (<code class="docutils literal"><span class="pre">string</span></code>) &#8211; if input &#8216;vertical_slider&#8217; or &#8216;horizontal_slider. If output &#8220;radial_gauge&#8221;, &#8220;horizontal_gauge&#8221;, &#8220;vertical_gauge&#8221;</li>
+<li><em>input_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – width of the slider as a percentage of the total container it sits in.</li>
+<li><em>value_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – width of the value area as a percentage of the total container it sits in.</li>
+<li><em>type</em> (<code class="docutils literal"><span class="pre">string</span></code>) – if input ‘vertical_slider’ or ‘horizontal_slider. If output “radial_gauge”, “horizontal_gauge”, “vertical_gauge”</li>
 </ul>
 </td>
 </tr>
@@ -353,6 +378,54 @@ The DynamicValue will only occupy as much space as the label and input takes.</d
 <dt id="kervi.values.DynamicString">
 <em class="property">class </em><code class="descclassname">kervi.values.</code><code class="descname">DynamicString</code><span class="sig-paren">(</span><em>name</em>, <em>input_id=None</em>, <em>is_input=True</em>, <em>parent=None</em>, <em>index=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicString" title="Permalink to this definition">¶</a></dt>
 <dd><p>DynamicValue that holds a string.</p>
+<dl class="method">
+<dt id="kervi.values.DynamicString.link_to_dashboard">
+<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicString.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Links this value to a dashboard panel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dashboard_id</strong> (<em>str</em>) – Id of the dashboard to link to.</li>
+<li><strong>panel_id</strong> (<em>str</em>) – Id of the panel on the dashboard to link to.</li>
+<li><strong>**kwargs</strong> – Use the kwargs below to override default values for ui parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><dl class="first docutils">
+<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – The number of dashboard cells the value should occupy horizontal.</dt>
+<dd>If size is 0 (default) the DynamicValue and label will expand to the width of the panel.</dd>
+</dl>
+</li>
+<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Link this DynamicValue to the header of the panel.</li>
+<li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</li>
+<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Label text, default value is the name of the DynamicValue.</li>
+<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Flat look and feel.</li>
+<li><dl class="first docutils">
+<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Display DynamicValue and label in its actual size</dt>
+<dd>If you set inline to true the size parameter is ignored.
+The DynamicValue will only occupy as much space as the label and input takes.</dd>
+</dl>
+</li>
+<li><em>input_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – width of the slider as a percentage of the total container it sits in.</li>
+<li><em>value_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – width of the value area as a percentage of the total container it sits in.</li>
+<li><em>type</em> (<code class="docutils literal"><span class="pre">string</span></code>) – if value should be displayes as a ‘switch’ (default) or ‘push’ for push button.</li>
+<li><em>on_text</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Text to display when switch is on.</li>
+<li><em>off_text</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Text to display when switch is off.</li>
+<li><em>on_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Icon to display when switch is on.</li>
+<li><em>off_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Icon to display when switch is off.</li>
+<li><em>button_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Icon to display on button.</li>
+<li><em>button_text</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Text to display on button, default is name.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -368,19 +441,19 @@ The observer must implement the function dynamic_value_changed.</p>
 
 <dl class="method">
 <dt id="kervi.values.DynamicValue.add_value_event">
-<code class="descname">add_value_event</code><span class="sig-paren">(</span><em>event_value</em>, <em>func</em>, <em>event_type=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicValue.add_value_event" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_value_event</code><span class="sig-paren">(</span><em>event_value</em>, <em>func</em>, <em>event_type=None</em>, <em>parameters=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicValue.add_value_event" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a function that is called when the dynamic value reach or pass the event_value.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>event_value</strong> (<code class="docutils literal"><span class="pre">float</span></code>, <code class="docutils literal"><span class="pre">string</span></code>, <code class="docutils literal"><span class="pre">boolean</span></code> or a tuple of these types.) &#8211; <p>A single value or range specified as a tuple.</p>
+<li><strong>event_value</strong> (<code class="docutils literal"><span class="pre">float</span></code>, <code class="docutils literal"><span class="pre">string</span></code>, <code class="docutils literal"><span class="pre">boolean</span></code> or a tuple of these types.) – <p>A single value or range specified as a tuple.</p>
 <p>If it is a range the function specified in func is called when the value enters the range.</p>
 </li>
-<li><strong>func</strong> &#8211; Function or lambda expression to be called. 
+<li><strong>func</strong> – Function or lambda expression to be called. 
 This function will receive the dynamcic value as a parameter.</li>
-<li><strong>event_type</strong> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; String with the value &#8220;warning&#8221; of &#8220;error&#8221; or None (default).
+<li><strong>event_type</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – String with the value “warning” of “error” or None (default).
 If warning or error is specified the value or range are shown in UI.</li>
 </ul>
 </td>
@@ -408,7 +481,7 @@ about the change.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>dynamic_value</strong> (<code class="docutils literal"><span class="pre">str</span></code> or <code class="docutils literal"><span class="pre">DynamicValue</span></code>) &#8211; <p>It is possible to make direct and indirect link.</p>
+<li><strong>dynamic_value</strong> (<code class="docutils literal"><span class="pre">str</span></code> or <code class="docutils literal"><span class="pre">DynamicValue</span></code>) – <p>It is possible to make direct and indirect link.</p>
 <p>If the type of the parameter dynamic_value is of type DynamicValue a direct link is created.
 this is a fast link where the output can signal directly to input.
 This type of link is possible if both output and input resides in the same process.</p>
@@ -417,7 +490,7 @@ In this mode the input value will listen on the kervi spine for events from the 
 This mode is useful if the output and input does not exists in the same process.
 This type of link must be made by the input.</p>
 </li>
-<li><strong>transformation</strong> &#8211; A function or lambda expression that transform the value before the output is update.
+<li><strong>transformation</strong> – A function or lambda expression that transform the value before the output is update.
 This is usefull if the input expects other ranges that the output produce
 or need to change the sign of the value.</li>
 </ul>
@@ -436,31 +509,31 @@ or need to change the sign of the value.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>dashboard_id</strong> (<em>str</em>) &#8211; Id of the dashboard to link to.</li>
-<li><strong>panel_id</strong> (<em>str</em>) &#8211; Id of the panel on the dashboard to link to.</li>
-<li><strong>**kwargs</strong> &#8211; Use the kwargs below to override default values for ui parameters</li>
+<li><strong>dashboard_id</strong> (<em>str</em>) – Id of the dashboard to link to.</li>
+<li><strong>panel_id</strong> (<em>str</em>) – Id of the panel on the dashboard to link to.</li>
+<li><strong>**kwargs</strong> – Use the kwargs below to override default values for ui parameters</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
-<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><dl class="first docutils">
-<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; The number of dashboard cells the Dynamic should occupy horizontal.</dt>
+<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – The number of dashboard cells the Dynamic should occupy horizontal.</dt>
 <dd>If size is 0 (default) the input and label will expand to the width of the panel.</dd>
 </dl>
 </li>
-<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Link this DynamicValue to header of the panel.</li>
-<li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Icon that should be displayed together with label.</li>
-<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) &#8211; Label text, default value is the name of the DynamicValue.</li>
-<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Flat look and feel.</li>
+<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Link this DynamicValue to header of the panel.</li>
+<li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</li>
+<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Label text, default value is the name of the DynamicValue.</li>
+<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Flat look and feel.</li>
 <li><dl class="first docutils">
-<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) &#8211; Display DynamicValue and label in its actual size</dt>
+<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Display DynamicValue and label in its actual size</dt>
 <dd>If you set inline to true the size parameter is ignored.
 The DynamicValue will only occupy as much space as the label and input takes.</dd>
 </dl>
 </li>
-<li><em>input_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; width of the slider as a percentage of the total container it sits in.</li>
-<li><em>value_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) &#8211; width of the value area as a percentage of the total container it sits in.</li>
+<li><em>input_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – width of the slider as a percentage of the total container it sits in.</li>
+<li><em>value_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – width of the value area as a percentage of the total container it sits in.</li>
 </ul>
 </td>
 </tr>
@@ -491,19 +564,58 @@ The value will be restored upon application or module start.</p>
 
 </dd></dl>
 
+<dl class="class">
+<dt id="kervi.values.DynamicValueList">
+<em class="property">class </em><code class="descclassname">kervi.values.</code><code class="descname">DynamicValueList</code><span class="sig-paren">(</span><em>parent</em>, <em>is_input</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicValueList" title="Permalink to this definition">¶</a></dt>
+<dd><p>List that holds dynamic values</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parent</strong> – Parent component that holds this list.</li>
+<li><strong>is_input</strong> – True if the list holds input values.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kervi.values.DynamicValueList.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>value_id</em>, <em>name</em>, <em>value_class</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicValueList.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory function that creates a dynamic value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value_id</strong> – id of the value, used to reference the value within this list.BaseException</li>
+<li><strong>value_class</strong> – The class of the dynamic value that should be created with this function.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="camera.html" class="btn btn-neutral float-right" title="Camera and video" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="camera.html" class="btn btn-neutral float-right" title="Camera and video" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="dynamic_values.html" class="btn btn-neutral" title="Dynamic values" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dynamic_values.html" class="btn btn-neutral" title="Dynamic values" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -534,10 +646,11 @@ The value will be restored upon application or module start.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.8',
+            VERSION:'0.11.1 - beta',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>

@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Dashboards &mdash; Kervi 0.8 documentation</title>
+  <title>Dashboards &mdash; Kervi 0.11.1 - beta documentation</title>
   
 
+  
+  
   
   
 
@@ -33,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Kervi 0.8 documentation" href="index.html"/>
+    <link rel="top" title="Kervi 0.11.1 - beta documentation" href="index.html"/>
         <link rel="next" title="Dashboards api" href="dashboards_api.html"/>
         <link rel="prev" title="Overview" href="overview.html"/> 
 
@@ -44,6 +46,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -63,7 +66,7 @@
             
             
               <div class="version">
-                0.8
+                0.11.1
               </div>
             
           
@@ -84,7 +87,10 @@
           
             
             
-                <p class="caption"><span class="caption-text">Contents:</span></p>
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
@@ -101,6 +107,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dynamic_values.html">Dynamic values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
@@ -120,8 +127,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">Kervi</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Kervi</a>
+        
       </nav>
 
 
@@ -130,21 +139,38 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Dashboards</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Dashboards</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -152,9 +178,9 @@
             
   <div class="section" id="dashboards">
 <h1>Dashboards<a class="headerlink" href="#dashboards" title="Permalink to this headline">¶</a></h1>
-<p>An application may define one or more dashboards if it is a home automation application
+<p>An application may define one or more dashboards. If it is a home automation application
 A dashboard could be a room or a floor.</p>
-<p>Each dashbord contains one or more panels where it is possible to link sensors, controllers, camera and other components.</p>
+<p>Each dashboard contains one or more panels where it is possible to link sensors, controllers, camera and other components.</p>
 <p>The dashboards are responsive and adjust to the width of the browser. Below is the same dashboard in mobile and browser view.</p>
 <a class="reference internal image-reference" href="_images/dashboard_mobile.png"><img alt="_images/dashboard_mobile.png" src="_images/dashboard_mobile.png" style="width: 35%;" /></a>
 <a class="reference internal image-reference" href="_images/dashboard_browser.png"><img alt="_images/dashboard_browser.png" src="_images/dashboard_browser.png" style="width: 45%;" /></a>
@@ -168,7 +194,7 @@ A dashboard could be a room or a floor.</p>
 </pre></div>
 </div>
 <p>On large displays the columns and rows specify the size of a panel where the cell size is 150x150 pixels.</p>
-<p>I a title is set for a panel it will be displayed in a header.</p>
+<p>If a title is set for a panel it will be displayed in a header.</p>
 <p>Collapsed specify if the panel should be collapsed when a panel is first shown.</p>
 <p>If user_log is set to true the panel will show the content of the user log for the application.</p>
 <div class="section" id="linking">
@@ -269,8 +295,8 @@ The sensor is linked twice first to the header with the animation and into the b
 <h3>GPIO and dynamic boolean<a class="headerlink" href="#gpio-and-dynamic-boolean" title="Permalink to this headline">¶</a></h3>
 <p>Linked output components like digital GPIO channels and boolean controller input/outputs
 are displayed as a switch button or push button.
-If it is an input GPIO channel or a controller output the button is read only.</p>
-<p>If it is a output GPIO channel or a controller input the user will be able to switch/push the button.</p>
+If the dynamic value is an GPIO input channel or a controller output the button is read only.</p>
+<p>If the dynamic value is a output GPIO channel or a controller input the user will be able to switch/push the button.</p>
 </div>
 </div>
 <div class="section" id="controller-pads">
@@ -288,15 +314,18 @@ by using the panel names left_pad_x, left_pad_y, right_pad_x, right_pad_y.</p>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dashboards_api.html" class="btn btn-neutral float-right" title="Dashboards api" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="dashboards_api.html" class="btn btn-neutral float-right" title="Dashboards api" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="overview.html" class="btn btn-neutral" title="Overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="overview.html" class="btn btn-neutral" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -327,10 +356,11 @@ by using the panel names left_pad_x, left_pad_y, right_pad_x, right_pad_y.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.8',
+            VERSION:'0.11.1 - beta',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
