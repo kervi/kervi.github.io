@@ -37,7 +37,7 @@
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Kervi 0.11.1 - beta documentation" href="index.html"/>
         <link rel="next" title="Hardware and devices" href="hal.html"/>
-        <link rel="prev" title="Camera api" href="camera_api.html"/> 
+        <link rel="prev" title="Motors" href="motors.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -100,6 +100,7 @@
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dynamic_values.html">Dynamic values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motors.html">Motors</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Security</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#users">Users</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#anonymous-access">Anonymous access</a></li>
@@ -175,17 +176,14 @@
             
   <div class="section" id="security">
 <h1>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">Notice</span><span class="o">*</span><span class="p">:</span>
-
-<span class="n">The</span> <span class="n">security</span> <span class="n">features</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Kervi</span> <span class="n">framework</span> <span class="n">has</span> <span class="ow">not</span> <span class="n">been</span> <span class="n">reviewed</span> <span class="n">by</span> <span class="nb">any</span> <span class="n">external</span> <span class="n">experts</span> <span class="ow">and</span>
-<span class="n">use</span> <span class="ow">is</span> <span class="n">at</span> <span class="n">own</span> <span class="n">risk</span><span class="o">.</span>
-
-<span class="n">Exposing</span> <span class="n">your</span> <span class="n">Kervi</span> <span class="n">application</span> <span class="n">directly</span> <span class="n">on</span> <span class="n">the</span> <span class="n">internet</span> <span class="n">by</span> <span class="n">routing</span> <span class="n">traffic</span> <span class="kn">from</span> <span class="nn">internet</span> <span class="n">router</span> <span class="n">to</span> <span class="n">the</span> <span class="n">Kervi</span> <span class="n">web</span> <span class="n">server</span>
-<span class="ow">is</span> <span class="n">strongly</span> <span class="n">adviced</span> <span class="n">against</span> <span class="n">at</span> <span class="n">the</span> <span class="n">moment</span><span class="o">.</span>
-
-<span class="n">At</span> <span class="n">this</span> <span class="n">moment</span> <span class="n">of</span> <span class="n">development</span> <span class="n">passwords</span> <span class="ow">and</span> <span class="n">user</span> <span class="n">names</span> <span class="n">are</span> <span class="n">send</span> <span class="ow">in</span> <span class="n">clear</span> <span class="n">text</span> <span class="n">between</span> <span class="n">browser</span> <span class="ow">and</span> <span class="n">Kervi</span> <span class="n">web</span> <span class="n">server</span>
-<span class="n">unless</span> <span class="n">you</span> <span class="n">enable</span> <span class="n">TLS</span> <span class="n">encryption</span><span class="o">.</span>
-</pre></div>
+<div class="topic">
+<p class="topic-title first">Notice</p>
+<p>The security features of the Kervi framework has not been reviewed by any external experts and
+use is at own risk.</p>
+<p>Exposing your Kervi application directly on the internet by routing traffic from internet router to the Kervi web server
+is strongly adviced against at the moment.</p>
+<p>At this moment of development passwords and user names are send in clear text between browser and Kervi web server
+unless you enable TLS encryption.</p>
 </div>
 <p>It is possible to secure your Kervi application with user authentication and encrypted communication between browser
 and the kervi web server.</p>
@@ -232,10 +230,11 @@ To enable anonymous access a the anonymous user to the users.py file</p>
 <p>Now the web ui will try to login as anonymous user when the users go to the UI web page.
 All components that does not have the property user_groups set will be visible to the anonymous user.
 In addition components that belongs to any user groups specified for the anonymous user will be visible too.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">Note</span><span class="p">:</span><span class="o">*</span> <span class="n">authentication</span> <span class="n">only</span> <span class="n">apply</span> <span class="n">to</span> <span class="n">the</span> <span class="n">web</span> <span class="n">users</span><span class="o">.</span>
-<span class="n">Internal</span> <span class="n">communication</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">kervi</span> <span class="n">applications</span> <span class="n">python</span> <span class="n">code</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">affected</span> <span class="n">by</span> <span class="n">user</span> <span class="n">authentication</span><span class="o">.</span>
-<span class="n">All</span> <span class="n">components</span> <span class="n">can</span> <span class="n">query</span> <span class="ow">and</span> <span class="n">command</span> <span class="n">each</span> <span class="n">other</span> <span class="n">plus</span> <span class="n">receive</span> <span class="n">events</span><span class="o">.</span>
-</pre></div>
+<div class="topic">
+<p class="topic-title first">Notice</p>
+<p>Authentication only apply to the web users.
+Internal communication in the kervi applications python code is not affected by user authentication.
+All components can query and command each other plus receive events.</p>
 </div>
 </div>
 </div>
@@ -267,7 +266,7 @@ If the file is present the settings in file is used to secure the communication 
         <a href="hal.html" class="btn btn-neutral float-right" title="Hardware and devices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="camera_api.html" class="btn btn-neutral" title="Camera api" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="motors.html" class="btn btn-neutral" title="Motors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

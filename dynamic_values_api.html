@@ -112,6 +112,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motors.html">Motors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
@@ -183,7 +185,7 @@
 <span id="dynamic-values-api"></span><h1>Dynamic values api<a class="headerlink" href="#module-kervi.values" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="kervi.values.DynamicBoolean">
-<em class="property">class </em><code class="descclassname">kervi.values.</code><code class="descname">DynamicBoolean</code><span class="sig-paren">(</span><em>name</em>, <em>input_id=None</em>, <em>is_input=True</em>, <em>parent=None</em>, <em>index=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicBoolean" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">kervi.values.</code><code class="descname">DynamicBoolean</code><span class="sig-paren">(</span><em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicBoolean" title="Permalink to this definition">¶</a></dt>
 <dd><p>A DynamicValue that holds a boolean.
 When linked to a dashboard it is represented as a switch button or push button.</p>
 <dl class="method">
@@ -203,11 +205,6 @@ When linked to a dashboard it is represented as a switch button or push button.<
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
-<li><dl class="first docutils">
-<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – The number of dashboard cells the value should occupy horizontal.</dt>
-<dd>If size is 0 (default) the DynamicValue and label will expand to the width of the panel.</dd>
-</dl>
-</li>
 <li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Link this DynamicValue to the header of the panel.</li>
 <li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</li>
 <li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Label text, default value is the name of the DynamicValue.</li>
@@ -238,13 +235,13 @@ The DynamicValue will only occupy as much space as the label and input takes.</d
 
 <dl class="class">
 <dt id="kervi.values.DynamicDateTime">
-<em class="property">class </em><code class="descclassname">kervi.values.</code><code class="descname">DynamicDateTime</code><span class="sig-paren">(</span><em>name</em>, <em>input_type='datetime'</em>, <em>input_id=None</em>, <em>index=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicDateTime" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">kervi.values.</code><code class="descname">DynamicDateTime</code><span class="sig-paren">(</span><em>name</em>, <em>input_type='datetime'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicDateTime" title="Permalink to this definition">¶</a></dt>
 <dd><p>A DynamicValue that holds a date and/or time.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="kervi.values.DynamicEnum">
-<em class="property">class </em><code class="descclassname">kervi.values.</code><code class="descname">DynamicEnum</code><span class="sig-paren">(</span><em>name</em>, <em>input_id=None</em>, <em>is_input=True</em>, <em>parent=None</em>, <em>index=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicEnum" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">kervi.values.</code><code class="descname">DynamicEnum</code><span class="sig-paren">(</span><em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicEnum" title="Permalink to this definition">¶</a></dt>
 <dd><p>A DynamicEnum value holds a selection of predefined values to select between.
 The DynamicValue is presented as a dropdown on dashboards.</p>
 <p>Usage:</p>
@@ -277,7 +274,7 @@ The DynamicValue is presented as a dropdown on dashboards.</p>
 
 <dl class="class">
 <dt id="kervi.values.DynamicNumber">
-<em class="property">class </em><code class="descclassname">kervi.values.</code><code class="descname">DynamicNumber</code><span class="sig-paren">(</span><em>name</em>, <em>input_id=None</em>, <em>is_input=True</em>, <em>parent=None</em>, <em>index=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicNumber" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">kervi.values.</code><code class="descname">DynamicNumber</code><span class="sig-paren">(</span><em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicNumber" title="Permalink to this definition">¶</a></dt>
 <dd><p>DynamicValue that holds a float value.
 If this DynamicValue is an input it is shown as a slider on dashboards.
 If is an output it is possible to specify different kinds of gauges.</p>
@@ -305,11 +302,6 @@ If is an output it is possible to specify different kinds of gauges.</p>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
-<li><dl class="first docutils">
-<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – The number of dashboard cells the value should occupy horizontal.</dt>
-<dd>If size is 0 (default) the DynamicValue and label will expand to the width of the panel.</dd>
-</dl>
-</li>
 <li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Link this DynamicValue to the header of the panel.</li>
 <li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</li>
 <li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Label text, default value is the name of the DynamicValue.</li>
@@ -376,7 +368,7 @@ The DynamicValue will only occupy as much space as the label and input takes.</d
 
 <dl class="class">
 <dt id="kervi.values.DynamicString">
-<em class="property">class </em><code class="descclassname">kervi.values.</code><code class="descname">DynamicString</code><span class="sig-paren">(</span><em>name</em>, <em>input_id=None</em>, <em>is_input=True</em>, <em>parent=None</em>, <em>index=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicString" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">kervi.values.</code><code class="descname">DynamicString</code><span class="sig-paren">(</span><em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicString" title="Permalink to this definition">¶</a></dt>
 <dd><p>DynamicValue that holds a string.</p>
 <dl class="method">
 <dt id="kervi.values.DynamicString.link_to_dashboard">
@@ -395,11 +387,6 @@ The DynamicValue will only occupy as much space as the label and input takes.</d
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
-<li><dl class="first docutils">
-<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – The number of dashboard cells the value should occupy horizontal.</dt>
-<dd>If size is 0 (default) the DynamicValue and label will expand to the width of the panel.</dd>
-</dl>
-</li>
 <li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Link this DynamicValue to the header of the panel.</li>
 <li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</li>
 <li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Label text, default value is the name of the DynamicValue.</li>
@@ -430,7 +417,7 @@ The DynamicValue will only occupy as much space as the label and input takes.</d
 
 <dl class="class">
 <dt id="kervi.values.DynamicValue">
-<em class="property">class </em><code class="descclassname">kervi.values.</code><code class="descname">DynamicValue</code><span class="sig-paren">(</span><em>name</em>, <em>value_type</em>, <em>input_id=None</em>, <em>is_input=True</em>, <em>parent=None</em>, <em>index=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicValue" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">kervi.values.</code><code class="descname">DynamicValue</code><span class="sig-paren">(</span><em>name</em>, <em>value_type</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DynamicValue" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generic dynamic value that is use as base class for specialized dynamic values.</p>
 <dl class="method">
 <dt id="kervi.values.DynamicValue.add_observer">
@@ -517,11 +504,6 @@ or need to change the sign of the value.</li>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
-<li><dl class="first docutils">
-<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – The number of dashboard cells the Dynamic should occupy horizontal.</dt>
-<dd>If size is 0 (default) the input and label will expand to the width of the panel.</dd>
-</dl>
-</li>
 <li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Link this DynamicValue to header of the panel.</li>
 <li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</li>
 <li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Label text, default value is the name of the DynamicValue.</li>

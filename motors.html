@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Search &mdash; Kervi 0.11.1 - beta documentation</title>
+  <title>Motors &mdash; Kervi 0.11.1 - beta documentation</title>
   
 
   
@@ -34,8 +34,10 @@
   
         <link rel="index" title="Index"
               href="genindex.html"/>
-        <link rel="search" title="Search" href="#"/>
-    <link rel="top" title="Kervi 0.11.1 - beta documentation" href="index.html"/> 
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Kervi 0.11.1 - beta documentation" href="index.html"/>
+        <link rel="next" title="Security" href="security.html"/>
+        <link rel="prev" title="Camera api" href="camera_api.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -71,7 +73,7 @@
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -89,7 +91,7 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
@@ -98,7 +100,12 @@
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dynamic_values.html">Dynamic values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
-<li class="toctree-l1"><a class="reference internal" href="motors.html">Motors</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Motors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dc-motors">DC motors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#servo-motor">Servo motor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stepper-motors">Stepper motors</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
@@ -148,10 +155,12 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Search</li>
+      <li>Motors</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
         
       </li>
     
@@ -163,19 +172,38 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search
-      functionality.
-    </p>
-  </div>
-  </noscript>
+  <div class="section" id="motors">
+<h1>Motors<a class="headerlink" href="#motors" title="Permalink to this headline">¶</a></h1>
+<p>Kervi offers  a standardized interface where it is possible to link up signals from your application logic to the motor drivers.</p>
+<div class="section" id="dc-motors">
+<h2>DC motors<a class="headerlink" href="#dc-motors" title="Permalink to this headline">¶</a></h2>
+<p>Below is a code snippet that shows how to link the speed input on a dc motor to a dashboard allowing
+a user to set the speed and direction of the motor via the web UI.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.bootstrap</span> <span class="k">import</span> <span class="n">Application</span>
 
-  
-  <div id="search-results">
-  
-  </div>
+<span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
+
+<span class="c1">#add dashboard and panel</span>
+<span class="kn">from</span> <span class="nn">kervi.dashboard</span> <span class="k">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
+<span class="n">DASHBOARD</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;dashboard&quot;</span><span class="p">,</span> <span class="s2">&quot;adafruit motor driver dc test&quot;</span><span class="p">,</span> <span class="n">is_default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">DASHBOARD</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;input&quot;</span><span class="p">))</span>
+
+<span class="c1">#import motor device driver</span>
+<span class="kn">from</span> <span class="nn">kervi_devices.motors.adafruit_i2c_motor_hat</span> <span class="k">import</span> <span class="n">AdafruitMotorHAT</span>
+
+<span class="n">motor_controller</span> <span class="o">=</span> <span class="n">AdafruitMotorHAT</span><span class="p">()</span>
+<span class="n">motor_controller</span><span class="o">.</span><span class="n">dc_motors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">speed</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;dashboard&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="servo-motor">
+<h2>Servo motor<a class="headerlink" href="#servo-motor" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="stepper-motors">
+<h2>Stepper motors<a class="headerlink" href="#stepper-motors" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
 
            </div>
            <div class="articleComments">
@@ -183,6 +211,15 @@
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="security.html" class="btn btn-neutral float-right" title="Security" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="camera_api.html" class="btn btn-neutral" title="Camera api" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -221,7 +258,6 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/searchtools.js"></script>
 
   
 
@@ -237,14 +273,7 @@
           SphinxRtdTheme.StickyNav.enable();
       });
   </script>
-  
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
    
-
 
 </body>
 </html>

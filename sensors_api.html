@@ -100,6 +100,8 @@
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dynamic_values.html">Dynamic values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motors.html">Motors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
@@ -172,7 +174,7 @@ The first part is sensor device drivers that handles physical access to sensor h
 The second part is the Sensor class that reads a sensor device and triggers events, store readings to DB.</p>
 <dl class="class">
 <dt id="kervi.sensor.Sensor">
-<em class="property">class </em><code class="descclassname">kervi.sensor.</code><code class="descname">Sensor</code><span class="sig-paren">(</span><em>sensor_id</em>, <em>name</em>, <em>device=None</em>, <em>use_thread=True</em>, <em>parent=None</em>, <em>index=None</em>, <em>polling_interval=1</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.sensor.Sensor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">kervi.sensor.</code><code class="descname">Sensor</code><span class="sig-paren">(</span><em>sensor_id</em>, <em>name</em>, <em>device=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.sensor.Sensor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sensor is a class that exposes a sensor device as a dynamic value.
 The Sensor class polls the associated sensor device and updates it self when
 the value of the sensor device change.</p>
@@ -182,19 +184,35 @@ the value of the sensor device change.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>sensor_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Id of the sensor.
-This id is used in other components to reference this sesnor.</li>
+<tr class="field-odd field"><th class="field-name" colspan="2">Sensor_id str<code class="docutils literal"><span class="pre">str</span></code>:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><p class="first">Id of the sensor.
+This id is used in other components to reference this sesnor.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>name</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Name of the sensor. Used in web dashboards</li>
-<li><strong>device</strong> (<code class="docutils literal"><span class="pre">float</span></code>) – The sensor device that should be monitored. Could be one of the sensors from the kervi device library
+<li><strong>device</strong> (<code class="docutils literal"><span class="pre">SensorDeviceDriver</span></code>) – The sensor device that should be monitored. Could be one of the sensors from the kervi device library
 or a sensor device driver that inherits from kervi.hal.SensorDeviceDriver</li>
-<li><strong>polling_interval</strong> – Polling interval in seconds. Set to zero to disable polling.</li>
+<li><strong>**kwargs</strong> – <blockquote>
+<div>besides the keyword arguments below you can also pass keywords for DynamicNumber</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last">
+<li><em>polling_interval</em> (<code class="docutils literal"><span class="pre">int</span></code>) –  Polling interval in seconds. Set to zero to disable polling.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>(self, name, input_id=None, is_input=True, parent=None, index = None):</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="attribute">
 <dt id="kervi.sensor.Sensor.device">
 <code class="descname">device</code><a class="headerlink" href="#kervi.sensor.Sensor.device" title="Permalink to this definition">¶</a></dt>
@@ -232,11 +250,6 @@ system panels <em>sys-header</em>, <em>header</em> or <em>footer</em></li>
 </tbody>
 </table>
 <ul class="last simple">
-<li><dl class="first docutils">
-<dt><em>size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – The number of dashboard cells the sensor should occupy horizontal or vertical.</dt>
-<dd>If size is 0 (default) the input and label will expand to the width of the panel.</dd>
-</dl>
-</li>
 <li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Link this input to header of the panel.</li>
 <li><dl class="first docutils">
 <dt><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Icon that should be displayed together with label. </dt>
