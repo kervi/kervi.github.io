@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Dashboards api &mdash; Kervi 0.11.1 - beta documentation</title>
+  <title>Dashboards api &mdash; Kervi 0.13.32 - beta documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Kervi 0.11.1 - beta documentation" href="index.html"/>
+    <link rel="top" title="Kervi 0.13.32 - beta documentation" href="index.html"/>
         <link rel="up" title="Dashboards" href="dashboards.html"/>
         <link rel="next" title="Sensors" href="sensors.html"/>
         <link rel="prev" title="Dashboards" href="dashboards.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.11.1
+                0.13.32
               </div>
             
           
@@ -177,12 +177,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-kervi.dashboard">
-<span id="dashboards-api"></span><h1>Dashboards api<a class="headerlink" href="#module-kervi.dashboard" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-kervi.dashboards">
+<span id="dashboards-api"></span><h1>Dashboards api<a class="headerlink" href="#module-kervi.dashboards" title="Permalink to this headline">¶</a></h1>
 <p>A dashboard is the main ui component in a kervi application.</p>
 <dl class="class">
-<dt id="kervi.dashboard.Dashboard">
-<em class="property">class </em><code class="descclassname">kervi.dashboard.</code><code class="descname">Dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.dashboard.Dashboard" title="Permalink to this definition">¶</a></dt>
+<dt id="kervi.dashboards.Dashboard">
+<em class="property">class </em><code class="descclassname">kervi.dashboards.</code><code class="descname">Dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>name</em>, <em>panels=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.dashboards.Dashboard" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a UI dashboard. The dashboard will show up in the dashboard menu in the UI.</p>
 <p>A dashboard contains one or more panels. Kervi components like <em>sensors</em>,
 <em>controller inputs</em> and other dynamic values are able to link to a panel on a dashboard.</p>
@@ -230,8 +230,8 @@ A dynamic value like controller input may link to one of the following panels:</
 </tbody>
 </table>
 <dl class="method">
-<dt id="kervi.dashboard.Dashboard.add_panel">
-<code class="descname">add_panel</code><span class="sig-paren">(</span><em>panel</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.dashboard.Dashboard.add_panel" title="Permalink to this definition">¶</a></dt>
+<dt id="kervi.dashboards.Dashboard.add_panel">
+<code class="descname">add_panel</code><span class="sig-paren">(</span><em>panel</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.dashboards.Dashboard.add_panel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a dashboard panel to the dashboard</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -246,8 +246,8 @@ A dynamic value like controller input may link to one of the following panels:</
 </dd></dl>
 
 <dl class="class">
-<dt id="kervi.dashboard.DashboardPanel">
-<em class="property">class </em><code class="descclassname">kervi.dashboard.</code><code class="descname">DashboardPanel</code><span class="sig-paren">(</span><em>panel_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.dashboard.DashboardPanel" title="Permalink to this definition">¶</a></dt>
+<dt id="kervi.dashboards.DashboardPanel">
+<em class="property">class </em><code class="descclassname">kervi.dashboards.</code><code class="descname">DashboardPanel</code><span class="sig-paren">(</span><em>panel_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.dashboards.DashboardPanel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a dashboard panel.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -264,6 +264,34 @@ This id is used in other components to reference this panel.</li>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><em>title</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Title of the panel.</li>
 <li><em>columns</em> (<code class="docutils literal"><span class="pre">int</span></code>) – Number of columns in this panel, default is 1.</li>
+<li><em>rows</em> (<code class="docutils literal"><span class="pre">int</span></code>) – Number of rows in this panel, default is 1.</li>
+<li><em>user_log</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – This panel shows user log messages. Any components that are linked to a user log panel are ignored.</li>
+<li><em>collapsed</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – If true the body of the panel is collapsed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="kervi.dashboards.DashboardPanelGroup">
+<em class="property">class </em><code class="descclassname">kervi.dashboards.</code><code class="descname">DashboardPanelGroup</code><span class="sig-paren">(</span><em>panels=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.dashboards.DashboardPanelGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a group of dashboard panels.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>group_id</strong> (<em>str</em>) – id of the group.</li>
+<li><strong>**kwargs</strong> – See below</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><em>title</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Title of the group.</li>
+<li><em>columns</em> (<code class="docutils literal"><span class="pre">int</span></code>) – Number of columns in this group, default is 1.</li>
 <li><em>rows</em> (<code class="docutils literal"><span class="pre">int</span></code>) – Number of rows in this panel, default is 1.</li>
 <li><em>user_log</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – This panel shows user log messages. Any components that are linked to a user log panel are ignored.</li>
 <li><em>collapsed</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – If true the body of the panel is collapsed.</li>
@@ -320,7 +348,7 @@ This id is used in other components to reference this panel.</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.11.1 - beta',
+            VERSION:'0.13.32 - beta',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Dashboards &mdash; Kervi 0.11.1 - beta documentation</title>
+  <title>Dashboards &mdash; Kervi 0.13.32 - beta documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Kervi 0.11.1 - beta documentation" href="index.html"/>
+    <link rel="top" title="Kervi 0.13.32 - beta documentation" href="index.html"/>
         <link rel="next" title="Dashboards api" href="dashboards_api.html"/>
         <link rel="prev" title="Overview" href="overview.html"/> 
 
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.11.1
+                0.13.32
               </div>
             
           
@@ -187,29 +187,33 @@ A dashboard could be a room or a floor.</p>
 <a class="reference internal image-reference" href="_images/dashboard_mobile.png"><img alt="_images/dashboard_mobile.png" src="_images/dashboard_mobile.png" style="width: 35%;" /></a>
 <a class="reference internal image-reference" href="_images/dashboard_browser.png"><img alt="_images/dashboard_browser.png" src="_images/dashboard_browser.png" style="width: 45%;" /></a>
 <p>The code below shows how to configure the dashboard above</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SYSTEM</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;System&quot;</span><span class="p">)</span>
-<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">collapsed</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
-<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;memory&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">collapsed</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
-<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Log&quot;</span><span class="p">,</span> <span class="n">user_log</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
-<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;disk&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">SYSTEM</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;power&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Power&quot;</span><span class="p">))</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Dashboard</span><span class="p">(</span>
+    <span class="s2">&quot;system&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;System&quot;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span>
+        <span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;memory&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span>
+        <span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s2">&quot;250px&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Log&quot;</span><span class="p">,</span> <span class="n">user_log</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+        <span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;disk&quot;</span><span class="p">),</span>
+        <span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;power&quot;</span><span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 </pre></div>
 </div>
-<p>On large displays the columns and rows specify the size of a panel where the cell size is 150x150 pixels.</p>
+<p>On large displays the width parameter specify the relative the width of the browser window.</p>
 <p>If a title is set for a panel it will be displayed in a header.</p>
-<p>Collapsed specify if the panel should be collapsed when a panel is first shown.</p>
 <p>If user_log is set to true the panel will show the content of the user log for the application.</p>
 <div class="section" id="linking">
 <h2>Linking<a class="headerlink" href="#linking" title="Permalink to this headline">¶</a></h2>
 <p>A kervi component is linked to a panel by calling the link_to_dashboard method on the component.
 This method takes several parameters that specify how the component should be displayed.</p>
-<p>When a component is linked to a panel it is specified how many cells that component should occupy in that panel via the size parameter.</p>
+<p>When a component is linked to a panel you are able to set the width and height of the component it could be as a percentage or pixels.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1">#sensor that links as a radial guage</span>
-<span class="n">cpu_temp</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;cam&quot;</span><span class="p">,</span> <span class="s2">&quot;panel1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;radial_gauge&quot;</span><span class="p">)</span>
+<span class="n">cpu_temp</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;cam&quot;</span><span class="p">,</span> <span class="s2">&quot;panel1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;radial_gauge&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 
 <span class="c1">#A sensor that links to the header of a panel and into the body.</span>
-<span class="n">cpu_temp</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">link_to_header</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">cpu_temp</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;chart&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">cpu_temp</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">link_to_header</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">cpu_temp</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;chart&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s2">&quot;200px&quot;</span><span class="p">)</span>
 
 <span class="c1">#A button that links to a panel with an icon.</span>
 <span class="n">GPIO</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;power&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;power-off&quot;</span><span class="p">)</span>
@@ -253,10 +257,7 @@ This method takes several parameters that specify how the component should be di
 <p><strong>Animated icon</strong></p>
 <p>Below is a full example of a battery sensor where the icon change depending on value.
 The sensor is linked twice first to the header with the animation and into the body as a chart.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
-
-
-<span class="n">SENSOR_1</span><span class="o">.</span><span class="n">set_ui_parameter</span><span class="p">(</span><span class="s2">&quot;icon&quot;</span><span class="p">,</span> <span class="p">[</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">set_ui_parameter</span><span class="p">(</span><span class="s2">&quot;icon&quot;</span><span class="p">,</span> <span class="p">[</span>
     <span class="p">{</span>
         <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
         <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-empty&quot;</span>
@@ -358,7 +359,7 @@ by using the panel names left_pad_x, left_pad_y, right_pad_x, right_pad_y.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.11.1 - beta',
+            VERSION:'0.13.32 - beta',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

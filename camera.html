@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Camera and video &mdash; Kervi 0.11.1 - beta documentation</title>
+  <title>Camera and video &mdash; Kervi 0.13.32 - beta documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Kervi 0.11.1 - beta documentation" href="index.html"/>
+    <link rel="top" title="Kervi 0.13.32 - beta documentation" href="index.html"/>
         <link rel="next" title="Camera api" href="camera_api.html"/>
         <link rel="prev" title="Dynamic values api" href="dynamic_values_api.html"/> 
 
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.11.1
+                0.13.32
               </div>
             
           
@@ -175,8 +175,7 @@
 <p>Cameras are managed via special Kervi Camera controllers and Kervi camera device drivers.
 A camera device driver capture frames from a camera and feeds them into the camera controller.</p>
 <p>The snippet below shows how to create a camera stream server and link it to a dashboard.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
-<span class="kn">from</span> <span class="nn">kervi.camera</span> <span class="k">import</span> <span class="n">CameraStreamer</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.vision.camera</span> <span class="k">import</span> <span class="n">CameraStreamer</span>
 <span class="kn">from</span> <span class="nn">kervi_devices.motors.PCA9685_i2c_servo</span> <span class="k">import</span> <span class="n">PCA9685ServoBoard</span>
 
 <span class="c1">#Create a streaming camera server</span>
@@ -194,14 +193,14 @@ A camera device driver capture frames from a camera and feeds them into the came
 <a class="reference internal image-reference" href="_images/panel_cam.png"><img alt="_images/panel_cam.png" src="_images/panel_cam.png" style="width: 45%;" /></a>
 <p><strong>Size</strong></p>
 <p>It is possible to pass values for size and frames per second when you create the camera.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.camera</span> <span class="k">import</span> <span class="n">CameraStreamer</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.vision.camera</span> <span class="k">import</span> <span class="n">CameraStreamer</span>
 <span class="n">CAMERA</span> <span class="o">=</span> <span class="n">CameraStreamer</span><span class="p">(</span><span class="s2">&quot;cam1&quot;</span><span class="p">,</span> <span class="s2">&quot;camera 1&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Source</strong></p>
 <p>In the examples above the camera source is not specified and Kervi looks for the default camera. On a Raspberry Pi it will be
 the on board camera. If you want to use another camera source than the default you need to specify it.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.camera</span> <span class="k">import</span> <span class="n">CameraStreamer</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.vision.camera</span> <span class="k">import</span> <span class="n">CameraStreamer</span>
 <span class="n">CAMERA</span> <span class="o">=</span> <span class="n">CameraStreamer</span><span class="p">(</span><span class="s2">&quot;cam1&quot;</span><span class="p">,</span> <span class="s2">&quot;camera 1&quot;</span><span class="p">,</span> <span class="n">camera_source</span><span class="o">=</span><span class="s2">&quot;/dev/video0&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -210,7 +209,7 @@ the on board camera. If you want to use another camera source than the default y
 If you have rigged up the camera with pan and tilt servos you can connect the servos with the pan/tilt area
 by using the following code.</p>
 <div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
-<span class="kn">from</span> <span class="nn">kervi.camera</span> <span class="k">import</span> <span class="n">CameraStreamer</span>
+<span class="kn">from</span> <span class="nn">kervi.vision.camera</span> <span class="k">import</span> <span class="n">CameraStreamer</span>
 <span class="kn">from</span> <span class="nn">kervi_devices.motors.PCA9685_i2c_servo</span> <span class="k">import</span> <span class="n">PCA9685ServoBoard</span>
 
 <span class="c1">#Create a streaming camera server</span>
@@ -277,7 +276,7 @@ by using the following code.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.11.1 - beta',
+            VERSION:'0.13.32 - beta',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

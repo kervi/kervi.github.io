@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Motors &mdash; Kervi 0.11.1 - beta documentation</title>
+  <title>Motors &mdash; Kervi 0.13.32 - beta documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Kervi 0.11.1 - beta documentation" href="index.html"/>
+    <link rel="top" title="Kervi 0.13.32 - beta documentation" href="index.html"/>
         <link rel="next" title="Security" href="security.html"/>
         <link rel="prev" title="Camera api" href="camera_api.html"/> 
 
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.11.1
+                0.13.32
               </div>
             
           
@@ -174,22 +174,29 @@
             
   <div class="section" id="motors">
 <h1>Motors<a class="headerlink" href="#motors" title="Permalink to this headline">¶</a></h1>
-<p>Kervi offers  a standardized interface where it is possible to link up signals from your application logic to the motor drivers.</p>
+<p>Kervi offers a standardized interface where it is possible to link up signals from your application logic to the motor drivers.</p>
 <div class="section" id="dc-motors">
 <h2>DC motors<a class="headerlink" href="#dc-motors" title="Permalink to this headline">¶</a></h2>
 <p>Below is a code snippet that shows how to link the speed input on a dc motor to a dashboard allowing
 a user to set the speed and direction of the motor via the web UI.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.bootstrap</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
 
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
 <span class="c1">#add dashboard and panel</span>
-<span class="kn">from</span> <span class="nn">kervi.dashboard</span> <span class="k">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
-<span class="n">DASHBOARD</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;dashboard&quot;</span><span class="p">,</span> <span class="s2">&quot;adafruit motor driver dc test&quot;</span><span class="p">,</span> <span class="n">is_default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">DASHBOARD</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;input&quot;</span><span class="p">))</span>
+<span class="kn">from</span> <span class="nn">kervi.dashboards.dashboard</span> <span class="k">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
+
+<span class="n">Dashboard</span><span class="p">(</span>
+    <span class="s2">&quot;dashboard&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;adafruit motor driver dc test&quot;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;input&quot;</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;input&quot;</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">is_default</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
 
 <span class="c1">#import motor device driver</span>
-<span class="kn">from</span> <span class="nn">kervi_devices.motors.adafruit_i2c_motor_hat</span> <span class="k">import</span> <span class="n">AdafruitMotorHAT</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.motors.adafruit_i2c_motor_hat</span> <span class="k">import</span> <span class="n">AdafruitMotorHAT</span>
 
 <span class="n">motor_controller</span> <span class="o">=</span> <span class="n">AdafruitMotorHAT</span><span class="p">()</span>
 <span class="n">motor_controller</span><span class="o">.</span><span class="n">dc_motors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">speed</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;dashboard&quot;</span><span class="p">)</span>
@@ -248,7 +255,7 @@ a user to set the speed and direction of the motor via the web UI.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.11.1 - beta',
+            VERSION:'0.13.32 - beta',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

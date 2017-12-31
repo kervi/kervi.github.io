@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Security &mdash; Kervi 0.11.1 - beta documentation</title>
+  <title>Security &mdash; Kervi 0.13.32 - beta documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Kervi 0.11.1 - beta documentation" href="index.html"/>
+    <link rel="top" title="Kervi 0.13.32 - beta documentation" href="index.html"/>
         <link rel="next" title="Hardware and devices" href="hal.html"/>
         <link rel="prev" title="Motors" href="motors.html"/> 
 
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.11.1
+                0.13.32
               </div>
             
           
@@ -206,17 +206,18 @@ and the kervi web server.</p>
 the password and groups as parameters for each user.</p>
 <p>You can use the groups in your python code to define who has access to panels and dynamcic values.</p>
 <p>I the snippet below the cpu sensor is only visible for users who belongs to the admin group</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">CPU_SENSOR</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;CPULoadSensor&quot;</span><span class="p">,</span><span class="s2">&quot;CPU&quot;</span><span class="p">,</span> <span class="n">CPULoadSensorDeviceDriver</span><span class="p">())</span>
-<span class="n">CPU_SENSOR</span><span class="o">.</span><span class="n">user_groups</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;admin&quot;</span><span class="p">]</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">CPU_SENSOR</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;CPULoadSensor&quot;</span><span class="p">,</span><span class="s2">&quot;CPU&quot;</span><span class="p">,</span> <span class="n">CPULoadSensorDeviceDriver</span><span class="p">(),</span> <span class="n">user_groups</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;admin&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>In the same way dashboards and panels may be restricted to certain groups as shown below.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">SYSTEM_DASHBOARD</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;System&quot;</span><span class="p">)</span>
-<span class="n">SYSTEM_DASHBOARD</span><span class="o">.</span><span class="n">user_groups</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;admins&quot;</span><span class="p">,</span> <span class="s2">&quot;users&quot;</span><span class="p">]</span>
-
-<span class="n">POWER_PANEL</span> <span class="o">=</span> <span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;power&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Power&quot;</span><span class="p">)</span>
-<span class="n">POWER_PANEL</span><span class="o">.</span><span class="n">user_groups</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;admins&quot;</span><span class="p">]</span>
-<span class="n">SYSTEM_DASHBOARD</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">POWER_PANEL</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">Dashboard</span><span class="p">(</span>
+    <span class="s2">&quot;system&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;System&quot;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;power&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Power&quot;</span><span class="p">,</span> <span class="n">user_groups</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;admins&quot;</span><span class="p">])</span>
+    <span class="p">],</span>
+    <span class="n">user_groups</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;admins&quot;</span><span class="p">,</span> <span class="s2">&quot;users&quot;</span><span class="p">]</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <p>In the snippet above users that is member of the groups admins or users have access to the system dashboard
@@ -297,7 +298,7 @@ If the file is present the settings in file is used to secure the communication 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.11.1 - beta',
+            VERSION:'0.13.32 - beta',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

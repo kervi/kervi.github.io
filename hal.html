@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Hardware and devices &mdash; Kervi 0.11.1 - beta documentation</title>
+  <title>Hardware and devices &mdash; Kervi 0.13.32 - beta documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Kervi 0.11.1 - beta documentation" href="index.html"/>
+    <link rel="top" title="Kervi 0.13.32 - beta documentation" href="index.html"/>
         <link rel="next" title="GPIO API" href="hal_gpio_api.html"/>
         <link rel="prev" title="Security" href="security.html"/> 
 
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.11.1
+                0.13.32
               </div>
             
           
@@ -200,11 +200,11 @@ initialise GPIO, I2C ect.</p>
 <p>Access to GPIO is done via the kervi.hal module. When your Kervi application starts it scans
 for installed Kervi platform drivers and loads the GPIO driver.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-<span class="kn">from</span> <span class="nn">kervi.bootstrap</span> <span class="kn">import</span> <span class="n">Application</span>
+<span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
 <span class="c1">#add dashboard and panel</span>
-<span class="kn">from</span> <span class="nn">kervi.dashboard</span> <span class="kn">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
+<span class="kn">from</span> <span class="nn">kervi.dashboards.dashboard</span> <span class="kn">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
 <span class="n">DASHBOARD</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;main&quot;</span><span class="p">,</span> <span class="s2">&quot;Controller Buttons&quot;</span><span class="p">,</span> <span class="n">is_default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="n">DASHBOARD</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;gpio&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;GPIO&quot;</span><span class="p">))</span>
 
@@ -317,14 +317,11 @@ Kervi sensor (this is the actual code from the device library).</p>
 Below is an example that uses the light sensor TLS2561.</p>
 <p>For a complete list take a look at github &lt;<a class="reference external" href="https://github.com/kervi/kervi-devices">https://github.com/kervi/kervi-devices</a>&gt;</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Module for a sensor &quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">kervi.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span><span class="p">,</span> <span class="n">SensorThread</span>
-<span class="kn">from</span> <span class="nn">kervi_devices.sensors.TSL2561</span> <span class="kn">import</span> <span class="n">TSL2561Device</span>
+<span class="kn">from</span> <span class="nn">kervi.sensors.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.sensors.TSL2561</span> <span class="kn">import</span> <span class="n">TSL2561Device</span>
 
 <span class="n">lux</span><span class="o">=</span><span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;lux_sensor&quot;</span><span class="p">,</span><span class="s2">&quot;Lux sensor&quot;</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">TSL2561Device</span><span class="p">()</span>
 <span class="n">lux</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;radial_gauge&quot;</span><span class="p">)</span>
-
-<span class="c1">#Add sensor to a SensorThread that polls the sensor by the specified interval</span>
-<span class="n">LUX_SENSOR_THREAD</span> <span class="o">=</span> <span class="n">SensorThread</span><span class="p">(</span><span class="n">Lux</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -379,7 +376,7 @@ Below is an example that uses the light sensor TLS2561.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.11.1 - beta',
+            VERSION:'0.13.32 - beta',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

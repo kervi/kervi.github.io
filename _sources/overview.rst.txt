@@ -22,31 +22,44 @@ myapp.py
         from kervi.application import Application
         APP = Application()
         
-        from kervi.dashboard import Dashboard, DashboardPanel
-        DASHBOARD = Dashboard("app", "App", is_default=True)
-        DASHBOARD.add_panel(DashboardPanel("fan", columns=3, rows=2, title="CPU fan"))
-
-        SYSTEMBOARD = Dashboard("system", "System")
-        SYSTEMBOARD.add_panel(DashboardPanel("cpu", columns=2, rows=2))
-        SYSTEMBOARD.add_panel(DashboardPanel("cam", columns=2, rows=2))
-
-        from kervi.sensor import Sensor
-        from kervi_devices.platforms.common.sensors.cpu_use import CPULoadSensorDeviceDriver
-        from kervi_devices.platforms.common.sensors.cpu_temp import CPUTempSensorDeviceDriver
+        from kervi.dashboards.dashboard import Dashboard, DashboardPanel
+        
+        #Define dashboards and panels
+        Dashboard(
+            "app",
+            "App",
+            [
+                DashboardPanel("fan", title="CPU fan")
+            ],
+            is_default=True
+        )
+        
+        Dashboard(
+            "system",
+            "System",
+            [
+                DashboardPanel("cpu"),
+                DashboardPanel("cam")
+            ]
+        )
+        
+        from kervi.sensors.sensor import Sensor
+        from kervi.devices.platforms.common.sensors.cpu_use import CPULoadSensorDeviceDriver
+        from kervi.devices.platforms.common.sensors.cpu_temp import CPUTempSensorDeviceDriver
         
         #build in sensor that measures cpu use
         SENSOR_CPU_LOAD = Sensor("CPULoadSensor", "CPU", CPULoadSensorDeviceDriver())
         #link to sys area top right
         SENSOR_CPU_LOAD.link_to_dashboard("*", "sys-header")
         #link to a panel, show value in panel header and chart in panel body
-        SENSOR_CPU_LOAD.link_to_dashboard("system", "cpu", type="value", size=2, link_to_header=True)
-        SENSOR_CPU_LOAD.link_to_dashboard("system", "cpu", type="chart", size=2)
+        SENSOR_CPU_LOAD.link_to_dashboard("system", "cpu", type="value", link_to_header=True)
+        SENSOR_CPU_LOAD.link_to_dashboard("system", "cpu", type="chart")
 
         #build in sensor that measures cpu temperature
         SENSOR_CPU_TEMP = Sensor("CPUTempSensor", "", CPUTempSensorDeviceDriver())
         
         #define a fan controller
-        from kervi.controller import Controller
+        from kerv.controllers.controller import Controller
         from kervi.values import DynamicNumber, DynamicBoolean
         class FanController(Controller):
             def __init__(self):
@@ -105,6 +118,8 @@ myapp.py
         MOTOR_CONTROLLER.dc_motors[2].speed.link_to(FAN_CONTROLLER.fan_speed)
 
         APP.run()
+
+
 
 
 ######################
@@ -245,7 +260,7 @@ The kervi application is bootstrapped in myapp.py
 
 .. code:: python
     
-    from kervi.bootstrap import Application
+    from kervi.application import Application
     import kervi.utility.nethelper as nethelper
 
     if __name__ == '__main__':

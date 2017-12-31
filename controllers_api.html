@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Controllers api &mdash; Kervi 0.11.1 - beta documentation</title>
+  <title>Controllers api &mdash; Kervi 0.13.32 - beta documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Kervi 0.11.1 - beta documentation" href="index.html"/>
+    <link rel="top" title="Kervi 0.13.32 - beta documentation" href="index.html"/>
         <link rel="up" title="Controllers" href="controllers.html"/>
         <link rel="next" title="Dynamic values" href="dynamic_values.html"/>
         <link rel="prev" title="Controllers" href="controllers.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.11.1
+                0.13.32
               </div>
             
           
@@ -178,36 +178,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-kervi.controller">
-<span id="controllers-api"></span><h1>Controllers api<a class="headerlink" href="#module-kervi.controller" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-kervi.controllers.controller">
+<span id="controllers-api"></span><h1>Controllers api<a class="headerlink" href="#module-kervi.controllers.controller" title="Permalink to this headline">¶</a></h1>
 <p>A Kervi controller is a class that acts upon input from users or events or the underlaying os.</p>
 <dl class="class">
-<dt id="kervi.controller.Controller">
-<em class="property">class </em><code class="descclassname">kervi.controller.</code><code class="descname">Controller</code><span class="sig-paren">(</span><em>controller_id</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.Controller" title="Permalink to this definition">¶</a></dt>
+<dt id="kervi.controllers.controller.Controller">
+<em class="property">class </em><code class="descclassname">kervi.controllers.controller.</code><code class="descname">Controller</code><span class="sig-paren">(</span><em>controller_id</em>, <em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controllers.controller.Controller" title="Permalink to this definition">¶</a></dt>
 <dd><p>A Kervi controller is a class that acts upon input from users, hardware events or the underlaying os.</p>
 <p>Examples for controllers are motor control, servo control, output to IO.</p>
 <p>A controller my define one or more dynamic values as input and output.</p>
 <dl class="staticmethod">
-<dt id="kervi.controller.Controller.create">
-<em class="property">static </em><code class="descname">create</code><span class="sig-paren">(</span><em>controller_id</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.Controller.create" title="Permalink to this definition">¶</a></dt>
+<dt id="kervi.controllers.controller.Controller.create">
+<em class="property">static </em><code class="descname">create</code><span class="sig-paren">(</span><em>controller_id</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controllers.controller.Controller.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>Turn class into a kervi controller</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="kervi.controller.Controller.exit">
-<code class="descname">exit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.Controller.exit" title="Permalink to this definition">¶</a></dt>
+<dt id="kervi.controllers.controller.Controller.exit">
+<code class="descname">exit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controllers.controller.Controller.exit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Abstract method that is called when the kervi application stops.</p>
 </dd></dl>
 
 <dl class="staticmethod">
-<dt id="kervi.controller.Controller.input">
-<em class="property">static </em><code class="descname">input</code><span class="sig-paren">(</span><em>input_id</em>, <em>name</em>, <em>value_class=&lt;class 'kervi.values.DynamicNumber'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.Controller.input" title="Permalink to this definition">¶</a></dt>
+<dt id="kervi.controllers.controller.Controller.input">
+<em class="property">static </em><code class="descname">input</code><span class="sig-paren">(</span><em>input_id</em>, <em>name</em>, <em>value_class=&lt;class 'kervi.values.DynamicNumber'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controllers.controller.Controller.input" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add input to controller</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="kervi.controller.Controller.input_changed">
-<code class="descname">input_changed</code><span class="sig-paren">(</span><em>input_id</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.Controller.input_changed" title="Permalink to this definition">¶</a></dt>
+<dt id="kervi.controllers.controller.Controller.input_changed">
+<code class="descname">input_changed</code><span class="sig-paren">(</span><em>input_id</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controllers.controller.Controller.input_changed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Abstract method that is called by when one of the controller inputs change.</p>
 <p>You can implement this method if your controller logic needs to respond
 changes in multiple inputs.</p>
@@ -215,7 +215,7 @@ changes in multiple inputs.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>changed_input</strong> (<a class="reference internal" href="dynamic_values_api.html#kervi.values.DynamicValue" title="kervi.values.DynamicValue"><em>DynamicValue</em></a>) – Input that has changed. You can read the value of the changed input
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>changed_input</strong> (<em>DynamicValue</em>) – Input that has changed. You can read the value of the changed input
 via the inputs value property.</td>
 </tr>
 </tbody>
@@ -223,8 +223,8 @@ via the inputs value property.</td>
 </dd></dl>
 
 <dl class="method">
-<dt id="kervi.controller.Controller.link_to_dashboard">
-<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.Controller.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<dt id="kervi.controllers.controller.Controller.link_to_dashboard">
+<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controllers.controller.Controller.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
 <dd><p>Links this component to a dashboard section all input are displayed.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -258,8 +258,8 @@ The width of the select box is ui_size * dashboard unit size.</dd>
 </dd></dl>
 
 <dl class="staticmethod">
-<dt id="kervi.controller.Controller.output">
-<em class="property">static </em><code class="descname">output</code><span class="sig-paren">(</span><em>output_id</em>, <em>name</em>, <em>value_class=&lt;class 'kervi.values.DynamicNumber'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controller.Controller.output" title="Permalink to this definition">¶</a></dt>
+<dt id="kervi.controllers.controller.Controller.output">
+<em class="property">static </em><code class="descname">output</code><span class="sig-paren">(</span><em>output_id</em>, <em>name</em>, <em>value_class=&lt;class 'kervi.values.DynamicNumber'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controllers.controller.Controller.output" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add output to controller</p>
 </dd></dl>
 
@@ -311,7 +311,7 @@ The width of the select box is ui_size * dashboard unit size.</dd>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.11.1 - beta',
+            VERSION:'0.13.32 - beta',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

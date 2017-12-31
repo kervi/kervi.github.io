@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Contribute &mdash; Kervi 0.11.1 - beta documentation</title>
+  <title>Contribute &mdash; Kervi 0.13.32 - beta documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Kervi 0.11.1 - beta documentation" href="index.html"/>
+    <link rel="top" title="Kervi 0.13.32 - beta documentation" href="index.html"/>
         <link rel="prev" title="Commandline tool" href="cli.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.11.1
+                0.13.32
               </div>
             
           
@@ -114,6 +114,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#kervi-ui-web-dashboards">Kervi UI (Web dashboards)</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#install-packages">Install packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
 </ul>
 </li>
 </ul>
@@ -180,7 +182,7 @@
   <div class="section" id="contribute">
 <h1>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h1>
 <p>The kervi project is build on several github projects all under the github.com/kervi name space.
-Most of the project are clean python projects except from the web interface project that is implemented as an Angular (2) application.</p>
+Most of the project are clean python projects except from the web interface project that is implemented as an Angular 4 application.</p>
 <div class="section" id="development-enviroment">
 <h2>Development enviroment<a class="headerlink" href="#development-enviroment" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://git-scm.com/downloads">GIT</a> is used to handle all soruce code via github.com.
@@ -209,6 +211,10 @@ For python programming the VS Code Python extension by Don Jayamanne is used for
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is important to clone all github projects before installing the packages.</p>
+</div>
 <div class="section" id="application-demo-integration-tests">
 <h3>Application (demo, integration tests)<a class="headerlink" href="#application-demo-integration-tests" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/kervi/kervi-test.git">https://github.com/kervi/kervi-test.git</a></p>
@@ -216,27 +222,109 @@ For python programming the VS Code Python extension by Don Jayamanne is used for
 </div>
 <div class="section" id="kervi-core">
 <h3>Kervi core<a class="headerlink" href="#kervi-core" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://github.com/kervi/kervi.git">https://github.com/kervi/kervi.git</a></p>
-<p>The core part of the framework.</p>
+<p>The core part of the framework:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kervi</span><span class="o">/</span><span class="n">kervi</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="kervi-platform-driver">
 <h3>Kervi platform driver<a class="headerlink" href="#kervi-platform-driver" title="Permalink to this headline">¶</a></h3>
 <p>There is a project for each supported platform.
 A platform driver exposes the platforms hardware like gpio, i2c, cameras.
 For hardware platforms that are not supported a generic driver is used.</p>
-<p><a class="reference external" href="https://github.com/kervi/kervi-hal-rpi.git">https://github.com/kervi/kervi-hal-rpi.git</a></p>
-<p><a class="reference external" href="https://github.com/kervi/kervi-hal-generic.git">https://github.com/kervi/kervi-hal-generic.git</a></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kervi</span><span class="o">/</span><span class="n">kervi</span><span class="o">-</span><span class="n">hal</span><span class="o">-</span><span class="n">rpi</span><span class="o">.</span><span class="n">git</span>
+
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kervi</span><span class="o">/</span><span class="n">kervi</span><span class="o">-</span><span class="n">hal</span><span class="o">-</span><span class="n">generic</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="kervi-device-library">
 <h3>Kervi device library<a class="headerlink" href="#kervi-device-library" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://github.com/kervi/kervi-devices.git">https://github.com/kervi/kervi-devices.git</a></p>
-<p>This project holds drivers for specific hardware.</p>
+<p>This project holds drivers for specific hardware and dummy drivers for test.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kervi</span><span class="o">/</span><span class="n">kervi</span><span class="o">-</span><span class="n">devices</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="kervi-ui-web-dashboards">
 <h3>Kervi UI (Web dashboards)<a class="headerlink" href="#kervi-ui-web-dashboards" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://github.com/kervi/kervi-ui.git">https://github.com/kervi/kervi-ui.git</a></p>
-<p>This project contains the web server and Angular dashboard application.</p>
+<p>This project contains the python kervi web server and Angular dashboard application.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kervi</span><span class="o">/</span><span class="n">kervi</span><span class="o">-</span><span class="n">ui</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
 </div>
+<p>The angular project is located in kervi_ui/web and is a Angular 4+ application.
+You have to update the npm packages in the web folder by calling:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">update</span>
+</pre></div>
+</div>
+<p>Next you have to install the angular cli tool:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="nd">@angular</span><span class="o">/</span><span class="n">cli</span>
+</pre></div>
+</div>
+<p>You should now be ready to start web ui development enviroment via:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ng</span> <span class="n">serve</span>
+</pre></div>
+</div>
+<p>This starts a web server that runs the Kervi angular app directly from source.</p>
+<p>The development version listen on local host and you need to set that address in your kervi app settings.
+Below is a sample app settings that show how to set the settings IPAddress and IPRootAddress to localhost.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<span class="kn">import</span> <span class="nn">kervi.utility.nethelper</span> <span class="k">as</span> <span class="nn">nethelper</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">({</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;app&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Test multi file app&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;appKey&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;modules&quot;</span><span class="p">:[</span><span class="s2">&quot;sensors&quot;</span><span class="p">,</span> <span class="s2">&quot;controllers&quot;</span><span class="p">,</span> <span class="s2">&quot;cams&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;network&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;IPAddress&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;IPRootAddress&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;IPCRootPort&quot;</span><span class="p">:</span><span class="mi">9500</span><span class="p">,</span>
+            <span class="s2">&quot;WebSocketPort&quot;</span><span class="p">:</span><span class="mi">9000</span><span class="p">,</span>
+            <span class="s2">&quot;WebPort&quot;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+            <span class="s2">&quot;IPCSecret&quot;</span><span class="p">:</span><span class="sa">b</span><span class="s2">&quot;fd9969b3-9748-46b6-a69d-119ec2773352&quot;</span><span class="p">,</span>
+
+        <span class="p">},</span>
+    <span class="p">})</span>
+
+    <span class="n">APP</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If you want to test your changes in the Kervi web server you need to build the ui app via.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ng</span> <span class="n">build</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="install-packages">
+<h2>Install packages<a class="headerlink" href="#install-packages" title="Permalink to this headline">¶</a></h2>
+<p>The cloned git projects above should be installed as python development packages.
+Execute the commands below the order is important:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">./</span><span class="n">kervi</span><span class="o">-</span><span class="n">devices</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">./</span><span class="n">kervi</span><span class="o">-</span><span class="n">ui</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">./</span><span class="n">kervi</span><span class="o">-</span><span class="n">hal</span><span class="o">-</span><span class="n">generic</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">./</span><span class="n">kervi</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>If you want to help with the documentation you need to clone the kervi project (see above).
+Source files for the documentation are located in the _doc folder as a sphinx project.</p>
+<p>Run these commands to install sphinx</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx_rtd_theme</span>
+</pre></div>
+</div>
+<p>Run the command below in the _doc folder:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
+</pre></div>
+</div>
+<p>This will create a kervi-doc folder at the same level as the kervi project.
+Open kervi-doc/html/index.html in a browser and you should see the finished documentation.</p>
+<p>When you are ready to submit your work create a pull request on github.</p>
 </div>
 </div>
 
@@ -282,7 +370,7 @@ For hardware platforms that are not supported a generic driver is used.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.11.1 - beta',
+            VERSION:'0.13.32 - beta',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
