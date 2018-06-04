@@ -376,6 +376,20 @@ If is an output it is possible to specify different kinds of gauges.</p>
 :type: <code class="docutils literal"><span class="pre">float</span></code></p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="kervi.values.NumberValue.display_unit">
+<code class="descname">display_unit</code><a class="headerlink" href="#kervi.values.NumberValue.display_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display unit of value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">str</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="method">
 <dt id="kervi.values.NumberValue.link_to_dashboard">
 <code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.NumberValue.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
@@ -455,9 +469,23 @@ Output: ‘value’ (default), ‘chart’, ‘radial_gauge’, ‘horizontal_ga
 </dd></dl>
 
 <dl class="attribute">
+<dt id="kervi.values.NumberValue.type">
+<code class="descname">type</code><a class="headerlink" href="#kervi.values.NumberValue.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">str</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="kervi.values.NumberValue.unit">
 <code class="descname">unit</code><a class="headerlink" href="#kervi.values.NumberValue.unit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Unit of value. Enter values like C, F, hPa</p>
+<dd><p>Metric Unit of value.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
