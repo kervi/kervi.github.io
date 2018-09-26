@@ -28,7 +28,9 @@
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Component communication" href="ipc.html" />
+    <link rel="prev" title="Distributed applications" href="distributed.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -82,7 +84,7 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getstarted.html#prerequisites">prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getstarted.html#install">Install</a></li>
@@ -245,6 +247,15 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Messaging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#value-messages">Value messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sending-custom-messages">Sending custom messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#e-mail">e-mail</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a><ul>
@@ -339,7 +350,8 @@
   <div class="section" id="messaging">
 <h1>Messaging<a class="headerlink" href="#messaging" title="Permalink to this headline">¶</a></h1>
 <p>It is possible to send messages from your kervi app when certain conditions occurs.
-The main concept is that a message can be send to one or more message channels like e-mail and user log.</p>
+The main concept is that a message can be send to one or more message channels like e-mail and user log.
+The user log is accessible in the UI and error and warning messages are shown as pop up notifications.</p>
 <div class="section" id="value-messages">
 <h2>Value messages<a class="headerlink" href="#value-messages" title="Permalink to this headline">¶</a></h2>
 <p>You can set warning and error ranges on sensors and other kervi values.</p>
@@ -363,7 +375,56 @@ The main concept is that a message can be send to one or more message channels l
 <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>In the example above a series of error and warning ranges are defined.</p>
+<p>In the example above a series of error and warning ranges are defined.
+It is the channels parameter that controls where the range messages are send to.
+Default value for the channels parameter is user_log if the parameter is omitted.</p>
+</div>
+<div class="section" id="sending-custom-messages">
+<h2>Sending custom messages<a class="headerlink" href="#sending-custom-messages" title="Permalink to this headline">¶</a></h2>
+<p>You use the Messaging class to send your own messages.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.messaging</span> <span class="k">import</span> <span class="n">Messaging</span>
+
+<span class="n">Messaging</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="s2">&quot;My message&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>level 1 is error.</li>
+<li>level 2 is warning.</li>
+<li>level 3 is normal info.</li>
+</ul>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>The message channels are activated via via <a class="reference internal" href="configuration.html#configuration"><span class="std std-ref">Kervi configuration</span></a>.
+The user log channel is always enabled.</p>
+<div class="section" id="e-mail">
+<h3>e-mail<a class="headerlink" href="#e-mail" title="Permalink to this headline">¶</a></h3>
+<p>Below is the required configuration for the email message plugin.
+The plugin will be loaded if enabled is True.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Application</span><span class="p">({</span>
+    <span class="s2">&quot;plugins&quot;</span><span class="p">:{</span>
+        <span class="s2">&quot;messaging&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;kervi.plugin.messaging.email&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s2">&quot;smtp&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;sender_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Kervi&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;sender_address&quot;</span><span class="p">:</span> <span class="s2">&quot;kervi@example.com&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;server&quot;</span><span class="p">:</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="s2">&quot;25&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;mail_user_name&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;mail_user_password&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;tls&quot;</span><span class="p">:</span> <span class="kc">False</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
@@ -372,6 +433,15 @@ The main concept is that a message can be send to one or more message channels l
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ipc.html" class="btn btn-neutral float-right" title="Component communication" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="distributed.html" class="btn btn-neutral" title="Distributed applications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

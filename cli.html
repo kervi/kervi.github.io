@@ -247,8 +247,21 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="messaging.html#value-messages">Value messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="messaging.html#sending-custom-messages">Sending custom messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="messaging.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="messaging.html#e-mail">e-mail</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Commandline tool</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Commandline tool</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#scaffold-applications">Scaffold applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detect-applications">Detect applications</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="contribute.html#development-enviroment">Development enviroment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contribute.html#github-projects">Github projects</a><ul>
@@ -340,6 +353,47 @@
             
   <div class="section" id="commandline-tool">
 <h1>Commandline tool<a class="headerlink" href="#commandline-tool" title="Permalink to this headline">¶</a></h1>
+<p>Kervi comes with the command line tool <em>kervi</em> that helps scaffold applications
+and detects running kervi application on the local network.</p>
+<p>You can apply the –help option at any level to see possibilities</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">kervi</span> <span class="o">--</span><span class="n">help</span>
+<span class="n">Usage</span><span class="p">:</span> <span class="n">kervi</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">COMMAND</span> <span class="p">[</span><span class="n">ARGS</span><span class="p">]</span><span class="o">...</span>
+
+<span class="n">Options</span><span class="p">:</span>
+<span class="o">--</span><span class="n">help</span>  <span class="n">Show</span> <span class="n">this</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span><span class="o">.</span>
+
+<span class="n">Commands</span><span class="p">:</span>
+<span class="n">create</span>  <span class="n">Create</span> <span class="ow">and</span> <span class="n">scaffold</span> <span class="n">applications</span> <span class="ow">and</span> <span class="n">modules</span>
+<span class="n">detect</span>  <span class="n">Detect</span> <span class="n">devices</span> <span class="ow">and</span> <span class="n">applications</span>
+</pre></div>
+</div>
+<div class="section" id="scaffold-applications">
+<h2>Scaffold applications<a class="headerlink" href="#scaffold-applications" title="Permalink to this headline">¶</a></h2>
+<p>Use command <em>create</em> when you need to start a kervi project.</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">kervi</span> <span class="n">create</span> <span class="n">application</span> <span class="n">my_app</span> <span class="s2">&quot;My application&quot;</span>
+</pre></div>
+</div>
+<p>This will create a project with a main dashboard and a system dashboard.
+The system dashboard shows CPU use, temperature and memory use.</p>
+<p>if you want to add camera code you use –add_camera option.
+This is only possible on Raspberry Pi</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">kervi</span> <span class="n">create</span> <span class="n">application</span> <span class="n">my_app</span> <span class="s2">&quot;My application&quot;</span> <span class="o">--</span><span class="n">add_camera</span>
+</pre></div>
+</div>
+<p>If you want to create a single file application use the –single_file_app option</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">kervi</span> <span class="n">create</span> <span class="n">application</span> <span class="n">my_app</span> <span class="s2">&quot;My application&quot;</span> <span class="o">--</span><span class="n">single_file_app</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="detect-applications">
+<h2>Detect applications<a class="headerlink" href="#detect-applications" title="Permalink to this headline">¶</a></h2>
+<p>You can use the detect command to scan the local network for running kervi applications.</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">kervi</span> <span class="n">detect</span> <span class="n">applications</span>
+</pre></div>
+</div>
+<p>This will broadcast discovery requests on the local network.
+The result is a list with running kervi applications that are configured for discovery.</p>
+</div>
 </div>
 
 
