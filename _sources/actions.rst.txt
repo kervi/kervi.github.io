@@ -74,9 +74,9 @@ And call the action
 Actions with timeout
 --------------------
 
-By default an action is called synchronius and first returns with the result when the action is completed.
-If you expect your action to operate within a special time interval you can add the keyword parameter timeout to
-the action call. If the execution time exceeds the timeout a TimeoutError exception is raised.
+By default, an action is called synchronous and first returns with the result when the action is completed.
+If you expect your action to operate within a special time interval, you can add the keyword parameter timeout to
+the action call. If the execution time exceeds the timeout, a TimeoutError exception is raised.
 
 .. code:: python
 
@@ -103,7 +103,7 @@ If the action is defined in another process or module call this way:
 Asynchronous action call
 ------------------------
 
-It is possible to call an action asynchronously if your don't want to wait for the action to finish execution.
+It is possible to call an action asynchronously if you don't want to wait for the action to finish execution.
 Just set the keyword argument run_async to true.
 
 .. code:: python
@@ -111,11 +111,11 @@ Just set the keyword argument run_async to true.
     Actions["my_action"](run_async=True)
 
 
-Interupts
+Interrupts
 ---------
 
 Sometimes you need to signal a running action during execution. 
-To handle this situation you need to specify an interupt function for an action.
+To handle this situation you need to specify an interrupt function for an action.
 
 .. code:: python
 
@@ -129,11 +129,11 @@ To handle this situation you need to specify an interupt function for an action.
 
         print("my_action done")
 
-    @my_action.set_interupt
-    def my_action_interupt():
+    @my_action.set_interrupt
+    def my_action_interrupt():
         global terminate
         terminate = True
-        print("interupt my_action")
+        print("interrupt my_action")
 
     
     #call action
@@ -143,20 +143,20 @@ To handle this situation you need to specify an interupt function for an action.
     time.sleep(5)
 
     #signal that the action should terminate
-    Actions["my_action"].interupt() 
+    Actions["my_action"].interrupt() 
 
 
-Interupts support parameters
+Interrupts support parameters
 
 .. code:: python
 
-    @my_action.set_interupt
-    def my_action_interupt(p1):
+    @my_action.set_interrupt
+    def my_action_interrupt(p1):
         global terminate
         terminate = True
-        print("interupt my_action:", p1)
+        print("interrupt my_action:", p1)
 
-    Actions["my_action"].interupt("P 1")
+    Actions["my_action"].interrupt("P 1")
 
 Linking to dashboards
 ---------------------
@@ -185,7 +185,7 @@ You can send parameters to the action.
     my_action.link_to_dashboard("app", "gate", action_parameters=["x"])
 
 
-If an interupt function is set for the action it will be called when the button is released. 
+If an interrupt function is set for the action it will be called when the button is released. 
 
 .. code:: python 
 
@@ -195,13 +195,13 @@ If an interupt function is set for the action it will be called when the button 
     def my_action(p):
         print("my_action is called with:", p)
 
-    @my_action.set_interupt
-    def my_action_interupt():
-        print("my_action interupt called")
+    @my_action.set_interrupt
+    def my_action_interrupt():
+        print("my_action interrupt called")
 
     my_action.link_to_dashboard("app", "gate", action_parameters=["x"])
 
-You are able to specify parameters that should be send in the interupt.
+You are able to specify parameters that should be send in the interrupt.
 
 .. code:: python 
 
@@ -211,11 +211,11 @@ You are able to specify parameters that should be send in the interupt.
     def my_action(p):
         print("my_action is called with:", p)
 
-    @my_action.set_interupt
-    def my_action_interupt(p):
-        print("my_action interupt called: ", p)
+    @my_action.set_interrupt
+    def my_action_interrupt(p):
+        print("my_action interrupt called: ", p)
 
-    my_action.link_to_dashboard("app", "gate", action_parameters=["x"], interupt_parameters=["i"])
+    my_action.link_to_dashboard("app", "gate", action_parameters=["x"], interrupt_parameters=["i"])
 
 Other keyword parameters you can use in link_to_dashboard:
 
@@ -243,15 +243,81 @@ Other keyword parameters you can use in link_to_dashboard:
 
     * *action_parameters* (``list``) -- list of parameters to pass to the action.
 
-    * *interupt_enabled* (``bool``) -- If true the button will send interupt to action on off. Default true if an interupt is specified for the action.
-    * *interupt_parameters* (``list``) -- List of parameters to pass to the interupt function of the action.
+    * *interrupt_enabled* (``bool``) -- If true the button will send interrupt to action on off. Default true if an interrupt is specified for the action.
+    * *interrupt_parameters* (``list``) -- List of parameters to pass to the interrupt function of the action.
+
+
+Linking to values
+-----------------
+
+It is possible to link an action to gpio or sensors or other kervi values.
+When the value of linked source changes the Action is executed or interrupted.
+
+.. code:: python
+
+    my_action.link_to(GPIO["GPIO2"])
+
+In the code above the action is linked to gpio2 if it goes high it executes the action.
+When the gpio2 goes low the action is interrupted.
+
+Here is another example where the action is linked to a sensors.
+When the sensor value is 10 the action is executed.
+
+.. code:: python  
+
+    my_action.link_to(
+        temp_sensor,
+        trigger_value = 10
+    )
+
+You can also use an lambda expression as trigger.
+
+.. code:: python
+
+    my_action.link_to(
+        temp_sensor,
+        trigger_value = lambda x: x > 10
+    )
+
+If you want to pass the value of the linked source you can do by setting the pass_value parameter
+Now the action is called every time the source changes.
+
+.. code:: python
+
+    my_action.link_to(
+        temp_sensor,
+        pass_value = true
+    )
+
+It is also possible to pass additional parameters to the action when it is triggered.
+
+.. code:: python
+
+    my_action.link_to(
+        temp_sensor,
+        trigger_value = lambda x: x > 10,
+        action_parameters = ["20", 30]
+    )
+
+You can also specify when the interrupt should fire.
+
+.. code:: python
+
+    my_action.link_to(
+        temp_sensor,
+        trigger_value = lambda x: x > 10,
+        action_parameters = ["20", 30]
+        trigger_interrupt_value: lambda x: x < 5,
+        interrupt_parameters = [0]
+    )
+
 
 
 System actions
 --------------
 
 When the kervi application has loaded and started all processes it calls the app_main action this is your hook where you can
-start your application logic. In the way app_exit action is called upon termination of the kervi application.
+start your application logic. In the same way app_exit action is called upon termination of the kervi application.
 
 It is optional for you to define these actions in your application.
 
@@ -264,7 +330,7 @@ It is optional for you to define these actions in your application.
 
     @action
     def app_exit():
-        #application logic that cleans up
+        #application logic that clean up and reset devices
 
 You can control the application via the following actions
 
@@ -287,8 +353,10 @@ Complete example
 -----------------
 
 This is a complete example that shows a gate controller that controls a motor and have two end stop switches.
+The end stops are linked to GPIO2 and GPIO3. 
 
 There are to two actions move_gate and stop_gate these are linked to the "gate" panel on the app dashboard.
+The move_gate action is also linked GPIO4 and GPIO5. When GPIO4 is triggered the gate opens and closes when gpio5 is triggered.
 
 .. code:: python
 
@@ -363,12 +431,12 @@ There are to two actions move_gate and stop_gate these are linked to the "gate" 
                     else:
                         print("Gate stopped")
 
-            @move_gate.set_interupt
+            @move_gate.set_interrupt
             def move_gate_interrupt(self):
                 print("stop gate:")
                 self._stop_move = True
 
-            def on_start(self):
+            def controller_start(self):
                 print("gate controller is started")
                 self.gate_motor_speed.value = 0
 
@@ -393,6 +461,9 @@ There are to two actions move_gate and stop_gate these are linked to the "gate" 
         gate_controller.lo_end_stop.link_to(GPIO["GPIO2"])
         gate_controller.hi_end_stop.link_to(GPIO["GPIO3"])
 
+        gate_controller.move_gate.link_to(GPIO["GPIO4"], action_parameters = [True])
+        gate_controller.move_gate.link_to(GPIO["GPIO5"], action_parameters = [False])
+
         APP.run()
 
 
@@ -404,7 +475,7 @@ of the gate speed could be set.
 .. image:: images/gate_controller_settings.png
     :width: 35%
 
-Multiprocess
+Multi process
 ------------
 
 This example shows how to set up at simple robot and control it via an external script of commands.

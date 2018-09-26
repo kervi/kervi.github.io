@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Controllers &mdash; Kervi 0.14.0 - beta documentation</title>
+  <title>Controllers &mdash; Kervi 0.15.0 - beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.14.0
+                0.15.0
               </div>
             
           
@@ -146,11 +146,12 @@
 <li class="toctree-l2"><a class="reference internal" href="actions.html#define-actions">Define actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#actions-with-timeout">Actions with timeout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#asynchronous-action-call">Asynchronous action call</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#interupts">Interupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#interrupts">Interrupts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-dashboards">Linking to dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-values">Linking to values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#system-actions">System actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#complete-example">Complete example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#multiprocess">Multiprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#multi-process">Multi process</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
@@ -160,12 +161,13 @@
 <li class="toctree-l2"><a class="reference internal" href="motors.html#stepper-motors">Stepper motors</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="display.html">Displays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#accessing-config-values-in-code">Accessing config values in code</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="security.html#users">Users</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security.html#simple-user-management">Simple user management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="security.html#anonymous-access">Anonymous access</a></li>
 </ul>
 </li>
@@ -178,6 +180,71 @@
 <li class="toctree-l2"><a class="reference internal" href="hal.html#i2c">I2C</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal.html#spi">SPI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal.html#device-library">Device library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="devices/index.html">Device library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="devices/displays.html">Displays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#ssd1306-i2c">SSD1306(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-pcf8574">HD44780(I2C, PCF8574)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-mcp23017">HD44780(I2C, MCP23017)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780">HD44780</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/gpio.html">GPIO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23017-i2c">MCP23017(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23008-i2c">MCP23008(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf8574-pcf8574a-i2c">PCF8574, PCF8574A(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf859-i2c">PCF859(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/motors.html">Motors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/motors.html#ln298">LN298</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/pwm.html">PWM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#raspbery-pi">Raspbery pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#pca9685-i2c">PCA9685(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/sensors.html">Sensors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#temperature">Temperature</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-temp">CPU temp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#bmp085-i2c">BMP085(I2C)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#ds18b20-one-wire">DS18B20(One wire)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#pressure">Pressure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#id1">BMP085</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#orientation">Orientation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#lsm9ds0-i2c">LSM9DS0(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#light-lux">Light (lux)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#tsl2561-i2c">TSL2561(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#other">Other</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#memory">Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-load">CPU load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#disk-use">Disk use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multi_process.html">Process distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributed.html">Distributed applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#main-application">Main application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-modules">Application modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-discovery">Application discovery</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#discovery-configuration">Discovery configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#connection-without-auto-discovery">Connection without auto discovery</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
@@ -200,7 +267,9 @@
 <li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_api.html">Camera api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controllers_api.html">Controllers api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values_api.html">Kervi values api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="display_api.html">Display api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_gpio_api.html">GPIO API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_i2c_api.html">I2C API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_devices_api.html">Devices API</a></li>
@@ -271,17 +340,17 @@
             
   <div class="section" id="controllers">
 <h1>Controllers<a class="headerlink" href="#controllers" title="Permalink to this headline">¶</a></h1>
-<p>Controllers is the fun part of your Kervi application this is where you code the application logic.
-Your controller acts upon input from users, GPIO events or the underlaying os and initiates different actions based on the input.</p>
+<p>Controllers is the fun part of your Kervi application this is where you code most of the application logic.
+Your controller acts upon input from users, GPIO events or the underlying os and initiates different actions based on the input.</p>
 <p>Basic controllers manages motors, light, servos and so on but you can also build more advanced controllers
 for <em>line following</em> and <em>self navigation</em>.
-As your application grows your application will contain multiple controllers.</p>
+As your application grows it will contain multiple controllers.</p>
 <div class="section" id="input-and-output-interfaces">
 <h2>Input and output interfaces<a class="headerlink" href="#input-and-output-interfaces" title="Permalink to this headline">¶</a></h2>
 <p>Basically a controller reads a set of inputs and generates one or more outputs.
 Below is an example of a steering controller, that takes speed, and left/right balance between motors as inputs
 and calculates the speed of the left and right motors.</p>
-<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -383,7 +452,7 @@ and calculates the speed of the left and right motors.</p>
 </pre></div>
 </td></tr></table></div>
 <p>In the example above the inputs and outputs are defined via:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;speed&quot;</span><span class="p">,</span> <span class="s2">&quot;Speed&quot;</span><span class="p">,</span> <span class="n">NumberValue</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;speed&quot;</span><span class="p">,</span> <span class="s2">&quot;Speed&quot;</span><span class="p">,</span> <span class="n">NumberValue</span><span class="p">)</span>
 
 <span class="bp">self</span><span class="o">.</span><span class="n">left_speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;left_speed&quot;</span><span class="p">,</span> <span class="s2">&quot;Left speed&quot;</span><span class="p">,</span> <span class="n">NumberValue</span><span class="p">)</span>
 </pre></div>
@@ -398,7 +467,7 @@ calculate its outputs.</p>
 <p>A controller that works entirely on in- and outputs that are dynamic values
 is agnostic to how it is linked to user interface and hardware.
 In that way it is easy to change hardware and make changes to UI without re-coding the controller.</p>
-<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -466,7 +535,7 @@ In that way it is easy to change hardware and make changes to UI without re-codi
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.14.0 - beta',
+            VERSION:'0.15.0 - beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -477,6 +546,7 @@ In that way it is easy to change hardware and make changes to UI without re-codi
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

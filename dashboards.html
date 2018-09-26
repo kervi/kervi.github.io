@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Dashboards &mdash; Kervi 0.14.0 - beta documentation</title>
+  <title>Dashboards &mdash; Kervi 0.15.0 - beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.14.0
+                0.15.0
               </div>
             
           
@@ -146,11 +146,12 @@
 <li class="toctree-l2"><a class="reference internal" href="actions.html#define-actions">Define actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#actions-with-timeout">Actions with timeout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#asynchronous-action-call">Asynchronous action call</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#interupts">Interupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#interrupts">Interrupts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-dashboards">Linking to dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-values">Linking to values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#system-actions">System actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#complete-example">Complete example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#multiprocess">Multiprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#multi-process">Multi process</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
@@ -160,12 +161,13 @@
 <li class="toctree-l2"><a class="reference internal" href="motors.html#stepper-motors">Stepper motors</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="display.html">Displays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#accessing-config-values-in-code">Accessing config values in code</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="security.html#users">Users</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security.html#simple-user-management">Simple user management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="security.html#anonymous-access">Anonymous access</a></li>
 </ul>
 </li>
@@ -178,6 +180,71 @@
 <li class="toctree-l2"><a class="reference internal" href="hal.html#i2c">I2C</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal.html#spi">SPI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal.html#device-library">Device library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="devices/index.html">Device library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="devices/displays.html">Displays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#ssd1306-i2c">SSD1306(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-pcf8574">HD44780(I2C, PCF8574)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-mcp23017">HD44780(I2C, MCP23017)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780">HD44780</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/gpio.html">GPIO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23017-i2c">MCP23017(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23008-i2c">MCP23008(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf8574-pcf8574a-i2c">PCF8574, PCF8574A(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf859-i2c">PCF859(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/motors.html">Motors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/motors.html#ln298">LN298</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/pwm.html">PWM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#raspbery-pi">Raspbery pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#pca9685-i2c">PCA9685(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/sensors.html">Sensors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#temperature">Temperature</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-temp">CPU temp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#bmp085-i2c">BMP085(I2C)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#ds18b20-one-wire">DS18B20(One wire)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#pressure">Pressure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#id1">BMP085</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#orientation">Orientation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#lsm9ds0-i2c">LSM9DS0(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#light-lux">Light (lux)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#tsl2561-i2c">TSL2561(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#other">Other</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#memory">Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-load">CPU load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#disk-use">Disk use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multi_process.html">Process distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributed.html">Distributed applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#main-application">Main application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-modules">Application modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-discovery">Application discovery</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#discovery-configuration">Discovery configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#connection-without-auto-discovery">Connection without auto discovery</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
@@ -200,7 +267,9 @@
 <li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_api.html">Camera api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controllers_api.html">Controllers api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values_api.html">Kervi values api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="display_api.html">Display api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_gpio_api.html">GPIO API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_i2c_api.html">I2C API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_devices_api.html">Devices API</a></li>
@@ -270,7 +339,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="dashboards">
-<h1>Dashboards<a class="headerlink" href="#dashboards" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Dashboards<a class="headerlink" href="#dashboards" title="Permalink to this headline">¶</a></h1>
 <p>An application may define one or more dashboards. If it is a home automation application
 A dashboard could be a room or a floor.</p>
 <p>Each dashboard contains one or more panels where it is possible to link sensors, controllers, camera and other components.</p>
@@ -278,7 +347,7 @@ A dashboard could be a room or a floor.</p>
 <a class="reference internal image-reference" href="_images/dashboard_mobile.png"><img alt="_images/dashboard_mobile.png" src="_images/dashboard_mobile.png" style="width: 35%;" /></a>
 <a class="reference internal image-reference" href="_images/dashboard_browser.png"><img alt="_images/dashboard_browser.png" src="_images/dashboard_browser.png" style="width: 45%;" /></a>
 <p>The code below shows how to configure the dashboard above</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Dashboard</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Dashboard</span><span class="p">(</span>
     <span class="s2">&quot;system&quot;</span><span class="p">,</span>
     <span class="s2">&quot;System&quot;</span><span class="p">,</span>
     <span class="p">[</span>
@@ -299,7 +368,7 @@ A dashboard could be a room or a floor.</p>
 <p>A kervi component is linked to a panel by calling the link_to_dashboard method on the component.
 This method takes several parameters that specify how the component should be displayed.</p>
 <p>When a component is linked to a panel you are able to set the width and height of the component it could be as a percentage or pixels.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1">#sensor that links as a radial guage</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#sensor that links as a radial guage</span>
 <span class="n">cpu_temp</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;cam&quot;</span><span class="p">,</span> <span class="s2">&quot;panel1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;radial_gauge&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 
 <span class="c1">#A sensor that links to the header of a panel and into the body.</span>
@@ -315,40 +384,40 @@ This method takes several parameters that specify how the component should be di
 <p>Linked output components like sensors, controller outputs and analog GPIO input channels can displayed in different ways: just value, value with sparkline, as an animated icon, chart or different kind of gauges.</p>
 <p><strong>Value and sparkline</strong></p>
 <p>If a sensor is linked with just dashboard and panel as parameters it will be displayed with name, sparkline and value.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="_images/sensor_sparkline.png" src="_images/sensor_sparkline.png" />
 <p><strong>Value and icon</strong></p>
 <p>It is possible to show an icon next to a value. Kervi uses Font awesome icons. Just enter the name of the icon without <em>fa-</em></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;thermometer-full&quot;</span><span class="p">,</span> <span class="n">show_sparkline</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">show_name</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;thermometer-full&quot;</span><span class="p">,</span> <span class="n">show_sparkline</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">show_name</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="_images/sensor_icon.png" src="_images/sensor_icon.png" />
 <p><strong>Value and no sparkline</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="n">show_sparkline</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="n">show_sparkline</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="_images/sensor_value.png" src="_images/sensor_value.png" />
 <p><strong>radial gauge</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;radial_gauge&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;radial_gauge&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="_images/sensor_radial.png" src="_images/sensor_radial.png" />
 <p><strong>Horizontal gauge</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;horizontal_linear_gauge&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;horizontal_linear_gauge&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="_images/sensor_horizontal.png" src="_images/sensor_horizontal.png" />
 <p><strong>Vertical gauge</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;vertical_linear_gauge&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;section1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;vertical_linear_gauge&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="_images/sensor_vertical.png" src="_images/sensor_vertical.png" />
 <p><strong>Animated icon</strong></p>
 <p>Below is a full example of a battery sensor where the icon change depending on value.
 The sensor is linked twice first to the header with the animation and into the body as a chart.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">set_ui_parameter</span><span class="p">(</span><span class="s2">&quot;icon&quot;</span><span class="p">,</span> <span class="p">[</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SENSOR_1</span><span class="o">.</span><span class="n">set_ui_parameter</span><span class="p">(</span><span class="s2">&quot;icon&quot;</span><span class="p">,</span> <span class="p">[</span>
     <span class="p">{</span>
         <span class="s2">&quot;range&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
         <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-empty&quot;</span>
@@ -388,18 +457,18 @@ The sensor is linked twice first to the header with the animation and into the b
 </div>
 <div class="section" id="controller-pads">
 <h2>Controller pads<a class="headerlink" href="#controller-pads" title="Permalink to this headline">¶</a></h2>
-<p>Each dashboard has two controller pads each with an x and y axis.
+<p>Each dashboard has two controller pads each with an x and y-axis.
 It is possible to link NumberValue values to these axes
 by using the panel names left_pad_x, left_pad_y, right_pad_x, right_pad_y.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">motor_controller</span><span class="o">.</span><span class="n">dc_motors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">speed</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;main&quot;</span><span class="p">,</span> <span class="s2">&quot;left_pad_x&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">motor_controller</span><span class="o">.</span><span class="n">dc_motors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">speed</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;main&quot;</span><span class="p">,</span> <span class="s2">&quot;left_pad_x&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="section" id="gpio-and-boolean-values">
 <h3>GPIO and boolean values<a class="headerlink" href="#gpio-and-boolean-values" title="Permalink to this headline">¶</a></h3>
 <p>Linked output components like digital GPIO channels and boolean controller input/outputs
 are displayed as a switch button or push button.
-If the dynamic value is an GPIO input channel or a controller output the button is read only.</p>
-<p>If the dynamic value is a output GPIO channel or a controller input the user will be able to switch/push the button.</p>
+If the GPIO pin is an input channel or a controller output the button is read only.</p>
+<p>If GPIO pin is an output channel or a controller input the user will be able to switch/push the button.</p>
 </div>
 </div>
 </div>
@@ -446,7 +515,7 @@ If the dynamic value is an GPIO input channel or a controller output the button 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.14.0 - beta',
+            VERSION:'0.15.0 - beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -457,6 +526,7 @@ If the dynamic value is an GPIO input channel or a controller output the button 
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

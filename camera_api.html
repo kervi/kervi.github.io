@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Camera api &mdash; Kervi 0.14.0 - beta documentation</title>
+  <title>Camera api &mdash; Kervi 0.15.0 - beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.14.0
+                0.15.0
               </div>
             
           
@@ -146,11 +146,12 @@
 <li class="toctree-l2"><a class="reference internal" href="actions.html#define-actions">Define actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#actions-with-timeout">Actions with timeout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#asynchronous-action-call">Asynchronous action call</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#interupts">Interupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#interrupts">Interrupts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-dashboards">Linking to dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-values">Linking to values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#system-actions">System actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#complete-example">Complete example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#multiprocess">Multiprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#multi-process">Multi process</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
@@ -160,12 +161,13 @@
 <li class="toctree-l2"><a class="reference internal" href="motors.html#stepper-motors">Stepper motors</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="display.html">Displays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#accessing-config-values-in-code">Accessing config values in code</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="security.html#users">Users</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security.html#simple-user-management">Simple user management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="security.html#anonymous-access">Anonymous access</a></li>
 </ul>
 </li>
@@ -178,6 +180,71 @@
 <li class="toctree-l2"><a class="reference internal" href="hal.html#i2c">I2C</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal.html#spi">SPI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal.html#device-library">Device library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="devices/index.html">Device library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="devices/displays.html">Displays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#ssd1306-i2c">SSD1306(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-pcf8574">HD44780(I2C, PCF8574)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-mcp23017">HD44780(I2C, MCP23017)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780">HD44780</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/gpio.html">GPIO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23017-i2c">MCP23017(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23008-i2c">MCP23008(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf8574-pcf8574a-i2c">PCF8574, PCF8574A(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf859-i2c">PCF859(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/motors.html">Motors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/motors.html#ln298">LN298</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/pwm.html">PWM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#raspbery-pi">Raspbery pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#pca9685-i2c">PCA9685(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/sensors.html">Sensors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#temperature">Temperature</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-temp">CPU temp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#bmp085-i2c">BMP085(I2C)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#ds18b20-one-wire">DS18B20(One wire)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#pressure">Pressure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#id1">BMP085</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#orientation">Orientation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#lsm9ds0-i2c">LSM9DS0(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#light-lux">Light (lux)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#tsl2561-i2c">TSL2561(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#other">Other</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#memory">Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-load">CPU load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#disk-use">Disk use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multi_process.html">Process distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributed.html">Distributed applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#main-application">Main application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-modules">Application modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-discovery">Application discovery</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#discovery-configuration">Discovery configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#connection-without-auto-discovery">Connection without auto discovery</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
@@ -200,7 +267,9 @@
 <li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Camera api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controllers_api.html">Controllers api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values_api.html">Kervi values api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="display_api.html">Display api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_gpio_api.html">GPIO API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_i2c_api.html">I2C API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_devices_api.html">Devices API</a></li>
@@ -274,6 +343,103 @@
   <div class="section" id="module-kervi.vision.camera">
 <span id="camera-api"></span><h1>Camera api<a class="headerlink" href="#module-kervi.vision.camera" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
+<dt id="kervi.vision.camera.CameraBase">
+<em class="property">class </em><code class="descclassname">kervi.vision.camera.</code><code class="descname">CameraBase</code><span class="sig-paren">(</span><em>camera_id</em>, <em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraBase" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="kervi.vision.camera.CameraBase.fps">
+<code class="descname">fps</code><a class="headerlink" href="#kervi.vision.camera.CameraBase.fps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Frames to capture per second</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.vision.camera.CameraBase.framerate_changed">
+<code class="descname">framerate_changed</code><span class="sig-paren">(</span><em>framerate</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraBase.framerate_changed" title="Permalink to this definition">¶</a></dt>
+<dd><p>abstract method</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.vision.camera.CameraBase.height">
+<code class="descname">height</code><a class="headerlink" href="#kervi.vision.camera.CameraBase.height" title="Permalink to this definition">¶</a></dt>
+<dd><p>Height of images to capture</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.vision.camera.CameraBase.input_changed">
+<code class="descname">input_changed</code><span class="sig-paren">(</span><em>changed_input</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraBase.input_changed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method that is called by when one of the controller inputs change.</p>
+<p>You can implement this method if your controller logic needs to respond
+changes in multiple inputs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>changed_input</strong> (<em>KerviValue</em>) – Input that has changed. You can read the value of the changed input
+via the inputs value property.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.vision.camera.CameraBase.link_to_dashboard">
+<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id=None</em>, <em>panel_id=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraBase.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Links this camera to a dashboard section or to the background of a dashboard.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dashboard_id</strong> – id of the dashboard to link to.</li>
+<li><strong>section_id</strong> (<em>str</em>) – id of the section.</li>
+<li><strong>**kwargs</strong> – Use the kwargs below to override default values set in ui_parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><dl class="first docutils">
+<dt><em>ui_size</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – Size of the component in dashboard unit size.</dt>
+<dd>In order to make the sections and components align correct a dashboard unit is defined.
+Default the dashboard unit is a square that is 150 x 150 pixels.
+The width of the camera picture is ui_size * dashboard unit size.</dd>
+</dl>
+</li>
+<li><em>show_buttons</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – Add this component to header of section.</li>
+<li><em>show_pan_tilt</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – Add this component to header of section.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.vision.camera.CameraBase.pan_changed">
+<code class="descname">pan_changed</code><span class="sig-paren">(</span><em>pan_value</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraBase.pan_changed" title="Permalink to this definition">¶</a></dt>
+<dd><p>abstract method</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.vision.camera.CameraBase.source">
+<code class="descname">source</code><a class="headerlink" href="#kervi.vision.camera.CameraBase.source" title="Permalink to this definition">¶</a></dt>
+<dd><p>How to connect to this camera</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.vision.camera.CameraBase.tilt_changed">
+<code class="descname">tilt_changed</code><span class="sig-paren">(</span><em>tilt_value</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraBase.tilt_changed" title="Permalink to this definition">¶</a></dt>
+<dd><p>abstract method</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.vision.camera.CameraBase.width">
+<code class="descname">width</code><a class="headerlink" href="#kervi.vision.camera.CameraBase.width" title="Permalink to this definition">¶</a></dt>
+<dd><p>Width of images to capture</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="kervi.vision.camera.CameraStreamer">
 <em class="property">class </em><code class="descclassname">kervi.vision.camera.</code><code class="descname">CameraStreamer</code><span class="sig-paren">(</span><em>camera_id</em>, <em>name</em>, <em>camera_source=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraStreamer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Camera controller that streams video to the ui.</p>
@@ -292,17 +458,17 @@
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><dl class="first docutils">
-<dt><em>height</em> (<code class="docutils literal"><span class="pre">int</span></code>) –</dt>
+<dt><em>height</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) –</dt>
 <dd>Height of video frame. Default value is 480.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><em>width</em> (<code class="docutils literal"><span class="pre">int</span></code>) –</dt>
+<dt><em>width</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) –</dt>
 <dd>Width of video frame. Default value is 640.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><em>fps</em> (<code class="docutils literal"><span class="pre">int</span></code>) –</dt>
+<dt><em>fps</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) –</dt>
 <dd>Frames per second.</dd>
 </dl>
 </li>
@@ -369,6 +535,16 @@ captured frames should be passed to the method frame_ready.</p>
 
 </dd></dl>
 
+<dl class="class">
+<dt id="kervi.vision.camera.IPCamera">
+<em class="property">class </em><code class="descclassname">kervi.vision.camera.</code><code class="descname">IPCamera</code><span class="sig-paren">(</span><em>camera_id</em>, <em>name</em>, <em>dashboards</em>, <em>source</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.IPCamera" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="kervi.vision.camera.USBCamera">
+<em class="property">class </em><code class="descclassname">kervi.vision.camera.</code><code class="descname">USBCamera</code><span class="sig-paren">(</span><em>camera_id</em>, <em>name</em>, <em>dashboards</em>, <em>source</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.USBCamera" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 
 
@@ -413,7 +589,7 @@ captured frames should be passed to the method frame_ready.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.14.0 - beta',
+            VERSION:'0.15.0 - beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -424,6 +600,7 @@ captured frames should be passed to the method frame_ready.</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

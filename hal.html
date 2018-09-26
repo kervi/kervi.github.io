@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Hardware and devices &mdash; Kervi 0.14.0 - beta documentation</title>
+  <title>Hardware and devices &mdash; Kervi 0.15.0 - beta documentation</title>
   
 
   
@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Component communication" href="ipc.html" />
+    <link rel="next" title="Device library" href="devices/index.html" />
     <link rel="prev" title="Security" href="security.html" /> 
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.14.0
+                0.15.0
               </div>
             
           
@@ -146,11 +146,12 @@
 <li class="toctree-l2"><a class="reference internal" href="actions.html#define-actions">Define actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#actions-with-timeout">Actions with timeout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#asynchronous-action-call">Asynchronous action call</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#interupts">Interupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#interrupts">Interrupts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-dashboards">Linking to dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-values">Linking to values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#system-actions">System actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#complete-example">Complete example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#multiprocess">Multiprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#multi-process">Multi process</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
@@ -160,12 +161,13 @@
 <li class="toctree-l2"><a class="reference internal" href="motors.html#stepper-motors">Stepper motors</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="display.html">Displays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#accessing-config-values-in-code">Accessing config values in code</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="security.html#users">Users</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security.html#simple-user-management">Simple user management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="security.html#anonymous-access">Anonymous access</a></li>
 </ul>
 </li>
@@ -178,6 +180,71 @@
 <li class="toctree-l2"><a class="reference internal" href="#i2c">I2C</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#spi">SPI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#device-library">Device library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="devices/index.html">Device library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="devices/displays.html">Displays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#ssd1306-i2c">SSD1306(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-pcf8574">HD44780(I2C, PCF8574)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-mcp23017">HD44780(I2C, MCP23017)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780">HD44780</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/gpio.html">GPIO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23017-i2c">MCP23017(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23008-i2c">MCP23008(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf8574-pcf8574a-i2c">PCF8574, PCF8574A(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf859-i2c">PCF859(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/motors.html">Motors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/motors.html#ln298">LN298</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/pwm.html">PWM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#raspbery-pi">Raspbery pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#pca9685-i2c">PCA9685(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/sensors.html">Sensors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#temperature">Temperature</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-temp">CPU temp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#bmp085-i2c">BMP085(I2C)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#ds18b20-one-wire">DS18B20(One wire)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#pressure">Pressure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#id1">BMP085</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#orientation">Orientation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#lsm9ds0-i2c">LSM9DS0(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#light-lux">Light (lux)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#tsl2561-i2c">TSL2561(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#other">Other</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#memory">Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-load">CPU load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#disk-use">Disk use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multi_process.html">Process distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributed.html">Distributed applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#main-application">Main application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-modules">Application modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-discovery">Application discovery</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#discovery-configuration">Discovery configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#connection-without-auto-discovery">Connection without auto discovery</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
@@ -200,7 +267,9 @@
 <li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_api.html">Camera api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controllers_api.html">Controllers api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values_api.html">Kervi values api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="display_api.html">Display api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_gpio_api.html">GPIO API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_i2c_api.html">I2C API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_devices_api.html">Devices API</a></li>
@@ -273,22 +342,22 @@
 <h1>Hardware and devices<a class="headerlink" href="#hardware-and-devices" title="Permalink to this headline">¶</a></h1>
 <p>A central feature in Kervi is platform independent access to hardware and devices.
 Kervi abstracts access to various systems like GPIO and I2C on your board in order to make Kervi solutions
-portable. At the moment there is drivers for Raspberry Pi with more to come.</p>
+portable. At the moment there are drivers for Raspberry Pi with more to come.</p>
 <p>The kervi device library contains device drivers to common sensors, displays, gpio extenders.</p>
 <div class="section" id="select-platform">
 <h2>Select platform<a class="headerlink" href="#select-platform" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to install a platform driver via pip.:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">kervi</span><span class="p">[</span><span class="n">rpi</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">kervi</span><span class="p">[</span><span class="n">rpi</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>The framework looks for installed platform driver upon application start and
-initialise GPIO, I2C ect.</p>
+initialize GPIO, I2C ect.</p>
 </div>
 <div class="section" id="gpio">
 <h2>GPIO<a class="headerlink" href="#gpio" title="Permalink to this headline">¶</a></h2>
 <p>Access to GPIO is done via the kervi.hal module. When your Kervi application starts it scans
 for installed Kervi platform drivers and loads the GPIO driver.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 <span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
@@ -315,13 +384,13 @@ for installed Kervi platform drivers and loads the GPIO driver.</p>
 </div>
 <div class="section" id="i2c">
 <h2>I2C<a class="headerlink" href="#i2c" title="Permalink to this headline">¶</a></h2>
-<p>I2C is used when communicating with i2c serial devices like sensors, displayes and motor controllers.</p>
+<p>I2C is used when communicating with i2c serial devices like sensors, displays and motor controllers.</p>
 <p>If a device exists in the device library there is no need
 to work with i2c directly as the device driver handles i2c communication.</p>
-<p>If a device is not present in the device library you could make your own device driver.</p>
+<p>If a device is not present in the device library, you could make your own device driver.</p>
 <p>Below is an example on using I2C that implements a LUX sensor that can be used in a
 Kervi sensor (this is the actual code from the device library).</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">kervi.hal</span> <span class="kn">import</span> <span class="n">I2C</span>
 
 <span class="k">class</span> <span class="nc">TSL2561Device</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -398,19 +467,18 @@ Kervi sensor (this is the actual code from the device library).</p>
 </div>
 <div class="section" id="spi">
 <h2>SPI<a class="headerlink" href="#spi" title="Permalink to this headline">¶</a></h2>
-<p>The SPI interface is comming.</p>
+<p>The SPI interface is coming.</p>
 </div>
 <div class="section" id="device-library">
 <h2>Device library<a class="headerlink" href="#device-library" title="Permalink to this headline">¶</a></h2>
-<p>It is possible to use ready made devices from the kervi device library.
+<p>It is possible to use ready-made devices from the <a class="reference internal" href="devices/index.html#kdl"><span class="std std-ref">kervi device library</span></a> .
 Below is an example that uses the light sensor TLS2561.</p>
-<p>For a complete list take a look at github &lt;<a class="reference external" href="https://github.com/kervi/kervi-devices">https://github.com/kervi/kervi-devices</a>&gt;</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Module for a sensor &quot;&quot;&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Module for a sensor &quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">kervi.sensors.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
 <span class="kn">from</span> <span class="nn">kervi.devices.sensors.TSL2561</span> <span class="kn">import</span> <span class="n">TSL2561Device</span>
 
 <span class="n">lux</span><span class="o">=</span><span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;lux_sensor&quot;</span><span class="p">,</span><span class="s2">&quot;Lux sensor&quot;</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">TSL2561Device</span><span class="p">()</span>
-<span class="n">lux</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;radial_gauge&quot;</span><span class="p">)</span>
+<span class="n">lux</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;radial_gauge&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -424,7 +492,7 @@ Below is an example that uses the light sensor TLS2561.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ipc.html" class="btn btn-neutral float-right" title="Component communication" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="devices/index.html" class="btn btn-neutral float-right" title="Device library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="security.html" class="btn btn-neutral" title="Security" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -458,7 +526,7 @@ Below is an example that uses the light sensor TLS2561.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.14.0 - beta',
+            VERSION:'0.15.0 - beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -469,6 +537,7 @@ Below is an example that uses the light sensor TLS2561.</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

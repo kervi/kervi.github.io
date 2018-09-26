@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Signal handling &mdash; Kervi 0.14.0 - beta documentation</title>
+  <title>Signal handling &mdash; Kervi 0.15.0 - beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.14.0
+                0.15.0
               </div>
             
           
@@ -146,11 +146,12 @@
 <li class="toctree-l2"><a class="reference internal" href="actions.html#define-actions">Define actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#actions-with-timeout">Actions with timeout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#asynchronous-action-call">Asynchronous action call</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#interupts">Interupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#interrupts">Interrupts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-dashboards">Linking to dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-values">Linking to values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#system-actions">System actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#complete-example">Complete example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#multiprocess">Multiprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#multi-process">Multi process</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
@@ -160,12 +161,13 @@
 <li class="toctree-l2"><a class="reference internal" href="motors.html#stepper-motors">Stepper motors</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="display.html">Displays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#accessing-config-values-in-code">Accessing config values in code</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="security.html#users">Users</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security.html#simple-user-management">Simple user management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="security.html#anonymous-access">Anonymous access</a></li>
 </ul>
 </li>
@@ -178,6 +180,71 @@
 <li class="toctree-l2"><a class="reference internal" href="hal.html#i2c">I2C</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal.html#spi">SPI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal.html#device-library">Device library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="devices/index.html">Device library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="devices/displays.html">Displays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#ssd1306-i2c">SSD1306(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-pcf8574">HD44780(I2C, PCF8574)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-mcp23017">HD44780(I2C, MCP23017)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780">HD44780</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/gpio.html">GPIO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23017-i2c">MCP23017(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23008-i2c">MCP23008(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf8574-pcf8574a-i2c">PCF8574, PCF8574A(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf859-i2c">PCF859(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/motors.html">Motors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/motors.html#ln298">LN298</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/pwm.html">PWM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#raspbery-pi">Raspbery pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#pca9685-i2c">PCA9685(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/sensors.html">Sensors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#temperature">Temperature</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-temp">CPU temp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#bmp085-i2c">BMP085(I2C)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#ds18b20-one-wire">DS18B20(One wire)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#pressure">Pressure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#id1">BMP085</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#orientation">Orientation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#lsm9ds0-i2c">LSM9DS0(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#light-lux">Light (lux)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#tsl2561-i2c">TSL2561(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#other">Other</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#memory">Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-load">CPU load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#disk-use">Disk use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multi_process.html">Process distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributed.html">Distributed applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#main-application">Main application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-modules">Application modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-discovery">Application discovery</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#discovery-configuration">Discovery configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#connection-without-auto-discovery">Connection without auto discovery</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
@@ -200,7 +267,9 @@
 <li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_api.html">Camera api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controllers_api.html">Controllers api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values_api.html">Kervi values api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="display_api.html">Display api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_gpio_api.html">GPIO API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_i2c_api.html">I2C API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_devices_api.html">Devices API</a></li>
@@ -283,15 +352,14 @@
 <h2>Value linking<a class="headerlink" href="#value-linking" title="Permalink to this headline">¶</a></h2>
 <p>Value linking is the process of connect an output KerviValue to a value that is input.</p>
 <p><em>Direct linking</em></p>
-<p>In the example below is a short snippet that shows how to make
-a self balancing robot. This is done as direct linking where all values are
+<p>The example below shows how to make a self balancing robot. This is done as direct linking where all values are
 in the same process.</p>
-<p>The orientation of the robot is obtained by a LSM9DS0 sensor by reading its gyros to establish the robots
-orientation. The output of the sensor is linked to a pid controller that calculates
+<p>The orientation of the robot is obtained by a LSM9DS0 sensor.
+The output of the sensor is linked to a pid controller that calculates
 how much the wheels must be moved to keep the robot in balance.
-The pid controllers result is send to the steering controller that calculates much speed each motor shuld have
-and send the calculated motor speeds to the motor controller.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1">#imports an initialization of the application is omitted for clarity</span>
+The result of the pid controller is sent to the steering controller that calculates the speed of each motor
+and sends the calculated motor speeds to the motor controller.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#imports an initialization of the application is omitted for clarity</span>
 
 <span class="c1">#create orientation sensor</span>
 <span class="n">orientation_sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;orientation&quot;</span><span class="p">,</span> <span class="s2">&quot;Orientation&quot;</span><span class="p">,</span> <span class="n">LSM9DS0OrientationDeviceDriver</span><span class="p">(),</span> <span class="n">reading_interval</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
@@ -317,18 +385,18 @@ and send the calculated motor speeds to the motor controller.</p>
 <p><em>Indirect linking</em></p>
 <p>It is not possible to use direct linking if the two values that should
 be connected are in different processes or maybe on different devices/computers.
-In this situation it is possible use utilize the buildin inter process communication system
+In this situation it is possible use utilize the builtin inter process communication system
 in Kervi.</p>
 <p>In the snippet below the link is done by passing the id of the sensor in the call to link_to.
 The input value then starts to listen for value changes that are broardcast over IPC by the output.</p>
 <p>An indirect link must be established on the input side in the link.</p>
 <p>Process one code</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1">#create orientation sensor</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#create orientation sensor</span>
 <span class="n">orientation_sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;orientation&quot;</span><span class="p">,</span> <span class="s2">&quot;Orientation&quot;</span><span class="p">,</span> <span class="n">LSM9DS0OrientationDeviceDriver</span><span class="p">(),</span> <span class="n">reading_interval</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>process two code</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">pid_controller</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="s2">&quot;balance_pid&quot;</span><span class="p">,</span> <span class="s2">&quot;Balance pid&quot;</span><span class="p">)</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pid_controller</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="s2">&quot;balance_pid&quot;</span><span class="p">,</span> <span class="s2">&quot;Balance pid&quot;</span><span class="p">)</span>
 <span class="n">pid_controller</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="s2">&quot;orientation.roll&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -336,14 +404,13 @@ The input value then starts to listen for value changes that are broardcast over
 <div class="section" id="value-link-transformation">
 <h2>Value link transformation<a class="headerlink" href="#value-link-transformation" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to transform the values that are passed in the link by apply a transformation
-function or lambda expression. This is useful if the value ranges of the two</p>
-<blockquote>
-<div>values are not the same or if you need to change the sign of the</div></blockquote>
-<p>values that are exchanged in the link.</p>
+function or lambda expression. This is useful if the value ranges of the two
+values are not the same or if you need to change the sign of the
+values that are exchanged in the link.</p>
 <p>Below is an example where a servo motor is mounted opposite to the on screen pan
 controller. By changing the sign the in the link the servo will rotate as expected on
 the screen.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">motor_board</span><span class="o">.</span><span class="n">servo_motors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">CAM1</span><span class="o">.</span><span class="n">pan</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">x</span><span class="p">)</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motor_board</span><span class="o">.</span><span class="n">servo_motors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">CAM1</span><span class="o">.</span><span class="n">pan</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -352,7 +419,7 @@ the screen.</p>
 <p>Kervi values may be linked to dashboards.
 When linked they will show up as either inputs that the user can change or
 a read only representation.</p>
-<p>Details about dashboard linking are found in the dashboard section.</p>
+<p>Details about dashboard linking are found in the <a class="reference internal" href="dashboards.html#dashboards"><span class="std std-ref">Dashboards section</span></a>.</p>
 </div>
 </div>
 
@@ -398,7 +465,7 @@ a read only representation.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.14.0 - beta',
+            VERSION:'0.15.0 - beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -409,6 +476,7 @@ a read only representation.</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

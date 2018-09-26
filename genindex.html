@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; Kervi 0.14.0 - beta documentation</title>
+  <title>Index &mdash; Kervi 0.15.0 - beta documentation</title>
   
 
   
@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                0.14.0
+                0.15.0
               </div>
             
           
@@ -145,11 +145,12 @@
 <li class="toctree-l2"><a class="reference internal" href="actions.html#define-actions">Define actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#actions-with-timeout">Actions with timeout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#asynchronous-action-call">Asynchronous action call</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#interupts">Interupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#interrupts">Interrupts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-dashboards">Linking to dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-values">Linking to values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#system-actions">System actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#complete-example">Complete example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#multiprocess">Multiprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#multi-process">Multi process</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
@@ -159,12 +160,13 @@
 <li class="toctree-l2"><a class="reference internal" href="motors.html#stepper-motors">Stepper motors</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="display.html">Displays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#accessing-config-values-in-code">Accessing config values in code</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="security.html#users">Users</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security.html#simple-user-management">Simple user management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="security.html#anonymous-access">Anonymous access</a></li>
 </ul>
 </li>
@@ -177,6 +179,71 @@
 <li class="toctree-l2"><a class="reference internal" href="hal.html#i2c">I2C</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal.html#spi">SPI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal.html#device-library">Device library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="devices/index.html">Device library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="devices/displays.html">Displays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#ssd1306-i2c">SSD1306(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-pcf8574">HD44780(I2C, PCF8574)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-mcp23017">HD44780(I2C, MCP23017)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780">HD44780</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/gpio.html">GPIO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23017-i2c">MCP23017(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23008-i2c">MCP23008(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf8574-pcf8574a-i2c">PCF8574, PCF8574A(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf859-i2c">PCF859(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/motors.html">Motors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/motors.html#ln298">LN298</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/pwm.html">PWM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#raspbery-pi">Raspbery pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#pca9685-i2c">PCA9685(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/sensors.html">Sensors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#temperature">Temperature</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-temp">CPU temp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#bmp085-i2c">BMP085(I2C)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#ds18b20-one-wire">DS18B20(One wire)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#pressure">Pressure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#id1">BMP085</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#orientation">Orientation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#lsm9ds0-i2c">LSM9DS0(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#light-lux">Light (lux)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#tsl2561-i2c">TSL2561(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#other">Other</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#memory">Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-load">CPU load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#disk-use">Disk use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multi_process.html">Process distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributed.html">Distributed applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#main-application">Main application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-modules">Application modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-discovery">Application discovery</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#discovery-configuration">Discovery configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#connection-without-auto-discovery">Connection without auto discovery</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
@@ -199,7 +266,9 @@
 <li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_api.html">Camera api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controllers_api.html">Controllers api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values_api.html">Kervi values api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="display_api.html">Display api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_gpio_api.html">GPIO API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_i2c_api.html">I2C API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_devices_api.html">Devices API</a></li>
@@ -279,6 +348,7 @@
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
@@ -290,17 +360,28 @@
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
  
 </div>
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="display_api.html#kervi.displays.Display.activate_page">activate_page() (kervi.displays.Display method)</a>
+</li>
+      <li><a href="display_api.html#kervi.displays.Display.active_page">active_page (kervi.displays.Display attribute)</a>
+</li>
       <li><a href="dynamic_values_api.html#kervi.values.EnumValue.add_option">add_option() (kervi.values.EnumValue method)</a>, <a href="values_api.html#kervi.values.EnumValue.add_option">[1]</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="display_api.html#kervi.displays.Display.add_page">add_page() (kervi.displays.Display method)</a>
+</li>
       <li><a href="dashboards_api.html#kervi.dashboards.Dashboard.add_panel">add_panel() (kervi.dashboards.Dashboard method)</a>
+</li>
+      <li><a href="sensors_api.html#kervi.sensors.sensor.Sensor.add_value_event">add_value_event() (kervi.sensors.sensor.Sensor method)</a>
+</li>
+      <li><a href="hal_gpio_api.html#kervi.hal.gpio.AnalogIOChannel">AnalogIOChannel (class in kervi.hal.gpio)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -316,14 +397,34 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="camera_api.html#kervi.vision.camera.CameraBase">CameraBase (class in kervi.vision.camera)</a>
+</li>
       <li><a href="camera_api.html#kervi.vision.camera.CameraStreamer">CameraStreamer (class in kervi.vision.camera)</a>
 </li>
       <li><a href="camera_api.html#kervi.vision.camera.FrameCameraDeviceDriver.capture_frames">capture_frames() (kervi.vision.camera.FrameCameraDeviceDriver method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="hal_devices_api.html#kervi.hal.ChannelPollingThread">ChannelPollingThread (class in kervi.hal)</a>
+</li>
+      <li><a href="dynamic_values_api.html#kervi.values.ColorValue">ColorValue (class in kervi.values)</a>, <a href="values_api.html#kervi.values.ColorValue">[1]</a>
+</li>
       <li><a href="controllers_api.html#kervi.controllers.controller.Controller">Controller (class in kervi.controllers.controller)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="controllers_api.html#kervi.controllers.controller.Controller.controller_exit">controller_exit() (kervi.controllers.controller.Controller method)</a>
+
+      <ul>
+        <li><a href="display_api.html#kervi.displays.Display.controller_exit">(kervi.displays.Display method)</a>
+</li>
+      </ul></li>
+      <li><a href="controllers_api.html#kervi.controllers.controller.Controller.controller_start">controller_start() (kervi.controllers.controller.Controller method)</a>
+
+      <ul>
+        <li><a href="display_api.html#kervi.displays.Display.controller_start">(kervi.displays.Display method)</a>
+</li>
+        <li><a href="sensors_api.html#kervi.sensors.sensor.Sensor.controller_start">(kervi.sensors.sensor.Sensor method)</a>
+</li>
+      </ul></li>
       <li><a href="controllers_api.html#kervi.controllers.controller.Controller.create">create() (kervi.controllers.controller.Controller static method)</a>
 </li>
   </ul></td>
@@ -332,27 +433,47 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="hal_devices_api.html#kervi.hal.DACValueOutOfBoundsError">DACValueOutOfBoundsError</a>
+</li>
       <li><a href="dashboards_api.html#kervi.dashboards.Dashboard">Dashboard (class in kervi.dashboards)</a>
 </li>
       <li><a href="dashboards_api.html#kervi.dashboards.DashboardPanel">DashboardPanel (class in kervi.dashboards)</a>
 </li>
       <li><a href="dashboards_api.html#kervi.dashboards.DashboardPanelGroup">DashboardPanelGroup (class in kervi.dashboards)</a>
 </li>
+      <li><a href="dynamic_values_api.html#kervi.values.DateTimeValue.date">date (kervi.values.DateTimeValue attribute)</a>, <a href="values_api.html#kervi.values.DateTimeValue.date">[1]</a>
+</li>
       <li><a href="dynamic_values_api.html#kervi.values.DateTimeValue">DateTimeValue (class in kervi.values)</a>, <a href="values_api.html#kervi.values.DateTimeValue">[1]</a>
 </li>
       <li><a href="hal_gpio_api.html#kervi.hal.gpio.IGPIODeviceDriver.define_as_input">define_as_input() (kervi.hal.gpio.IGPIODeviceDriver method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="hal_gpio_api.html#kervi.hal.gpio.IGPIODeviceDriver.define_as_output">define_as_output() (kervi.hal.gpio.IGPIODeviceDriver method)</a>
 </li>
       <li><a href="hal_gpio_api.html#kervi.hal.gpio.IGPIODeviceDriver.define_as_pwm">define_as_pwm() (kervi.hal.gpio.IGPIODeviceDriver method)</a>
 </li>
-      <li><a href="dynamic_values_api.html#kervi.values.NumberValue.delta">delta (kervi.values.NumberValue attribute)</a>, <a href="values_api.html#kervi.values.NumberValue.delta">[1]</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sensors_api.html#kervi.sensors.sensor.Sensor.delta">delta (kervi.sensors.sensor.Sensor attribute)</a>
+
+      <ul>
+        <li><a href="dynamic_values_api.html#kervi.values.NumberValue.delta">(kervi.values.NumberValue attribute)</a>, <a href="values_api.html#kervi.values.NumberValue.delta">[1]</a>
 </li>
+      </ul></li>
       <li><a href="sensors_api.html#kervi.sensors.sensor.Sensor.device">device (kervi.sensors.sensor.Sensor attribute)</a>
 </li>
-      <li><a href="dynamic_values_api.html#kervi.values.NumberValue.display_unit">display_unit (kervi.values.NumberValue attribute)</a>, <a href="values_api.html#kervi.values.NumberValue.display_unit">[1]</a>
+      <li><a href="hal_devices_api.html#kervi.hal.DeviceChannelOutOfBoundsError">DeviceChannelOutOfBoundsError</a>
+</li>
+      <li><a href="display_api.html#kervi.displays.Display">Display (class in kervi.displays)</a>
+</li>
+      <li><a href="display_api.html#kervi.displays.Display.display_pages">display_pages (kervi.displays.Display attribute)</a>
+</li>
+      <li><a href="sensors_api.html#kervi.sensors.sensor.Sensor.display_unit">display_unit (kervi.sensors.sensor.Sensor attribute)</a>
+
+      <ul>
+        <li><a href="dynamic_values_api.html#kervi.values.NumberValue.display_unit">(kervi.values.NumberValue attribute)</a>, <a href="values_api.html#kervi.values.NumberValue.display_unit">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="display_api.html#kervi.displays.DisplayPage">DisplayPage (class in kervi.displays)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -363,15 +484,13 @@
       <li><a href="dynamic_values_api.html#kervi.values.EnumValue">EnumValue (class in kervi.values)</a>, <a href="values_api.html#kervi.values.EnumValue">[1]</a>
 </li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="controllers_api.html#kervi.controllers.controller.Controller.exit">exit() (kervi.controllers.controller.Controller method)</a>
-</li>
-  </ul></td>
 </tr></table>
 
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="camera_api.html#kervi.vision.camera.CameraBase.fps">fps (kervi.vision.camera.CameraBase attribute)</a>
+</li>
       <li><a href="camera_api.html#kervi.vision.camera.CameraStreamer.frame_captured">frame_captured() (kervi.vision.camera.CameraStreamer method)</a>
 </li>
   </ul></td>
@@ -379,6 +498,8 @@
       <li><a href="camera_api.html#kervi.vision.camera.FrameCameraDeviceDriver.frame_ready">frame_ready() (kervi.vision.camera.FrameCameraDeviceDriver method)</a>
 </li>
       <li><a href="camera_api.html#kervi.vision.camera.FrameCameraDeviceDriver">FrameCameraDeviceDriver (class in kervi.vision.camera)</a>
+</li>
+      <li><a href="camera_api.html#kervi.vision.camera.CameraBase.framerate_changed">framerate_changed() (kervi.vision.camera.CameraBase method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -395,18 +516,40 @@
   </ul></td>
 </tr></table>
 
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="camera_api.html#kervi.vision.camera.CameraBase.height">height (kervi.vision.camera.CameraBase attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="hal_devices_api.html#kervi.hal.I2CaddressOutOfBoundsError">I2CaddressOutOfBoundsError</a>
+</li>
+      <li><a href="hal_devices_api.html#kervi.hal.I2CGPIODeviceDriver">I2CGPIODeviceDriver (class in kervi.hal)</a>
+</li>
       <li><a href="hal_gpio_api.html#kervi.hal.gpio.IGPIODeviceDriver">IGPIODeviceDriver (class in kervi.hal.gpio)</a>
 </li>
       <li><a href="hal_i2c_api.html#kervi.hal.i2c.II2CDeviceDriver">II2CDeviceDriver (class in kervi.hal.i2c)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="controllers_api.html#kervi.controllers.controller.Controller.input">input() (kervi.controllers.controller.Controller static method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="controllers_api.html#kervi.controllers.controller.Controller.input_changed">input_changed() (kervi.controllers.controller.Controller method)</a>
+
+      <ul>
+        <li><a href="display_api.html#kervi.displays.Display.input_changed">(kervi.displays.Display method)</a>
+</li>
+        <li><a href="display_api.html#kervi.displays.DisplayPage.input_changed">(kervi.displays.DisplayPage method)</a>
+</li>
+        <li><a href="camera_api.html#kervi.vision.camera.CameraBase.input_changed">(kervi.vision.camera.CameraBase method)</a>
+</li>
+      </ul></li>
+      <li><a href="camera_api.html#kervi.vision.camera.IPCamera">IPCamera (class in kervi.vision.camera)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -418,12 +561,14 @@
 </li>
       <li><a href="dashboards_api.html#module-kervi.dashboards">kervi.dashboards (module)</a>
 </li>
-      <li><a href="hal_devices_api.html#module-kervi.hal">kervi.hal (module)</a>
+      <li><a href="display_api.html#module-kervi.displays">kervi.displays (module)</a>
 </li>
-      <li><a href="hal_gpio_api.html#module-kervi.hal.gpio">kervi.hal.gpio (module)</a>
+      <li><a href="hal_devices_api.html#module-kervi.hal">kervi.hal (module)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="hal_gpio_api.html#module-kervi.hal.gpio">kervi.hal.gpio (module)</a>
+</li>
       <li><a href="hal_i2c_api.html#module-kervi.hal.i2c">kervi.hal.i2c (module)</a>
 </li>
       <li><a href="sensors_api.html#module-kervi.sensors.sensor">kervi.sensors.sensor (module)</a>
@@ -445,9 +590,13 @@
 </li>
         <li><a href="dynamic_values_api.html#kervi.values.BooleanValue.link_to_dashboard">(kervi.values.BooleanValue method)</a>, <a href="values_api.html#kervi.values.BooleanValue.link_to_dashboard">[1]</a>
 </li>
+        <li><a href="dynamic_values_api.html#kervi.values.ColorValue.link_to_dashboard">(kervi.values.ColorValue method)</a>, <a href="values_api.html#kervi.values.ColorValue.link_to_dashboard">[1]</a>
+</li>
         <li><a href="dynamic_values_api.html#kervi.values.NumberValue.link_to_dashboard">(kervi.values.NumberValue method)</a>, <a href="values_api.html#kervi.values.NumberValue.link_to_dashboard">[1]</a>
 </li>
         <li><a href="dynamic_values_api.html#kervi.values.StringValue.link_to_dashboard">(kervi.values.StringValue method)</a>, <a href="values_api.html#kervi.values.StringValue.link_to_dashboard">[1]</a>
+</li>
+        <li><a href="camera_api.html#kervi.vision.camera.CameraBase.link_to_dashboard">(kervi.vision.camera.CameraBase method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -458,18 +607,30 @@
 </li>
       <li><a href="hal_gpio_api.html#kervi.hal.gpio.IGPIODeviceDriver.listen_rising">listen_rising() (kervi.hal.gpio.IGPIODeviceDriver method)</a>
 </li>
+      <li><a href="sensors_api.html#kervi.sensors.sensor.Sensor.log_values">log_values (kervi.sensors.sensor.Sensor attribute)</a>
+</li>
+      <li><a href="hal_gpio_api.html#kervi.hal.gpio.LogicIOChannel">LogicIOChannel (class in kervi.hal.gpio)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dynamic_values_api.html#kervi.values.NumberValue.max">max (kervi.values.NumberValue attribute)</a>, <a href="values_api.html#kervi.values.NumberValue.max">[1]</a>
+      <li><a href="sensors_api.html#kervi.sensors.sensor.Sensor.max">max (kervi.sensors.sensor.Sensor attribute)</a>
+
+      <ul>
+        <li><a href="dynamic_values_api.html#kervi.values.NumberValue.max">(kervi.values.NumberValue attribute)</a>, <a href="values_api.html#kervi.values.NumberValue.max">[1]</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dynamic_values_api.html#kervi.values.NumberValue.min">min (kervi.values.NumberValue attribute)</a>, <a href="values_api.html#kervi.values.NumberValue.min">[1]</a>
+      <li><a href="sensors_api.html#kervi.sensors.sensor.Sensor.min">min (kervi.sensors.sensor.Sensor attribute)</a>
+
+      <ul>
+        <li><a href="dynamic_values_api.html#kervi.values.NumberValue.min">(kervi.values.NumberValue attribute)</a>, <a href="values_api.html#kervi.values.NumberValue.min">[1]</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -484,10 +645,6 @@
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="controllers_api.html#kervi.controllers.controller.Controller.on_start">on_start() (kervi.controllers.controller.Controller method)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="controllers_api.html#kervi.controllers.controller.Controller.output">output() (kervi.controllers.controller.Controller static method)</a>
 </li>
   </ul></td>
@@ -496,10 +653,14 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sensors_api.html#kervi.sensors.sensor.Sensor.polling_interval">polling_interval (kervi.sensors.sensor.Sensor attribute)</a>
+      <li><a href="camera_api.html#kervi.vision.camera.CameraBase.pan_changed">pan_changed() (kervi.vision.camera.CameraBase method)</a>
+</li>
+      <li><a href="sensors_api.html#kervi.sensors.sensor.Sensor.persist_value">persist_value (kervi.sensors.sensor.Sensor attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sensors_api.html#kervi.sensors.sensor.Sensor.polling_interval">polling_interval (kervi.sensors.sensor.Sensor attribute)</a>
+</li>
       <li><a href="hal_gpio_api.html#kervi.hal.gpio.IGPIODeviceDriver.pwm_start">pwm_start() (kervi.hal.gpio.IGPIODeviceDriver method)</a>
 </li>
       <li><a href="hal_gpio_api.html#kervi.hal.gpio.IGPIODeviceDriver.pwm_stop">pwm_stop() (kervi.hal.gpio.IGPIODeviceDriver method)</a>
@@ -536,6 +697,8 @@
 </li>
       <li><a href="hal_i2c_api.html#kervi.hal.i2c.II2CDeviceDriver.reverse_byte_order">reverse_byte_order() (kervi.hal.i2c.II2CDeviceDriver method)</a>
 </li>
+      <li><a href="dynamic_values_api.html#kervi.values.ColorValue.rgb">rgb (kervi.values.ColorValue attribute)</a>, <a href="values_api.html#kervi.values.ColorValue.rgb">[1]</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -550,6 +713,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="camera_api.html#kervi.vision.camera.CameraBase.source">source (kervi.vision.camera.CameraBase attribute)</a>
+</li>
       <li><a href="camera_api.html#kervi.vision.camera.FrameCameraDeviceDriver.start_record">start_record() (kervi.vision.camera.FrameCameraDeviceDriver method)</a>
 </li>
       <li><a href="camera_api.html#kervi.vision.camera.FrameCameraDeviceDriver.stop_record">stop_record() (kervi.vision.camera.FrameCameraDeviceDriver method)</a>
@@ -562,6 +727,12 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="camera_api.html#kervi.vision.camera.CameraBase.tilt_changed">tilt_changed() (kervi.vision.camera.CameraBase method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dynamic_values_api.html#kervi.values.DateTimeValue.time">time (kervi.values.DateTimeValue attribute)</a>, <a href="values_api.html#kervi.values.DateTimeValue.time">[1]</a>
+</li>
       <li><a href="dynamic_values_api.html#kervi.values.NumberValue.type">type (kervi.values.NumberValue attribute)</a>, <a href="values_api.html#kervi.values.NumberValue.type">[1]</a>
 </li>
   </ul></td>
@@ -570,8 +741,28 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dynamic_values_api.html#kervi.values.NumberValue.unit">unit (kervi.values.NumberValue attribute)</a>, <a href="values_api.html#kervi.values.NumberValue.unit">[1]</a>
+      <li><a href="sensors_api.html#kervi.sensors.sensor.Sensor.unit">unit (kervi.sensors.sensor.Sensor attribute)</a>
+
+      <ul>
+        <li><a href="dynamic_values_api.html#kervi.values.NumberValue.unit">(kervi.values.NumberValue attribute)</a>, <a href="values_api.html#kervi.values.NumberValue.unit">[1]</a>
 </li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="camera_api.html#kervi.vision.camera.USBCamera">USBCamera (class in kervi.vision.camera)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dynamic_values_api.html#kervi.values.ColorValue.value">value (kervi.values.ColorValue attribute)</a>, <a href="values_api.html#kervi.values.ColorValue.value">[1]</a>
+
+      <ul>
+        <li><a href="dynamic_values_api.html#kervi.values.DateTimeValue.value">(kervi.values.DateTimeValue attribute)</a>, <a href="values_api.html#kervi.values.DateTimeValue.value">[1]</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -579,6 +770,8 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="camera_api.html#kervi.vision.camera.FrameCameraDeviceDriver.wait_next_frame">wait_next_frame() (kervi.vision.camera.FrameCameraDeviceDriver method)</a>
+</li>
+      <li><a href="camera_api.html#kervi.vision.camera.CameraBase.width">width (kervi.vision.camera.CameraBase attribute)</a>
 </li>
       <li><a href="hal_i2c_api.html#kervi.hal.i2c.II2CDeviceDriver.write16">write16() (kervi.hal.i2c.II2CDeviceDriver method)</a>
 </li>
@@ -627,7 +820,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.14.0 - beta',
+            VERSION:'0.15.0 - beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -638,6 +831,7 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

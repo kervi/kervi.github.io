@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>GPIO API &mdash; Kervi 0.14.0 - beta documentation</title>
+  <title>GPIO API &mdash; Kervi 0.15.0 - beta documentation</title>
   
 
   
@@ -30,7 +30,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="I2C API" href="hal_i2c_api.html" />
-    <link rel="prev" title="Sensors API" href="sensors_api.html" /> 
+    <link rel="prev" title="Display api" href="display_api.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.14.0
+                0.15.0
               </div>
             
           
@@ -146,11 +146,12 @@
 <li class="toctree-l2"><a class="reference internal" href="actions.html#define-actions">Define actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#actions-with-timeout">Actions with timeout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#asynchronous-action-call">Asynchronous action call</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#interupts">Interupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#interrupts">Interrupts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-dashboards">Linking to dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-values">Linking to values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#system-actions">System actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#complete-example">Complete example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#multiprocess">Multiprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#multi-process">Multi process</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
@@ -160,12 +161,13 @@
 <li class="toctree-l2"><a class="reference internal" href="motors.html#stepper-motors">Stepper motors</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="display.html">Displays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#accessing-config-values-in-code">Accessing config values in code</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="security.html#users">Users</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security.html#simple-user-management">Simple user management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="security.html#anonymous-access">Anonymous access</a></li>
 </ul>
 </li>
@@ -178,6 +180,71 @@
 <li class="toctree-l2"><a class="reference internal" href="hal.html#i2c">I2C</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal.html#spi">SPI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal.html#device-library">Device library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="devices/index.html">Device library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="devices/displays.html">Displays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#ssd1306-i2c">SSD1306(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-pcf8574">HD44780(I2C, PCF8574)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-mcp23017">HD44780(I2C, MCP23017)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780">HD44780</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/gpio.html">GPIO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23017-i2c">MCP23017(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23008-i2c">MCP23008(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf8574-pcf8574a-i2c">PCF8574, PCF8574A(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf859-i2c">PCF859(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/motors.html">Motors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/motors.html#ln298">LN298</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/pwm.html">PWM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#raspbery-pi">Raspbery pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#pca9685-i2c">PCA9685(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/sensors.html">Sensors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#temperature">Temperature</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-temp">CPU temp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#bmp085-i2c">BMP085(I2C)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#ds18b20-one-wire">DS18B20(One wire)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#pressure">Pressure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#id1">BMP085</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#orientation">Orientation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#lsm9ds0-i2c">LSM9DS0(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#light-lux">Light (lux)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#tsl2561-i2c">TSL2561(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#other">Other</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#memory">Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-load">CPU load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#disk-use">Disk use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multi_process.html">Process distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributed.html">Distributed applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#main-application">Main application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-modules">Application modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-discovery">Application discovery</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#discovery-configuration">Discovery configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#connection-without-auto-discovery">Connection without auto discovery</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
@@ -200,7 +267,9 @@
 <li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_api.html">Camera api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controllers_api.html">Controllers api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values_api.html">Kervi values api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="display_api.html">Display api</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">GPIO API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_i2c_api.html">I2C API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_devices_api.html">Devices API</a></li>
@@ -275,12 +344,17 @@
 <span id="gpio-api"></span><h1>GPIO API<a class="headerlink" href="#module-kervi.hal.gpio" title="Permalink to this headline">¶</a></h1>
 <p>When Kervi starts it scans for installed Kervi platform drivers and loads the GPIO driver.
 In your application you access GPIO via:</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">kervi.hal.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">kervi.hal.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
 
 <span class="c1">#define channel 23 as input</span>
 <span class="n">GPIO</span><span class="o">.</span><span class="n">define_as_input</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>
 </pre></div>
 </div>
+<dl class="class">
+<dt id="kervi.hal.gpio.AnalogIOChannel">
+<em class="property">class </em><code class="descclassname">kervi.hal.gpio.</code><code class="descname">AnalogIOChannel</code><span class="sig-paren">(</span><em>gpio_device</em>, <em>channel</em>, <em>is_input</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.gpio.AnalogIOChannel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="class">
 <dt id="kervi.hal.gpio.IGPIODeviceDriver">
 <em class="property">class </em><code class="descclassname">kervi.hal.gpio.</code><code class="descname">IGPIODeviceDriver</code><span class="sig-paren">(</span><em>gpio_id</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.gpio.IGPIODeviceDriver" title="Permalink to this definition">¶</a></dt>
@@ -305,7 +379,7 @@ In your application you access GPIO via:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">int</span></code>) – The channel to define as a pwm output.</li>
+<li><strong>channel</strong> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – The channel to define as a pwm output.</li>
 <li><strong>frequency</strong> – The pwn frequency.</li>
 <li><strong>duty_cycle</strong> – The duty_cycle to use, can be changed in call to pwm_start</li>
 </ul>
@@ -331,8 +405,8 @@ The callback function is called when a channel is going high and low.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">float</span></code>) – The channel to listen on.</li>
-<li><strong>callback</strong> (<code class="docutils literal"><span class="pre">function</span> <span class="pre">or</span> <span class="pre">method</span></code>) – The function or method to call when the state of the channel change.</li>
+<li><strong>channel</strong> (<code class="docutils literal notranslate"><span class="pre">float</span></code>) – The channel to listen on.</li>
+<li><strong>callback</strong> (<code class="docutils literal notranslate"><span class="pre">function</span> <span class="pre">or</span> <span class="pre">method</span></code>) – The function or method to call when the state of the channel change.</li>
 <li><strong>bounce_time</strong> – To reduce switch noice a bounce_time &gt; 0 filters small jitters when a switch or button is pressed</li>
 </ul>
 </td>
@@ -350,7 +424,7 @@ The callback function is called when a channel is going high and low.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">function</span> <span class="pre">or</span> <span class="pre">method</span></code>) – The channel to listen on.</li>
+<li><strong>channel</strong> (<code class="docutils literal notranslate"><span class="pre">function</span> <span class="pre">or</span> <span class="pre">method</span></code>) – The channel to listen on.</li>
 <li><strong>callback</strong> – The function or method to call when the state of the channel change.</li>
 </ul>
 </td>
@@ -368,7 +442,7 @@ The callback function is called when a channel is going high and low.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">function</span> <span class="pre">or</span> <span class="pre">method</span></code>) – The channel to listen on.</li>
+<li><strong>channel</strong> (<code class="docutils literal notranslate"><span class="pre">function</span> <span class="pre">or</span> <span class="pre">method</span></code>) – The channel to listen on.</li>
 <li><strong>callback</strong> – The function or method to call when the state of the channel change.</li>
 </ul>
 </td>
@@ -388,9 +462,9 @@ define_as_pwm or pwm_start is used.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">int</span></code>) – The channel to start the pwm signal on.</li>
-<li><strong>duty_cycle</strong> (<code class="docutils literal"><span class="pre">int</span></code>) – The duty cycle use on the channel.</li>
-<li><strong>frequency</strong> (<code class="docutils literal"><span class="pre">int</span></code>) – The frequency to be used on the pwm channel.</li>
+<li><strong>channel</strong> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – The channel to start the pwm signal on.</li>
+<li><strong>duty_cycle</strong> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – The duty cycle use on the channel.</li>
+<li><strong>frequency</strong> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – The frequency to be used on the pwm channel.</li>
 </ul>
 </td>
 </tr>
@@ -413,7 +487,7 @@ define_as_pwm or pwm_start is used.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">bool</span></code>) – The channel that should be changed.</li>
+<li><strong>channel</strong> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – The channel that should be changed.</li>
 <li><strong>state</strong> – The state of the channel.</li>
 </ul>
 </td>
@@ -430,13 +504,18 @@ define_as_pwm or pwm_start is used.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>channels</strong> (<code class="docutils literal"><span class="pre">dict</span></code>) – A dictionary where keys are channels and values the value to set for each channel.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>channels</strong> (<code class="docutils literal notranslate"><span class="pre">dict</span></code>) – A dictionary where keys are channels and values the value to set for each channel.</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 </dd></dl>
+
+<dl class="class">
+<dt id="kervi.hal.gpio.LogicIOChannel">
+<em class="property">class </em><code class="descclassname">kervi.hal.gpio.</code><code class="descname">LogicIOChannel</code><span class="sig-paren">(</span><em>gpio_device</em>, <em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.gpio.LogicIOChannel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 
@@ -451,7 +530,7 @@ define_as_pwm or pwm_start is used.</p>
         <a href="hal_i2c_api.html" class="btn btn-neutral float-right" title="I2C API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="sensors_api.html" class="btn btn-neutral" title="Sensors API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="display_api.html" class="btn btn-neutral" title="Display api" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -482,7 +561,7 @@ define_as_pwm or pwm_start is used.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.14.0 - beta',
+            VERSION:'0.15.0 - beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -493,6 +572,7 @@ define_as_pwm or pwm_start is used.</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

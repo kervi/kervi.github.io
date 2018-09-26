@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; Kervi 0.14.0 - beta documentation</title>
+  <title>Kervi values api &mdash; Kervi 0.15.0 - beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.14.0
+                0.15.0
               </div>
             
           
@@ -84,7 +84,7 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getstarted.html#prerequisites">prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getstarted.html#install">Install</a></li>
@@ -146,11 +146,12 @@
 <li class="toctree-l2"><a class="reference internal" href="actions.html#define-actions">Define actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#actions-with-timeout">Actions with timeout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#asynchronous-action-call">Asynchronous action call</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#interupts">Interupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#interrupts">Interrupts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-dashboards">Linking to dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-values">Linking to values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#system-actions">System actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#complete-example">Complete example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#multiprocess">Multiprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#multi-process">Multi process</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
@@ -160,12 +161,13 @@
 <li class="toctree-l2"><a class="reference internal" href="motors.html#stepper-motors">Stepper motors</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="display.html">Displays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#accessing-config-values-in-code">Accessing config values in code</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="security.html#users">Users</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security.html#simple-user-management">Simple user management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="security.html#anonymous-access">Anonymous access</a></li>
 </ul>
 </li>
@@ -178,6 +180,71 @@
 <li class="toctree-l2"><a class="reference internal" href="hal.html#i2c">I2C</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal.html#spi">SPI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal.html#device-library">Device library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="devices/index.html">Device library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="devices/displays.html">Displays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#ssd1306-i2c">SSD1306(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-pcf8574">HD44780(I2C, PCF8574)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-mcp23017">HD44780(I2C, MCP23017)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780">HD44780</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/gpio.html">GPIO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23017-i2c">MCP23017(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23008-i2c">MCP23008(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf8574-pcf8574a-i2c">PCF8574, PCF8574A(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf859-i2c">PCF859(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/motors.html">Motors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/motors.html#ln298">LN298</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/pwm.html">PWM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#raspbery-pi">Raspbery pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#pca9685-i2c">PCA9685(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/sensors.html">Sensors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#temperature">Temperature</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-temp">CPU temp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#bmp085-i2c">BMP085(I2C)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#ds18b20-one-wire">DS18B20(One wire)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#pressure">Pressure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#id1">BMP085</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#orientation">Orientation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#lsm9ds0-i2c">LSM9DS0(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#light-lux">Light (lux)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#tsl2561-i2c">TSL2561(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#other">Other</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#memory">Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-load">CPU load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#disk-use">Disk use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multi_process.html">Process distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributed.html">Distributed applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#main-application">Main application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-modules">Application modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-discovery">Application discovery</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#discovery-configuration">Discovery configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#connection-without-auto-discovery">Connection without auto discovery</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
@@ -196,11 +263,13 @@
 <li class="toctree-l2"><a class="reference internal" href="contribute.html#documentation">Documentation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="kervi_api.html">Kervi API</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="kervi_api.html">Kervi API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_api.html">Camera api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controllers_api.html">Controllers api</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Kervi values api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="display_api.html">Display api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_gpio_api.html">GPIO API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_i2c_api.html">I2C API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_devices_api.html">Devices API</a></li>
@@ -254,7 +323,7 @@
         
           <li><a href="kervi_api.html">Kervi API</a> &raquo;</li>
         
-      <li>&lt;no title&gt;</li>
+      <li>Kervi values api</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -271,17 +340,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <p>:noindex
-Kervi values api
-=================================</p>
-<span class="target" id="module-kervi.values"></span><dl class="class">
+  <p>:noindex</p>
+<div class="section" id="module-kervi.values">
+<span id="kervi-values-api"></span><h1>Kervi values api<a class="headerlink" href="#module-kervi.values" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
 <dt id="kervi.values.BooleanValue">
 <em class="property">class </em><code class="descclassname">kervi.values.</code><code class="descname">BooleanValue</code><span class="sig-paren">(</span><em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.BooleanValue" title="Permalink to this definition">¶</a></dt>
 <dd><p>A value that holds a boolean.
 When linked to a dashboard it is represented as a switch button or push button.</p>
 <dl class="method">
 <dt id="kervi.values.BooleanValue.link_to_dashboard">
-<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.BooleanValue.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id=None</em>, <em>panel_id=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.BooleanValue.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
 <dd><p>Links this value to a dashboard panel.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -296,25 +365,25 @@ When linked to a dashboard it is represented as a switch button or push button.<
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
-<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Link this value to the header of the panel.</li>
-<li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</li>
-<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Label text, default value is the name of the value.</li>
-<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Flat look and feel.</li>
+<li><em>link_to_header</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Link this value to the header of the panel.</li>
+<li><em>label_icon</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</li>
+<li><em>label</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Label text, default value is the name of the value.</li>
+<li><em>flat</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – Flat look and feel.</li>
 <li><dl class="first docutils">
-<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Display value and label in its actual size</dt>
+<dt><em>inline</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – Display value and label in its actual size</dt>
 <dd>If you set inline to true the size parameter is ignored.
 The value will only occupy as much space as the label and input takes.</dd>
 </dl>
 </li>
-<li><em>input_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – width of the slider as a percentage of the total container it sits in.</li>
-<li><em>value_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – width of the value area as a percentage of the total container it sits in.</li>
-<li><em>type</em> (<code class="docutils literal"><span class="pre">string</span></code>) – if value should be displayes as a ‘switch’ (default) or ‘push’ for push button.</li>
-<li><em>on_text</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Text to display when switch is on.</li>
-<li><em>off_text</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Text to display when switch is off.</li>
-<li><em>on_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Icon to display when switch is on.</li>
-<li><em>off_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Icon to display when switch is off.</li>
-<li><em>button_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Icon to display on button.</li>
-<li><em>button_text</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Text to display on button, default is name.</li>
+<li><em>input_size</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – width of the slider as a percentage of the total container it sits in.</li>
+<li><em>value_size</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – width of the value area as a percentage of the total container it sits in.</li>
+<li><em>type</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – if value should be displayes as a ‘switch’ (default) or ‘push’ for push button.</li>
+<li><em>on_text</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Text to display when switch is on.</li>
+<li><em>off_text</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Text to display when switch is off.</li>
+<li><em>on_icon</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Icon to display when switch is on.</li>
+<li><em>off_icon</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Icon to display when switch is off.</li>
+<li><em>button_icon</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Icon to display on button.</li>
+<li><em>button_text</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Text to display on button, default is name.</li>
 </ul>
 </td>
 </tr>
@@ -325,9 +394,85 @@ The value will only occupy as much space as the label and input takes.</dd>
 </dd></dl>
 
 <dl class="class">
+<dt id="kervi.values.ColorValue">
+<em class="property">class </em><code class="descclassname">kervi.values.</code><code class="descname">ColorValue</code><span class="sig-paren">(</span><em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.ColorValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>A value that holds a rgb value.
+When linked to a dashboard it is represented as a color button.</p>
+<dl class="method">
+<dt id="kervi.values.ColorValue.link_to_dashboard">
+<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id=None</em>, <em>panel_id=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.ColorValue.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Links this value to a dashboard panel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dashboard_id</strong> (<em>str</em>) – Id of the dashboard to link to.</li>
+<li><strong>panel_id</strong> (<em>str</em>) – Id of the panel on the dashboard to link to.</li>
+<li><strong>**kwargs</strong> – Use the kwargs below to override default values for ui parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><em>link_to_header</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Link this value to the header of the panel.</li>
+<li><em>label_icon</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</li>
+<li><em>label</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Label text, default value is the name of the value.</li>
+<li><em>flat</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – Flat look and feel.</li>
+<li><dl class="first docutils">
+<dt><em>inline</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – Display value and label in its actual size</dt>
+<dd>If you set inline to true the size parameter is ignored.
+The value will only occupy as much space as the label and input takes.</dd>
+</dl>
+</li>
+<li><em>input_size</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – width of the slider as a percentage of the total container it sits in.</li>
+<li><em>value_size</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – width of the value area as a percentage of the total container it sits in.</li>
+<li><em>type</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – ‘button’ or ‘input’.</li>
+<li><em>button_icon</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Icon to display on button.</li>
+<li><em>button_text</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Text to display on button, default is name.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.values.ColorValue.rgb">
+<code class="descname">rgb</code><a class="headerlink" href="#kervi.values.ColorValue.rgb" title="Permalink to this definition">¶</a></dt>
+<dd><p>retuns the color value as rgb tuple</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.values.ColorValue.value">
+<code class="descname">value</code><a class="headerlink" href="#kervi.values.ColorValue.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current value of the component</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="kervi.values.DateTimeValue">
 <em class="property">class </em><code class="descclassname">kervi.values.</code><code class="descname">DateTimeValue</code><span class="sig-paren">(</span><em>name</em>, <em>input_type='datetime'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.DateTimeValue" title="Permalink to this definition">¶</a></dt>
 <dd><p>A value that holds a date and/or time.</p>
+<dl class="attribute">
+<dt id="kervi.values.DateTimeValue.date">
+<code class="descname">date</code><a class="headerlink" href="#kervi.values.DateTimeValue.date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current value of the component</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.values.DateTimeValue.time">
+<code class="descname">time</code><a class="headerlink" href="#kervi.values.DateTimeValue.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current value of the component</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.values.DateTimeValue.value">
+<code class="descname">value</code><a class="headerlink" href="#kervi.values.DateTimeValue.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current value of the component</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -336,7 +481,7 @@ The value will only occupy as much space as the label and input takes.</dd>
 <dd><p>A value that holds a selection of predefined values to select between.
 The value is presented as a dropdown on dashboards.</p>
 <p>Usage:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">framerate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;frame_rate&quot;</span><span class="p">,</span> <span class="s2">&quot;Frame rate&quot;</span><span class="p">,</span> <span class="n">EnumSignal</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">framerate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;frame_rate&quot;</span><span class="p">,</span> <span class="s2">&quot;Frame rate&quot;</span><span class="p">,</span> <span class="n">EnumSignal</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">framerate</span><span class="o">.</span><span class="n">addOption</span><span class="p">(</span><span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;5 / sec&quot;</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">framerate</span><span class="o">.</span><span class="n">addOption</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="s2">&quot;10 / sec&quot;</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">framerate</span><span class="o">.</span><span class="n">addOption</span><span class="p">(</span><span class="s2">&quot;15&quot;</span><span class="p">,</span> <span class="s2">&quot;15 / sec&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
@@ -373,7 +518,7 @@ If is an output it is possible to specify different kinds of gauges.</p>
 <dt id="kervi.values.NumberValue.delta">
 <code class="descname">delta</code><a class="headerlink" href="#kervi.values.NumberValue.delta" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enter how much a the value should change before it triggers changes events and updates links.
-:type: <code class="docutils literal"><span class="pre">float</span></code></p>
+:type: <code class="docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd></dl>
 
 <dl class="attribute">
@@ -384,7 +529,7 @@ If is an output it is possible to specify different kinds of gauges.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">str</span></code></td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">str</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -392,7 +537,7 @@ If is an output it is possible to specify different kinds of gauges.</p>
 
 <dl class="method">
 <dt id="kervi.values.NumberValue.link_to_dashboard">
-<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.NumberValue.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id=None</em>, <em>panel_id=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.NumberValue.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
 <dd><p>Links this value to a dashboard panel.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -407,31 +552,31 @@ If is an output it is possible to specify different kinds of gauges.</p>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
-<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Link this value to the header of the panel.</li>
-<li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</li>
-<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Label text, default value is the name of the value.</li>
-<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Flat look and feel.</li>
+<li><em>link_to_header</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Link this value to the header of the panel.</li>
+<li><em>label_icon</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</li>
+<li><em>label</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Label text, default value is the name of the value.</li>
+<li><em>flat</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – Flat look and feel.</li>
 <li><dl class="first docutils">
-<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Display value and label in its actual size</dt>
+<dt><em>inline</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – Display value and label in its actual size</dt>
 <dd>The value will only occupy as much space as the label and input takes.</dd>
 </dl>
 </li>
-<li><em>input_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – width of the slider as a percentage of the total container it sits in.</li>
-<li><em>value_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – width of the value area as a percentage of the total container it sits in.</li>
+<li><em>input_size</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – width of the slider as a percentage of the total container it sits in.</li>
+<li><em>value_size</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – width of the value area as a percentage of the total container it sits in.</li>
 <li><dl class="first docutils">
-<dt><em>type</em> (<code class="docutils literal"><span class="pre">string</span></code>) – How to display the value on the panel. The possible display type values depends on the value type being input or output</dt>
+<dt><em>type</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – How to display the value on the panel. The possible display type values depends on the value type being input or output</dt>
 <dd>Input: ‘horizontal_slider’ (default) or ‘vertical_slider’. 
 Output: ‘value’ (default), ‘chart’, ‘radial_gauge’, ‘horizontal_gauge’, ‘vertical_gauge’</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><em>chart_buttons</em> (<code class="docutils literal"><span class="pre">bool</span> <span class="pre">/</span> <span class="pre">str</span></code>) – False no chart buttons are shown. </dt>
+<dt><em>chart_buttons</em> (<code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">/</span> <span class="pre">str</span></code>) – False no chart buttons are shown. </dt>
 <dd>True chart buttons are shown at the bottom.
 “top” the chart buttons are shown above the chart.</dd>
 </dl>
 </li>
-<li><em>chart_grid</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – If true the value grid is displayed.</li>
-<li><em>chart_interval</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Initial time interval displayed.</li>
+<li><em>chart_grid</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – If true the value grid is displayed.</li>
+<li><em>chart_interval</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Initial time interval displayed.</li>
 </ul>
 <p class="last">possible values are “5min”, “15min”, “30min”, “hour” (default), “day”, “week”, “month”, “year”</p>
 </td>
@@ -448,7 +593,7 @@ Output: ‘value’ (default), ‘chart’, ‘radial_gauge’, ‘horizontal_ga
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">float</span></code></td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">float</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -462,7 +607,7 @@ Output: ‘value’ (default), ‘chart’, ‘radial_gauge’, ‘horizontal_ga
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">float</span></code></td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">float</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -476,7 +621,7 @@ Output: ‘value’ (default), ‘chart’, ‘radial_gauge’, ‘horizontal_ga
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">str</span></code></td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">str</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -490,7 +635,7 @@ Output: ‘value’ (default), ‘chart’, ‘radial_gauge’, ‘horizontal_ga
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">str</span></code></td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">str</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -504,7 +649,7 @@ Output: ‘value’ (default), ‘chart’, ‘radial_gauge’, ‘horizontal_ga
 <dd><p>Value that holds a string.</p>
 <dl class="method">
 <dt id="kervi.values.StringValue.link_to_dashboard">
-<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>section_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.StringValue.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id=None</em>, <em>panel_id=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.values.StringValue.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
 <dd><p>Links this value to a dashboard panel.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -519,17 +664,17 @@ Output: ‘value’ (default), ‘chart’, ‘radial_gauge’, ‘horizontal_ga
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
-<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Link this value to the header of the panel.</li>
-<li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</li>
-<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Label text, default value is the name of the value.</li>
-<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Flat look and feel.</li>
+<li><em>link_to_header</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Link this value to the header of the panel.</li>
+<li><em>label_icon</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</li>
+<li><em>label</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Label text, default value is the name of the value.</li>
+<li><em>flat</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – Flat look and feel.</li>
 <li><dl class="first docutils">
-<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Display value and label in its actual size</dt>
+<dt><em>inline</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – Display value and label in its actual size</dt>
 <dd>The value will only occupy as much space as the label and input takes.</dd>
 </dl>
 </li>
-<li><em>input_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – width of the slider as a percentage of the total container it sits in.</li>
-<li><em>value_size</em> (<code class="docutils literal"><span class="pre">int</span></code>) – width of the value area as a percentage of the total container it sits in.</li>
+<li><em>input_size</em> (<code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">str</span></code>) – Width of the input field. Use px, % or rem as unit.</li>
+<li><em>value_size</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – width of the value area as a percentage of the total container it sits in.</li>
 </ul>
 </td>
 </tr>
@@ -539,6 +684,7 @@ Output: ‘value’ (default), ‘chart’, ‘radial_gauge’, ‘horizontal_ga
 
 </dd></dl>
 
+</div>
 
 
            </div>
@@ -582,7 +728,7 @@ Output: ‘value’ (default), ‘chart’, ‘radial_gauge’, ‘horizontal_ga
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.14.0 - beta',
+            VERSION:'0.15.0 - beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -593,6 +739,7 @@ Output: ‘value’ (default), ‘chart’, ‘radial_gauge’, ‘horizontal_ga
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

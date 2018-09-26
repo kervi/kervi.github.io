@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Security &mdash; Kervi 0.14.0 - beta documentation</title>
+  <title>Security &mdash; Kervi 0.15.0 - beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.14.0
+                0.15.0
               </div>
             
           
@@ -146,11 +146,12 @@
 <li class="toctree-l2"><a class="reference internal" href="actions.html#define-actions">Define actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#actions-with-timeout">Actions with timeout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#asynchronous-action-call">Asynchronous action call</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#interupts">Interupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#interrupts">Interrupts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-dashboards">Linking to dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-values">Linking to values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#system-actions">System actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#complete-example">Complete example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#multiprocess">Multiprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#multi-process">Multi process</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
@@ -160,12 +161,13 @@
 <li class="toctree-l2"><a class="reference internal" href="motors.html#stepper-motors">Stepper motors</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="display.html">Displays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#accessing-config-values-in-code">Accessing config values in code</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Security</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#users">Users</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#simple-user-management">Simple user management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#anonymous-access">Anonymous access</a></li>
 </ul>
 </li>
@@ -178,6 +180,71 @@
 <li class="toctree-l2"><a class="reference internal" href="hal.html#i2c">I2C</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal.html#spi">SPI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal.html#device-library">Device library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="devices/index.html">Device library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="devices/displays.html">Displays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#ssd1306-i2c">SSD1306(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-pcf8574">HD44780(I2C, PCF8574)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-mcp23017">HD44780(I2C, MCP23017)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780">HD44780</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/gpio.html">GPIO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23017-i2c">MCP23017(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23008-i2c">MCP23008(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf8574-pcf8574a-i2c">PCF8574, PCF8574A(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf859-i2c">PCF859(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/motors.html">Motors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/motors.html#ln298">LN298</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/pwm.html">PWM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#raspbery-pi">Raspbery pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#pca9685-i2c">PCA9685(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/sensors.html">Sensors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#temperature">Temperature</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-temp">CPU temp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#bmp085-i2c">BMP085(I2C)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#ds18b20-one-wire">DS18B20(One wire)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#pressure">Pressure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#id1">BMP085</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#orientation">Orientation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#lsm9ds0-i2c">LSM9DS0(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#light-lux">Light (lux)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#tsl2561-i2c">TSL2561(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#other">Other</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#memory">Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-load">CPU load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#disk-use">Disk use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multi_process.html">Process distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributed.html">Distributed applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#main-application">Main application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-modules">Application modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-discovery">Application discovery</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#discovery-configuration">Discovery configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#connection-without-auto-discovery">Connection without auto discovery</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
@@ -200,7 +267,9 @@
 <li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_api.html">Camera api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controllers_api.html">Controllers api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values_api.html">Kervi values api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="display_api.html">Display api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_gpio_api.html">GPIO API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_i2c_api.html">I2C API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_devices_api.html">Devices API</a></li>
@@ -271,41 +340,56 @@
             
   <div class="section" id="security">
 <h1>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h1>
-<div class="topic">
-<p class="topic-title first">Notice</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
 <p>The security features of the Kervi framework has not been reviewed by any external experts and
 use is at own risk.</p>
 <p>Exposing your Kervi application directly on the internet by routing traffic from internet router to the Kervi web server
-is strongly adviced against at the moment.</p>
-<p>At this moment of development passwords and user names are send in clear text between browser and Kervi web server
-unless you enable TLS encryption.</p>
+is strongly advised against at the moment.</p>
+<p class="last">At this moment of development passwords and user names are sent in clear text between browser and Kervi web server
+unless you enable TLS encryption (see below).</p>
 </div>
 <p>It is possible to secure your Kervi application with user authentication and encrypted communication between browser
 and the kervi web server.</p>
-<div class="section" id="users">
-<h2>Users<a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
-<p>When a kervi application starts it looks for at file named users.py with the following format:</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;tim&quot;</span><span class="p">:{</span>
-        <span class="s2">&quot;password&quot;</span><span class="p">:</span><span class="s2">&quot;1234&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;groups&quot;</span><span class="p">:[</span><span class="s2">&quot;admin&quot;</span><span class="p">,</span> <span class="s2">&quot;group1&quot;</span><span class="p">]</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;test&quot;</span><span class="p">:{</span>
-        <span class="s2">&quot;password&quot;</span><span class="p">:</span><span class="s2">&quot;4321&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;groups&quot;</span><span class="p">:[</span><span class="s2">&quot;group2&quot;</span><span class="p">]</span>
+<p>User access in the ui is controlled via <a class="reference internal" href="configuration.html#configuration"><span class="std std-ref">Kervi configuration</span></a> in the plugins/authentication section</p>
+<div class="section" id="simple-user-management">
+<h2>Simple user management<a class="headerlink" href="#simple-user-management" title="Permalink to this headline">¶</a></h2>
+<p>Kervi comes with a simple authentication plugin where users are defined in config.
+You enable this plugin by setting kervi.plugin.authentication.plain to true.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;plugins&quot;</span><span class="p">:{</span>
+    <span class="s2">&quot;authentication&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;kervi.plugin.authentication.plain&quot;</span><span class="p">:</span> <span class="kc">True</span>
     <span class="p">}</span>
-<span class="p">}</span>
 </pre></div>
 </div>
-<p>As seen above each user is defined whit the user name as key in the settings dictionary and
+<p>This plugin looks for uses in the plain_users section.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;plain_users&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;anonymous&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;groups&quot;</span><span class="p">:[]</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;admin&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;password&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;groups&quot;</span><span class="p">:[</span><span class="s2">&quot;admin&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Administrator&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;addresses&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;admin@example.com&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;phone&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>As seen above each user is defined whit the user name as key in the configuration section and
 the password and groups as parameters for each user.</p>
-<p>You can use the groups in your python code to define who has access to panels and dynamcic values.</p>
-<p>I the snippet below the cpu sensor is only visible for users who belongs to the admin group</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">CPU_SENSOR</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;CPULoadSensor&quot;</span><span class="p">,</span><span class="s2">&quot;CPU&quot;</span><span class="p">,</span> <span class="n">CPULoadSensorDeviceDriver</span><span class="p">(),</span> <span class="n">user_groups</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;admin&quot;</span><span class="p">])</span>
+<p>You can use the groups in your python code to define who has access to dashboards, panels and sensors.</p>
+<p>In the snippet below the cpu sensor is only visible to users who belong to the admin group</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CPU_SENSOR</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;CPULoadSensor&quot;</span><span class="p">,</span><span class="s2">&quot;CPU&quot;</span><span class="p">,</span> <span class="n">CPULoadSensorDeviceDriver</span><span class="p">(),</span> <span class="n">user_groups</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;admin&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>In the same way dashboards and panels may be restricted to certain groups as shown below.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">Dashboard</span><span class="p">(</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Dashboard</span><span class="p">(</span>
     <span class="s2">&quot;system&quot;</span><span class="p">,</span>
     <span class="s2">&quot;System&quot;</span><span class="p">,</span>
     <span class="p">[</span>
@@ -315,20 +399,27 @@ the password and groups as parameters for each user.</p>
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>In the snippet above users that is member of the groups admins or users have access to the system dashboard
-but it is only members in the admins groups that can see the power panel.</p>
+<p>In the snippet above users that is member of the groups <em>admins</em> or <em>users</em> have access to the system dashboard
+but it is only members in the <em>admins</em> groups that can see the power panel.</p>
 <div class="section" id="anonymous-access">
 <h3>Anonymous access<a class="headerlink" href="#anonymous-access" title="Permalink to this headline">¶</a></h3>
-<p>If no anonymous user is defined in the users.py file the web user will be prompted with a log in screen when accessing the UI.
-To enable anonymous access a the anonymous user to the users.py file</p>
+<p>Anonymous access is controlled via the anonymous user in the plain_users configuration section.</p>
 <blockquote>
-<div></div></blockquote>
-<p>Now the web ui will try to login as anonymous user when the users go to the UI web page.
+<div><div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;plain_users&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;anonymous&quot;</span><span class="p">:{</span>
+        <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>The web user will be prompted with a login screen when accessing the UI if anonymous access is disabled.
+If anonymous access is enabled the web ui will try to login as anonymous user when the users go to the UI web page.
 All components that does not have the property user_groups set will be visible to the anonymous user.
-In addition components that belongs to any user groups specified for the anonymous user will be visible too.</p>
-<div class="topic">
-<p class="topic-title first">Notice</p>
-<p>Authentication only apply to the web users.
+In addition, components that belongs to any user groups specified for the anonymous user will be visible too.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Authentication only apply to the web users.
 Internal communication in the kervi applications python code is not affected by user authentication.
 All components can query and command each other plus receive events.</p>
 </div>
@@ -337,12 +428,12 @@ All components can query and command each other plus receive events.</p>
 <div class="section" id="encryption">
 <h2>Encryption<a class="headerlink" href="#encryption" title="Permalink to this headline">¶</a></h2>
 <p>To encrypt communication between browser and Kervi web server a certificate is needed.
-The Kervi web server looks for the file encryption.py upon start up.
-If the file is present the settings in file is used to secure the communication between browser and kervi server.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">settings</span><span class="o">=</span><span class="p">{</span>
-    <span class="s2">&quot;useSSL&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="c1"># enables or disables encryption</span>
-    <span class="s2">&quot;certFile&quot;</span><span class="p">:</span> <span class="s2">&quot;kervi.cert&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;keyFile&quot;</span><span class="p">:</span> <span class="s2">&quot;kervi.key&quot;</span>
+Encryption is enabled via <a class="reference internal" href="configuration.html#configuration"><span class="std std-ref">Kervi configuration</span></a> in the encryption section.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;encryption&quot;</span><span class="p">:{</span>
+    <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s2">&quot;use_ssl&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;cert_file&quot;</span><span class="p">:</span> <span class="s2">&quot;path to cert file&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;key_file&quot;</span><span class="p">:</span>  <span class="s2">&quot;path to key file&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -391,7 +482,7 @@ If the file is present the settings in file is used to secure the communication 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.14.0 - beta',
+            VERSION:'0.15.0 - beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -402,6 +493,7 @@ If the file is present the settings in file is used to secure the communication 
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Contribute &mdash; Kervi 0.14.0 - beta documentation</title>
+  <title>Contribute &mdash; Kervi 0.15.0 - beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.14.0
+                0.15.0
               </div>
             
           
@@ -146,11 +146,12 @@
 <li class="toctree-l2"><a class="reference internal" href="actions.html#define-actions">Define actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#actions-with-timeout">Actions with timeout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#asynchronous-action-call">Asynchronous action call</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#interupts">Interupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#interrupts">Interrupts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-dashboards">Linking to dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-values">Linking to values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#system-actions">System actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="actions.html#complete-example">Complete example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actions.html#multiprocess">Multiprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#multi-process">Multi process</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
@@ -160,12 +161,13 @@
 <li class="toctree-l2"><a class="reference internal" href="motors.html#stepper-motors">Stepper motors</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="display.html">Displays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#accessing-config-values-in-code">Accessing config values in code</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="security.html#users">Users</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security.html#simple-user-management">Simple user management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="security.html#anonymous-access">Anonymous access</a></li>
 </ul>
 </li>
@@ -178,6 +180,71 @@
 <li class="toctree-l2"><a class="reference internal" href="hal.html#i2c">I2C</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal.html#spi">SPI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal.html#device-library">Device library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="devices/index.html">Device library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="devices/displays.html">Displays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#ssd1306-i2c">SSD1306(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-pcf8574">HD44780(I2C, PCF8574)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780-i2c-mcp23017">HD44780(I2C, MCP23017)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/displays.html#hd44780">HD44780</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/gpio.html">GPIO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23017-i2c">MCP23017(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#mcp23008-i2c">MCP23008(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf8574-pcf8574a-i2c">PCF8574, PCF8574A(I2C)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/gpio.html#pcf859-i2c">PCF859(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/motors.html">Motors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/motors.html#ln298">LN298</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/pwm.html">PWM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#raspbery-pi">Raspbery pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices/pwm.html#pca9685-i2c">PCA9685(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devices/sensors.html">Sensors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#temperature">Temperature</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-temp">CPU temp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#bmp085-i2c">BMP085(I2C)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#ds18b20-one-wire">DS18B20(One wire)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#pressure">Pressure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#id1">BMP085</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#orientation">Orientation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#lsm9ds0-i2c">LSM9DS0(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#light-lux">Light (lux)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#tsl2561-i2c">TSL2561(I2C)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices/sensors.html#other">Other</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#memory">Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#cpu-load">CPU load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devices/sensors.html#disk-use">Disk use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multi_process.html">Process distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributed.html">Distributed applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#main-application">Main application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-modules">Application modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed.html#application-discovery">Application discovery</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#discovery-configuration">Discovery configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="distributed.html#connection-without-auto-discovery">Connection without auto discovery</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
@@ -200,7 +267,9 @@
 <li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_api.html">Camera api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controllers_api.html">Controllers api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values_api.html">Kervi values api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="display_api.html">Display api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_gpio_api.html">GPIO API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_i2c_api.html">I2C API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hal_devices_api.html">Devices API</a></li>
@@ -275,7 +344,7 @@
 Most of the project are clean python projects except from the web interface project that is implemented as an Angular 4 application.</p>
 <div class="section" id="development-enviroment">
 <h2>Development enviroment<a class="headerlink" href="#development-enviroment" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://git-scm.com/downloads">GIT</a> is used to handle all soruce code via github.com.
+<p><a class="reference external" href="https://git-scm.com/downloads">GIT</a> is used to handle all source code via github.com.
 If you want to paticipate install GIT and create an account on github.com</p>
 <p><a class="reference external" href="https://code.visualstudio.com/download">Visual Studio Code</a> is used for all projects and VS code settings for each project are stored in the github projects.
 For python programming the VS Code Python extension by Don Jayamanne is used for lintning and debuggin.</p>
@@ -313,7 +382,7 @@ For python programming the VS Code Python extension by Don Jayamanne is used for
 <div class="section" id="kervi-core">
 <h3>Kervi core<a class="headerlink" href="#kervi-core" title="Permalink to this headline">¶</a></h3>
 <p>The core part of the framework:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kervi</span><span class="o">/</span><span class="n">kervi</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kervi</span><span class="o">/</span><span class="n">kervi</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
 </div>
@@ -322,7 +391,7 @@ For python programming the VS Code Python extension by Don Jayamanne is used for
 <p>There is a project for each supported platform.
 A platform driver exposes the platforms hardware like gpio, i2c, cameras.
 For hardware platforms that are not supported a generic driver is used.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kervi</span><span class="o">/</span><span class="n">kervi</span><span class="o">-</span><span class="n">hal</span><span class="o">-</span><span class="n">rpi</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kervi</span><span class="o">/</span><span class="n">kervi</span><span class="o">-</span><span class="n">hal</span><span class="o">-</span><span class="n">rpi</span><span class="o">.</span><span class="n">git</span>
 
 <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kervi</span><span class="o">/</span><span class="n">kervi</span><span class="o">-</span><span class="n">hal</span><span class="o">-</span><span class="n">generic</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
@@ -331,33 +400,33 @@ For hardware platforms that are not supported a generic driver is used.</p>
 <div class="section" id="kervi-device-library">
 <h3>Kervi device library<a class="headerlink" href="#kervi-device-library" title="Permalink to this headline">¶</a></h3>
 <p>This project holds drivers for specific hardware and dummy drivers for test.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kervi</span><span class="o">/</span><span class="n">kervi</span><span class="o">-</span><span class="n">devices</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kervi</span><span class="o">/</span><span class="n">kervi</span><span class="o">-</span><span class="n">devices</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="kervi-ui-web-dashboards">
 <h3>Kervi UI (Web dashboards)<a class="headerlink" href="#kervi-ui-web-dashboards" title="Permalink to this headline">¶</a></h3>
 <p>This project contains the python kervi web server and Angular dashboard application.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kervi</span><span class="o">/</span><span class="n">kervi</span><span class="o">-</span><span class="n">ui</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kervi</span><span class="o">/</span><span class="n">kervi</span><span class="o">-</span><span class="n">ui</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
 <p>The angular project is located in kervi_ui/web and is a Angular 4+ application.
 You have to update the npm packages in the web folder by calling:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">update</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">update</span>
 </pre></div>
 </div>
 <p>Next you have to install the angular cli tool:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="nd">@angular</span><span class="o">/</span><span class="n">cli</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="nd">@angular</span><span class="o">/</span><span class="n">cli</span>
 </pre></div>
 </div>
 <p>You should now be ready to start web ui development enviroment via:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ng</span> <span class="n">serve</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ng</span> <span class="n">serve</span>
 </pre></div>
 </div>
 <p>This starts a web server that runs the Kervi angular app directly from source.</p>
 <p>The development version listen on local host and you need to set that address in your kervi app settings.
 Below is a sample app settings that show how to set the settings IPAddress and IPRootAddress to localhost.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
 <span class="kn">import</span> <span class="nn">kervi.utility.nethelper</span> <span class="k">as</span> <span class="nn">nethelper</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -371,7 +440,7 @@ Below is a sample app settings that show how to set the settings IPAddress and I
 </pre></div>
 </div>
 <p>If you want to test your changes in the Kervi web server you need to build the ui app via.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ng</span> <span class="n">build</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ng</span> <span class="n">build</span>
 </pre></div>
 </div>
 <p>Go to the web address that is displayed when the kervi app is started.</p>
@@ -381,7 +450,7 @@ Below is a sample app settings that show how to set the settings IPAddress and I
 <h2>Install packages<a class="headerlink" href="#install-packages" title="Permalink to this headline">¶</a></h2>
 <p>The cloned git projects above should be installed as python development packages.
 Execute the commands below the order is important:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">./</span><span class="n">kervi</span><span class="o">-</span><span class="n">devices</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">./</span><span class="n">kervi</span><span class="o">-</span><span class="n">devices</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">./</span><span class="n">kervi</span><span class="o">-</span><span class="n">ui</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">./</span><span class="n">kervi</span><span class="o">-</span><span class="n">hal</span><span class="o">-</span><span class="n">generic</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">./</span><span class="n">kervi</span><span class="o">-</span><span class="n">cli</span>
@@ -394,12 +463,12 @@ Execute the commands below the order is important:</p>
 <p>If you want to help with the documentation you need to clone the kervi project (see above).
 Source files for the documentation are located in the _doc folder as a sphinx project.</p>
 <p>Run these commands to install sphinx</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx_rtd_theme</span>
 </pre></div>
 </div>
 <p>Run the command below in the _doc folder:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
 </pre></div>
 </div>
 <p>This will create a kervi-doc folder at the same level as the kervi project.
@@ -450,7 +519,7 @@ Open kervi-doc/html/index.html in a browser and you should see the finished docu
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.14.0 - beta',
+            VERSION:'0.15.0 - beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -461,6 +530,7 @@ Open kervi-doc/html/index.html in a browser and you should see the finished docu
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

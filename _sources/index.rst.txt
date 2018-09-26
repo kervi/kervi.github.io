@@ -16,7 +16,7 @@ Features of the framework are:
 * Easy dashboard setup.
 * Dashboard UI is responsive and scales from mobile phones to desktop.
 * Multi process oriented by spreading over more than one core.
-* Multi device oriented by connecting multiple Raspberry Pi's in one large application 
+* Multi device oriented by connecting multiple Raspberry Pi's in one large application. 
 * No web development knowledge is required as dashboard layout is handled in python. 
 
 Below is a complete example that shows how to display a sensor on a dashboard with a chart
@@ -42,13 +42,13 @@ Below is a complete example that shows how to display a sensor on a dashboard wi
         from kervi_devices.platforms.common.sensors.cpu_use import CPULoadSensorDeviceDriver
         
         cpu_sensor = Sensor("CPULoadSensor","CPU", CPULoadSensorDeviceDriver())
-        cpu_sensor.link_to_dashboard("system", "sensors", type="value", link_to_header=True)
-        cpu_sensor.link_to_dashboard("system", "sensors", type="chart")
+        cpu_sensor.link_to_dashboard("system", "sensors" type="value", link_to_header=True)
+        cpu_sensor.link_to_dashboard("system", "sensors",type="chart")
 
         APP.run()
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :includehidden:
    :caption: Contents:
    :hidden:
@@ -62,9 +62,13 @@ Below is a complete example that shows how to display a sensor on a dashboard wi
    actions
    camera
    motors
+   display
    configuration
    security
    hal
+   devices/index
+   multi_process
+   distributed
    ipc
    cli
    contribute
