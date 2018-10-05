@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Actions &mdash; Kervi 0.15.0 - beta documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Controllers" href="controllers.html" />
+    <link rel="prev" title="Sensors" href="sensors.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Kervi
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.15.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Get started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hello_world.html">Hello world</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html">Sensors</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="camera.html">Camera (Raspberry Pi)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bigpicture.html">The big picture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dashboards.html">Dashboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sensors.html">Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signals.html">Signal handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../camera.html">Camera and video</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motors.html">Motors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../display.html">Displays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hal.html">Hardware and devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devices/index.html">Device library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multi_process.html">Process distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributed.html">Distributed applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../messaging.html">Messaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../service.html">Run as service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">Commandline tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ipc.html">Interprocess communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contribute.html">Contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kervi_api.html">Kervi API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kervi</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Get started</a> &raquo;</li>
+        
+      <li>Actions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="actions">
+<h1>Actions<a class="headerlink" href="#actions" title="Permalink to this headline">¶</a></h1>
+<p>Kervi actions are used when you want to react to sensors, gpio ports and other kinds of input.
+You create an action by decorating a function with the &#64;action decorator.</p>
+<p>The code below defines two actions one that is linked to a sensor
+and one that is linked to the web ui.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">python</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
+
+    <span class="n">app</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
+
+    <span class="c1">#create sensor</span>
+    <span class="kn">from</span> <span class="nn">kervi.sensors.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
+    <span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.sensors.cpu_use</span> <span class="kn">import</span> <span class="n">CPULoadSensorDeviceDriver</span>
+
+    <span class="c1">#link to dashboard</span>
+    <span class="n">cpu_load_sensor</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="s2">&quot;header_right&quot;</span><span class="p">)</span>
+    <span class="n">cpu_load_sensor</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">show_sparkline</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">link_to_header</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">cpu_load_sensor</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;chart&quot;</span><span class="p">)</span>
+
+    <span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="kn">import</span> <span class="n">action</span>
+
+    <span class="c1">#create an action that listen to a sensor</span>
+    <span class="nd">@action</span>
+    <span class="k">def</span> <span class="nf">my_sensor_action</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;My sensor action called&quot;</span><span class="p">)</span>
+
+    <span class="c1">#link action to sensor</span>
+    <span class="c1">#trigger action when sensor value is greater than 25%</span>
+    <span class="n">my_sensor</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">cpu_load_sensor</span><span class="p">,</span> <span class="n">trigger_value</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">25</span><span class="p">)</span>
+
+
+    <span class="c1">#create an action that is linked to the ui.</span>
+    <span class="nd">@action</span>
+    <span class="k">def</span> <span class="nf">my_ui_action</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;my ui action called&quot;</span><span class="p">)</span>
+
+    <span class="n">my_ui_action</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">()</span>
+
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>When you run the code above you should see output in the terminal window when the actions are executed.</p>
+<p>When you run your kervi script on an Raspberry Pi it is possible to link an action to gpio.
+Connect a switch to GPIO 12 on the Raspberry Pi and run the script below.
+Each time the switch is pressed the my_gpio_action is called and the action text is printed in the terminal window.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">python</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
+
+    <span class="n">app</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
+
+    <span class="kn">from</span> <span class="nn">kervi.hal</span> <span class="kn">import</span> <span class="n">GPIO</span>
+    <span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO12&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">define_as_input</span><span class="p">()</span>
+
+    <span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="kn">import</span> <span class="n">action</span>
+
+    <span class="nd">@action</span>
+    <span class="k">def</span> <span class="nf">my_gpio_action</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;my gpio action called&quot;</span><span class="p">)</span>
+
+    <span class="n">my_gpio_action</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO12&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Read more about all the possibilities with actions <a class="reference internal" href="../actions.html#actions"><span class="std std-ref">here</span></a>.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="controllers.html" class="btn btn-neutral float-right" title="Controllers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sensors.html" class="btn btn-neutral" title="Sensors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tim Wentzlau.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.15.0 - beta',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
