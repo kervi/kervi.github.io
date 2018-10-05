@@ -19,16 +19,6 @@ Create a python file my_app.py with the content below.
 
 When you run the python script in a terminal you should see the following output. 
 
-.. sidebar:: Sidebar Title
-   :subtitle: Optional Subtitle
-
-   This is a sidebar.  It is for text outside the flow of the main
-   text.
-
-   .. rubric:: This is a rubric inside a sidebar
-
-   Sidebars often appears beside the main text with a border and
-   background color.
 
 ::
 
