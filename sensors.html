@@ -109,8 +109,8 @@
 <li class="toctree-l1"><a class="reference internal" href="service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Interprocess communication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kervi_api.html">Kervi API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
 
             
@@ -180,7 +180,7 @@
 <h2>Kervi Device library<a class="headerlink" href="#kervi-device-library" title="Permalink to this headline">¶</a></h2>
 <p>A part of the Kervi framework is the device library that holds drivers for common devices.
 To use a device from the library you need to import the device module and apply the driver to a sensor class.</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.sensors.sensor</span> <span class="k">import</span> <span class="n">Sensor</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.sensors</span> <span class="k">import</span> <span class="n">Sensor</span>
 <span class="kn">from</span> <span class="nn">kervi.devices.sensors</span> <span class="k">import</span> <span class="n">BMP085</span>
 <span class="n">SENSOR_1</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;roomtemp1&quot;</span><span class="p">,</span> <span class="s2">&quot;Room 1&quot;</span><span class="p">,</span> <span class="n">BMP085</span><span class="o">.</span><span class="n">BMP085DeviceDriver</span><span class="p">(</span><span class="n">BMP085</span><span class="o">.</span><span class="n">TEMPERATURE_SENSOR</span><span class="p">))</span>
 </pre></div>

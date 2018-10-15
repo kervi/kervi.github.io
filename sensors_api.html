@@ -104,7 +104,6 @@
 <li class="toctree-l1"><a class="reference internal" href="service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Interprocess communication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="kervi_api.html">Kervi API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_api.html">Camera api</a></li>
@@ -117,6 +116,7 @@
 <li class="toctree-l2"><a class="reference internal" href="hal_devices_api.html">Devices API</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
 
             
@@ -189,10 +189,10 @@ The second part is the Sensor class that reads a sensor device and triggers even
 <dl class="class">
 <dt id="kervi.sensors.sensor.Sensor">
 <em class="property">class </em><code class="descclassname">kervi.sensors.sensor.</code><code class="descname">Sensor</code><span class="sig-paren">(</span><em>sensor_id</em>, <em>name</em>, <em>device=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.sensors.sensor.Sensor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sensor is a class that exposes a sensor device as a dynamic value.
+<dd><p>Sensor is a class that exposes a sensor device as a KerviValue.
 The Sensor class polls the associated sensor device and updates it self when
 the value of the sensor device change.</p>
-<p>All the possibilities for linking to other dynamic values and dashboards are inherited from NumberValue.</p>
+<p>It is possible to link to other KerviValues and dashboards.</p>
 <p>Some sensor devices are multi dimensional and each dimension are reached by a numeric index of the sensor it self.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -342,13 +342,6 @@ for the last reading to be used in sparklines and real time charts.</p>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="kervi.sensors.sensor.Sensor.persist_value">
-<code class="descname">persist_value</code><a class="headerlink" href="#kervi.sensors.sensor.Sensor.persist_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set to true if the current value should be saved to db when the Kervi application or module exits.
-The value will be restored upon application or module start.</p>
 </dd></dl>
 
 <dl class="attribute">

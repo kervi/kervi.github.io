@@ -112,8 +112,8 @@
 <li class="toctree-l1"><a class="reference internal" href="service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Interprocess communication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kervi_api.html">Kervi API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
 
             
@@ -187,7 +187,7 @@ The user log is accessible in the UI and error and warning messages are shown as
 <div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.sensors.sensor</span> <span class="k">import</span> <span class="n">Sensor</span>
+<span class="kn">from</span> <span class="nn">kervi.sensors</span> <span class="k">import</span> <span class="n">Sensor</span>
 <span class="kn">from</span> <span class="nn">kervi.devices.sensors.dummy_sensor</span> <span class="k">import</span> <span class="n">DummySensorDeviceDriver</span>
 
 <span class="n">sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;sensor&quot;</span><span class="p">,</span><span class="s2">&quot;CPU&quot;</span><span class="p">,</span> <span class="n">DummySensorDeviceDriver</span><span class="p">())</span>

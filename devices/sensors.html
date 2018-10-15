@@ -141,8 +141,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ipc.html">Interprocess communication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contribute.html">Contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../kervi_api.html">Kervi API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contribute.html">Contribute</a></li>
 </ul>
 
             
@@ -355,7 +355,7 @@
 <div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.sensors.sensor</span> <span class="k">import</span> <span class="n">Sensor</span>
+<span class="kn">from</span> <span class="nn">kervi.sensors</span> <span class="k">import</span> <span class="n">Sensor</span>
 <span class="kn">from</span> <span class="nn">kervi.devices.sensors.CW2015</span> <span class="k">import</span> <span class="n">CW2015VoltageDeviceDriver</span><span class="p">,</span> <span class="n">CW2015CapacityDeviceDriver</span>
 
 <span class="n">sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;CW2015_voltage&quot;</span><span class="p">,</span> <span class="s2">&quot;CW2015 voltage&quot;</span><span class="p">,</span> <span class="n">CW2015VoltageDeviceDriver</span><span class="p">())</span>

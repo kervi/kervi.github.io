@@ -252,8 +252,8 @@ max speed when the temperature is 80 degrees.</p>
       <span class="n">app</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
       <span class="c1">#create sensors</span>
-      <span class="kn">from</span> <span class="nn">kervi.sensors.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
-      <span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.sensors.cpu_temp</span> <span class="kn">import</span> <span class="n">CPUTempSensorDeviceDriver</span>
+      <span class="kn">from</span> <span class="nn">kervi.sensors</span> <span class="kn">import</span> <span class="n">Sensor</span>
+      <span class="kn">from</span> <span class="nn">kervi.devices.sensors.system</span> <span class="kn">import</span> <span class="n">CPUTempSensorDeviceDriver</span>
 
       <span class="c1">#create a senors that uses CPU temp device driver</span>
       <span class="n">cpu_temp_sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;CPUTempSensor&quot;</span><span class="p">,</span><span class="s2">&quot;CPU temp&quot;</span><span class="p">,</span> <span class="n">CPUTempSensorDeviceDriver</span><span class="p">())</span>
@@ -263,7 +263,7 @@ max speed when the temperature is 80 degrees.</p>
       <span class="n">cpu_temp_sensor</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;chart&quot;</span><span class="p">)</span>
 
       <span class="c1">#define a controller</span>
-      <span class="kn">from</span> <span class="nn">kervi.controllers.controller</span> <span class="kn">import</span> <span class="n">Controller</span>
+      <span class="kn">from</span> <span class="nn">kervi.controllers</span> <span class="kn">import</span> <span class="n">Controller</span>
       <span class="kn">from</span> <span class="nn">kervi.values</span> <span class="kn">import</span> <span class="n">NumberValue</span>
 
       <span class="k">class</span> <span class="nc">FanController</span><span class="p">(</span><span class="n">Controller</span><span class="p">):</span>
@@ -307,6 +307,7 @@ max speed when the temperature is 80 degrees.</p>
       <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
+<p>Run the script and you should see something like this.</p>
 <img alt="../_images/fan_controller.png" src="../_images/fan_controller.png" />
 <p>Read more about all the possibilities with controllers <a class="reference internal" href="../controllers.html#controllers"><span class="std std-ref">here</span></a>.</p>
 </div>

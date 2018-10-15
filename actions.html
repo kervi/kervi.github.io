@@ -115,8 +115,8 @@
 <li class="toctree-l1"><a class="reference internal" href="service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Interprocess communication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kervi_api.html">Kervi API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
 
             
@@ -215,7 +215,7 @@ is a kervi multiprocess/multi device application and/or uses kervi modules.</p>
 </pre></div>
 </div>
 <p>You may also decorate methods in kervi controllers:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.controllers.controller</span> <span class="k">import</span> <span class="n">controller</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.controllers</span> <span class="k">import</span> <span class="n">controller</span>
 <span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="k">import</span> <span class="n">action</span>
 
 <span class="k">class</span> <span class="nc">GateController</span><span class="p">(</span><span class="n">Controller</span><span class="p">):</span>
@@ -469,7 +469,7 @@ start your application logic. In the same way app_exit action is called upon ter
 
     <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-    <span class="kn">from</span> <span class="nn">kervi.sensors.sensor</span> <span class="k">import</span> <span class="n">Sensor</span>
+    <span class="kn">from</span> <span class="nn">kervi.sensors</span> <span class="k">import</span> <span class="n">Sensor</span>
     <span class="kn">from</span> <span class="nn">kervi.devices.sensors.CW2015</span> <span class="k">import</span> <span class="n">CW2015CapacityDeviceDriver</span>
 
     <span class="n">capacity_sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;CW2015_capacity&quot;</span><span class="p">,</span> <span class="s2">&quot;CW2015 capacity&quot;</span><span class="p">,</span> <span class="n">CW2015CapacityDeviceDriver</span><span class="p">())</span>
@@ -536,7 +536,7 @@ The move_gate action is also linked GPIO4 and GPIO5. When GPIO4 is triggered the
         <span class="p">]</span>
     <span class="p">)</span>
 
-    <span class="kn">from</span> <span class="nn">kervi.controllers.controller</span> <span class="k">import</span> <span class="n">Controller</span>
+    <span class="kn">from</span> <span class="nn">kervi.controllers</span> <span class="k">import</span> <span class="n">Controller</span>
     <span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="k">import</span> <span class="n">action</span>
     <span class="kn">from</span> <span class="nn">kervi.values</span> <span class="k">import</span> <span class="n">NumberValue</span><span class="p">,</span> <span class="n">BooleanValue</span>
 

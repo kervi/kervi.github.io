@@ -113,8 +113,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ipc.html">Interprocess communication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contribute.html">Contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../kervi_api.html">Kervi API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contribute.html">Contribute</a></li>
 </ul>
 
             
@@ -298,7 +298,10 @@ Below is a bigger application that combines many of the concepts presented in th
 113
 114
 115
-116</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+116
+117
+118
+119</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
      <span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
      <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
@@ -322,9 +325,9 @@ Below is a bigger application that combines many of the concepts presented in th
          <span class="p">]</span>
      <span class="p">)</span>
 
-     <span class="kn">from</span> <span class="nn">kervi.sensors.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
-     <span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.sensors.cpu_use</span> <span class="kn">import</span> <span class="n">CPULoadSensorDeviceDriver</span>
-     <span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.sensors.cpu_temp</span> <span class="kn">import</span> <span class="n">CPUTempSensorDeviceDriver</span>
+     <span class="kn">from</span> <span class="nn">kervi.sensors</span> <span class="kn">import</span> <span class="n">Sensor</span>
+     <span class="kn">from</span> <span class="nn">kervi.devices.sensors.system</span> <span class="kn">import</span> <span class="n">CPULoadSensorDeviceDriver</span>
+     <span class="kn">from</span> <span class="nn">kervi.devices.sensors.system</span> <span class="kn">import</span> <span class="n">CPUTempSensorDeviceDriver</span>
 
      <span class="c1">#build in sensor that measures cpu use</span>
      <span class="n">SENSOR_CPU_LOAD</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;CPULoadSensor&quot;</span><span class="p">,</span> <span class="s2">&quot;CPU&quot;</span><span class="p">,</span> <span class="n">CPULoadSensorDeviceDriver</span><span class="p">())</span>
@@ -339,29 +342,32 @@ Below is a bigger application that combines many of the concepts presented in th
      <span class="c1">#build in sensor that measures cpu temperature</span>
      <span class="n">SENSOR_CPU_TEMP</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;CPUTempSensor&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">CPUTempSensorDeviceDriver</span><span class="p">())</span>
 
+     <span class="kn">from</span> <span class="nn">kervi.controllers</span> <span class="kn">import</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">NumberValue</span>
+     <span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="kn">import</span> <span class="n">action</span>
+
      <span class="k">class</span> <span class="nc">FanController</span><span class="p">(</span><span class="n">Controller</span><span class="p">):</span>
          <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
              <span class="n">Controller</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;fan_controller&quot;</span><span class="p">,</span> <span class="s2">&quot;Fan&quot;</span><span class="p">)</span>
              <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;fan&quot;</span>
 
-             <span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="s2">&quot;Temperature&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="s2">&quot;Temperature&quot;</span><span class="p">,</span> <span class="n">NumberValue</span><span class="p">)</span>
              <span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="mi">0</span>
              <span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="mi">150</span>
 
-             <span class="bp">self</span><span class="o">.</span><span class="n">trigger_temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;trigger_temp&quot;</span><span class="p">,</span> <span class="s2">&quot;Trigger temperature&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">trigger_temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;trigger_temp&quot;</span><span class="p">,</span> <span class="s2">&quot;Trigger temperature&quot;</span><span class="p">,</span> <span class="n">NumberValue</span><span class="p">)</span>
              <span class="bp">self</span><span class="o">.</span><span class="n">trigger_temp</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="mi">0</span>
              <span class="bp">self</span><span class="o">.</span><span class="n">trigger_temp</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="mi">100</span>
              <span class="c1">#remember the value when app restarts</span>
              <span class="bp">self</span><span class="o">.</span><span class="n">trigger_temp</span><span class="o">.</span><span class="n">persist_value</span> <span class="o">=</span> <span class="bp">True</span>
 
-             <span class="bp">self</span><span class="o">.</span><span class="n">max_temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;max_temp&quot;</span><span class="p">,</span> <span class="s2">&quot;Max speed temperature&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">max_temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;max_temp&quot;</span><span class="p">,</span> <span class="s2">&quot;Max speed temperature&quot;</span><span class="p">,</span> <span class="n">NumberValue</span><span class="p">)</span>
              <span class="bp">self</span><span class="o">.</span><span class="n">max_temp</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="mi">0</span>
              <span class="bp">self</span><span class="o">.</span><span class="n">max_temp</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="mi">100</span>
              <span class="c1">#remember the value when app restarts</span>
              <span class="bp">self</span><span class="o">.</span><span class="n">max_temp</span><span class="o">.</span><span class="n">persist_value</span> <span class="o">=</span> <span class="bp">True</span>
 
              <span class="c1">#The only output from this controller is the speed of the fan</span>
-             <span class="bp">self</span><span class="o">.</span><span class="n">fan_speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;fan_speed&quot;</span><span class="p">,</span> <span class="s2">&quot;Fanspeed&quot;</span><span class="p">,</span> <span class="n">DynamicNumber</span><span class="p">)</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">fan_speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;fan_speed&quot;</span><span class="p">,</span> <span class="s2">&quot;Fanspeed&quot;</span><span class="p">,</span> <span class="n">NumberValue</span><span class="p">)</span>
 
              <span class="c1">#private flag that indicate the controller is active and monitors temp and set speed.</span>
              <span class="bp">self</span><span class="o">.</span><span class="n">_active</span> <span class="o">=</span> <span class="bp">True</span>

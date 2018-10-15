@@ -114,8 +114,8 @@
 <li class="toctree-l1"><a class="reference internal" href="service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Interprocess communication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kervi_api.html">Kervi API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
 
             
@@ -196,8 +196,8 @@ An example could be several connected raspberry pi cams that.</p>
     <span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
     <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-    <span class="kn">from</span> <span class="nn">kervi.sensors.sensor</span> <span class="k">import</span> <span class="n">Sensor</span>
-    <span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.sensors.cpu_use</span> <span class="k">import</span> <span class="n">CPULoadSensorDeviceDriver</span>
+    <span class="kn">from</span> <span class="nn">kervi.sensors</span> <span class="k">import</span> <span class="n">Sensor</span>
+    <span class="kn">from</span> <span class="nn">kervi.devices.sensors.system</span> <span class="k">import</span> <span class="n">CPULoadSensorDeviceDriver</span>
 
     <span class="n">SENSOR_1</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;app_CPULoadSensor&quot;</span><span class="p">,</span> <span class="s2">&quot;App CPU&quot;</span><span class="p">,</span> <span class="n">CPULoadSensorDeviceDriver</span><span class="p">())</span>
     <span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">link_to_header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -218,8 +218,8 @@ An example could be several connected raspberry pi cams that.</p>
     <span class="kn">from</span> <span class="nn">kervi.module</span> <span class="k">import</span> <span class="n">Module</span>
     <span class="n">APP_MODULE</span> <span class="o">=</span> <span class="n">Module</span><span class="p">()</span>
 
-    <span class="kn">from</span> <span class="nn">kervi.sensors.sensor</span> <span class="k">import</span> <span class="n">Sensor</span>
-    <span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.sensors.cpu_use</span> <span class="k">import</span> <span class="n">CPULoadSensorDeviceDriver</span>
+    <span class="kn">from</span> <span class="nn">kervi.sensors</span> <span class="k">import</span> <span class="n">Sensor</span>
+    <span class="kn">from</span> <span class="nn">kervi.devices.sensors.system</span> <span class="k">import</span> <span class="n">CPULoadSensorDeviceDriver</span>
 
     <span class="n">SENSOR_1</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;module_cpu_load&quot;</span><span class="p">,</span> <span class="s2">&quot;Module CPU&quot;</span><span class="p">,</span> <span class="n">CPULoadSensorDeviceDriver</span><span class="p">())</span>
     <span class="n">SENSOR_1</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">link_to_header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>

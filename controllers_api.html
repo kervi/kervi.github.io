@@ -104,7 +104,6 @@
 <li class="toctree-l1"><a class="reference internal" href="service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Interprocess communication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="kervi_api.html">Kervi API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_api.html">Camera api</a></li>
@@ -117,6 +116,7 @@
 <li class="toctree-l2"><a class="reference internal" href="hal_devices_api.html">Devices API</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
 
             
@@ -181,99 +181,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-kervi.controllers.controller">
-<span id="controllers-api"></span><h1>Controllers api<a class="headerlink" href="#module-kervi.controllers.controller" title="Permalink to this headline">¶</a></h1>
-<p>A Kervi controller is a class that acts upon input from users or events or the underlaying os.</p>
-<dl class="class">
-<dt id="kervi.controllers.controller.Controller">
-<em class="property">class </em><code class="descclassname">kervi.controllers.controller.</code><code class="descname">Controller</code><span class="sig-paren">(</span><em>controller_id</em>, <em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controllers.controller.Controller" title="Permalink to this definition">¶</a></dt>
-<dd><p>A Kervi controller is a class that acts upon input from users, hardware events or the underlaying os.</p>
-<p>Examples for controllers are motor control, servo control, output to IO.</p>
-<p>A controller my define one or more dynamic values as input and output.</p>
-<dl class="method">
-<dt id="kervi.controllers.controller.Controller.controller_exit">
-<code class="descname">controller_exit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controllers.controller.Controller.controller_exit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract method that is called when the kervi application stops.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.controllers.controller.Controller.controller_start">
-<code class="descname">controller_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controllers.controller.Controller.controller_start" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract method that is called when the entire application is loaded.</p>
-</dd></dl>
-
-<dl class="staticmethod">
-<dt id="kervi.controllers.controller.Controller.create">
-<em class="property">static </em><code class="descname">create</code><span class="sig-paren">(</span><em>controller_id</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controllers.controller.Controller.create" title="Permalink to this definition">¶</a></dt>
-<dd><p>Turn class into a kervi controller</p>
-</dd></dl>
-
-<dl class="staticmethod">
-<dt id="kervi.controllers.controller.Controller.input">
-<em class="property">static </em><code class="descname">input</code><span class="sig-paren">(</span><em>input_id</em>, <em>name</em>, <em>value_class=&lt;class 'kervi.values.NumberValue'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controllers.controller.Controller.input" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add input to controller</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.controllers.controller.Controller.input_changed">
-<code class="descname">input_changed</code><span class="sig-paren">(</span><em>input_id</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controllers.controller.Controller.input_changed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract method that is called by when one of the controller inputs change.</p>
-<p>You can implement this method if your controller logic needs to respond
-changes in multiple inputs.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>changed_input</strong> (<em>KerviValue</em>) – Input that has changed. You can read the value of the changed input
-via the inputs value property.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.controllers.controller.Controller.link_to_dashboard">
-<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id=None</em>, <em>panel_id=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controllers.controller.Controller.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
-<dd><p>Links this component to a dashboard section all input are displayed.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>dashboard_id</strong> – id of the dashboard to link to.</li>
-<li><strong>panel_id</strong> (<em>str</em>) – id of the section.</li>
-<li><strong>**kwargs</strong> – Use the kwargs below to override default values set in ui_parameters</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
-<li><dl class="first docutils">
-<dt><em>ui_size</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – Size of the component in dashboard unit size.</dt>
-<dd>In order to make the sections and components align correct a dashboard unit is defined.
-Default the dashboard unit is a square that is 150 x 150 pixels.
-The width of the select box is ui_size * dashboard unit size.</dd>
-</dl>
-</li>
-<li><em>type</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Type of select box, dropdown or list.</li>
-<li><em>link_to_header</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Add this component to header of section.</li>
-<li><em>icon</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</li>
-<li><em>flat</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – Flat look and feel.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="staticmethod">
-<dt id="kervi.controllers.controller.Controller.output">
-<em class="property">static </em><code class="descname">output</code><span class="sig-paren">(</span><em>output_id</em>, <em>name</em>, <em>value_class=&lt;class 'kervi.values.NumberValue'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.controllers.controller.Controller.output" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add output to controller</p>
-</dd></dl>
-
-</dd></dl>
-
+  <div class="section" id="controllers-api">
+<h1>Controllers api<a class="headerlink" href="#controllers-api" title="Permalink to this headline">¶</a></h1>
 </div>
 
 

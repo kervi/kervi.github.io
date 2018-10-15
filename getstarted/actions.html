@@ -113,8 +113,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ipc.html">Interprocess communication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contribute.html">Contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../kervi_api.html">Kervi API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contribute.html">Contribute</a></li>
 </ul>
 
             
@@ -194,8 +194,8 @@ and one that is linked to the web ui.</p>
     <span class="n">app</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
     <span class="c1">#create sensor</span>
-    <span class="kn">from</span> <span class="nn">kervi.sensors.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
-    <span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.sensors.cpu_use</span> <span class="kn">import</span> <span class="n">CPULoadSensorDeviceDriver</span>
+    <span class="kn">from</span> <span class="nn">kervi.sensors</span> <span class="kn">import</span> <span class="n">Sensor</span>
+    <span class="kn">from</span> <span class="nn">kervi.devices.sensors.system</span> <span class="kn">import</span> <span class="n">CPULoadSensorDeviceDriver</span>
 
     <span class="c1">#link to dashboard</span>
     <span class="n">cpu_load_sensor</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="s2">&quot;header_right&quot;</span><span class="p">)</span>

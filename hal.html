@@ -111,8 +111,8 @@
 <li class="toctree-l1"><a class="reference internal" href="service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Interprocess communication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kervi_api.html">Kervi API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
 
             
@@ -307,7 +307,7 @@ Kervi sensor (this is the actual code from the device library).</p>
 <p>It is possible to use ready-made devices from the <a class="reference internal" href="devices/index.html#kdl"><span class="std std-ref">kervi device library</span></a> .
 Below is an example that uses the light sensor TLS2561.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Module for a sensor &quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">kervi.sensors.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
+<span class="kn">from</span> <span class="nn">kervi.sensors</span> <span class="kn">import</span> <span class="n">Sensor</span>
 <span class="kn">from</span> <span class="nn">kervi.devices.sensors.TSL2561</span> <span class="kn">import</span> <span class="n">TSL2561Device</span>
 
 <span class="n">lux</span><span class="o">=</span><span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;lux_sensor&quot;</span><span class="p">,</span><span class="s2">&quot;Lux sensor&quot;</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">TSL2561Device</span><span class="p">()</span>
