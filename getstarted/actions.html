@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Actions &mdash; Kervi 0.15.0 - beta documentation</title>
+  <title>Actions</title>
   
 
   
@@ -185,9 +185,41 @@
 You create an action by decorating a function with the &#64;action decorator.</p>
 <p>The code below defines two actions one that is linked to a sensor
 and one that is linked to the web ui.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">python</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 
     <span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 
@@ -223,14 +255,27 @@ and one that is linked to the web ui.</p>
 
     <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
-</div>
+</td></tr></table></div>
 <p>When you run the code above you should see output in the terminal window when the actions are executed.</p>
 <p>When you run your kervi script on an Raspberry Pi it is possible to link an action to gpio.
 Connect a switch to GPIO 12 on the Raspberry Pi and run the script below.
 Each time the switch is pressed the my_gpio_action is called and the action text is printed in the terminal window.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">python</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 
     <span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 
@@ -247,7 +292,7 @@ Each time the switch is pressed the my_gpio_action is called and the action text
 
     <span class="n">my_gpio_action</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO12&quot;</span><span class="p">])</span>
 </pre></div>
-</div>
+</td></tr></table></div>
 <p>Read more about all the possibilities with actions <a class="reference internal" href="../actions.html#actions"><span class="std std-ref">here</span></a>.</p>
 </div>
 
@@ -293,7 +338,7 @@ Each time the switch is pressed the my_gpio_action is called and the action text
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.15.0 - beta',
+            VERSION:'',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

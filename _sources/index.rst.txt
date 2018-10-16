@@ -1,6 +1,6 @@
-Kervi!
-=================================
-
+=====
+Kervi
+=====
 
 .. image:: images/kervi_front.png
 

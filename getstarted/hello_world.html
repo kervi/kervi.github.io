@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Hello world &mdash; Kervi 0.15.0 - beta documentation</title>
+  <title>Hello world</title>
   
 
   
@@ -113,8 +113,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ipc.html">Interprocess communication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contribute.html">Contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../kervi_api.html">Kervi API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contribute.html">Contribute</a></li>
 </ul>
 
             
@@ -185,13 +185,17 @@
 You must create an Application instance as the very first  operation
 in your main application script.</p>
 <p>Create a python file my_app.py with the content below.</p>
-<div class="code Python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span> <span class="c1"># this line is important in windows</span>
-    <span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="highlight-Python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span> <span class="c1"># this line is important in windows</span>
+    <span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 
     <span class="n">app</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
-</div>
+</td></tr></table></div>
 <p>When you run the python script in a terminal you should see the following output.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;python3 my_app.py
 Starting kervi application
@@ -259,7 +263,7 @@ Proceed to the next chapter and see how you add some content.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.15.0 - beta',
+            VERSION:'',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
