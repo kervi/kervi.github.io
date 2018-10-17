@@ -1,8 +1,8 @@
 =====
 Kervi
 =====
-
-.. image:: images/kervi_front.png
+  
+.. image:: images/kervi_frontx.png
 
 Easy Python framework for robotic and automation projects.
 The framework runs on all platforms that supports Python and have hardware support for Raspberry pi.
