@@ -24,19 +24,28 @@
 
   
 
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="I2C API" href="hal_i2c_api.html" />
-    <link rel="prev" title="Display api" href="display_api.html" /> 
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="" href="index.html"/>
+        <link rel="up" title="Kervi API" href="kervi_api.html"/>
+        <link rel="next" title="I2C API" href="hal_i2c_api.html"/>
+        <link rel="prev" title="Display api" href="display_api.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
    
   <div class="wy-grid-for-nav">
@@ -58,7 +67,7 @@
             
             
               <div class="version">
-                0.15.0
+                0.20.0
               </div>
             
           
@@ -93,17 +102,19 @@
 <li class="toctree-l1"><a class="reference internal" href="actions.html">Actions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motors.html">Motors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio.html">GPIO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="display.html">Displays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devices/index.html">Device library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multi_process.html">Process distribution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="distributed.html">Distributed applications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Interprocess communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/index.html">Plugins</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="kervi_api.html">Kervi API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_api.html">Camera api</a></li>
@@ -128,7 +139,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" aria-label="top navigation">
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Kervi</a>
@@ -136,10 +147,9 @@
       </nav>
 
 
+      
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
           
 
 
@@ -185,17 +195,12 @@
 <span id="gpio-api"></span><h1>GPIO API<a class="headerlink" href="#module-kervi.hal.gpio" title="Permalink to this headline">¶</a></h1>
 <p>When Kervi starts it scans for installed Kervi platform drivers and loads the GPIO driver.
 In your application you access GPIO via:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">kervi.hal.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">kervi.hal.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
 
 <span class="c1">#define channel 23 as input</span>
 <span class="n">GPIO</span><span class="o">.</span><span class="n">define_as_input</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="class">
-<dt id="kervi.hal.gpio.AnalogIOChannel">
-<em class="property">class </em><code class="descclassname">kervi.hal.gpio.</code><code class="descname">AnalogIOChannel</code><span class="sig-paren">(</span><em>gpio_device</em>, <em>channel</em>, <em>is_input</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.gpio.AnalogIOChannel" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="class">
 <dt id="kervi.hal.gpio.IGPIODeviceDriver">
 <em class="property">class </em><code class="descclassname">kervi.hal.gpio.</code><code class="descname">IGPIODeviceDriver</code><span class="sig-paren">(</span><em>gpio_id</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.gpio.IGPIODeviceDriver" title="Permalink to this definition">¶</a></dt>
@@ -220,7 +225,7 @@ In your application you access GPIO via:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>channel</strong> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – The channel to define as a pwm output.</li>
+<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">int</span></code>) – The channel to define as a pwm output.</li>
 <li><strong>frequency</strong> – The pwn frequency.</li>
 <li><strong>duty_cycle</strong> – The duty_cycle to use, can be changed in call to pwm_start</li>
 </ul>
@@ -246,8 +251,8 @@ The callback function is called when a channel is going high and low.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>channel</strong> (<code class="docutils literal notranslate"><span class="pre">float</span></code>) – The channel to listen on.</li>
-<li><strong>callback</strong> (<code class="docutils literal notranslate"><span class="pre">function</span> <span class="pre">or</span> <span class="pre">method</span></code>) – The function or method to call when the state of the channel change.</li>
+<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">float</span></code>) – The channel to listen on.</li>
+<li><strong>callback</strong> (<code class="docutils literal"><span class="pre">function</span> <span class="pre">or</span> <span class="pre">method</span></code>) – The function or method to call when the state of the channel change.</li>
 <li><strong>bounce_time</strong> – To reduce switch noice a bounce_time &gt; 0 filters small jitters when a switch or button is pressed</li>
 </ul>
 </td>
@@ -265,7 +270,7 @@ The callback function is called when a channel is going high and low.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>channel</strong> (<code class="docutils literal notranslate"><span class="pre">function</span> <span class="pre">or</span> <span class="pre">method</span></code>) – The channel to listen on.</li>
+<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">function</span> <span class="pre">or</span> <span class="pre">method</span></code>) – The channel to listen on.</li>
 <li><strong>callback</strong> – The function or method to call when the state of the channel change.</li>
 </ul>
 </td>
@@ -283,7 +288,7 @@ The callback function is called when a channel is going high and low.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>channel</strong> (<code class="docutils literal notranslate"><span class="pre">function</span> <span class="pre">or</span> <span class="pre">method</span></code>) – The channel to listen on.</li>
+<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">function</span> <span class="pre">or</span> <span class="pre">method</span></code>) – The channel to listen on.</li>
 <li><strong>callback</strong> – The function or method to call when the state of the channel change.</li>
 </ul>
 </td>
@@ -303,9 +308,9 @@ define_as_pwm or pwm_start is used.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>channel</strong> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – The channel to start the pwm signal on.</li>
-<li><strong>duty_cycle</strong> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – The duty cycle use on the channel.</li>
-<li><strong>frequency</strong> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – The frequency to be used on the pwm channel.</li>
+<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">int</span></code>) – The channel to start the pwm signal on.</li>
+<li><strong>duty_cycle</strong> (<code class="docutils literal"><span class="pre">int</span></code>) – The duty cycle use on the channel.</li>
+<li><strong>frequency</strong> (<code class="docutils literal"><span class="pre">int</span></code>) – The frequency to be used on the pwm channel.</li>
 </ul>
 </td>
 </tr>
@@ -328,7 +333,7 @@ define_as_pwm or pwm_start is used.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>channel</strong> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – The channel that should be changed.</li>
+<li><strong>channel</strong> (<code class="docutils literal"><span class="pre">bool</span></code>) – The channel that should be changed.</li>
 <li><strong>state</strong> – The state of the channel.</li>
 </ul>
 </td>
@@ -345,7 +350,7 @@ define_as_pwm or pwm_start is used.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>channels</strong> (<code class="docutils literal notranslate"><span class="pre">dict</span></code>) – A dictionary where keys are channels and values the value to set for each channel.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>channels</strong> (<code class="docutils literal"><span class="pre">dict</span></code>) – A dictionary where keys are channels and values the value to set for each channel.</td>
 </tr>
 </tbody>
 </table>
@@ -353,16 +358,13 @@ define_as_pwm or pwm_start is used.</p>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="kervi.hal.gpio.LogicIOChannel">
-<em class="property">class </em><code class="descclassname">kervi.hal.gpio.</code><code class="descname">LogicIOChannel</code><span class="sig-paren">(</span><em>gpio_device</em>, <em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.gpio.LogicIOChannel" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </div>
 
 
            </div>
-           
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -380,11 +382,11 @@ define_as_pwm or pwm_start is used.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -403,7 +405,6 @@ define_as_pwm or pwm_start is used.</p>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'',
-            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -413,17 +414,22 @@ define_as_pwm or pwm_start is used.</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
-  <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
 
+  
+  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
+          SphinxRtdTheme.StickyNav.enable();
       });
-  </script> 
+  </script>
+   
 
 </body>
 </html>

@@ -24,19 +24,27 @@
 
   
 
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Security" href="security.html" />
-    <link rel="prev" title="Displays" href="display.html" /> 
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="" href="index.html"/>
+        <link rel="next" title="Security" href="security.html"/>
+        <link rel="prev" title="Messaging" href="messaging.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
    
   <div class="wy-grid-for-nav">
@@ -58,7 +66,7 @@
             
             
               <div class="version">
-                0.15.0
+                0.20.0
               </div>
             
           
@@ -93,7 +101,9 @@
 <li class="toctree-l1"><a class="reference internal" href="actions.html">Actions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motors.html">Motors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio.html">GPIO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="display.html">Displays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#accessing-config-values-in-code">Accessing config values in code</a></li>
 </ul>
@@ -103,10 +113,10 @@
 <li class="toctree-l1"><a class="reference internal" href="devices/index.html">Device library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multi_process.html">Process distribution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="distributed.html">Distributed applications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Interprocess communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/index.html">Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kervi_api.html">Kervi API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
@@ -120,7 +130,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" aria-label="top navigation">
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Kervi</a>
@@ -128,10 +138,9 @@
       </nav>
 
 
+      
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
           
 
 
@@ -178,7 +187,7 @@ Kervi uses the following naming convention for configuration files <em>[script n
 If your kervi application is located in my_app.py it will look for configuration in <em>my_app.configuration.json</em>.</p>
 <p>Below you see an example of a configuration file created via cli.
 Lines that starts with # are ignored and default values used.</p>
-<div class="code javascript highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;application&quot;</span> <span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;My application&quot;</span><span class="p">,</span>
         <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;my_app&quot;</span>
@@ -245,7 +254,7 @@ Lines that starts with # are ignored and default values used.</p>
 </div>
 <p>Default values are used if out commented or omitted from the file.
 You do not have to specify all values in a config file you just specify the ones that matters.</p>
-<div class="code javascript highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;messaging&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;channels&quot;</span><span class="p">:{</span>
             <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -260,7 +269,7 @@ You do not have to specify all values in a config file you just specify the ones
 </pre></div>
 </div>
 <p>Besides from config files you can specify config values when you instantiate your Application class.</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">({</span>
     <span class="s2">&quot;network&quot;</span><span class="p">:{</span>
         <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span>
@@ -269,7 +278,7 @@ You do not have to specify all values in a config file you just specify the ones
 </pre></div>
 </div>
 <p>You are free to enter your own settings in the config file.</p>
-<div class="code javascript highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;my_config&quot;</span><span class="p">:{</span>
         <span class="s2">&quot;parameter_1&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="s2">&quot;a_value&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span>
@@ -280,7 +289,7 @@ You do not have to specify all values in a config file you just specify the ones
 <div class="section" id="accessing-config-values-in-code">
 <h2>Accessing config values in code<a class="headerlink" href="#accessing-config-values-in-code" title="Permalink to this headline">¶</a></h2>
 <p>You are able to access configuration values after you have instantiated your application.</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
 <span class="kn">from</span> <span class="nn">kervi.config</span> <span class="k">import</span> <span class="n">Configuration</span>
@@ -303,7 +312,9 @@ You do not have to specify all values in a config file you just specify the ones
 
 
            </div>
-           
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -312,7 +323,7 @@ You do not have to specify all values in a config file you just specify the ones
         <a href="security.html" class="btn btn-neutral float-right" title="Security" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="display.html" class="btn btn-neutral" title="Displays" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="messaging.html" class="btn btn-neutral" title="Messaging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -321,11 +332,11 @@ You do not have to specify all values in a config file you just specify the ones
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -344,7 +355,6 @@ You do not have to specify all values in a config file you just specify the ones
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'',
-            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -354,17 +364,22 @@ You do not have to specify all values in a config file you just specify the ones
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
-  <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
 
+  
+  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
+          SphinxRtdTheme.StickyNav.enable();
       });
-  </script> 
+  </script>
+   
 
 </body>
 </html>

@@ -24,19 +24,28 @@
 
   
 
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Motors" href="motors.html" />
-    <link rel="prev" title="Displays" href="displays.html" /> 
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="" href="../index.html"/>
+        <link rel="up" title="Device library" href="index.html"/>
+        <link rel="next" title="Motors" href="motors.html"/>
+        <link rel="prev" title="Displays" href="displays.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
    
   <div class="wy-grid-for-nav">
@@ -58,7 +67,7 @@
             
             
               <div class="version">
-                0.15.0
+                0.20.0
               </div>
             
           
@@ -93,7 +102,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../actions.html">Actions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../camera.html">Camera and video</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../motors.html">Motors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio.html">GPIO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../display.html">Displays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../messaging.html">Messaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../hal.html">Hardware and devices</a></li>
@@ -113,10 +124,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../multi_process.html">Process distribution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../distributed.html">Distributed applications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../messaging.html">Messaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ipc.html">Interprocess communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../kervi_api.html">Kervi API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contribute.html">Contribute</a></li>
 </ul>
@@ -130,7 +141,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" aria-label="top navigation">
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Kervi</a>
@@ -138,10 +149,9 @@
       </nav>
 
 
+      
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
           
 
 
@@ -188,7 +198,7 @@
 <div class="section" id="mcp23017-i2c">
 <h2>MCP23017(I2C)<a class="headerlink" href="#mcp23017-i2c" title="Permalink to this headline">¶</a></h2>
 <p>This device driver supports the gpio MCP23017</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MCP23017DeviceDriver</span><span class="p">(</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">MCP23017DeviceDriver</span><span class="p">(</span>
     <span class="n">address</span><span class="o">=</span><span class="mh">0x20</span><span class="p">,</span>
     <span class="n">busnum</span><span class="o">=</span><span class="mi">0</span>
 <span class="p">):</span>
@@ -204,7 +214,7 @@
 </tr>
 </tbody>
 </table>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
 <span class="kn">from</span> <span class="nn">kervi.devices.gpio.MCP230XX</span> <span class="k">import</span> <span class="n">MCP23017DeviceDriver</span>
@@ -225,7 +235,7 @@
 <div class="section" id="mcp23008-i2c">
 <h2>MCP23008(I2C)<a class="headerlink" href="#mcp23008-i2c" title="Permalink to this headline">¶</a></h2>
 <p>This device driver supports the gpio MCP23008 with 8 general digital io pins</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MCP23008DeviceDriver</span><span class="p">(</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">MCP23008DeviceDriver</span><span class="p">(</span>
     <span class="n">address</span><span class="o">=</span><span class="mh">0x20</span><span class="p">,</span>
     <span class="n">busnum</span><span class="o">=</span><span class="mi">0</span>
 <span class="p">):</span>
@@ -241,7 +251,7 @@
 </tr>
 </tbody>
 </table>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
 <span class="kn">from</span> <span class="nn">kervi.devices.gpio.MCP230XX</span> <span class="k">import</span> <span class="n">MCP23008DeviceDriver</span>
@@ -262,7 +272,7 @@
 <div class="section" id="pcf8574-pcf8574a-i2c">
 <h2>PCF8574, PCF8574A(I2C)<a class="headerlink" href="#pcf8574-pcf8574a-i2c" title="Permalink to this headline">¶</a></h2>
 <p>This device driver supports the PCF8574 gpio extender with 8 general digital io pins</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PCF8574DeviceDriver</span><span class="p">(</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">PCF8574DeviceDriver</span><span class="p">(</span>
     <span class="n">address</span><span class="o">=</span><span class="mh">0x27</span><span class="p">,</span>
     <span class="n">bus</span><span class="o">=</span><span class="mi">0</span>
 <span class="p">):</span>
@@ -281,7 +291,7 @@ For PCF8574A the valid addresses should be in the range 0x38 to 0x3F.</td>
 </tr>
 </tbody>
 </table>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
 <span class="kn">from</span> <span class="nn">kervi.devices.gpio.PCF8574</span> <span class="k">import</span> <span class="n">PCF8574DeviceDriver</span>
@@ -302,7 +312,7 @@ For PCF8574A the valid addresses should be in the range 0x38 to 0x3F.</td>
 <div class="section" id="pcf859-i2c">
 <h2>PCF859(I2C)<a class="headerlink" href="#pcf859-i2c" title="Permalink to this headline">¶</a></h2>
 <p>This device driver supports the PCF859 gpio extender with 4 analog inputs and one analog output.</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PCF859DeviceDriver</span><span class="p">(</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">PCF859DeviceDriver</span><span class="p">(</span>
     <span class="n">address</span><span class="o">=</span><span class="mh">0x48</span><span class="p">,</span>
     <span class="n">bus</span><span class="o">=</span><span class="mi">0</span>
 <span class="p">):</span>
@@ -318,7 +328,7 @@ For PCF8574A the valid addresses should be in the range 0x38 to 0x3F.</td>
 </tr>
 </tbody>
 </table>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
 <span class="kn">from</span> <span class="nn">kervi.devices.gpio.PCF859</span> <span class="k">import</span> <span class="n">PCF859DeviceDriver</span>
@@ -336,7 +346,9 @@ For PCF8574A the valid addresses should be in the range 0x38 to 0x3F.</td>
 
 
            </div>
-           
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -354,11 +366,11 @@ For PCF8574A the valid addresses should be in the range 0x38 to 0x3F.</td>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -377,7 +389,6 @@ For PCF8574A the valid addresses should be in the range 0x38 to 0x3F.</td>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'',
-            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -387,17 +398,22 @@ For PCF8574A the valid addresses should be in the range 0x38 to 0x3F.</td>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
 
+  
+  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
+          SphinxRtdTheme.StickyNav.enable();
       });
-  </script> 
+  </script>
+   
 
 </body>
 </html>

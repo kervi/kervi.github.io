@@ -24,17 +24,25 @@
 
   
 
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
    
   <div class="wy-grid-for-nav">
@@ -56,7 +64,7 @@
             
             
               <div class="version">
-                0.15.0
+                0.20.0
               </div>
             
           
@@ -91,17 +99,19 @@
 <li class="toctree-l1"><a class="reference internal" href="actions.html">Actions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motors.html">Motors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio.html">GPIO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="display.html">Displays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devices/index.html">Device library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multi_process.html">Process distribution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="distributed.html">Distributed applications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Interprocess communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/index.html">Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kervi_api.html">Kervi API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
@@ -115,7 +125,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" aria-label="top navigation">
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Kervi</a>
@@ -123,10 +133,9 @@
       </nav>
 
 
+      
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
           
 
 
@@ -174,14 +183,14 @@ Most examples runs on any platform supporting Python.</p>
 <h2>Hello world<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h2>
 <p>Any Kervi application starts with the Application class.</p>
 <p>create a python file my_app.py with the content below.</p>
-<div class="code Python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="code Python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Run the file</p>
-<style> .green {color:green} </style><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;python3 my_app.py
+<style> .green {color:green} </style><div class="highlight-default"><div class="highlight"><pre><span></span>&gt;python3 my_app.py
 Starting kervi application
 IPC address: tcp://192.168.43.21:9500
 loaded plugin: kervi.plugin.storage.sqlite_temp
@@ -203,7 +212,9 @@ Open a browser and go to that address</p>
 
 
            </div>
-           
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -212,11 +223,11 @@ Open a browser and go to that address</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -235,7 +246,6 @@ Open a browser and go to that address</p>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'',
-            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -245,17 +255,22 @@ Open a browser and go to that address</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
-  <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
 
+  
+  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
+          SphinxRtdTheme.StickyNav.enable();
       });
-  </script> 
+  </script>
+   
 
 </body>
 </html>

@@ -24,17 +24,25 @@
 
   
 
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
    
   <div class="wy-grid-for-nav">
@@ -56,7 +64,7 @@
             
             
               <div class="version">
-                0.15.0
+                0.20.0
               </div>
             
           
@@ -91,17 +99,19 @@
 <li class="toctree-l1"><a class="reference internal" href="actions.html">Actions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motors.html">Motors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio.html">GPIO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="display.html">Displays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devices/index.html">Device library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multi_process.html">Process distribution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="distributed.html">Distributed applications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Interprocess communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/index.html">Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kervi_api.html">Kervi API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
@@ -115,7 +125,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" aria-label="top navigation">
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Kervi</a>
@@ -123,10 +133,9 @@
       </nav>
 
 
+      
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
           
 
 
@@ -175,7 +184,7 @@
 <h3>Single file application<a class="headerlink" href="#single-file-application" title="Permalink to this headline">¶</a></h3>
 <p>Below you see the content of a <em>single file application</em> that controls the speed of a motor based on the CPU temperature.</p>
 <p>myapp.py</p>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
   2
   3
   4
@@ -453,11 +462,11 @@ In that way it is easy to change hardware and UI without the need for recoding t
 <p>In the span from trigger_temp to max_temp the controller will gradually increase the speed.</p>
 <p>In __init__ ( the constructor) you define inputs and outputs.
 A controller input is defined by calling self.inputs.add and specify the id, name and type of the input:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="s2">&quot;Temperature&quot;</span><span class="p">,</span> <span class="n">NumberValue</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="s2">&quot;Temperature&quot;</span><span class="p">,</span> <span class="n">NumberValue</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>A controller output is defined by calling self.outputs.add and specify the id, name and type of the output:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="s2">&quot;Temperature&quot;</span><span class="p">,</span> <span class="n">NumberValue</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="s2">&quot;Temperature&quot;</span><span class="p">,</span> <span class="n">NumberValue</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The controller reacts to the input_changed event and calculates the outputs (fan_speed)</p>
@@ -465,7 +474,7 @@ A controller input is defined by calling self.inputs.add and specify the id, nam
 <div class="section" id="linking-controller-inputs-line-100-108">
 <h4>Linking controller inputs (line 100 - 108)<a class="headerlink" href="#linking-controller-inputs-line-100-108" title="Permalink to this headline">¶</a></h4>
 <p>The next step is to link the controller to the cpu sensor.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FAN_CONTROLLER</span><span class="o">.</span><span class="n">temp</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">SENSOR_CPU_TEMP</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">FAN_CONTROLLER</span><span class="o">.</span><span class="n">temp</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">SENSOR_CPU_TEMP</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now the temp input listen to changes in cpu temperature, when the temperature changes the input_changed event is fired.</p>
@@ -476,7 +485,7 @@ When a user changes one of the inputs in the web ui then the input_changed event
 <h4>Linking controller outputs (line 110 - 113)<a class="headerlink" href="#linking-controller-outputs-line-110-113" title="Permalink to this headline">¶</a></h4>
 <p>In this example the fan controller is linked to a DC motor that is controlled via an Adafruit motor hat.</p>
 <p>The dc motor is linked to fan_speed:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MOTOR_CONTROLLER</span><span class="o">.</span><span class="n">dc_motors</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">speed</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">FAN_CONTROLLER</span><span class="o">.</span><span class="n">fan_speed</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">MOTOR_CONTROLLER</span><span class="o">.</span><span class="n">dc_motors</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">speed</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">FAN_CONTROLLER</span><span class="o">.</span><span class="n">fan_speed</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now the dc motor listen to changes in fan_speed.</p>
@@ -493,7 +502,7 @@ To stop your application you press ctrl + c on the keyboard.</p>
 <p>Below is the structure of a multi file Kervi application. All the parts from a single file application are moved into
 separate files and folders. Kervi uses this structure to load each section in its own process in order to improve the performance.</p>
 <p>A second advantage to this model is that it is easier to maintain the code as the Kervi project grows bigger.</p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="n">root</span>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="n">root</span>
 <span class="o">|</span>
 <span class="o">|-</span> <span class="n">cams</span>
     <span class="o">|-</span> <span class="fm">__init__</span>
@@ -512,7 +521,7 @@ separate files and folders. Kervi uses this structure to load each section in it
 </pre></div>
 </div>
 <p>The kervi application is bootstrapped in myapp.py</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
 <span class="kn">import</span> <span class="nn">kervi.utility.nethelper</span> <span class="k">as</span> <span class="nn">nethelper</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -544,7 +553,9 @@ The web interface will update itself as modules starts and stops.</p>
 
 
            </div>
-           
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -553,11 +564,11 @@ The web interface will update itself as modules starts and stops.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -576,7 +587,6 @@ The web interface will update itself as modules starts and stops.</p>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'',
-            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -586,17 +596,22 @@ The web interface will update itself as modules starts and stops.</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
-  <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
 
+  
+  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
+          SphinxRtdTheme.StickyNav.enable();
       });
-  </script> 
+  </script>
+   
 
 </body>
 </html>

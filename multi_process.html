@@ -24,19 +24,27 @@
 
   
 
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Distributed applications" href="distributed.html" />
-    <link rel="prev" title="Sensors" href="devices/sensors.html" /> 
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="" href="index.html"/>
+        <link rel="next" title="Distributed applications" href="distributed.html"/>
+        <link rel="prev" title="Sensors" href="devices/sensors.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
    
   <div class="wy-grid-for-nav">
@@ -58,7 +66,7 @@
             
             
               <div class="version">
-                0.15.0
+                0.20.0
               </div>
             
           
@@ -93,17 +101,19 @@
 <li class="toctree-l1"><a class="reference internal" href="actions.html">Actions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motors.html">Motors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio.html">GPIO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="display.html">Displays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devices/index.html">Device library</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Process distribution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="distributed.html">Distributed applications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Interprocess communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/index.html">Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kervi_api.html">Kervi API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
@@ -117,7 +127,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" aria-label="top navigation">
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Kervi</a>
@@ -125,10 +135,9 @@
       </nav>
 
 
+      
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
           
 
 
@@ -178,7 +187,7 @@ Another advantage is that the underlaying operative system may spread the proces
 <p>The kervi framework spawns two processes of its own, one for ipc and one for the web server that servers the dashboards.</p>
 <p>Code that should be executed in its own process should be placed in sub folders relative to your main kervi python script.</p>
 <p>Below is the folder structure of a kervi project with multiple python modules.</p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="n">root</span>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="n">root</span>
 <span class="o">|-</span> <span class="n">controllers</span>
     <span class="o">|-</span> <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
     <span class="o">|-</span> <span class="n">fan_controller</span><span class="o">.</span><span class="n">py</span>
@@ -190,7 +199,7 @@ Another advantage is that the underlaying operative system may spread the proces
 </div>
 <p>The kervi application is bootstrapped in myapp.py where the modules parameter tells kervi
 which modules to load.</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 
@@ -218,11 +227,11 @@ The fan controller lives in a processes separate from your myapp.py code.
 Kervi detects this and transmits the action over the IPC system to the controller module code.</p>
 <p>The sensors module could look like this:</p>
 <p>sensors/__init__.py</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">system_sensors</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">system_sensors</span>
 </pre></div>
 </div>
 <p>sensors/system_sensors.py</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.sensors</span> <span class="k">import</span> <span class="n">Sensor</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.sensors</span> <span class="k">import</span> <span class="n">Sensor</span>
 <span class="kn">from</span> <span class="nn">kervi.devices.sensors.system</span> <span class="k">import</span> <span class="n">CPULoadSensorDeviceDriver</span>
 
 <span class="c1">#create a sensor with id &quot;cpu_load&quot;</span>
@@ -233,11 +242,11 @@ Kervi detects this and transmits the action over the IPC system to the controlle
 </div>
 <p>The controllers module contains the following code.</p>
 <p>controllers/__init__.py</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">fan_controller</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">fan_controller</span>
 </pre></div>
 </div>
 <p>controllers/fan_controller.py</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.controllers</span> <span class="k">import</span> <span class="n">Controller</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.controllers</span> <span class="k">import</span> <span class="n">Controller</span>
 <span class="kn">from</span> <span class="nn">kervi.values</span> <span class="k">import</span> <span class="n">NumberValue</span>
 <span class="kn">from</span> <span class="nn">kervi.action</span> <span class="k">import</span> <span class="n">action</span>
 
@@ -288,7 +297,9 @@ for value events from the sensor that are transmitted via IPC.</p>
 
 
            </div>
-           
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -306,11 +317,11 @@ for value events from the sensor that are transmitted via IPC.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -329,7 +340,6 @@ for value events from the sensor that are transmitted via IPC.</p>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'',
-            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -339,17 +349,22 @@ for value events from the sensor that are transmitted via IPC.</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
-  <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
 
+  
+  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
+          SphinxRtdTheme.StickyNav.enable();
       });
-  </script> 
+  </script>
+   
 
 </body>
 </html>

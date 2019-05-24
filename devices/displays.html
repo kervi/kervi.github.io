@@ -24,19 +24,28 @@
 
   
 
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="GPIO" href="gpio.html" />
-    <link rel="prev" title="Device library" href="index.html" /> 
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="" href="../index.html"/>
+        <link rel="up" title="Device library" href="index.html"/>
+        <link rel="next" title="GPIO" href="gpio.html"/>
+        <link rel="prev" title="Device library" href="index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
    
   <div class="wy-grid-for-nav">
@@ -58,7 +67,7 @@
             
             
               <div class="version">
-                0.15.0
+                0.20.0
               </div>
             
           
@@ -93,7 +102,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../actions.html">Actions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../camera.html">Camera and video</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../motors.html">Motors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio.html">GPIO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../display.html">Displays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../messaging.html">Messaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../hal.html">Hardware and devices</a></li>
@@ -113,10 +124,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../multi_process.html">Process distribution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../distributed.html">Distributed applications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../messaging.html">Messaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ipc.html">Interprocess communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../kervi_api.html">Kervi API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contribute.html">Contribute</a></li>
 </ul>
@@ -130,7 +141,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" aria-label="top navigation">
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Kervi</a>
@@ -138,10 +149,9 @@
       </nav>
 
 
+      
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
           
 
 
@@ -191,7 +201,7 @@ should be displayed.</p>
 <p>See <a class="reference internal" href="../display.html#device-displays"><span class="std std-ref">Displays</span></a> for further details on display programming.</p>
 <div class="section" id="ssd1306-i2c">
 <h2>SSD1306(I2C)<a class="headerlink" href="#ssd1306-i2c" title="Permalink to this headline">¶</a></h2>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.displays.SSD1306</span> <span class="k">import</span> <span class="n">SSD1306DeviceDriver</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.displays.SSD1306</span> <span class="k">import</span> <span class="n">SSD1306DeviceDriver</span>
 <span class="n">SSD1306DeviceDriver</span><span class="p">(</span>
     <span class="n">height</span><span class="p">,</span>
     <span class="n">width</span> <span class="o">=</span> <span class="mi">128</span><span class="p">,</span>
@@ -217,7 +227,7 @@ should be displayed.</p>
 </tr>
 </tbody>
 </table>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
 <span class="kn">from</span> <span class="nn">kervi.displays</span> <span class="k">import</span> <span class="n">Display</span>
@@ -233,7 +243,7 @@ should be displayed.</p>
 <div class="section" id="hd44780-i2c-pcf8574">
 <h2>HD44780(I2C, PCF8574)<a class="headerlink" href="#hd44780-i2c-pcf8574" title="Permalink to this headline">¶</a></h2>
 <p>This device driver supports HD44780 displays that are controlled via the PCF8574 gpio i2c chip.</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.displays.HD44780_PCF8574</span> <span class="k">import</span> <span class="n">HD44780_PCF8574_DeviceDriver</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.displays.HD44780_PCF8574</span> <span class="k">import</span> <span class="n">HD44780_PCF8574_DeviceDriver</span>
 <span class="n">HD44780_PCF8574_DeviceDriver</span><span class="p">(</span>
     <span class="n">pin_map</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="n">cols</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
@@ -261,7 +271,7 @@ Use values 0-3.</td>
 </tr>
 </tbody>
 </table>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
 <span class="kn">from</span> <span class="nn">kervi.displays</span> <span class="k">import</span> <span class="n">Display</span>
@@ -277,7 +287,7 @@ Use values 0-3.</td>
 <div class="section" id="hd44780-i2c-mcp23017">
 <h2>HD44780(I2C, MCP23017)<a class="headerlink" href="#hd44780-i2c-mcp23017" title="Permalink to this headline">¶</a></h2>
 <p>This device driver supports HD44780 displays that are controlled via the MCP23017 gpio i2c chip.</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.displays.HD44780_MCP23017</span> <span class="k">import</span> <span class="n">HD44780_MCP23017_DeviceDriver</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.displays.HD44780_MCP23017</span> <span class="k">import</span> <span class="n">HD44780_MCP23017_DeviceDriver</span>
 <span class="n">HD44780_MCP23017_DeviceDriver</span><span class="p">(</span>
     <span class="n">cols</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
     <span class="n">lines</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
@@ -300,7 +310,7 @@ Use values 0-3.</td>
 </tr>
 </tbody>
 </table>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
 <span class="kn">from</span> <span class="nn">kervi.displays</span> <span class="k">import</span> <span class="n">Display</span>
@@ -316,7 +326,7 @@ Use values 0-3.</td>
 <div class="section" id="hd44780">
 <h2>HD44780<a class="headerlink" href="#hd44780" title="Permalink to this headline">¶</a></h2>
 <p>This device driver supports HD44780 displays that is controlled via gpio.</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.displays.HD44780_MCP23017</span> <span class="k">import</span> <span class="n">HD44780_MCP23017_DeviceDriver</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.displays.HD44780_MCP23017</span> <span class="k">import</span> <span class="n">HD44780_MCP23017_DeviceDriver</span>
 <span class="n">HD44780DeviceDriver</span><span class="p">(</span>
     <span class="n">rs</span><span class="p">,</span> <span class="n">en</span><span class="p">,</span>
     <span class="n">d4</span><span class="p">,</span> <span class="n">d5</span><span class="p">,</span> <span class="n">d6</span><span class="p">,</span> <span class="n">d7</span><span class="p">,</span>
@@ -362,7 +372,7 @@ explicit initial state with the initial_backlight parameter (0 is off,
 </tr>
 </tbody>
 </table>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
 <span class="kn">from</span> <span class="nn">kervi.hal.gpio</span> <span class="k">import</span> <span class="n">GPIO</span>
@@ -387,7 +397,9 @@ explicit initial state with the initial_backlight parameter (0 is off,
 
 
            </div>
-           
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -405,11 +417,11 @@ explicit initial state with the initial_backlight parameter (0 is off,
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -428,7 +440,6 @@ explicit initial state with the initial_backlight parameter (0 is off,
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'',
-            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -438,17 +449,22 @@ explicit initial state with the initial_backlight parameter (0 is off,
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
 
+  
+  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
+          SphinxRtdTheme.StickyNav.enable();
       });
-  </script> 
+  </script>
+   
 
 </body>
 </html>

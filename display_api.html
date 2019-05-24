@@ -24,19 +24,28 @@
 
   
 
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="GPIO API" href="hal_gpio_api.html" />
-    <link rel="prev" title="Sensors API" href="sensors_api.html" /> 
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="" href="index.html"/>
+        <link rel="up" title="Kervi API" href="kervi_api.html"/>
+        <link rel="next" title="GPIO API" href="hal_gpio_api.html"/>
+        <link rel="prev" title="Sensors API" href="sensors_api.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
    
   <div class="wy-grid-for-nav">
@@ -58,7 +67,7 @@
             
             
               <div class="version">
-                0.15.0
+                0.20.0
               </div>
             
           
@@ -93,17 +102,19 @@
 <li class="toctree-l1"><a class="reference internal" href="actions.html">Actions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motors.html">Motors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio.html">GPIO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="display.html">Displays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devices/index.html">Device library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multi_process.html">Process distribution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="distributed.html">Distributed applications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Interprocess communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/index.html">Plugins</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="kervi_api.html">Kervi API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_api.html">Camera api</a></li>
@@ -128,7 +139,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" aria-label="top navigation">
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Kervi</a>
@@ -136,10 +147,9 @@
       </nav>
 
 
+      
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
           
 
 
@@ -193,9 +203,9 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>display_id</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Id of the display. This id is never displayed it is used to reference the display in code.</li>
-<li><strong>name</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Name of the display.</li>
-<li><strong>device</strong> (<code class="docutils literal notranslate"><span class="pre">DisplayDeviceDriver</span></code>) – The display device that should be used. Could be one of the displays from the kervi device library
+<li><strong>display_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Id of the display. This id is never displayed it is used to reference the display in code.</li>
+<li><strong>name</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Name of the display.</li>
+<li><strong>device</strong> (<code class="docutils literal"><span class="pre">DisplayDeviceDriver</span></code>) – The display device that should be used. Could be one of the displays from the kervi device library
 or a display device driver that inherits from kervi.hal.DisplayDeviceDriver</li>
 </ul>
 </td>
@@ -210,7 +220,7 @@ or a display device driver that inherits from kervi.hal.DisplayDeviceDriver</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>page_id</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Id of page to activate</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>page_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Id of page to activate</td>
 </tr>
 </tbody>
 </table>
@@ -240,61 +250,10 @@ or a display device driver that inherits from kervi.hal.DisplayDeviceDriver</li>
 </table>
 </dd></dl>
 
-<dl class="method">
-<dt id="kervi.displays.Display.controller_exit">
-<code class="descname">controller_exit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.displays.Display.controller_exit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract method that is called when the kervi application stops.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.displays.Display.controller_start">
-<code class="descname">controller_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.displays.Display.controller_start" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract method that is called when the entire application is loaded.</p>
-</dd></dl>
-
 <dl class="attribute">
 <dt id="kervi.displays.Display.display_pages">
 <code class="descname">display_pages</code><a class="headerlink" href="#kervi.displays.Display.display_pages" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the display pages added to this display</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.displays.Display.input_changed">
-<code class="descname">input_changed</code><span class="sig-paren">(</span><em>changed_input</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.displays.Display.input_changed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract method that is called by when one of the controller inputs change.</p>
-<p>You can implement this method if your controller logic needs to respond
-changes in multiple inputs.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>changed_input</strong> (<em>KerviValue</em>) – Input that has changed. You can read the value of the changed input
-via the inputs value property.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="kervi.displays.DisplayPage">
-<em class="property">class </em><code class="descclassname">kervi.displays.</code><code class="descname">DisplayPage</code><span class="sig-paren">(</span><em>page_id</em>, <em>name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.displays.DisplayPage" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="kervi.displays.DisplayPage.input_changed">
-<code class="descname">input_changed</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.displays.DisplayPage.input_changed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract method that is called by when one of the controller inputs change.</p>
-<p>You can implement this method if your controller logic needs to respond
-changes in multiple inputs.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>changed_input</strong> (<em>KerviValue</em>) – Input that has changed. You can read the value of the changed input
-via the inputs value property.</td>
-</tr>
-</tbody>
-</table>
 </dd></dl>
 
 </dd></dl>
@@ -303,7 +262,9 @@ via the inputs value property.</td>
 
 
            </div>
-           
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -321,11 +282,11 @@ via the inputs value property.</td>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -344,7 +305,6 @@ via the inputs value property.</td>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'',
-            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -354,17 +314,22 @@ via the inputs value property.</td>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
-  <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
 
+  
+  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
+          SphinxRtdTheme.StickyNav.enable();
       });
-  </script> 
+  </script>
+   
 
 </body>
 </html>

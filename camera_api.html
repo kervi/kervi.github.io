@@ -24,19 +24,28 @@
 
   
 
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Controllers api" href="controllers_api.html" />
-    <link rel="prev" title="Dashboards api" href="dashboards_api.html" /> 
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="" href="index.html"/>
+        <link rel="up" title="Kervi API" href="kervi_api.html"/>
+        <link rel="next" title="Controllers api" href="controllers_api.html"/>
+        <link rel="prev" title="Dashboards api" href="dashboards_api.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
    
   <div class="wy-grid-for-nav">
@@ -58,7 +67,7 @@
             
             
               <div class="version">
-                0.15.0
+                0.20.0
               </div>
             
           
@@ -93,17 +102,19 @@
 <li class="toctree-l1"><a class="reference internal" href="actions.html">Actions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motors.html">Motors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio.html">GPIO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="display.html">Displays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devices/index.html">Device library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multi_process.html">Process distribution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="distributed.html">Distributed applications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="service.html">Run as service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipc.html">Interprocess communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/index.html">Plugins</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="kervi_api.html">Kervi API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Camera api</a></li>
@@ -128,7 +139,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" aria-label="top navigation">
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Kervi</a>
@@ -136,10 +147,9 @@
       </nav>
 
 
+      
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
           
 
 
@@ -184,103 +194,6 @@
   <div class="section" id="module-kervi.vision.camera">
 <span id="camera-api"></span><h1>Camera api<a class="headerlink" href="#module-kervi.vision.camera" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="kervi.vision.camera.CameraBase">
-<em class="property">class </em><code class="descclassname">kervi.vision.camera.</code><code class="descname">CameraBase</code><span class="sig-paren">(</span><em>camera_id</em>, <em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraBase" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="kervi.vision.camera.CameraBase.fps">
-<code class="descname">fps</code><a class="headerlink" href="#kervi.vision.camera.CameraBase.fps" title="Permalink to this definition">¶</a></dt>
-<dd><p>Frames to capture per second</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.vision.camera.CameraBase.framerate_changed">
-<code class="descname">framerate_changed</code><span class="sig-paren">(</span><em>framerate</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraBase.framerate_changed" title="Permalink to this definition">¶</a></dt>
-<dd><p>abstract method</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="kervi.vision.camera.CameraBase.height">
-<code class="descname">height</code><a class="headerlink" href="#kervi.vision.camera.CameraBase.height" title="Permalink to this definition">¶</a></dt>
-<dd><p>Height of images to capture</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.vision.camera.CameraBase.input_changed">
-<code class="descname">input_changed</code><span class="sig-paren">(</span><em>changed_input</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraBase.input_changed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract method that is called by when one of the controller inputs change.</p>
-<p>You can implement this method if your controller logic needs to respond
-changes in multiple inputs.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>changed_input</strong> (<em>KerviValue</em>) – Input that has changed. You can read the value of the changed input
-via the inputs value property.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.vision.camera.CameraBase.link_to_dashboard">
-<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id=None</em>, <em>panel_id=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraBase.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
-<dd><p>Links this camera to a dashboard section or to the background of a dashboard.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>dashboard_id</strong> – id of the dashboard to link to.</li>
-<li><strong>section_id</strong> (<em>str</em>) – id of the section.</li>
-<li><strong>**kwargs</strong> – Use the kwargs below to override default values set in ui_parameters</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
-<li><dl class="first docutils">
-<dt><em>ui_size</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – Size of the component in dashboard unit size.</dt>
-<dd>In order to make the sections and components align correct a dashboard unit is defined.
-Default the dashboard unit is a square that is 150 x 150 pixels.
-The width of the camera picture is ui_size * dashboard unit size.</dd>
-</dl>
-</li>
-<li><em>show_buttons</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – Add this component to header of section.</li>
-<li><em>show_pan_tilt</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – Add this component to header of section.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.vision.camera.CameraBase.pan_changed">
-<code class="descname">pan_changed</code><span class="sig-paren">(</span><em>pan_value</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraBase.pan_changed" title="Permalink to this definition">¶</a></dt>
-<dd><p>abstract method</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="kervi.vision.camera.CameraBase.source">
-<code class="descname">source</code><a class="headerlink" href="#kervi.vision.camera.CameraBase.source" title="Permalink to this definition">¶</a></dt>
-<dd><p>How to connect to this camera</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="kervi.vision.camera.CameraBase.tilt_changed">
-<code class="descname">tilt_changed</code><span class="sig-paren">(</span><em>tilt_value</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraBase.tilt_changed" title="Permalink to this definition">¶</a></dt>
-<dd><p>abstract method</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="kervi.vision.camera.CameraBase.width">
-<code class="descname">width</code><a class="headerlink" href="#kervi.vision.camera.CameraBase.width" title="Permalink to this definition">¶</a></dt>
-<dd><p>Width of images to capture</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
 <dt id="kervi.vision.camera.CameraStreamer">
 <em class="property">class </em><code class="descclassname">kervi.vision.camera.</code><code class="descname">CameraStreamer</code><span class="sig-paren">(</span><em>camera_id</em>, <em>name</em>, <em>camera_source=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraStreamer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Camera controller that streams video to the ui.</p>
@@ -299,17 +212,17 @@ The width of the camera picture is ui_size * dashboard unit size.</dd>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><dl class="first docutils">
-<dt><em>height</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) –</dt>
+<dt><em>height</em> (<code class="docutils literal"><span class="pre">int</span></code>) –</dt>
 <dd>Height of video frame. Default value is 480.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><em>width</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) –</dt>
+<dt><em>width</em> (<code class="docutils literal"><span class="pre">int</span></code>) –</dt>
 <dd>Width of video frame. Default value is 640.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><em>fps</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) –</dt>
+<dt><em>fps</em> (<code class="docutils literal"><span class="pre">int</span></code>) –</dt>
 <dd>Frames per second.</dd>
 </dl>
 </li>
@@ -376,21 +289,13 @@ captured frames should be passed to the method frame_ready.</p>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="kervi.vision.camera.IPCamera">
-<em class="property">class </em><code class="descclassname">kervi.vision.camera.</code><code class="descname">IPCamera</code><span class="sig-paren">(</span><em>camera_id</em>, <em>name</em>, <em>dashboards</em>, <em>source</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.IPCamera" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="kervi.vision.camera.USBCamera">
-<em class="property">class </em><code class="descclassname">kervi.vision.camera.</code><code class="descname">USBCamera</code><span class="sig-paren">(</span><em>camera_id</em>, <em>name</em>, <em>dashboards</em>, <em>source</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.USBCamera" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </div>
 
 
            </div>
-           
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -408,11 +313,11 @@ captured frames should be passed to the method frame_ready.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -431,7 +336,6 @@ captured frames should be passed to the method frame_ready.</p>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'',
-            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -441,17 +345,22 @@ captured frames should be passed to the method frame_ready.</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
-  <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
 
+  
+  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
+          SphinxRtdTheme.StickyNav.enable();
       });
-  </script> 
+  </script>
+   
 
 </body>
 </html>
