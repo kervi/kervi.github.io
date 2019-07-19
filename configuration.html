@@ -17,42 +17,38 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="" href="index.html"/>
-        <link rel="next" title="Security" href="security.html"/>
-        <link rel="prev" title="Messaging" href="messaging.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Security" href="security.html" />
+    <link rel="prev" title="Messaging" href="messaging.html" />
+<script type="text/javascript" src="https://www.PrivacyPolicies.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -130,7 +126,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Kervi</a>
@@ -138,9 +134,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -187,80 +184,80 @@ Kervi uses the following naming convention for configuration files <em>[script n
 If your kervi application is located in my_app.py it will look for configuration in <em>my_app.configuration.json</em>.</p>
 <p>Below you see an example of a configuration file created via cli.
 Lines that starts with # are ignored and default values used.</p>
-<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;application&quot;</span> <span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;My application&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;my_app&quot;</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;log&quot;</span> <span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;level&quot;</span><span class="p">:</span><span class="s2">&quot;warning&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;file&quot;</span><span class="p">:</span><span class="s2">&quot;my_app.log&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;resetLog&quot;</span><span class="p">:</span> <span class="n">false</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;modules&quot;</span><span class="p">:[],</span>
-    <span class="s2">&quot;network&quot;</span> <span class="p">:</span> <span class="p">{</span>
-        <span class="c1">#&quot;ip&quot;: &quot;127.0.0.1&quot;,</span>
-        <span class="c1">#&quot;http_port&quot;: 80,</span>
-        <span class="c1">#&quot;ws_port&quot;: 9000,</span>
-        <span class="c1">#&quot;ipc_root_port&quot;: 9500,</span>
-        <span class="c1">#&quot;ipc_root_address&quot;: &quot;127.0.0.1&quot;</span>
-    <span class="p">},</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>{
+    &quot;application&quot; : {
+        &quot;name&quot;: &quot;My application&quot;,
+        &quot;id&quot;: &quot;my_app&quot;
+    },
+    &quot;log&quot; : {
+        &quot;level&quot;:&quot;warning&quot;,
+        &quot;file&quot;:&quot;my_app.log&quot;,
+        &quot;resetLog&quot;: false
+    },
+    &quot;modules&quot;:[],
+    &quot;network&quot; : {
+        #&quot;ip&quot;: &quot;127.0.0.1&quot;,
+        #&quot;http_port&quot;: 80,
+        #&quot;ws_port&quot;: 9000,
+        #&quot;ipc_root_port&quot;: 9500,
+        #&quot;ipc_root_address&quot;: &quot;127.0.0.1&quot;
+    },
 
-    <span class="s2">&quot;authorization&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-        <span class="s2">&quot;users&quot;</span> <span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;anonymous&quot;</span><span class="p">:{</span>
-                <span class="s2">&quot;groups&quot;</span><span class="p">:[]</span>
-            <span class="p">},</span>
-            <span class="s2">&quot;admin&quot;</span><span class="p">:{</span>
-                <span class="s2">&quot;password&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;groups&quot;</span><span class="p">:[</span><span class="s2">&quot;admin&quot;</span><span class="p">],</span>
-                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;phone&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
+    &quot;authorization&quot;: {
+        &quot;enabled&quot;: true,
+        &quot;users&quot; : {
+            &quot;anonymous&quot;:{
+                &quot;groups&quot;:[]
+            },
+            &quot;admin&quot;:{
+                &quot;password&quot;:&quot;&quot;,
+                &quot;groups&quot;:[&quot;admin&quot;],
+                &quot;name&quot;: &quot;&quot;,
+                &quot;email&quot;: &quot;&quot;,
+                &quot;phone&quot;: &quot;&quot;
+            }
+        }
+    },
 
-    <span class="s2">&quot;encryption&quot;</span> <span class="p">:{</span>
-        <span class="s2">&quot;ipc_secret&quot;</span><span class="p">:</span><span class="s2">&quot;1f9dbc2e-10b1-4255-a12e-41d98886fae8&quot;</span>
-        <span class="c1">#&quot;use_ssl&quot;: false,</span>
-        <span class="c1">#&quot;cert_file&quot;: &quot;kervi.cert&quot;,</span>
-        <span class="c1">#&quot;key_file&quot;: &quot;kervi.key&quot;</span>
-    <span class="p">},</span>
+    &quot;encryption&quot; :{
+        &quot;ipc_secret&quot;:&quot;1f9dbc2e-10b1-4255-a12e-41d98886fae8&quot;
+        #&quot;use_ssl&quot;: false,
+        #&quot;cert_file&quot;: &quot;kervi.cert&quot;,
+        #&quot;key_file&quot;: &quot;kervi.key&quot;
+    },
 
-    <span class="s2">&quot;messaging&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;default_channels&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;user_log&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;channels&quot;</span><span class="p">:{</span>
-            <span class="s2">&quot;user_log&quot;</span><span class="p">:{</span>
+    &quot;messaging&quot;: {
+        &quot;default_channels&quot;: [&quot;user_log&quot;],
+        &quot;channels&quot;:{
+            &quot;user_log&quot;:{
 
-            <span class="p">},</span>
-            <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-                <span class="s2">&quot;smtp&quot;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;sender_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Kervi&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;sender_address&quot;</span><span class="p">:</span> <span class="s2">&quot;kervi@example.com&quot;</span><span class="p">,</span>
-                    <span class="c1">#&quot;server&quot;: &quot;localhost&quot;,</span>
-                    <span class="c1">#&quot;port&quot;: &quot;25&quot;,</span>
-                    <span class="c1">#&quot;user&quot;: &quot;&quot;,</span>
-                    <span class="c1">#&quot;password&quot;: &quot;&quot;,</span>
-                    <span class="c1">#&quot;tls&quot;: false</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+            },
+            &quot;email&quot;: {
+                &quot;enabled&quot;: false,
+                &quot;smtp&quot;: {
+                    &quot;sender_name&quot;: &quot;Kervi&quot;,
+                    &quot;sender_address&quot;: &quot;kervi@example.com&quot;,
+                    #&quot;server&quot;: &quot;localhost&quot;,
+                    #&quot;port&quot;: &quot;25&quot;,
+                    #&quot;user&quot;: &quot;&quot;,
+                    #&quot;password&quot;: &quot;&quot;,
+                    #&quot;tls&quot;: false
+                }
+            }
+        }
+    }
+}
 </pre></div>
 </div>
 <p>Default values are used if out commented or omitted from the file.
 You do not have to specify all values in a config file you just specify the ones that matters.</p>
-<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;messaging&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;channels&quot;</span><span class="p">:{</span>
-            <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-                <span class="s2">&quot;smtp&quot;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;tls&quot;</span><span class="p">:</span> <span class="n">true</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;messaging&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;channels&quot;</span><span class="o">:</span><span class="p">{</span>
+            <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">&quot;enabled&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="s2">&quot;smtp&quot;</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;tls&quot;</span><span class="o">:</span> <span class="kc">true</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
@@ -269,7 +266,7 @@ You do not have to specify all values in a config file you just specify the ones
 </pre></div>
 </div>
 <p>Besides from config files you can specify config values when you instantiate your Application class.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">({</span>
     <span class="s2">&quot;network&quot;</span><span class="p">:{</span>
         <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span>
@@ -278,10 +275,10 @@ You do not have to specify all values in a config file you just specify the ones
 </pre></div>
 </div>
 <p>You are free to enter your own settings in the config file.</p>
-<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;my_config&quot;</span><span class="p">:{</span>
-        <span class="s2">&quot;parameter_1&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s2">&quot;a_value&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;my_config&quot;</span><span class="o">:</span><span class="p">{</span>
+        <span class="s2">&quot;parameter_1&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;a_value&quot;</span><span class="o">:</span> <span class="s2">&quot;value&quot;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -289,22 +286,22 @@ You do not have to specify all values in a config file you just specify the ones
 <div class="section" id="accessing-config-values-in-code">
 <h2>Accessing config values in code<a class="headerlink" href="#accessing-config-values-in-code" title="Permalink to this headline">¶</a></h2>
 <p>You are able to access configuration values after you have instantiated your application.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.config</span> <span class="k">import</span> <span class="n">Configuration</span>
+<span class="kn">from</span> <span class="nn">kervi.config</span> <span class="kn">import</span> <span class="n">Configuration</span>
 
 <span class="c1">#get config value directly exception raised if not found</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;application name&quot;</span><span class="p">,</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;application name&quot;</span><span class="p">,</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameter_1&quot;</span><span class="p">,</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">my_config</span><span class="o">.</span><span class="n">parameter_1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;parameter_1&quot;</span><span class="p">,</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">my_config</span><span class="o">.</span><span class="n">parameter_1</span><span class="p">)</span>
 
 <span class="c1">#get a value if set or return a default value</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;b_value&quot;</span><span class="p">,</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">my_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;b_value&quot;</span><span class="p">,</span> <span class="s2">&quot;my default value&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;b_value&quot;</span><span class="p">,</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">my_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;b_value&quot;</span><span class="p">,</span> <span class="s2">&quot;my default value&quot;</span><span class="p">)</span>
 
 <span class="c1">#traverse</span>
 <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">my_config</span><span class="o">.</span><span class="n">keys</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">my_config</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">my_config</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -312,9 +309,7 @@ You do not have to specify all values in a config file you just specify the ones
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -323,7 +318,7 @@ You do not have to specify all values in a config file you just specify the ones
         <a href="security.html" class="btn btn-neutral float-right" title="Security" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="messaging.html" class="btn btn-neutral" title="Messaging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="messaging.html" class="btn btn-neutral float-left" title="Messaging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -332,11 +327,11 @@ You do not have to specify all values in a config file you just specify the ones
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -349,37 +344,32 @@ You do not have to specify all values in a config file you just specify the ones
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-   
+
+  
+  
+    
+  
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    cookieconsent.run({"notice_banner_type":"headline","consent_type":"express","palette":"dark","change_preferences_selector":"#changePreferences","language":"en"});
+});
+</script>
+
+<script cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-144183988-1"></script>
+<script cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144183988-1');
+</script>
+
+
 
 </body>
 </html>

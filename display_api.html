@@ -17,43 +17,38 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="" href="index.html"/>
-        <link rel="up" title="Kervi API" href="kervi_api.html"/>
-        <link rel="next" title="GPIO API" href="hal_gpio_api.html"/>
-        <link rel="prev" title="Sensors API" href="sensors_api.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="GPIO API" href="hal_gpio_api.html" />
+    <link rel="prev" title="Sensors API" href="sensors_api.html" />
+<script type="text/javascript" src="https://www.PrivacyPolicies.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -139,7 +134,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Kervi</a>
@@ -147,9 +142,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -196,64 +192,98 @@
 <p>The display module holds classes for handling displays.</p>
 <dl class="class">
 <dt id="kervi.displays.Display">
-<em class="property">class </em><code class="descclassname">kervi.displays.</code><code class="descname">Display</code><span class="sig-paren">(</span><em>display_id</em>, <em>name</em>, <em>device_driver</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.displays.Display" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">kervi.displays.</code><code class="sig-name descname">Display</code><span class="sig-paren">(</span><em class="sig-param">display_id</em>, <em class="sig-param">name</em>, <em class="sig-param">device_driver</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.displays.Display" title="Permalink to this definition">¶</a></dt>
 <dd><p>The display class manage a display device.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>display_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Id of the display. This id is never displayed it is used to reference the display in code.</li>
-<li><strong>name</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Name of the display.</li>
-<li><strong>device</strong> (<code class="docutils literal"><span class="pre">DisplayDeviceDriver</span></code>) – The display device that should be used. Could be one of the displays from the kervi device library
-or a display device driver that inherits from kervi.hal.DisplayDeviceDriver</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>display_id</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Id of the display. This id is never displayed it is used to reference the display in code.</p></li>
+<li><p><strong>name</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Name of the display.</p></li>
+<li><p><strong>device</strong> (<code class="docutils literal notranslate"><span class="pre">DisplayDeviceDriver</span></code>) – The display device that should be used. Could be one of the displays from the kervi device library
+or a display device driver that inherits from kervi.hal.DisplayDeviceDriver</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <dl class="method">
 <dt id="kervi.displays.Display.activate_page">
-<code class="descname">activate_page</code><span class="sig-paren">(</span><em>page_id</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.displays.Display.activate_page" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">activate_page</code><span class="sig-paren">(</span><em class="sig-param">page_id</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.displays.Display.activate_page" title="Permalink to this definition">¶</a></dt>
 <dd><p>Activates a display page. Content of the active page is shown in the display.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>page_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Id of page to activate</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>page_id</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Id of page to activate</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="kervi.displays.Display.active_page">
-<code class="descname">active_page</code><a class="headerlink" href="#kervi.displays.Display.active_page" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">active_page</code><a class="headerlink" href="#kervi.displays.Display.active_page" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current active display page or None if no pages are added.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="kervi.displays.Display.add_page">
-<code class="descname">add_page</code><span class="sig-paren">(</span><em>page</em>, <em>default=True</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.displays.Display.add_page" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_page</code><span class="sig-paren">(</span><em class="sig-param">page</em>, <em class="sig-param">default=True</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.displays.Display.add_page" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a display page to the display.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>page</strong> – Page to be added</li>
-<li><strong>default</strong> – True if this page should be shown upon initialization.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page</strong> – Page to be added</p></li>
+<li><p><strong>default</strong> – True if this page should be shown upon initialization.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
+<dt id="kervi.displays.Display.controller_exit">
+<code class="sig-name descname">controller_exit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.displays.Display.controller_exit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method that is called when the kervi application stops.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.displays.Display.controller_start">
+<code class="sig-name descname">controller_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.displays.Display.controller_start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method that is called when the entire application is loaded.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="kervi.displays.Display.display_pages">
-<code class="descname">display_pages</code><a class="headerlink" href="#kervi.displays.Display.display_pages" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">display_pages</code><a class="headerlink" href="#kervi.displays.Display.display_pages" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the display pages added to this display</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.displays.Display.input_changed">
+<code class="sig-name descname">input_changed</code><span class="sig-paren">(</span><em class="sig-param">changed_input</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.displays.Display.input_changed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method that is called by when one of the controller inputs change.</p>
+<p>You can implement this method if your controller logic needs to respond
+changes in multiple inputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>changed_input</strong> (<em>KerviValue</em>) – Input that has changed. You can read the value of the changed input
+via the inputs value property.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kervi.displays.DisplayPage">
+<em class="property">class </em><code class="sig-prename descclassname">kervi.displays.</code><code class="sig-name descname">DisplayPage</code><span class="sig-paren">(</span><em class="sig-param">page_id</em>, <em class="sig-param">name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.displays.DisplayPage" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="kervi.displays.DisplayPage.input_changed">
+<code class="sig-name descname">input_changed</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.displays.DisplayPage.input_changed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method that is called by when one of the controller inputs change.</p>
+<p>You can implement this method if your controller logic needs to respond
+changes in multiple inputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>changed_input</strong> (<em>KerviValue</em>) – Input that has changed. You can read the value of the changed input
+via the inputs value property.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -262,9 +292,7 @@ or a display device driver that inherits from kervi.hal.DisplayDeviceDriver</li>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -273,7 +301,7 @@ or a display device driver that inherits from kervi.hal.DisplayDeviceDriver</li>
         <a href="hal_gpio_api.html" class="btn btn-neutral float-right" title="GPIO API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="sensors_api.html" class="btn btn-neutral" title="Sensors API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="sensors_api.html" class="btn btn-neutral float-left" title="Sensors API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -282,11 +310,11 @@ or a display device driver that inherits from kervi.hal.DisplayDeviceDriver</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -299,37 +327,32 @@ or a display device driver that inherits from kervi.hal.DisplayDeviceDriver</li>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-   
+
+  
+  
+    
+  
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    cookieconsent.run({"notice_banner_type":"headline","consent_type":"express","palette":"dark","change_preferences_selector":"#changePreferences","language":"en"});
+});
+</script>
+
+<script cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-144183988-1"></script>
+<script cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144183988-1');
+</script>
+
+
 
 </body>
 </html>

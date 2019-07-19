@@ -17,43 +17,38 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="" href="../index.html"/>
-        <link rel="up" title="Device library" href="index.html"/>
-        <link rel="next" title="GPIO" href="gpio.html"/>
-        <link rel="prev" title="Device library" href="index.html"/> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="GPIO" href="gpio.html" />
+    <link rel="prev" title="Device library" href="index.html" />
+<script type="text/javascript" src="https://www.PrivacyPolicies.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -141,7 +136,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Kervi</a>
@@ -149,9 +144,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -201,37 +197,38 @@ should be displayed.</p>
 <p>See <a class="reference internal" href="../display.html#device-displays"><span class="std std-ref">Displays</span></a> for further details on display programming.</p>
 <div class="section" id="ssd1306-i2c">
 <h2>SSD1306(I2C)<a class="headerlink" href="#ssd1306-i2c" title="Permalink to this headline">¶</a></h2>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.displays.SSD1306</span> <span class="k">import</span> <span class="n">SSD1306DeviceDriver</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.displays.SSD1306</span> <span class="kn">import</span> <span class="n">SSD1306DeviceDriver</span>
 <span class="n">SSD1306DeviceDriver</span><span class="p">(</span>
     <span class="n">height</span><span class="p">,</span>
     <span class="n">width</span> <span class="o">=</span> <span class="mi">128</span><span class="p">,</span>
-    <span class="n">rst</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">i2c_bus</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">rst</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span>
+    <span class="n">i2c_bus</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
     <span class="n">i2c_address</span><span class="o">=</span><span class="n">SSD1306_I2C_ADDRESS</span>
 <span class="p">)</span>
 </pre></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">height:</th><td class="field-body">Height of display.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">width:</th><td class="field-body">Width of display.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">rst:</th><td class="field-body">gpio to use as as hardware reset.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">i2c_bus:</th><td class="field-body">I2C bus. If 0 or None default bus for platform is selected.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">i2c_address:</th><td class="field-body">I2C address. Default is 0x3C.</td>
-</tr>
-</tbody>
-</table>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<dl class="field-list simple">
+<dt class="field-odd">height</dt>
+<dd class="field-odd"><p>Height of display.</p>
+</dd>
+<dt class="field-even">width</dt>
+<dd class="field-even"><p>Width of display.</p>
+</dd>
+<dt class="field-odd">rst</dt>
+<dd class="field-odd"><p>gpio to use as as hardware reset.</p>
+</dd>
+<dt class="field-even">i2c_bus</dt>
+<dd class="field-even"><p>I2C bus. If 0 or None default bus for platform is selected.</p>
+</dd>
+<dt class="field-odd">i2c_address</dt>
+<dd class="field-odd"><p>I2C address. Default is 0x3C.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.displays</span> <span class="k">import</span> <span class="n">Display</span>
-<span class="kn">from</span> <span class="nn">kervi.devices.displays.SSD1306</span> <span class="k">import</span> <span class="n">SSD1306DeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.displays</span> <span class="kn">import</span> <span class="n">Display</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.displays.SSD1306</span> <span class="kn">import</span> <span class="n">SSD1306DeviceDriver</span>
 <span class="n">display</span> <span class="o">=</span> <span class="n">Display</span><span class="p">(</span><span class="s2">&quot;d_1&quot;</span><span class="p">,</span> <span class="s2">&quot;Display&quot;</span><span class="p">,</span> <span class="n">SSD1306DeviceDriver</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span>
 <span class="n">display</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span>
 <span class="n">display</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">()</span>
@@ -243,7 +240,7 @@ should be displayed.</p>
 <div class="section" id="hd44780-i2c-pcf8574">
 <h2>HD44780(I2C, PCF8574)<a class="headerlink" href="#hd44780-i2c-pcf8574" title="Permalink to this headline">¶</a></h2>
 <p>This device driver supports HD44780 displays that are controlled via the PCF8574 gpio i2c chip.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.displays.HD44780_PCF8574</span> <span class="k">import</span> <span class="n">HD44780_PCF8574_DeviceDriver</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.displays.HD44780_PCF8574</span> <span class="kn">import</span> <span class="n">HD44780_PCF8574_DeviceDriver</span>
 <span class="n">HD44780_PCF8574_DeviceDriver</span><span class="p">(</span>
     <span class="n">pin_map</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="n">cols</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
@@ -253,29 +250,30 @@ should be displayed.</p>
 <span class="p">):</span>
 </pre></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">pin_map:</th><td class="field-body">There are several products that uses PCF8574 to control the display but have different pin setup.
+<dl class="field-list simple">
+<dt class="field-odd">pin_map</dt>
+<dd class="field-odd"><p>There are several products that uses PCF8574 to control the display but have different pin setup.
 To handle this situation the driver has different pin_maps to use.
-Use values 0-3.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">cols:</th><td class="field-body">Number of characters in a line.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">lines:</th><td class="field-body">Number of lines.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">address:</th><td class="field-body">I2C address. Default is 0x3C.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">bus:</th><td class="field-body">I2C bus. If 0 or None default bus for platform is selected.</td>
-</tr>
-</tbody>
-</table>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+Use values 0-3.</p>
+</dd>
+<dt class="field-even">cols</dt>
+<dd class="field-even"><p>Number of characters in a line.</p>
+</dd>
+<dt class="field-odd">lines</dt>
+<dd class="field-odd"><p>Number of lines.</p>
+</dd>
+<dt class="field-even">address</dt>
+<dd class="field-even"><p>I2C address. Default is 0x3C.</p>
+</dd>
+<dt class="field-odd">bus</dt>
+<dd class="field-odd"><p>I2C bus. If 0 or None default bus for platform is selected.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.displays</span> <span class="k">import</span> <span class="n">Display</span>
-<span class="kn">from</span> <span class="nn">kervi.devices.displays.HD44780_PCF8574</span> <span class="k">import</span> <span class="n">HD44780_PCF8574_DeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.displays</span> <span class="kn">import</span> <span class="n">Display</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.displays.HD44780_PCF8574</span> <span class="kn">import</span> <span class="n">HD44780_PCF8574_DeviceDriver</span>
 <span class="n">display</span> <span class="o">=</span> <span class="n">Display</span><span class="p">(</span><span class="s2">&quot;d_1&quot;</span><span class="p">,</span> <span class="s2">&quot;Display&quot;</span><span class="p">,</span> <span class="n">HD44780_PCF8574_DeviceDriver</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 <span class="n">display</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span>
 <span class="n">display</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">()</span>
@@ -287,7 +285,7 @@ Use values 0-3.</td>
 <div class="section" id="hd44780-i2c-mcp23017">
 <h2>HD44780(I2C, MCP23017)<a class="headerlink" href="#hd44780-i2c-mcp23017" title="Permalink to this headline">¶</a></h2>
 <p>This device driver supports HD44780 displays that are controlled via the MCP23017 gpio i2c chip.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.displays.HD44780_MCP23017</span> <span class="k">import</span> <span class="n">HD44780_MCP23017_DeviceDriver</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.displays.HD44780_MCP23017</span> <span class="kn">import</span> <span class="n">HD44780_MCP23017_DeviceDriver</span>
 <span class="n">HD44780_MCP23017_DeviceDriver</span><span class="p">(</span>
     <span class="n">cols</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
     <span class="n">lines</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
@@ -296,25 +294,25 @@ Use values 0-3.</td>
 <span class="p">):</span>
 </pre></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">cols:</th><td class="field-body">Number of characters in a line.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">lines:</th><td class="field-body">Number of lines.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">address:</th><td class="field-body">I2C address. Default is 0x20.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">bus:</th><td class="field-body">I2C bus. If 0 or None default bus for platform is selected.</td>
-</tr>
-</tbody>
-</table>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<dl class="field-list simple">
+<dt class="field-odd">cols</dt>
+<dd class="field-odd"><p>Number of characters in a line.</p>
+</dd>
+<dt class="field-even">lines</dt>
+<dd class="field-even"><p>Number of lines.</p>
+</dd>
+<dt class="field-odd">address</dt>
+<dd class="field-odd"><p>I2C address. Default is 0x20.</p>
+</dd>
+<dt class="field-even">bus</dt>
+<dd class="field-even"><p>I2C bus. If 0 or None default bus for platform is selected.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.displays</span> <span class="k">import</span> <span class="n">Display</span>
-<span class="kn">from</span> <span class="nn">kervi.devices.displays.HD44780_MCP23017</span> <span class="k">import</span> <span class="n">HD44780_MCP23017_DeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.displays</span> <span class="kn">import</span> <span class="n">Display</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.displays.HD44780_MCP23017</span> <span class="kn">import</span> <span class="n">HD44780_MCP23017_DeviceDriver</span>
 <span class="n">display</span> <span class="o">=</span> <span class="n">Display</span><span class="p">(</span><span class="s2">&quot;d_1&quot;</span><span class="p">,</span> <span class="s2">&quot;Display&quot;</span><span class="p">,</span> <span class="n">HD44780_MCP23017_DeviceDriver</span><span class="p">())</span>
 <span class="n">display</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span>
 <span class="n">display</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">()</span>
@@ -326,58 +324,56 @@ Use values 0-3.</td>
 <div class="section" id="hd44780">
 <h2>HD44780<a class="headerlink" href="#hd44780" title="Permalink to this headline">¶</a></h2>
 <p>This device driver supports HD44780 displays that is controlled via gpio.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.displays.HD44780_MCP23017</span> <span class="k">import</span> <span class="n">HD44780_MCP23017_DeviceDriver</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.displays.HD44780_MCP23017</span> <span class="kn">import</span> <span class="n">HD44780_MCP23017_DeviceDriver</span>
 <span class="n">HD44780DeviceDriver</span><span class="p">(</span>
     <span class="n">rs</span><span class="p">,</span> <span class="n">en</span><span class="p">,</span>
     <span class="n">d4</span><span class="p">,</span> <span class="n">d5</span><span class="p">,</span> <span class="n">d6</span><span class="p">,</span> <span class="n">d7</span><span class="p">,</span>
     <span class="n">cols</span><span class="o">=</span> <span class="mi">16</span><span class="p">,</span>
     <span class="n">lines</span><span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="n">backlight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">invert_polarity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">enable_pwm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">backlight</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">invert_polarity</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">enable_pwm</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
     <span class="n">initial_backlight</span><span class="o">=</span><span class="mf">1.0</span>
 <span class="p">):</span>
 </pre></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">rs, en, d4, d5, d6, d7:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">RS, EN, and D4…D7 parameters should be the pins
+<dl class="field-list simple">
+<dt class="field-odd">rs, en, d4, d5, d6, d7</dt>
+<dd class="field-odd"><p>RS, EN, and D4…D7 parameters should be the pins
 connected to the LCD RS, clock enable, and data line 4 through 7 connections.
 The LCD will be used in its 4-bit mode so these 6 lines are the only ones
-required to use the LCD.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">cols:</th><td class="field-body">Number of columns in the display</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">lines:</th><td class="field-body">Number of lines in the display.</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">backlight, invert_polarity:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body">If you would like to control the backlight, pass in the pin connected to
+required to use the LCD.</p>
+</dd>
+<dt class="field-even">cols</dt>
+<dd class="field-even"><p>Number of columns in the display</p>
+</dd>
+<dt class="field-odd">lines</dt>
+<dd class="field-odd"><p>Number of lines in the display.</p>
+</dd>
+<dt class="field-even">backlight, invert_polarity</dt>
+<dd class="field-even"><p>If you would like to control the backlight, pass in the pin connected to
 the backlight with the backlight parameter.  The invert_polarity boolean
 controls if the backlight is one with a LOW signal or HIGH signal.  The
 default invert_polarity value is True, i.e. the backlight is on with a
-LOW signal.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name" colspan="2">enable_pwm, initial_backlight:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">You can enable PWM of the backlight pin to have finer control on the
+LOW signal.</p>
+</dd>
+<dt class="field-odd">enable_pwm, initial_backlight</dt>
+<dd class="field-odd"><p>You can enable PWM of the backlight pin to have finer control on the
 brightness.  To enable PWM make sure your hardware supports PWM on the
 provided backlight pin and set enable_pwm to True (the default is False).
 The appropriate PWM library will be used depending on the platform, but
 you can provide an explicit one with the pwm parameter.
 The initial state of the backlight is ON, but you can set it to an
 explicit initial state with the initial_backlight parameter (0 is off,
-1 is on/full bright).</td>
-</tr>
-</tbody>
-</table>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+1 is on/full bright).</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.hal.gpio</span> <span class="k">import</span> <span class="n">GPIO</span>
-<span class="kn">from</span> <span class="nn">kervi.displays</span> <span class="k">import</span> <span class="n">Display</span>
-<span class="kn">from</span> <span class="nn">kervi.devices.displays.HD44780_MCP23017</span> <span class="k">import</span> <span class="n">HD44780_MCP23017_DeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.hal.gpio</span> <span class="kn">import</span> <span class="n">GPIO</span>
+<span class="kn">from</span> <span class="nn">kervi.displays</span> <span class="kn">import</span> <span class="n">Display</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.displays.HD44780_MCP23017</span> <span class="kn">import</span> <span class="n">HD44780_MCP23017_DeviceDriver</span>
 
 <span class="n">display</span> <span class="o">=</span> <span class="n">Display</span><span class="p">(</span>
     <span class="s2">&quot;d_1&quot;</span><span class="p">,</span>
@@ -397,9 +393,7 @@ explicit initial state with the initial_backlight parameter (0 is off,
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -408,7 +402,7 @@ explicit initial state with the initial_backlight parameter (0 is off,
         <a href="gpio.html" class="btn btn-neutral float-right" title="GPIO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Device library" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Device library" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -417,11 +411,11 @@ explicit initial state with the initial_backlight parameter (0 is off,
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -434,37 +428,32 @@ explicit initial state with the initial_backlight parameter (0 is off,
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-   
+
+  
+  
+    
+  
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    cookieconsent.run({"notice_banner_type":"headline","consent_type":"express","palette":"dark","change_preferences_selector":"#changePreferences","language":"en"});
+});
+</script>
+
+<script cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-144183988-1"></script>
+<script cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144183988-1');
+</script>
+
+
 
 </body>
 </html>

@@ -17,42 +17,38 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="" href="index.html"/>
-        <link rel="next" title="Configuration" href="configuration.html"/>
-        <link rel="prev" title="Displays" href="display.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Configuration" href="configuration.html" />
+    <link rel="prev" title="Displays" href="display.html" />
+<script type="text/javascript" src="https://www.PrivacyPolicies.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -135,7 +131,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Kervi</a>
@@ -143,9 +139,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -193,15 +190,15 @@ The user log is accessible in the UI and error and warning messages are shown as
 <div class="section" id="value-messages">
 <h2>Value messages<a class="headerlink" href="#value-messages" title="Permalink to this headline">¶</a></h2>
 <p>You can set warning and error ranges on sensors and other kervi values.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.sensors</span> <span class="k">import</span> <span class="n">Sensor</span>
-<span class="kn">from</span> <span class="nn">kervi.devices.sensors.dummy_sensor</span> <span class="k">import</span> <span class="n">DummySensorDeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.sensors</span> <span class="kn">import</span> <span class="n">Sensor</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.sensors.dummy_sensor</span> <span class="kn">import</span> <span class="n">DummySensorDeviceDriver</span>
 
 <span class="n">sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;sensor&quot;</span><span class="p">,</span><span class="s2">&quot;CPU&quot;</span><span class="p">,</span> <span class="n">DummySensorDeviceDriver</span><span class="p">())</span>
 
-<span class="n">sensor</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="n">link_to_header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="n">link_to_header</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="n">sensor</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;radial_gauge&quot;</span><span class="p">)</span>
 
 <span class="n">sensor</span><span class="o">.</span><span class="n">add_error_range</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="s2">&quot;low error message&quot;</span><span class="p">,</span> <span class="n">channels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;user_log&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">])</span>
@@ -220,15 +217,15 @@ Default value for the channels parameter is user_log if the parameter is omitted
 <div class="section" id="sending-custom-messages">
 <h2>Sending custom messages<a class="headerlink" href="#sending-custom-messages" title="Permalink to this headline">¶</a></h2>
 <p>You use the Messaging class to send your own messages.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.messaging</span> <span class="k">import</span> <span class="n">Messaging</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.messaging</span> <span class="kn">import</span> <span class="n">Messaging</span>
 
 <span class="n">Messaging</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="s2">&quot;My message&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li>level 1 is error.</li>
-<li>level 2 is warning.</li>
-<li>level 3 is normal info.</li>
+<li><p>level 1 is error.</p></li>
+<li><p>level 2 is warning.</p></li>
+<li><p>level 3 is normal info.</p></li>
 </ul>
 </div>
 <div class="section" id="configuration">
@@ -239,12 +236,12 @@ The user log channel is always enabled.</p>
 <h3>e-mail<a class="headerlink" href="#e-mail" title="Permalink to this headline">¶</a></h3>
 <p>Below is the required configuration for the email message plugin.
 The plugin will be loaded if enabled is True.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Application</span><span class="p">({</span>
     <span class="s2">&quot;plugins&quot;</span><span class="p">:{</span>
         <span class="s2">&quot;messaging&quot;</span><span class="p">:{</span>
             <span class="s2">&quot;kervi.plugin.messaging.email&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
                 <span class="s2">&quot;smtp&quot;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="s2">&quot;sender_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Kervi&quot;</span><span class="p">,</span>
                     <span class="s2">&quot;sender_address&quot;</span><span class="p">:</span> <span class="s2">&quot;kervi@example.com&quot;</span><span class="p">,</span>
@@ -252,7 +249,7 @@ The plugin will be loaded if enabled is True.</p>
                     <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="s2">&quot;25&quot;</span><span class="p">,</span>
                     <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;mail_user_name&quot;</span><span class="p">,</span>
                     <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;mail_user_password&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;tls&quot;</span><span class="p">:</span> <span class="kc">False</span>
+                    <span class="s2">&quot;tls&quot;</span><span class="p">:</span> <span class="bp">False</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
@@ -268,9 +265,7 @@ The plugin will be loaded if enabled is True.</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -279,7 +274,7 @@ The plugin will be loaded if enabled is True.</p>
         <a href="configuration.html" class="btn btn-neutral float-right" title="Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="display.html" class="btn btn-neutral" title="Displays" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="display.html" class="btn btn-neutral float-left" title="Displays" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -288,11 +283,11 @@ The plugin will be loaded if enabled is True.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -305,37 +300,32 @@ The plugin will be loaded if enabled is True.</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-   
+
+  
+  
+    
+  
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    cookieconsent.run({"notice_banner_type":"headline","consent_type":"express","palette":"dark","change_preferences_selector":"#changePreferences","language":"en"});
+});
+</script>
+
+<script cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-144183988-1"></script>
+<script cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144183988-1');
+</script>
+
+
 
 </body>
 </html>

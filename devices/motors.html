@@ -17,43 +17,38 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="" href="../index.html"/>
-        <link rel="up" title="Device library" href="index.html"/>
-        <link rel="next" title="PWM" href="pwm.html"/>
-        <link rel="prev" title="GPIO" href="gpio.html"/> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="PWM" href="pwm.html" />
+    <link rel="prev" title="GPIO" href="gpio.html" />
+<script type="text/javascript" src="https://www.PrivacyPolicies.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -138,7 +133,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Kervi</a>
@@ -146,9 +141,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -197,29 +193,29 @@
 <div class="section" id="ln298">
 <h2>LN298<a class="headerlink" href="#ln298" title="Permalink to this headline">¶</a></h2>
 <p>LN298 is a 2 channal dc motor driver or one channel stepper driver.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.motors.LN298</span> <span class="k">import</span> <span class="n">PCA9685DeviceDriver</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.motors.LN298</span> <span class="kn">import</span> <span class="n">PCA9685DeviceDriver</span>
 <span class="n">LN298DeviceDriver</span><span class="p">(</span><span class="n">ena</span><span class="p">,</span> <span class="n">in1</span><span class="p">,</span> <span class="n">in2</span><span class="p">,</span> <span class="n">enb</span><span class="p">,</span> <span class="n">in3</span><span class="p">,</span> <span class="n">in4</span><span class="p">,</span> <span class="n">board_id</span><span class="o">=</span><span class="s2">&quot;LN298&quot;</span><span class="p">,</span> <span class="n">board_name</span><span class="o">=</span><span class="s2">&quot;LN298&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">ena, in1, in2:</th><td class="field-body">gpio connections to respective pins on LN298 device for motor 1</td>
-</tr>
-<tr class="field-even field"><th class="field-name">enb, in3, in4:</th><td class="field-body">gpio connections to respective pins on LN298 device for motor 2</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">board_id:</th><td class="field-body">id used to reference this bord when using indirect linking.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">board_name:</th><td class="field-body">Name of board.</td>
-</tr>
-</tbody>
-</table>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<dl class="field-list simple">
+<dt class="field-odd">ena, in1, in2</dt>
+<dd class="field-odd"><p>gpio connections to respective pins on LN298 device for motor 1</p>
+</dd>
+<dt class="field-even">enb, in3, in4</dt>
+<dd class="field-even"><p>gpio connections to respective pins on LN298 device for motor 2</p>
+</dd>
+<dt class="field-odd">board_id</dt>
+<dd class="field-odd"><p>id used to reference this bord when using indirect linking.</p>
+</dd>
+<dt class="field-even">board_name</dt>
+<dd class="field-even"><p>Name of board.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.hal</span> <span class="k">import</span> <span class="n">GPIO</span>
-<span class="kn">from</span> <span class="nn">kervi.devices.motor.LN298</span> <span class="k">import</span> <span class="n">LN298DeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.hal</span> <span class="kn">import</span> <span class="n">GPIO</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.motor.LN298</span> <span class="kn">import</span> <span class="n">LN298DeviceDriver</span>
 <span class="n">motor_driver</span> <span class="o">=</span> <span class="n">LN298DeviceDriver</span><span class="p">(</span>
     <span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO17&quot;</span><span class="p">],</span> <span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO27&quot;</span><span class="p">],</span> <span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO22&quot;</span><span class="p">],</span>
     <span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO5&quot;</span><span class="p">],</span> <span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO6&quot;</span><span class="p">],</span> <span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO13&quot;</span><span class="p">],</span>
@@ -239,9 +235,7 @@
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -250,7 +244,7 @@
         <a href="pwm.html" class="btn btn-neutral float-right" title="PWM" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="gpio.html" class="btn btn-neutral" title="GPIO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="gpio.html" class="btn btn-neutral float-left" title="GPIO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -259,11 +253,11 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -276,37 +270,32 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-   
+
+  
+  
+    
+  
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    cookieconsent.run({"notice_banner_type":"headline","consent_type":"express","palette":"dark","change_preferences_selector":"#changePreferences","language":"en"});
+});
+</script>
+
+<script cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-144183988-1"></script>
+<script cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144183988-1');
+</script>
+
+
 
 </body>
 </html>

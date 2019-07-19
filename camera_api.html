@@ -17,43 +17,38 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="" href="index.html"/>
-        <link rel="up" title="Kervi API" href="kervi_api.html"/>
-        <link rel="next" title="Controllers api" href="controllers_api.html"/>
-        <link rel="prev" title="Dashboards api" href="dashboards_api.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Controllers api" href="controllers_api.html" />
+    <link rel="prev" title="Dashboards api" href="dashboards_api.html" />
+<script type="text/javascript" src="https://www.PrivacyPolicies.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -139,7 +134,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Kervi</a>
@@ -147,9 +142,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -194,53 +190,137 @@
   <div class="section" id="module-kervi.vision.camera">
 <span id="camera-api"></span><h1>Camera api<a class="headerlink" href="#module-kervi.vision.camera" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
+<dt id="kervi.vision.camera.CameraBase">
+<em class="property">class </em><code class="sig-prename descclassname">kervi.vision.camera.</code><code class="sig-name descname">CameraBase</code><span class="sig-paren">(</span><em class="sig-param">camera_id</em>, <em class="sig-param">name</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraBase" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="kervi.vision.camera.CameraBase.fps">
+<em class="property">property </em><code class="sig-name descname">fps</code><a class="headerlink" href="#kervi.vision.camera.CameraBase.fps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Frames to capture per second</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.vision.camera.CameraBase.framerate_changed">
+<code class="sig-name descname">framerate_changed</code><span class="sig-paren">(</span><em class="sig-param">framerate</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraBase.framerate_changed" title="Permalink to this definition">¶</a></dt>
+<dd><p>abstract method</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.vision.camera.CameraBase.height">
+<em class="property">property </em><code class="sig-name descname">height</code><a class="headerlink" href="#kervi.vision.camera.CameraBase.height" title="Permalink to this definition">¶</a></dt>
+<dd><p>Height of images to capture</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.vision.camera.CameraBase.input_changed">
+<code class="sig-name descname">input_changed</code><span class="sig-paren">(</span><em class="sig-param">changed_input</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraBase.input_changed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method that is called by when one of the controller inputs change.</p>
+<p>You can implement this method if your controller logic needs to respond
+changes in multiple inputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>changed_input</strong> (<em>KerviValue</em>) – Input that has changed. You can read the value of the changed input
+via the inputs value property.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.vision.camera.CameraBase.link_to_dashboard">
+<code class="sig-name descname">link_to_dashboard</code><span class="sig-paren">(</span><em class="sig-param">dashboard_id=None</em>, <em class="sig-param">panel_id=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraBase.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Links this camera to a dashboard section or to the background of a dashboard.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dashboard_id</strong> – id of the dashboard to link to.</p></li>
+<li><p><strong>section_id</strong> (<em>str</em>) – id of the section.</p></li>
+<li><p><strong>**kwargs</strong> – Use the kwargs below to override default values set in ui_parameters</p></li>
+</ul>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><ul class="simple">
+<li><dl class="simple">
+<dt><em>ui_size</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – Size of the component in dashboard unit size.</dt><dd><p>In order to make the sections and components align correct a dashboard unit is defined.
+Default the dashboard unit is a square that is 150 x 150 pixels.
+The width of the camera picture is ui_size * dashboard unit size.</p>
+</dd>
+</dl>
+</li>
+<li><p><em>show_buttons</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – Add this component to header of section.</p></li>
+<li><p><em>show_pan_tilt</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – Add this component to header of section.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.vision.camera.CameraBase.pan_changed">
+<code class="sig-name descname">pan_changed</code><span class="sig-paren">(</span><em class="sig-param">pan_value</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraBase.pan_changed" title="Permalink to this definition">¶</a></dt>
+<dd><p>abstract method</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.vision.camera.CameraBase.source">
+<em class="property">property </em><code class="sig-name descname">source</code><a class="headerlink" href="#kervi.vision.camera.CameraBase.source" title="Permalink to this definition">¶</a></dt>
+<dd><p>How to connect to this camera</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.vision.camera.CameraBase.tilt_changed">
+<code class="sig-name descname">tilt_changed</code><span class="sig-paren">(</span><em class="sig-param">tilt_value</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraBase.tilt_changed" title="Permalink to this definition">¶</a></dt>
+<dd><p>abstract method</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.vision.camera.CameraBase.width">
+<em class="property">property </em><code class="sig-name descname">width</code><a class="headerlink" href="#kervi.vision.camera.CameraBase.width" title="Permalink to this definition">¶</a></dt>
+<dd><p>Width of images to capture</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="kervi.vision.camera.CameraStreamer">
-<em class="property">class </em><code class="descclassname">kervi.vision.camera.</code><code class="descname">CameraStreamer</code><span class="sig-paren">(</span><em>camera_id</em>, <em>name</em>, <em>camera_source=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraStreamer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">kervi.vision.camera.</code><code class="sig-name descname">CameraStreamer</code><span class="sig-paren">(</span><em class="sig-param">camera_id</em>, <em class="sig-param">name</em>, <em class="sig-param">camera_source=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraStreamer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Camera controller that streams video to the ui.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>camera_id</strong> (<em>str</em>) – Id of the camera. The id is used to reference the camera in other parts of the kervi application.</li>
-<li><strong>name</strong> (<em>str</em>) – Name of the camera used in ui.</li>
-<li><strong>camera_source</strong> (<em>The name of the camera source to use.</em>) – A frame driver that is used to capture frames from a camera.</li>
-<li><strong>**kwargs</strong> – See below</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>camera_id</strong> (<em>str</em>) – Id of the camera. The id is used to reference the camera in other parts of the kervi application.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Name of the camera used in ui.</p></li>
+<li><p><strong>camera_source</strong> (<em>The name of the camera source to use.</em>) – A frame driver that is used to capture frames from a camera.</p></li>
+<li><p><strong>**kwargs</strong> – See below</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
-<li><dl class="first docutils">
-<dt><em>height</em> (<code class="docutils literal"><span class="pre">int</span></code>) –</dt>
-<dd>Height of video frame. Default value is 480.</dd>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><ul class="simple">
+<li><dl class="simple">
+<dt><em>height</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) –</dt><dd><p>Height of video frame. Default value is 480.</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt><em>width</em> (<code class="docutils literal"><span class="pre">int</span></code>) –</dt>
-<dd>Width of video frame. Default value is 640.</dd>
+<li><dl class="simple">
+<dt><em>width</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) –</dt><dd><p>Width of video frame. Default value is 640.</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt><em>fps</em> (<code class="docutils literal"><span class="pre">int</span></code>) –</dt>
-<dd>Frames per second.</dd>
+<li><dl class="simple">
+<dt><em>fps</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) –</dt><dd><p>Frames per second.</p>
+</dd>
 </dl>
 </li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <dl class="method">
 <dt id="kervi.vision.camera.CameraStreamer.frame_captured">
-<code class="descname">frame_captured</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraStreamer.frame_captured" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">frame_captured</code><span class="sig-paren">(</span><em class="sig-param">image</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraStreamer.frame_captured" title="Permalink to this definition">¶</a></dt>
 <dd><p>Abstract method that is called when a new frame is ready from the camera.
 You can use this method to post process images before they are streamed.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="kervi.vision.camera.CameraStreamer.get_font">
-<code class="descname">get_font</code><span class="sig-paren">(</span><em>name='Fanwood'</em>, <em>size=16</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraStreamer.get_font" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_font</code><span class="sig-paren">(</span><em class="sig-param">name='Fanwood'</em>, <em class="sig-param">size=16</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.CameraStreamer.get_font" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a font that can be used by pil image functions.
 This default font is “Fanwood” that is available on all platforms.</p>
 </dd></dl>
@@ -249,7 +329,7 @@ This default font is “Fanwood” that is available on all platforms.</p>
 
 <dl class="class">
 <dt id="kervi.vision.camera.FrameCameraDeviceDriver">
-<em class="property">class </em><code class="descclassname">kervi.vision.camera.</code><code class="descname">FrameCameraDeviceDriver</code><a class="headerlink" href="#kervi.vision.camera.FrameCameraDeviceDriver" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">kervi.vision.camera.</code><code class="sig-name descname">FrameCameraDeviceDriver</code><a class="headerlink" href="#kervi.vision.camera.FrameCameraDeviceDriver" title="Permalink to this definition">¶</a></dt>
 <dd><p>Base class for camera drivers that grap frames from a camera and streams them via the FrameCamera class.
 Could be used with the Raspberry PI camera.
 Fill in the abstract method capture_frames with functionality that graps
@@ -257,7 +337,7 @@ frames from the camera and feeds them to the streamer.
 Frames must be pil images.</p>
 <dl class="method">
 <dt id="kervi.vision.camera.FrameCameraDeviceDriver.capture_frames">
-<code class="descname">capture_frames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.FrameCameraDeviceDriver.capture_frames" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">capture_frames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.FrameCameraDeviceDriver.capture_frames" title="Permalink to this definition">¶</a></dt>
 <dd><p>Abstract method use it like the run method in a thread.
 capture frames from camera until the flag self.terminate is True.
 captured frames should be passed to the method frame_ready.</p>
@@ -265,37 +345,45 @@ captured frames should be passed to the method frame_ready.</p>
 
 <dl class="method">
 <dt id="kervi.vision.camera.FrameCameraDeviceDriver.frame_ready">
-<code class="descname">frame_ready</code><span class="sig-paren">(</span><em>frame</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.FrameCameraDeviceDriver.frame_ready" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">frame_ready</code><span class="sig-paren">(</span><em class="sig-param">frame</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.FrameCameraDeviceDriver.frame_ready" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call this method when a frame is ready</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="kervi.vision.camera.FrameCameraDeviceDriver.start_record">
-<code class="descname">start_record</code><span class="sig-paren">(</span><em>file_name</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.FrameCameraDeviceDriver.start_record" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">start_record</code><span class="sig-paren">(</span><em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.FrameCameraDeviceDriver.start_record" title="Permalink to this definition">¶</a></dt>
 <dd><p>Abstract method that should initiate a recording and save it to file_name</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="kervi.vision.camera.FrameCameraDeviceDriver.stop_record">
-<code class="descname">stop_record</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.FrameCameraDeviceDriver.stop_record" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">stop_record</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.FrameCameraDeviceDriver.stop_record" title="Permalink to this definition">¶</a></dt>
 <dd><p>Abstract method that should stop active recording</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="kervi.vision.camera.FrameCameraDeviceDriver.wait_next_frame">
-<code class="descname">wait_next_frame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.FrameCameraDeviceDriver.wait_next_frame" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">wait_next_frame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.FrameCameraDeviceDriver.wait_next_frame" title="Permalink to this definition">¶</a></dt>
 <dd><p>Waits for next frame.</p>
 </dd></dl>
 
 </dd></dl>
 
+<dl class="class">
+<dt id="kervi.vision.camera.IPCamera">
+<em class="property">class </em><code class="sig-prename descclassname">kervi.vision.camera.</code><code class="sig-name descname">IPCamera</code><span class="sig-paren">(</span><em class="sig-param">camera_id</em>, <em class="sig-param">name</em>, <em class="sig-param">dashboards</em>, <em class="sig-param">source</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.IPCamera" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="kervi.vision.camera.USBCamera">
+<em class="property">class </em><code class="sig-prename descclassname">kervi.vision.camera.</code><code class="sig-name descname">USBCamera</code><span class="sig-paren">(</span><em class="sig-param">camera_id</em>, <em class="sig-param">name</em>, <em class="sig-param">dashboards</em>, <em class="sig-param">source</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.vision.camera.USBCamera" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -304,7 +392,7 @@ captured frames should be passed to the method frame_ready.</p>
         <a href="controllers_api.html" class="btn btn-neutral float-right" title="Controllers api" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="dashboards_api.html" class="btn btn-neutral" title="Dashboards api" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dashboards_api.html" class="btn btn-neutral float-left" title="Dashboards api" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -313,11 +401,11 @@ captured frames should be passed to the method frame_ready.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -330,37 +418,32 @@ captured frames should be passed to the method frame_ready.</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-   
+
+  
+  
+    
+  
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    cookieconsent.run({"notice_banner_type":"headline","consent_type":"express","palette":"dark","change_preferences_selector":"#changePreferences","language":"en"});
+});
+</script>
+
+<script cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-144183988-1"></script>
+<script cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144183988-1');
+</script>
+
+
 
 </body>
 </html>

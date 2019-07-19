@@ -17,42 +17,38 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="" href="index.html"/>
-        <link rel="next" title="Commandline tool" href="cli.html"/>
-        <link rel="prev" title="Distributed applications" href="distributed.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Commandline tool" href="cli.html" />
+    <link rel="prev" title="Distributed applications" href="distributed.html" />
+<script type="text/javascript" src="https://www.PrivacyPolicies.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -133,7 +129,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Kervi</a>
@@ -141,9 +137,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -189,7 +186,7 @@
 <div class="section" id="install-service">
 <h2>Install service<a class="headerlink" href="#install-service" title="Permalink to this headline">¶</a></h2>
 <p>To install your application as a service use the –install-service as a parameter.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">python3</span> <span class="n">my_app</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">install</span><span class="o">-</span><span class="n">service</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">python3</span> <span class="n">my_app</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">install</span><span class="o">-</span><span class="n">service</span>
 </pre></div>
 </div>
 </div>
@@ -197,21 +194,21 @@
 <h2>Start, stop, restart<a class="headerlink" href="#start-stop-restart" title="Permalink to this headline">¶</a></h2>
 <p>You need to stop your application if it is started as a service before you are able to update the code.
 You can start, stop and restart by using the parameters –start-service, –stop-service and –restart-service</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">python3</span> <span class="n">my_app</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">stop</span><span class="o">-</span><span class="n">service</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">python3</span> <span class="n">my_app</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">stop</span><span class="o">-</span><span class="n">service</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="uninstall-service">
 <h2>Uninstall service<a class="headerlink" href="#uninstall-service" title="Permalink to this headline">¶</a></h2>
 <p>Use the parameter –uninstall-service if you want to stop running your application as service.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">python3</span> <span class="n">my_app</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">uninstall</span><span class="o">-</span><span class="n">service</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">python3</span> <span class="n">my_app</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">uninstall</span><span class="o">-</span><span class="n">service</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="detect-running-services">
 <h2>Detect running services<a class="headerlink" href="#detect-running-services" title="Permalink to this headline">¶</a></h2>
 <p>You can use the Kervi cli tool to detect running kervi applications if you are unsure whether or not a service is running.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">kervi</span> <span class="n">detect</span> <span class="n">applications</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">kervi</span> <span class="n">detect</span> <span class="n">applications</span>
 </pre></div>
 </div>
 <p>This will list all running kervi applications on the local network.</p>
@@ -220,9 +217,7 @@ You can start, stop and restart by using the parameters –start-service, –sto
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -231,7 +226,7 @@ You can start, stop and restart by using the parameters –start-service, –sto
         <a href="cli.html" class="btn btn-neutral float-right" title="Commandline tool" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="distributed.html" class="btn btn-neutral" title="Distributed applications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="distributed.html" class="btn btn-neutral float-left" title="Distributed applications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -240,11 +235,11 @@ You can start, stop and restart by using the parameters –start-service, –sto
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -257,37 +252,32 @@ You can start, stop and restart by using the parameters –start-service, –sto
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-   
+
+  
+  
+    
+  
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    cookieconsent.run({"notice_banner_type":"headline","consent_type":"express","palette":"dark","change_preferences_selector":"#changePreferences","language":"en"});
+});
+</script>
+
+<script cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-144183988-1"></script>
+<script cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144183988-1');
+</script>
+
+
 
 </body>
 </html>

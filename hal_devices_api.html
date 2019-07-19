@@ -17,43 +17,38 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="" href="index.html"/>
-        <link rel="up" title="Kervi API" href="kervi_api.html"/>
-        <link rel="next" title="Contribute" href="contribute.html"/>
-        <link rel="prev" title="I2C API" href="hal_i2c_api.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contribute" href="contribute.html" />
+    <link rel="prev" title="I2C API" href="hal_i2c_api.html" />
+<script type="text/javascript" src="https://www.PrivacyPolicies.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -139,7 +134,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Kervi</a>
@@ -147,9 +142,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -194,13 +190,36 @@
   <div class="section" id="module-kervi.hal">
 <span id="devices-api"></span><h1>Devices API<a class="headerlink" href="#module-kervi.hal" title="Permalink to this headline">¶</a></h1>
 <p>Hardware abstraction layer</p>
+<dl class="class">
+<dt id="kervi.hal.ChannelPollingThread">
+<em class="property">class </em><code class="sig-prename descclassname">kervi.hal.</code><code class="sig-name descname">ChannelPollingThread</code><span class="sig-paren">(</span><em class="sig-param">channel</em>, <em class="sig-param">device</em>, <em class="sig-param">callback</em>, <em class="sig-param">polling_time=0.1</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.ChannelPollingThread" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="kervi.hal.DACValueOutOfBoundsError">
+<em class="property">exception </em><code class="sig-prename descclassname">kervi.hal.</code><code class="sig-name descname">DACValueOutOfBoundsError</code><span class="sig-paren">(</span><em class="sig-param">device_name</em>, <em class="sig-param">channel</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.DACValueOutOfBoundsError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="kervi.hal.DeviceChannelOutOfBoundsError">
+<em class="property">exception </em><code class="sig-prename descclassname">kervi.hal.</code><code class="sig-name descname">DeviceChannelOutOfBoundsError</code><span class="sig-paren">(</span><em class="sig-param">device_name</em>, <em class="sig-param">channel</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.DeviceChannelOutOfBoundsError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="kervi.hal.I2CGPIODeviceDriver">
+<em class="property">class </em><code class="sig-prename descclassname">kervi.hal.</code><code class="sig-name descname">I2CGPIODeviceDriver</code><span class="sig-paren">(</span><em class="sig-param">address</em>, <em class="sig-param">bus</em>, <em class="sig-param">gpio_id</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.I2CGPIODeviceDriver" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="kervi.hal.I2CaddressOutOfBoundsError">
+<em class="property">exception </em><code class="sig-prename descclassname">kervi.hal.</code><code class="sig-name descname">I2CaddressOutOfBoundsError</code><span class="sig-paren">(</span><em class="sig-param">device_name</em>, <em class="sig-param">address</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.hal.I2CaddressOutOfBoundsError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -209,7 +228,7 @@
         <a href="contribute.html" class="btn btn-neutral float-right" title="Contribute" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="hal_i2c_api.html" class="btn btn-neutral" title="I2C API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="hal_i2c_api.html" class="btn btn-neutral float-left" title="I2C API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -218,11 +237,11 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -235,37 +254,32 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-   
+
+  
+  
+    
+  
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    cookieconsent.run({"notice_banner_type":"headline","consent_type":"express","palette":"dark","change_preferences_selector":"#changePreferences","language":"en"});
+});
+</script>
+
+<script cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-144183988-1"></script>
+<script cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144183988-1');
+</script>
+
+
 
 </body>
 </html>

@@ -17,42 +17,38 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="" href="index.html"/>
-        <link rel="next" title="Hardware and devices" href="hal.html"/>
-        <link rel="prev" title="Configuration" href="configuration.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Hardware and devices" href="hal.html" />
+    <link rel="prev" title="Configuration" href="configuration.html" />
+<script type="text/javascript" src="https://www.PrivacyPolicies.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -134,7 +130,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Kervi</a>
@@ -142,9 +138,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -187,12 +184,12 @@
   <div class="section" id="security">
 <h1>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
+<p class="admonition-title">Warning</p>
 <p>The security features of the Kervi framework has not been reviewed by any external experts and
 use is at own risk.</p>
 <p>Exposing your Kervi application directly on the internet by routing traffic from internet router to the Kervi web server
 is strongly advised against at the moment.</p>
-<p class="last">At this moment of development passwords and user names are sent in clear text between browser and Kervi web server
+<p>At this moment of development passwords and user names are sent in clear text between browser and Kervi web server
 unless you enable TLS encryption (see below).</p>
 </div>
 <p>It is possible to secure your Kervi application with user authentication and encrypted communication between browser
@@ -202,20 +199,20 @@ and the kervi web server.</p>
 <h2>Simple user management<a class="headerlink" href="#simple-user-management" title="Permalink to this headline">¶</a></h2>
 <p>Kervi comes with a simple authentication plugin where users are defined in config.
 You enable this plugin by setting kervi.plugin.authentication.plain to true.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;plugins&quot;</span><span class="p">:{</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;plugins&quot;</span><span class="p">:{</span>
     <span class="s2">&quot;authentication&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;kervi.plugin.authentication.plain&quot;</span><span class="p">:</span> <span class="kc">True</span>
+        <span class="s2">&quot;kervi.plugin.authentication.plain&quot;</span><span class="p">:</span> <span class="bp">True</span>
     <span class="p">}</span>
 </pre></div>
 </div>
 <p>This plugin looks for uses in the plain_users section.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;plain_users&quot;</span><span class="p">:</span> <span class="p">{</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;plain_users&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;anonymous&quot;</span><span class="p">:{</span>
-            <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
             <span class="s2">&quot;groups&quot;</span><span class="p">:[]</span>
         <span class="p">},</span>
         <span class="s2">&quot;admin&quot;</span><span class="p">:{</span>
-            <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
             <span class="s2">&quot;password&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
             <span class="s2">&quot;groups&quot;</span><span class="p">:[</span><span class="s2">&quot;admin&quot;</span><span class="p">],</span>
             <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Administrator&quot;</span><span class="p">,</span>
@@ -231,11 +228,11 @@ You enable this plugin by setting kervi.plugin.authentication.plain to true.</p>
 the password and groups as parameters for each user.</p>
 <p>You can use the groups in your python code to define who has access to dashboards, panels and sensors.</p>
 <p>In the snippet below the cpu sensor is only visible to users who belong to the admin group</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">CPU_SENSOR</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;CPULoadSensor&quot;</span><span class="p">,</span><span class="s2">&quot;CPU&quot;</span><span class="p">,</span> <span class="n">CPULoadSensorDeviceDriver</span><span class="p">(),</span> <span class="n">user_groups</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;admin&quot;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CPU_SENSOR</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;CPULoadSensor&quot;</span><span class="p">,</span><span class="s2">&quot;CPU&quot;</span><span class="p">,</span> <span class="n">CPULoadSensorDeviceDriver</span><span class="p">(),</span> <span class="n">user_groups</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;admin&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>In the same way dashboards and panels may be restricted to certain groups as shown below.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">Dashboard</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Dashboard</span><span class="p">(</span>
     <span class="s2">&quot;system&quot;</span><span class="p">,</span>
     <span class="s2">&quot;System&quot;</span><span class="p">,</span>
     <span class="p">[</span>
@@ -251,9 +248,9 @@ but it is only members in the <em>admins</em> groups that can see the power pane
 <h3>Anonymous access<a class="headerlink" href="#anonymous-access" title="Permalink to this headline">¶</a></h3>
 <p>Anonymous access is controlled via the anonymous user in the plain_users configuration section.</p>
 <blockquote>
-<div><div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;plain_users&quot;</span><span class="p">:</span> <span class="p">{</span>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;plain_users&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">&quot;anonymous&quot;</span><span class="p">:{</span>
-        <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">True</span>
+        <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="bp">True</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -264,8 +261,8 @@ If anonymous access is enabled the web ui will try to login as anonymous user wh
 All components that does not have the property user_groups set will be visible to the anonymous user.
 In addition, components that belongs to any user groups specified for the anonymous user will be visible too.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Authentication only apply to the web users.
+<p class="admonition-title">Note</p>
+<p>Authentication only apply to the web users.
 Internal communication in the kervi applications python code is not affected by user authentication.
 All components can query and command each other plus receive events.</p>
 </div>
@@ -275,7 +272,7 @@ All components can query and command each other plus receive events.</p>
 <h2>Encryption<a class="headerlink" href="#encryption" title="Permalink to this headline">¶</a></h2>
 <p>To encrypt communication between browser and Kervi web server a certificate is needed.
 Encryption is enabled via <a class="reference internal" href="configuration.html#configuration"><span class="std std-ref">Kervi configuration</span></a> in the encryption section.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;encryption&quot;</span><span class="p">:{</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;encryption&quot;</span><span class="p">:{</span>
     <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
     <span class="s2">&quot;use_ssl&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
     <span class="s2">&quot;cert_file&quot;</span><span class="p">:</span> <span class="s2">&quot;path to cert file&quot;</span><span class="p">,</span>
@@ -288,9 +285,7 @@ Encryption is enabled via <a class="reference internal" href="configuration.html
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -299,7 +294,7 @@ Encryption is enabled via <a class="reference internal" href="configuration.html
         <a href="hal.html" class="btn btn-neutral float-right" title="Hardware and devices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="configuration.html" class="btn btn-neutral" title="Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="configuration.html" class="btn btn-neutral float-left" title="Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -308,11 +303,11 @@ Encryption is enabled via <a class="reference internal" href="configuration.html
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -325,37 +320,32 @@ Encryption is enabled via <a class="reference internal" href="configuration.html
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-   
+
+  
+  
+    
+  
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    cookieconsent.run({"notice_banner_type":"headline","consent_type":"express","palette":"dark","change_preferences_selector":"#changePreferences","language":"en"});
+});
+</script>
+
+<script cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-144183988-1"></script>
+<script cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144183988-1');
+</script>
+
+
 
 </body>
 </html>

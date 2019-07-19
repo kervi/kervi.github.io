@@ -17,42 +17,38 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="" href="index.html"/>
-        <link rel="next" title="Plugins" href="plugins/index.html"/>
-        <link rel="prev" title="Commandline tool" href="cli.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Plugins" href="plugins/index.html" />
+    <link rel="prev" title="Commandline tool" href="cli.html" />
+<script type="text/javascript" src="https://www.PrivacyPolicies.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -133,7 +129,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Kervi</a>
@@ -141,9 +137,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -194,23 +191,23 @@ Information that are transmitted over the spine is handled transparently regardi
 <p>The spine module is ready to use after the Application class has been initialized in a single file application.
 If you are using the <a class="reference internal" href="multi_process.html#multi-process"><span class="std std-ref">multi process</span></a> capabilities the spine is ready within the __init__.py and modules loaded in __init__.py.</p>
 <p>To use the spine import the Spine class:</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.spine</span> <span class="k">import</span> <span class="n">Spine</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.spine</span> <span class="kn">import</span> <span class="n">Spine</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
 <p>Commands are a kind of distributed void functions.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
-<span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="k">import</span> <span class="n">action</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
+<span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="kn">import</span> <span class="n">action</span>
 
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
-<span class="kn">import</span> <span class="nn">kervi.spine</span> <span class="kn">import</span> <span class="nn">Spine</span>
+<span class="kn">import</span> <span class="nn">kervi.spine</span> <span class="nn">import</span> <span class="nn">Spine</span>
 <span class="n">spine</span> <span class="o">=</span> <span class="n">Spine</span><span class="p">()</span>
 
 <span class="c1">#command handler function</span>
 <span class="k">def</span> <span class="nf">my_command_handler</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;my_handler called:&quot;</span><span class="p">,</span> <span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;my_handler called:&quot;</span><span class="p">,</span> <span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">)</span>
 
 
 <span class="n">spine</span><span class="o">.</span><span class="n">register_command_handler</span><span class="p">(</span><span class="s2">&quot;myCommand&quot;</span><span class="p">,</span> <span class="n">my_command_handler</span><span class="p">)</span>
@@ -227,16 +224,16 @@ If you are using the <a class="reference internal" href="multi_process.html#mult
 <div class="section" id="queries">
 <h2>Queries<a class="headerlink" href="#queries" title="Permalink to this headline">¶</a></h2>
 <p>With queries your are able to send</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
-<span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="k">import</span> <span class="n">action</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
+<span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="kn">import</span> <span class="n">action</span>
 
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
-<span class="kn">import</span> <span class="nn">kervi.spine</span> <span class="kn">import</span> <span class="nn">Spine</span>
+<span class="kn">import</span> <span class="nn">kervi.spine</span> <span class="nn">import</span> <span class="nn">Spine</span>
 <span class="n">spine</span> <span class="o">=</span> <span class="n">Spine</span><span class="p">()</span>
 
 <span class="c1">#query handler function</span>
 <span class="k">def</span> <span class="nf">my_query_handler</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;my_handler called:&quot;</span><span class="p">,</span> <span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;my_handler called:&quot;</span><span class="p">,</span> <span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">)</span>
     <span class="k">return</span> <span class="s2">&quot;A query result:&quot;</span> <span class="o">+</span> <span class="n">param1</span>
 
 <span class="n">spine</span><span class="o">.</span><span class="n">register_query_handler</span><span class="p">(</span><span class="s2">&quot;myQuery&quot;</span><span class="p">,</span> <span class="n">my_query_handler</span><span class="p">)</span>
@@ -245,7 +242,7 @@ If you are using the <a class="reference internal" href="multi_process.html#mult
 <span class="k">def</span> <span class="nf">app</span><span class="o">.</span><span class="n">start</span><span class="p">():</span>
     <span class="c1">#when the app is started this action is called</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">spine</span><span class="o">.</span><span class="n">send_query</span><span class="p">(</span><span class="s2">&quot;myCommand&quot;</span><span class="p">,</span> <span class="s2">&quot;p1&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Query result&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Query result&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
 
 <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
@@ -258,9 +255,7 @@ If you are using the <a class="reference internal" href="multi_process.html#mult
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -269,7 +264,7 @@ If you are using the <a class="reference internal" href="multi_process.html#mult
         <a href="plugins/index.html" class="btn btn-neutral float-right" title="Plugins" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="cli.html" class="btn btn-neutral" title="Commandline tool" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="cli.html" class="btn btn-neutral float-left" title="Commandline tool" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -278,11 +273,11 @@ If you are using the <a class="reference internal" href="multi_process.html#mult
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -295,37 +290,32 @@ If you are using the <a class="reference internal" href="multi_process.html#mult
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-   
+
+  
+  
+    
+  
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    cookieconsent.run({"notice_banner_type":"headline","consent_type":"express","palette":"dark","change_preferences_selector":"#changePreferences","language":"en"});
+});
+</script>
+
+<script cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-144183988-1"></script>
+<script cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144183988-1');
+</script>
+
+
 
 </body>
 </html>

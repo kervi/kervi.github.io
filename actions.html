@@ -17,42 +17,38 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="" href="index.html"/>
-        <link rel="next" title="Camera and video" href="camera.html"/>
-        <link rel="prev" title="Signal handling" href="signals.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Camera and video" href="camera.html" />
+    <link rel="prev" title="Signal handling" href="signals.html" />
+<script type="text/javascript" src="https://www.PrivacyPolicies.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -139,7 +135,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Kervi</a>
@@ -147,9 +143,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -197,31 +194,31 @@ the framework handles process and network boundaries for you.</p>
 <div class="section" id="define-actions">
 <h2>Define actions<a class="headerlink" href="#define-actions" title="Permalink to this headline">¶</a></h2>
 <p>You turn a function into an action via the &#64;action decorator</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="k">import</span> <span class="n">action</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="kn">import</span> <span class="n">action</span>
 
 <span class="nd">@action</span>
 <span class="k">def</span> <span class="nf">my_action</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;my action&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;my action&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You may also decorate methods in kervi controllers:</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.controllers</span> <span class="k">import</span> <span class="n">controller</span>
-<span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="k">import</span> <span class="n">action</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.controllers</span> <span class="kn">import</span> <span class="n">controller</span>
+<span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="kn">import</span> <span class="n">action</span>
 
 <span class="k">class</span> <span class="nc">GateController</span><span class="p">(</span><span class="n">Controller</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller_id</span><span class="o">=</span><span class="s2">&quot;gate_controller&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Gate controller&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller_id</span><span class="o">=</span><span class="s2">&quot;gate_controller&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Gate controller&quot;</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">controller_id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
     <span class="nd">@action</span><span class="p">()</span>
     <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;open gate with speed:&quot;</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;open gate with speed:&quot;</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="execute-actions">
 <h2>Execute actions<a class="headerlink" href="#execute-actions" title="Permalink to this headline">¶</a></h2>
 <p>You execute an action just as an normal function or method</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_action</span><span class="p">(</span><span class="s2">&quot;p1&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_action</span><span class="p">(</span><span class="s2">&quot;p1&quot;</span><span class="p">)</span>
 
 <span class="n">gate_controller</span> <span class="o">=</span> <span class="n">GateController</span><span class="p">()</span>
 <span class="n">gate_controller</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -231,16 +228,16 @@ the framework handles process and network boundaries for you.</p>
 <p>By default, an action is called synchronous and first returns with the result when the action is completed.
 If you expect your action to operate within a special time interval, you can add the keyword parameter timeout to
 the action call. If the execution time exceeds the timeout, a TimeoutError exception is raised.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@action</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@action</span>
 <span class="k">def</span> <span class="nf">my_action</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;started&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;started&quot;</span><span class="p">)</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;done&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;done&quot;</span><span class="p">)</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="n">my_action</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">TimeoutError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Timout occured&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">TimeoutError</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Timout occured&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -248,7 +245,7 @@ the action call. If the execution time exceeds the timeout, a TimeoutError excep
 <h2>Asynchronous action call<a class="headerlink" href="#asynchronous-action-call" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to call an action asynchronously if you don’t want to wait for the action to finish execution.
 Just set the keyword argument run_async to true.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_action</span><span class="p">(</span><span class="n">run_async</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_action</span><span class="p">(</span><span class="n">run_async</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -256,25 +253,25 @@ Just set the keyword argument run_async to true.</p>
 <h2>Interrupts<a class="headerlink" href="#interrupts" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes you need to signal a running action during execution.
 To handle this situation you need to specify an interrupt function for an action.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">terminate</span> <span class="o">=</span> <span class="kc">False</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">terminate</span> <span class="o">=</span> <span class="bp">False</span>
 <span class="nd">@action</span>
 <span class="k">def</span> <span class="nf">my_action</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;my_action start&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;my_action start&quot;</span><span class="p">)</span>
 
     <span class="k">while</span> <span class="ow">not</span> <span class="n">terminate</span><span class="p">:</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="o">.</span><span class="mi">1</span><span class="p">)</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;my_action done&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;my_action done&quot;</span><span class="p">)</span>
 
-<span class="nd">@my_action</span><span class="o">.</span><span class="n">set_interrupt</span>
+<span class="nd">@my_action.set_interrupt</span>
 <span class="k">def</span> <span class="nf">my_action_interrupt</span><span class="p">():</span>
     <span class="k">global</span> <span class="n">terminate</span>
-    <span class="n">terminate</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;interrupt my_action&quot;</span><span class="p">)</span>
+    <span class="n">terminate</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;interrupt my_action&quot;</span><span class="p">)</span>
 
 
 <span class="c1">#call action</span>
-<span class="n">my_action</span><span class="p">(</span><span class="n">run_async</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">my_action</span><span class="p">(</span><span class="n">run_async</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="c1">#wait for five seconds</span>
 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
@@ -284,15 +281,15 @@ To handle this situation you need to specify an interrupt function for an action
 </pre></div>
 </div>
 <p>Interrupts support parameters</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@my_action</span><span class="o">.</span><span class="n">set_interrupt</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@my_action.set_interrupt</span>
 <span class="k">def</span> <span class="nf">my_action_interrupt</span><span class="p">(</span><span class="n">p1</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">terminate</span>
-    <span class="n">terminate</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;interrupt my_action:&quot;</span><span class="p">,</span> <span class="n">p1</span><span class="p">)</span>
+    <span class="n">terminate</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;interrupt my_action:&quot;</span><span class="p">,</span> <span class="n">p1</span><span class="p">)</span>
 
 
 <span class="c1">#call action</span>
-<span class="n">my_action</span><span class="p">(</span><span class="n">run_async</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">my_action</span><span class="p">(</span><span class="n">run_async</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="c1">#wait for five seconds</span>
 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
@@ -302,16 +299,16 @@ To handle this situation you need to specify an interrupt function for an action
 </pre></div>
 </div>
 <p>The action decorator injects a variable “exit_action” that is false until the action is interrupted.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@action</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@action</span>
 <span class="k">def</span> <span class="nf">my_action</span><span class="p">(</span><span class="n">p1</span><span class="o">=</span><span class="s2">&quot;p1d&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;action&quot;</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;kw1&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;action&quot;</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;kw1&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">))</span>
     <span class="k">while</span> <span class="ow">not</span> <span class="n">exit_action</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;in loop&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;in loop&quot;</span><span class="p">)</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;action interrupted&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;action interrupted&quot;</span><span class="p">)</span>
 
 
-<span class="n">my_action</span><span class="p">(</span><span class="s2">&quot;p1x&quot;</span><span class="p">,</span> <span class="n">kw1</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">run_async</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">my_action</span><span class="p">(</span><span class="s2">&quot;p1x&quot;</span><span class="p">,</span> <span class="n">kw1</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">run_async</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="c1">#wait for five seconds</span>
 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
@@ -323,9 +320,9 @@ To handle this situation you need to specify an interrupt function for an action
 <div class="section" id="scheduling">
 <h2>Scheduling<a class="headerlink" href="#scheduling" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to schedule when an action should run</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@action</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@action</span>
 <span class="k">def</span> <span class="nf">my_action</span><span class="p">(</span><span class="n">p1</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;My action&quot;</span><span class="p">,</span> <span class="n">p1</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;My action&quot;</span><span class="p">,</span> <span class="n">p1</span><span class="p">)</span>
 
 <span class="n">my_action</span><span class="o">.</span><span class="n">run_every</span><span class="p">()</span><span class="o">.</span><span class="n">minute</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">&quot;P1&quot;</span><span class="p">)</span>
 <span class="n">my_action</span><span class="o">.</span><span class="n">run_every</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">minutes</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">&quot;P1&quot;</span><span class="p">)</span>
@@ -342,13 +339,13 @@ To handle this situation you need to specify an interrupt function for an action
 </pre></div>
 </div>
 <p>It is also possible to run an action in an time interval.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@action</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@action</span>
 <span class="k">def</span> <span class="nf">my_action</span><span class="p">(</span><span class="n">p1</span><span class="o">=</span><span class="s2">&quot;p1d&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;action&quot;</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;kw1&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;action&quot;</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;kw1&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">))</span>
     <span class="k">while</span> <span class="ow">not</span> <span class="n">exit_action</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;in loop&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;in loop&quot;</span><span class="p">)</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;action interrupted&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;action interrupted&quot;</span><span class="p">)</span>
 
 <span class="n">my_action</span><span class="o">.</span><span class="n">run_every</span><span class="p">()</span><span class="o">.</span><span class="n">minute</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="s2">&quot;:58&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="s2">&quot;:02&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">&quot;P!x&quot;</span><span class="p">,</span> <span class="n">kw1</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">my_action</span><span class="o">.</span><span class="n">run_every</span><span class="p">()</span><span class="o">.</span><span class="n">wednesday</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="s2">&quot;13:15&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">&quot;P1&quot;</span><span class="p">)</span>
@@ -359,47 +356,47 @@ To handle this situation you need to specify an interrupt function for an action
 <h2>Linking to dashboards<a class="headerlink" href="#linking-to-dashboards" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to link actions to dashboards.
 A linked action will show up as a button on the panel.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@action</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@action</span>
 <span class="k">def</span> <span class="nf">my_action</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this is my action&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;this is my action&quot;</span><span class="p">)</span>
 
 <span class="n">my_action</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="s2">&quot;gate&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You can send parameters to the action.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="k">import</span> <span class="n">action</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="kn">import</span> <span class="n">action</span>
 
 <span class="nd">@action</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;My action&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">my_action</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;my_action is called with:&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;my_action is called with:&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 
 <span class="n">my_action</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="s2">&quot;gate&quot;</span><span class="p">,</span> <span class="n">action_parameters</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>If an interrupt function is set for the action it will be called when the button is released.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="k">import</span> <span class="n">action</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="kn">import</span> <span class="n">action</span>
 
 <span class="nd">@action</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;My action&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">my_action</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;my_action is called with:&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;my_action is called with:&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 
-<span class="nd">@my_action</span><span class="o">.</span><span class="n">set_interrupt</span>
+<span class="nd">@my_action.set_interrupt</span>
 <span class="k">def</span> <span class="nf">my_action_interrupt</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;my_action interrupt called&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;my_action interrupt called&quot;</span><span class="p">)</span>
 
 <span class="n">my_action</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="s2">&quot;gate&quot;</span><span class="p">,</span> <span class="n">action_parameters</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>You are able to specify parameters that should be send in the interrupt.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="k">import</span> <span class="n">action</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="kn">import</span> <span class="n">action</span>
 
 <span class="nd">@action</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;My action&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">my_action</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;my_action is called with:&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;my_action is called with:&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 
-<span class="nd">@my_action</span><span class="o">.</span><span class="n">set_interrupt</span>
+<span class="nd">@my_action.set_interrupt</span>
 <span class="k">def</span> <span class="nf">my_action_interrupt</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;my_action interrupt called: &quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;my_action interrupt called: &quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 
 <span class="n">my_action</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="s2">&quot;gate&quot;</span><span class="p">,</span> <span class="n">action_parameters</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span> <span class="n">interrupt_parameters</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;i&quot;</span><span class="p">])</span>
 </pre></div>
@@ -407,26 +404,26 @@ A linked action will show up as a button on the panel.</p>
 <p>Other keyword parameters you can use in link_to_dashboard:</p>
 <blockquote>
 <div><ul class="simple">
-<li><em>link_to_header</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Link this action to the header of the panel.</li>
-<li><em>label_icon</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</li>
-<li><em>label</em> (<code class="docutils literal"><span class="pre">str</span></code>) – Label text, default value is the name of the action.</li>
-<li><em>flat</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – Flat look and feel.</li>
-<li><dl class="first docutils">
-<dt><em>inline</em> (<code class="docutils literal"><span class="pre">bool</span></code>) –</dt>
-<dd>Display button and label in its actual size
+<li><p><em>link_to_header</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Link this action to the header of the panel.</p></li>
+<li><p><em>label_icon</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Icon that should be displayed together with label.</p></li>
+<li><p><em>label</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – Label text, default value is the name of the action.</p></li>
+<li><p><em>flat</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – Flat look and feel.</p></li>
+<li><dl class="simple">
+<dt><em>inline</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) –</dt><dd><p>Display button and label in its actual size
 If you set inline to true the size parameter is ignored.
-The action will only occupy as much space as the label and input takes.</dd>
+The action will only occupy as much space as the label and input takes.</p>
+</dd>
 </dl>
 </li>
-<li><em>on_text</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Text to display when switch is on.</li>
-<li><em>off_text</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Text to display when switch is off.</li>
-<li><em>on_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Icon to display when switch is on.</li>
-<li><em>off_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Icon to display when switch is off.</li>
-<li><em>button_icon</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Icon to display on button.</li>
-<li><em>button_text</em> (<code class="docutils literal"><span class="pre">string</span></code>) – Text to display on button, default is name.</li>
-<li><em>action_parameters</em> (<code class="docutils literal"><span class="pre">list</span></code>) – list of parameters to pass to the action.</li>
-<li><em>interrupt_enabled</em> (<code class="docutils literal"><span class="pre">bool</span></code>) – If true the button will send interrupt to action on off. Default true if an interrupt is specified for the action.</li>
-<li><em>interrupt_parameters</em> (<code class="docutils literal"><span class="pre">list</span></code>) – List of parameters to pass to the interrupt function of the action.</li>
+<li><p><em>on_text</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Text to display when switch is on.</p></li>
+<li><p><em>off_text</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Text to display when switch is off.</p></li>
+<li><p><em>on_icon</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Icon to display when switch is on.</p></li>
+<li><p><em>off_icon</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Icon to display when switch is off.</p></li>
+<li><p><em>button_icon</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Icon to display on button.</p></li>
+<li><p><em>button_text</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Text to display on button, default is name.</p></li>
+<li><p><em>action_parameters</em> (<code class="docutils literal notranslate"><span class="pre">list</span></code>) – list of parameters to pass to the action.</p></li>
+<li><p><em>interrupt_enabled</em> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – If true the button will send interrupt to action on off. Default true if an interrupt is specified for the action.</p></li>
+<li><p><em>interrupt_parameters</em> (<code class="docutils literal notranslate"><span class="pre">list</span></code>) – List of parameters to pass to the interrupt function of the action.</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -434,21 +431,21 @@ The action will only occupy as much space as the label and input takes.</dd>
 <h2>Linking to values<a class="headerlink" href="#linking-to-values" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to link an action to gpio or sensors or other kervi values.
 When the value of linked source changes the Action is executed or interrupted.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_action</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO2&quot;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_action</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO2&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>In the code above the action is linked to gpio2 if it goes high it executes the action.
 When the gpio2 goes low the action is interrupted.</p>
 <p>Here is another example where the action is linked to a sensors.
 When the sensor value is 10 the action is executed.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_action</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_action</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span>
     <span class="n">temp_sensor</span><span class="p">,</span>
     <span class="n">trigger_value</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 <p>You can also use an lambda expression as trigger.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_action</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_action</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span>
     <span class="n">temp_sensor</span><span class="p">,</span>
     <span class="n">trigger_value</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">10</span>
 <span class="p">)</span>
@@ -456,14 +453,14 @@ When the sensor value is 10 the action is executed.</p>
 </div>
 <p>If you want to pass the value of the linked source you can do by setting the pass_value parameter
 Now the action is called every time the source changes.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_action</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_action</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span>
     <span class="n">temp_sensor</span><span class="p">,</span>
     <span class="n">pass_value</span> <span class="o">=</span> <span class="n">true</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 <p>It is also possible to pass additional parameters to the action when it is triggered.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_action</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_action</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span>
     <span class="n">temp_sensor</span><span class="p">,</span>
     <span class="n">trigger_value</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">,</span>
     <span class="n">action_parameters</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;20&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
@@ -471,7 +468,7 @@ Now the action is called every time the source changes.</p>
 </pre></div>
 </div>
 <p>You can also specify when the interrupt should fire.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_action</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_action</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span>
     <span class="n">temp_sensor</span><span class="p">,</span>
     <span class="n">trigger_value</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">,</span>
     <span class="n">action_parameters</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;20&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
@@ -486,7 +483,7 @@ Now the action is called every time the source changes.</p>
 <p>When the kervi application has loaded and started all processes it calls the app_main action this is your hook where you can
 start your application logic. In the same way app_exit action is called upon termination of the kervi application.</p>
 <p>It is optional for you to define these actions in your application.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@action</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@action</span>
 <span class="k">def</span> <span class="nf">app_main</span><span class="p">():</span>
     <span class="c1">#start your application logic here</span>
 
@@ -497,7 +494,7 @@ start your application logic. In the same way app_exit action is called upon ter
 </pre></div>
 </div>
 <p>You can control the application via the following actions</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1">#stop the application</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#stop the application</span>
 <span class="n">Actions</span><span class="p">[</span><span class="s2">&quot;app.stop&quot;</span><span class="p">]</span>
 
 <span class="c1">#restart the application</span>
@@ -511,12 +508,12 @@ start your application logic. In the same way app_exit action is called upon ter
 </pre></div>
 </div>
 <p>You can connect a battery sensor to the <em>shutdown action</em> and initiate a shutdown of your device when the battery running low.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.sensors</span> <span class="k">import</span> <span class="n">Sensor</span>
-<span class="kn">from</span> <span class="nn">kervi.devices.sensors.CW2015</span> <span class="k">import</span> <span class="n">CW2015CapacityDeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.sensors</span> <span class="kn">import</span> <span class="n">Sensor</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.sensors.CW2015</span> <span class="kn">import</span> <span class="n">CW2015CapacityDeviceDriver</span>
 
 <span class="n">capacity_sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;CW2015_capacity&quot;</span><span class="p">,</span> <span class="s2">&quot;CW2015 capacity&quot;</span><span class="p">,</span> <span class="n">CW2015CapacityDeviceDriver</span><span class="p">())</span>
 
@@ -546,7 +543,7 @@ start your application logic. In the same way app_exit action is called upon ter
         <span class="s2">&quot;icon&quot;</span><span class="p">:</span><span class="s2">&quot;battery-full&quot;</span>
     <span class="p">}</span>
 <span class="p">])</span>
-<span class="n">capacity_sensor</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="s2">&quot;header_right&quot;</span><span class="p">,</span> <span class="n">display_unit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_sparkline</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_value</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">capacity_sensor</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="s2">&quot;header_right&quot;</span><span class="p">,</span> <span class="n">display_unit</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">show_sparkline</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">show_value</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
 <span class="n">APP</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
@@ -558,20 +555,20 @@ start your application logic. In the same way app_exit action is called upon ter
 The end stops are linked to GPIO2 and GPIO3.</p>
 <p>There are to two actions move_gate and stop_gate these are linked to the “gate” panel on the app dashboard.
 The move_gate action is also linked GPIO4 and GPIO5. When GPIO4 is triggered the gate opens and closes when gpio5 is triggered.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">time</span>
-    <span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+    <span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 
     <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-    <span class="kn">from</span> <span class="nn">kervi.dashboards</span> <span class="k">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
+    <span class="kn">from</span> <span class="nn">kervi.dashboards</span> <span class="kn">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
     <span class="n">Dashboard</span><span class="p">(</span>
         <span class="s2">&quot;app&quot;</span><span class="p">,</span>
         <span class="s2">&quot;App&quot;</span><span class="p">,</span>
         <span class="p">[</span>
             <span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;gate&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Gate&quot;</span><span class="p">)</span>
         <span class="p">],</span>
-        <span class="n">is_default</span><span class="o">=</span><span class="kc">True</span>
+        <span class="n">is_default</span><span class="o">=</span><span class="bp">True</span>
     <span class="p">)</span>
 
     <span class="n">Dashboard</span><span class="p">(</span>
@@ -582,85 +579,85 @@ The move_gate action is also linked GPIO4 and GPIO5. When GPIO4 is triggered the
         <span class="p">]</span>
     <span class="p">)</span>
 
-    <span class="kn">from</span> <span class="nn">kervi.controllers</span> <span class="k">import</span> <span class="n">Controller</span>
-    <span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="k">import</span> <span class="n">action</span>
-    <span class="kn">from</span> <span class="nn">kervi.values</span> <span class="k">import</span> <span class="n">NumberValue</span><span class="p">,</span> <span class="n">BooleanValue</span>
+    <span class="kn">from</span> <span class="nn">kervi.controllers</span> <span class="kn">import</span> <span class="n">Controller</span>
+    <span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="kn">import</span> <span class="n">action</span>
+    <span class="kn">from</span> <span class="nn">kervi.values</span> <span class="kn">import</span> <span class="n">NumberValue</span><span class="p">,</span> <span class="n">BooleanValue</span>
 
     <span class="k">class</span> <span class="nc">GateController</span><span class="p">(</span><span class="n">Controller</span><span class="p">):</span>
-        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller_id</span><span class="o">=</span><span class="s2">&quot;gate_controller&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Gate controller&quot;</span><span class="p">):</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller_id</span><span class="o">=</span><span class="s2">&quot;gate_controller&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Gate controller&quot;</span><span class="p">):</span>
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">controller_id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">gate_speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;speed&quot;</span><span class="p">,</span> <span class="s2">&quot;Gate speed&quot;</span><span class="p">,</span> <span class="n">NumberValue</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">gate_speed</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">100</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">gate_speed</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">gate_speed</span><span class="o">.</span><span class="n">persist_value</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gate_speed</span><span class="o">.</span><span class="n">persist_value</span> <span class="o">=</span> <span class="bp">True</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">lo_end_stop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;lo_end_stop&quot;</span><span class="p">,</span> <span class="s2">&quot;low end stop&quot;</span><span class="p">,</span> <span class="n">BooleanValue</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">hi_end_stop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;hi_end_stop&quot;</span><span class="p">,</span> <span class="s2">&quot;High end stop&quot;</span><span class="p">,</span> <span class="n">BooleanValue</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">gate_motor_speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;gate_motor_speed&quot;</span><span class="p">,</span> <span class="s2">&quot;Gate motor speed&quot;</span><span class="p">,</span> <span class="n">NumberValue</span><span class="p">)</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">_stop_move</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_stop_move</span> <span class="o">=</span> <span class="bp">False</span>
 
         <span class="nd">@action</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Move gate&quot;</span><span class="p">)</span>
-        <span class="k">def</span> <span class="nf">move_gate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">open</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">move_gate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">open</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
             <span class="k">if</span> <span class="nb">open</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;open gate&quot;</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;open gate&quot;</span><span class="p">)</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">hi_end_stop</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_stop_move</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_stop_move</span> <span class="o">=</span> <span class="bp">False</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">gate_motor_speed</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gate_speed</span><span class="o">.</span><span class="n">value</span>
                     <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop_move</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">hi_end_stop</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
                         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">gate_motor_speed</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hi_end_stop</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gate open&quot;</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Gate open&quot;</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gate stopped&quot;</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Gate stopped&quot;</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;close gate:&quot;</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;close gate:&quot;</span><span class="p">)</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">lo_end_stop</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_stop_move</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_stop_move</span> <span class="o">=</span> <span class="bp">False</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">gate_motor_speed</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">gate_speed</span><span class="o">.</span><span class="n">value</span>
                     <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop_move</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">lo_end_stop</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
                         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">gate_motor_speed</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lo_end_stop</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gate closed&quot;</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Gate closed&quot;</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gate stopped&quot;</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Gate stopped&quot;</span><span class="p">)</span>
 
-        <span class="nd">@move_gate</span><span class="o">.</span><span class="n">set_interrupt</span>
+        <span class="nd">@move_gate.set_interrupt</span>
         <span class="k">def</span> <span class="nf">move_gate_interrupt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;stop gate:&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_stop_move</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;stop gate:&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_stop_move</span> <span class="o">=</span> <span class="bp">True</span>
 
         <span class="k">def</span> <span class="nf">controller_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;gate controller is started&quot;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;gate controller is started&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">gate_motor_speed</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="k">def</span> <span class="nf">input_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">changed_input</span><span class="p">):</span>
             <span class="k">pass</span>
 
     <span class="n">gate_controller</span> <span class="o">=</span> <span class="n">GateController</span><span class="p">()</span>
-    <span class="n">gate_controller</span><span class="o">.</span><span class="n">move_gate</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="s2">&quot;gate&quot;</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">button_text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">button_icon</span><span class="o">=</span><span class="s2">&quot;arrow-up&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">action_parameters</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">],</span> <span class="p">)</span>
-    <span class="n">gate_controller</span><span class="o">.</span><span class="n">move_gate</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="s2">&quot;gate&quot;</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">button_text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">button_icon</span><span class="o">=</span><span class="s2">&quot;arrow-down&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">action_parameters</span><span class="o">=</span><span class="p">[</span><span class="kc">False</span><span class="p">])</span>
+    <span class="n">gate_controller</span><span class="o">.</span><span class="n">move_gate</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="s2">&quot;gate&quot;</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">button_text</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">button_icon</span><span class="o">=</span><span class="s2">&quot;arrow-up&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">action_parameters</span><span class="o">=</span><span class="p">[</span><span class="bp">True</span><span class="p">],</span> <span class="p">)</span>
+    <span class="n">gate_controller</span><span class="o">.</span><span class="n">move_gate</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="s2">&quot;gate&quot;</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">button_text</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">button_icon</span><span class="o">=</span><span class="s2">&quot;arrow-down&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">action_parameters</span><span class="o">=</span><span class="p">[</span><span class="bp">False</span><span class="p">])</span>
 
     <span class="n">gate_controller</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;settings&quot;</span><span class="p">,</span> <span class="s2">&quot;gate&quot;</span><span class="p">)</span>
 
-    <span class="kn">from</span> <span class="nn">kervi.devices.motors.dummy_motor_driver</span> <span class="k">import</span> <span class="n">DummyMotorBoard</span>
+    <span class="kn">from</span> <span class="nn">kervi.devices.motors.dummy_motor_driver</span> <span class="kn">import</span> <span class="n">DummyMotorBoard</span>
 
     <span class="n">motor_board</span> <span class="o">=</span> <span class="n">DummyMotorBoard</span><span class="p">()</span>
     <span class="n">gate_controller</span><span class="o">.</span><span class="n">gate_motor_speed</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">motor_board</span><span class="o">.</span><span class="n">dc_motors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">speed</span><span class="p">)</span>
 
-    <span class="kn">from</span> <span class="nn">kervi.hal</span> <span class="k">import</span> <span class="n">GPIO</span>
+    <span class="kn">from</span> <span class="nn">kervi.hal</span> <span class="kn">import</span> <span class="n">GPIO</span>
     <span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">define_as_input</span><span class="p">()</span>
     <span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO3&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">define_as_input</span><span class="p">()</span>
 
     <span class="n">gate_controller</span><span class="o">.</span><span class="n">lo_end_stop</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO2&quot;</span><span class="p">])</span>
     <span class="n">gate_controller</span><span class="o">.</span><span class="n">hi_end_stop</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO3&quot;</span><span class="p">])</span>
 
-    <span class="n">gate_controller</span><span class="o">.</span><span class="n">move_gate</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO4&quot;</span><span class="p">],</span> <span class="n">action_parameters</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">])</span>
-    <span class="n">gate_controller</span><span class="o">.</span><span class="n">move_gate</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO5&quot;</span><span class="p">],</span> <span class="n">action_parameters</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">])</span>
+    <span class="n">gate_controller</span><span class="o">.</span><span class="n">move_gate</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO4&quot;</span><span class="p">],</span> <span class="n">action_parameters</span> <span class="o">=</span> <span class="p">[</span><span class="bp">True</span><span class="p">])</span>
+    <span class="n">gate_controller</span><span class="o">.</span><span class="n">move_gate</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO5&quot;</span><span class="p">],</span> <span class="n">action_parameters</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">])</span>
 
     <span class="n">APP</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
@@ -673,7 +670,7 @@ of the gate speed could be set.</p>
 <div class="section" id="multi-process">
 <h2>Multi process<a class="headerlink" href="#multi-process" title="Permalink to this headline">¶</a></h2>
 <p>If you want to call an action that is defined in another process within your kervi application you use the Actions list.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="k">import</span> <span class="n">Actions</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="kn">import</span> <span class="n">Actions</span>
 
 <span class="n">Actions</span><span class="p">[</span><span class="s2">&quot;my_action&quot;</span><span class="p">](</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 </pre></div>
@@ -685,10 +682,11 @@ of the gate speed could be set.</p>
 <p>&#64;action(action_id=”alternative_id”)
 def my_action(p):</p>
 <blockquote>
-<div>print(“my action”, p)</div></blockquote>
+<div><p>print(“my action”, p)</p>
+</div></blockquote>
 </div></blockquote>
 <p>You now call it via:</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="k">import</span> <span class="n">Actions</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="kn">import</span> <span class="n">Actions</span>
 
 <span class="n">Actions</span><span class="p">[</span><span class="s2">&quot;alternative_id&quot;</span><span class="p">](</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 </pre></div>
@@ -697,13 +695,13 @@ def my_action(p):</p>
 <p>It consists of two scripts robot.py that should be executed on the robot
 and a script robot_task.py that holds a series of actions that the robot should perform.</p>
 <p>robot.py is a kervi application that you should execute on your Raspberry pi.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 
     <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-    <span class="kn">from</span> <span class="nn">kervi.controllers.steering</span> <span class="k">import</span> <span class="n">MotorSteering</span>
-    <span class="kn">from</span> <span class="nn">kervi.devices.motors.dummy_motor_driver</span> <span class="k">import</span> <span class="n">DummyMotorBoard</span>
+    <span class="kn">from</span> <span class="nn">kervi.controllers.steering</span> <span class="kn">import</span> <span class="n">MotorSteering</span>
+    <span class="kn">from</span> <span class="nn">kervi.devices.motors.dummy_motor_driver</span> <span class="kn">import</span> <span class="n">DummyMotorBoard</span>
 
     <span class="n">motor_board</span> <span class="o">=</span> <span class="n">DummyMotorBoard</span><span class="p">()</span>
 
@@ -723,9 +721,9 @@ and a script robot_task.py that holds a series of actions that the robot should 
 <p>The other python script robot_tasks.py is a kervi module that connects to the
 kervi application in robot.py. You can run it on the robot itself or another computer
 on your local network.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">kervi.module</span> <span class="k">import</span> <span class="n">Module</span>
-    <span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="k">import</span> <span class="n">action</span><span class="p">,</span> <span class="n">Actions</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">kervi.module</span> <span class="kn">import</span> <span class="n">Module</span>
+    <span class="kn">from</span> <span class="nn">kervi.actions</span> <span class="kn">import</span> <span class="n">action</span><span class="p">,</span> <span class="n">Actions</span>
     <span class="n">module</span> <span class="o">=</span> <span class="n">Module</span><span class="p">()</span>
 
 
@@ -744,9 +742,7 @@ on your local network.</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -755,7 +751,7 @@ on your local network.</p>
         <a href="camera.html" class="btn btn-neutral float-right" title="Camera and video" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="signals.html" class="btn btn-neutral" title="Signal handling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="signals.html" class="btn btn-neutral float-left" title="Signal handling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -764,11 +760,11 @@ on your local network.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -781,37 +777,32 @@ on your local network.</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-   
+
+  
+  
+    
+  
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    cookieconsent.run({"notice_banner_type":"headline","consent_type":"express","palette":"dark","change_preferences_selector":"#changePreferences","language":"en"});
+});
+</script>
+
+<script cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-144183988-1"></script>
+<script cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144183988-1');
+</script>
+
+
 
 </body>
 </html>

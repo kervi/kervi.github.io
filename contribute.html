@@ -17,41 +17,37 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="" href="index.html"/>
-        <link rel="prev" title="Devices API" href="hal_devices_api.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Devices API" href="hal_devices_api.html" />
+<script type="text/javascript" src="https://www.PrivacyPolicies.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -147,7 +143,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Kervi</a>
@@ -155,9 +151,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -214,7 +211,7 @@ For python programming the VS Code Python extension by Don Jayamanne is used for
 <div class="section" id="github-projects">
 <h3>Github projects<a class="headerlink" href="#github-projects" title="Permalink to this headline">¶</a></h3>
 <p>Create a development root folder for the kervi projects and clone the following projects from github.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kervi</span><span class="o">/</span><span class="n">kervi</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kervi</span><span class="o">/</span><span class="n">kervi</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
 </div>
@@ -229,11 +226,11 @@ your kervi installation for development.</p>
 <p>The web ui is an Angular 7+ application.
 The angular project is located in “kervi-ui/kervi_ui/web”.</p>
 <p>You need to update the npm packages in the web folder by calling:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">npm</span> <span class="n">update</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">npm</span> <span class="n">update</span>
 </pre></div>
 </div>
 <p>Next you have to install the angular cli tool:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="nd">@angular</span><span class="o">/</span><span class="n">cli</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="nd">@angular</span><span class="o">/</span><span class="n">cli</span>
 </pre></div>
 </div>
 </div>
@@ -262,13 +259,13 @@ For hardware platforms that are not supported a generic driver is used.</p>
 <h3>Kervi UI (Web dashboards)<a class="headerlink" href="#kervi-ui-web-dashboards" title="Permalink to this headline">¶</a></h3>
 <p>The source for the web ui is located in “kervi-ui/kervi_ui/web”.</p>
 <p>To start the Angular development server use:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">ng</span> <span class="n">serve</span> <span class="n">webApp</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">ng</span> <span class="n">serve</span> <span class="n">webApp</span>
 </pre></div>
 </div>
 <p>This starts a web server that runs the Kervi angular app directly from source.</p>
 <p>The development version listen on local host and you need to set that address in your kervi app settings.
 Below is a sample app settings that show how to set the settings IPAddress and IPRootAddress to localhost.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">({</span>
@@ -281,7 +278,7 @@ Below is a sample app settings that show how to set the settings IPAddress and I
 </pre></div>
 </div>
 <p>If you want to test your changes in the Kervi web server you need to build the ui app via.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ng</span> <span class="n">build</span> <span class="n">webApp</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ng</span> <span class="n">build</span> <span class="n">webApp</span>
 </pre></div>
 </div>
 <p>Go to the web address that is displayed when the kervi app is started.</p>
@@ -296,18 +293,18 @@ Below is a sample app settings that show how to set the settings IPAddress and I
 <h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
 <p>This site (kervi.org) is created with the python tool sphinx.</p>
 <p>Run these commands to install sphinx</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx_rtd_theme</span>
 </pre></div>
 </div>
 <p>Clone the documentation source from github.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kervi</span><span class="o">/</span><span class="n">kervi</span><span class="o">-</span><span class="n">doc</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kervi</span><span class="o">/</span><span class="n">kervi</span><span class="o">-</span><span class="n">doc</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
 <p>Source files are located in the “source” folder.</p>
 <p>You need to call the sphinx builder in order to generate the html output.
 Run the command below in the root of the kervi-doc project:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
 </pre></div>
 </div>
 <p>Open kervi-doc/build_output/html/index.html in a browser and you should see the finished documentation.</p>
@@ -317,16 +314,14 @@ Run the command below in the root of the kervi-doc project:</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="hal_devices_api.html" class="btn btn-neutral" title="Devices API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="hal_devices_api.html" class="btn btn-neutral float-left" title="Devices API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -335,11 +330,11 @@ Run the command below in the root of the kervi-doc project:</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -352,37 +347,32 @@ Run the command below in the root of the kervi-doc project:</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-   
+
+  
+  
+    
+  
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    cookieconsent.run({"notice_banner_type":"headline","consent_type":"express","palette":"dark","change_preferences_selector":"#changePreferences","language":"en"});
+});
+</script>
+
+<script cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-144183988-1"></script>
+<script cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144183988-1');
+</script>
+
+
 
 </body>
 </html>

@@ -17,43 +17,38 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="" href="../index.html"/>
-        <link rel="up" title="Device library" href="index.html"/>
-        <link rel="next" title="Motors" href="motors.html"/>
-        <link rel="prev" title="Displays" href="displays.html"/> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Motors" href="motors.html" />
+    <link rel="prev" title="Displays" href="displays.html" />
+<script type="text/javascript" src="https://www.PrivacyPolicies.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -141,7 +136,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Kervi</a>
@@ -149,9 +144,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -198,33 +194,31 @@
 <div class="section" id="mcp23017-i2c">
 <h2>MCP23017(I2C)<a class="headerlink" href="#mcp23017-i2c" title="Permalink to this headline">¶</a></h2>
 <p>This device driver supports the gpio MCP23017</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">MCP23017DeviceDriver</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MCP23017DeviceDriver</span><span class="p">(</span>
     <span class="n">address</span><span class="o">=</span><span class="mh">0x20</span><span class="p">,</span>
     <span class="n">busnum</span><span class="o">=</span><span class="mi">0</span>
 <span class="p">):</span>
 </pre></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">address:</th><td class="field-body">I2C address. Default is 0x20.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">bus:</th><td class="field-body">I2C bus. If 0 or None default bus for platform is selected.</td>
-</tr>
-</tbody>
-</table>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<dl class="field-list simple">
+<dt class="field-odd">address</dt>
+<dd class="field-odd"><p>I2C address. Default is 0x20.</p>
+</dd>
+<dt class="field-even">bus</dt>
+<dd class="field-even"><p>I2C bus. If 0 or None default bus for platform is selected.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.devices.gpio.MCP230XX</span> <span class="k">import</span> <span class="n">MCP23017DeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.gpio.MCP230XX</span> <span class="kn">import</span> <span class="n">MCP23017DeviceDriver</span>
 <span class="n">gpio</span> <span class="o">=</span> <span class="n">MCP23017DeviceDriver</span><span class="p">()</span>
 
 <span class="n">gpio</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">define_as_output</span><span class="p">()</span>
 <span class="c1">#Link to dashboard, shows as a button</span>
 <span class="n">gpio</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">()</span>
 
-<span class="n">gpio</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">define_as_input</span><span class="p">(</span><span class="n">pull_up</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">gpio</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">define_as_input</span><span class="p">(</span><span class="n">pull_up</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="c1">#Link to dashboard, shows as a read only button</span>
 <span class="n">gpio</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">()</span>
 
@@ -235,33 +229,31 @@
 <div class="section" id="mcp23008-i2c">
 <h2>MCP23008(I2C)<a class="headerlink" href="#mcp23008-i2c" title="Permalink to this headline">¶</a></h2>
 <p>This device driver supports the gpio MCP23008 with 8 general digital io pins</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">MCP23008DeviceDriver</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MCP23008DeviceDriver</span><span class="p">(</span>
     <span class="n">address</span><span class="o">=</span><span class="mh">0x20</span><span class="p">,</span>
     <span class="n">busnum</span><span class="o">=</span><span class="mi">0</span>
 <span class="p">):</span>
 </pre></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">address:</th><td class="field-body">I2C address. Default is 0x20.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">bus:</th><td class="field-body">I2C bus. If 0 or None default bus for platform is selected.</td>
-</tr>
-</tbody>
-</table>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<dl class="field-list simple">
+<dt class="field-odd">address</dt>
+<dd class="field-odd"><p>I2C address. Default is 0x20.</p>
+</dd>
+<dt class="field-even">bus</dt>
+<dd class="field-even"><p>I2C bus. If 0 or None default bus for platform is selected.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.devices.gpio.MCP230XX</span> <span class="k">import</span> <span class="n">MCP23008DeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.gpio.MCP230XX</span> <span class="kn">import</span> <span class="n">MCP23008DeviceDriver</span>
 <span class="n">gpio</span> <span class="o">=</span> <span class="n">MCP23008DeviceDriver</span><span class="p">()</span>
 
 <span class="n">gpio</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">define_as_output</span><span class="p">()</span>
 <span class="c1">#Link to dashboard, shows as a button</span>
 <span class="n">gpio</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">()</span>
 
-<span class="n">gpio</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">define_as_input</span><span class="p">(</span><span class="n">pull_up</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">gpio</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">define_as_input</span><span class="p">(</span><span class="n">pull_up</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="c1">#Link to dashboard, shows as a read only button</span>
 <span class="n">gpio</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">()</span>
 
@@ -272,29 +264,27 @@
 <div class="section" id="pcf8574-pcf8574a-i2c">
 <h2>PCF8574, PCF8574A(I2C)<a class="headerlink" href="#pcf8574-pcf8574a-i2c" title="Permalink to this headline">¶</a></h2>
 <p>This device driver supports the PCF8574 gpio extender with 8 general digital io pins</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">PCF8574DeviceDriver</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PCF8574DeviceDriver</span><span class="p">(</span>
     <span class="n">address</span><span class="o">=</span><span class="mh">0x27</span><span class="p">,</span>
     <span class="n">bus</span><span class="o">=</span><span class="mi">0</span>
 <span class="p">):</span>
 </pre></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">address:</th><td class="field-body">I2C address. Default is 0x27.
+<dl class="field-list simple">
+<dt class="field-odd">address</dt>
+<dd class="field-odd"><p>I2C address. Default is 0x27.
 This device comes in two flavors PCF8574 and PCF8574A.
 For PCF8574 the valid addresses should be in the range 0x20 to 0x27.
-For PCF8574A the valid addresses should be in the range 0x38 to 0x3F.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">bus:</th><td class="field-body">I2C bus. If 0 or None default bus for platform is selected.</td>
-</tr>
-</tbody>
-</table>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+For PCF8574A the valid addresses should be in the range 0x38 to 0x3F.</p>
+</dd>
+<dt class="field-even">bus</dt>
+<dd class="field-even"><p>I2C bus. If 0 or None default bus for platform is selected.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.devices.gpio.PCF8574</span> <span class="k">import</span> <span class="n">PCF8574DeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.gpio.PCF8574</span> <span class="kn">import</span> <span class="n">PCF8574DeviceDriver</span>
 <span class="n">gpio</span> <span class="o">=</span> <span class="n">PCF8574DeviceDriver</span><span class="p">()</span>
 
 <span class="n">gpio</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">define_as_output</span><span class="p">()</span>
@@ -312,26 +302,24 @@ For PCF8574A the valid addresses should be in the range 0x38 to 0x3F.</td>
 <div class="section" id="pcf859-i2c">
 <h2>PCF859(I2C)<a class="headerlink" href="#pcf859-i2c" title="Permalink to this headline">¶</a></h2>
 <p>This device driver supports the PCF859 gpio extender with 4 analog inputs and one analog output.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">PCF859DeviceDriver</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PCF859DeviceDriver</span><span class="p">(</span>
     <span class="n">address</span><span class="o">=</span><span class="mh">0x48</span><span class="p">,</span>
     <span class="n">bus</span><span class="o">=</span><span class="mi">0</span>
 <span class="p">):</span>
 </pre></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">address:</th><td class="field-body">I2C address. Default is 0x48.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">bus:</th><td class="field-body">I2C bus. If 0 or None default bus for platform is selected.</td>
-</tr>
-</tbody>
-</table>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<dl class="field-list simple">
+<dt class="field-odd">address</dt>
+<dd class="field-odd"><p>I2C address. Default is 0x48.</p>
+</dd>
+<dt class="field-even">bus</dt>
+<dd class="field-even"><p>I2C bus. If 0 or None default bus for platform is selected.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.devices.gpio.PCF859</span> <span class="k">import</span> <span class="n">PCF859DeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.gpio.PCF859</span> <span class="kn">import</span> <span class="n">PCF859DeviceDriver</span>
 <span class="n">gpio</span> <span class="o">=</span> <span class="n">PCF859DeviceDriver</span><span class="p">()</span>
 
 <span class="n">Link</span> <span class="n">to</span> <span class="n">dashboard</span><span class="p">,</span> <span class="n">shows</span> <span class="k">as</span> <span class="n">a</span> <span class="n">button</span>
@@ -346,9 +334,7 @@ For PCF8574A the valid addresses should be in the range 0x38 to 0x3F.</td>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -357,7 +343,7 @@ For PCF8574A the valid addresses should be in the range 0x38 to 0x3F.</td>
         <a href="motors.html" class="btn btn-neutral float-right" title="Motors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="displays.html" class="btn btn-neutral" title="Displays" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="displays.html" class="btn btn-neutral float-left" title="Displays" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -366,11 +352,11 @@ For PCF8574A the valid addresses should be in the range 0x38 to 0x3F.</td>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -383,37 +369,32 @@ For PCF8574A the valid addresses should be in the range 0x38 to 0x3F.</td>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-   
+
+  
+  
+    
+  
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    cookieconsent.run({"notice_banner_type":"headline","consent_type":"express","palette":"dark","change_preferences_selector":"#changePreferences","language":"en"});
+});
+</script>
+
+<script cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-144183988-1"></script>
+<script cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144183988-1');
+</script>
+
+
 
 </body>
 </html>

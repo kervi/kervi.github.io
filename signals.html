@@ -17,42 +17,38 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="" href="index.html"/>
-        <link rel="next" title="Actions" href="actions.html"/>
-        <link rel="prev" title="Controllers" href="controllers.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Actions" href="actions.html" />
+    <link rel="prev" title="Controllers" href="controllers.html" />
+<script type="text/javascript" src="https://www.PrivacyPolicies.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -132,7 +128,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Kervi</a>
@@ -140,9 +136,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -187,10 +184,10 @@
 <p>The KerviValue class is a core class in the kervi framework that handles monitoring and flowing of data inside the application.</p>
 <p>A KerviValue has the following properties:</p>
 <ul class="simple">
-<li>Holds one value of type int, float, string, boolean and dict.</li>
-<li>It exists in two modes input or output. A <em>kervi value</em> in input mode is changeable and a value in output mode is readable.</li>
-<li>An <em>input value</em> can link to <em>output value</em> in order to monitor changes in the output value. This link exists accross process and device boundaries.</li>
-<li>It is possible to link a kervi value to dashboard and panels. The visible representation depends on value type and input mode.</li>
+<li><p>Holds one value of type int, float, string, boolean and dict.</p></li>
+<li><p>It exists in two modes input or output. A <em>kervi value</em> in input mode is changeable and a value in output mode is readable.</p></li>
+<li><p>An <em>input value</em> can link to <em>output value</em> in order to monitor changes in the output value. This link exists accross process and device boundaries.</p></li>
+<li><p>It is possible to link a kervi value to dashboard and panels. The visible representation depends on value type and input mode.</p></li>
 </ul>
 <div class="section" id="value-linking">
 <h2>Value linking<a class="headerlink" href="#value-linking" title="Permalink to this headline">¶</a></h2>
@@ -203,7 +200,7 @@ The output of the sensor is linked to a pid controller that calculates
 how much the wheels must be moved to keep the robot in balance.
 The result of the pid controller is sent to the steering controller that calculates the speed of each motor
 and sends the calculated motor speeds to the motor controller.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1">#imports an initialization of the application is omitted for clarity</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#imports an initialization of the application is omitted for clarity</span>
 
 <span class="c1">#create orientation sensor</span>
 <span class="n">orientation_sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;orientation&quot;</span><span class="p">,</span> <span class="s2">&quot;Orientation&quot;</span><span class="p">,</span> <span class="n">LSM9DS0OrientationDeviceDriver</span><span class="p">(),</span> <span class="n">reading_interval</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
@@ -235,12 +232,12 @@ in Kervi.</p>
 The input value then starts to listen for value changes that are broardcast over IPC by the output.</p>
 <p>An indirect link must be established on the input side in the link.</p>
 <p>Process one code</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1">#create orientation sensor</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#create orientation sensor</span>
 <span class="n">orientation_sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;orientation&quot;</span><span class="p">,</span> <span class="s2">&quot;Orientation&quot;</span><span class="p">,</span> <span class="n">LSM9DS0OrientationDeviceDriver</span><span class="p">(),</span> <span class="n">reading_interval</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>process two code</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">pid_controller</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="s2">&quot;balance_pid&quot;</span><span class="p">,</span> <span class="s2">&quot;Balance pid&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pid_controller</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="s2">&quot;balance_pid&quot;</span><span class="p">,</span> <span class="s2">&quot;Balance pid&quot;</span><span class="p">)</span>
 <span class="n">pid_controller</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="s2">&quot;orientation.roll&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -254,7 +251,7 @@ values that are exchanged in the link.</p>
 <p>Below is an example where a servo motor is mounted opposite to the on screen pan
 controller. By changing the sign the in the link the servo will rotate as expected on
 the screen.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">motor_board</span><span class="o">.</span><span class="n">servo_motors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">CAM1</span><span class="o">.</span><span class="n">pan</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">motor_board</span><span class="o">.</span><span class="n">servo_motors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">CAM1</span><span class="o">.</span><span class="n">pan</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -269,9 +266,7 @@ a read only representation.</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -280,7 +275,7 @@ a read only representation.</p>
         <a href="actions.html" class="btn btn-neutral float-right" title="Actions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="controllers.html" class="btn btn-neutral" title="Controllers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="controllers.html" class="btn btn-neutral float-left" title="Controllers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -289,11 +284,11 @@ a read only representation.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -306,37 +301,32 @@ a read only representation.</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-   
+
+  
+  
+    
+  
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    cookieconsent.run({"notice_banner_type":"headline","consent_type":"express","palette":"dark","change_preferences_selector":"#changePreferences","language":"en"});
+});
+</script>
+
+<script cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-144183988-1"></script>
+<script cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144183988-1');
+</script>
+
+
 
 </body>
 </html>

@@ -17,43 +17,38 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="" href="../index.html"/>
-        <link rel="up" title="Device library" href="index.html"/>
-        <link rel="next" title="Process distribution" href="../multi_process.html"/>
-        <link rel="prev" title="PWM" href="pwm.html"/> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Process distribution" href="../multi_process.html" />
+    <link rel="prev" title="PWM" href="pwm.html" />
+<script type="text/javascript" src="https://www.PrivacyPolicies.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -165,7 +160,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Kervi</a>
@@ -173,9 +168,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -225,14 +221,14 @@
 <h2>Temperature<a class="headerlink" href="#temperature" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="cpu-temp">
 <h3>CPU temp<a class="headerlink" href="#cpu-temp" title="Permalink to this headline">¶</a></h3>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.cpu_temp</span> <span class="k">import</span> <span class="n">CPUTempSensorDeviceDriver</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.cpu_temp</span> <span class="kn">import</span> <span class="n">CPUTempSensorDeviceDriver</span>
 <span class="n">CPUTempSensorDeviceDriver</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.cpu_temp</span> <span class="k">import</span> <span class="n">CPUTempSensorDeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.cpu_temp</span> <span class="kn">import</span> <span class="n">CPUTempSensorDeviceDriver</span>
 <span class="n">temp</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;cpu_temp&quot;</span><span class="p">,</span> <span class="s2">&quot;CPU temp&quot;</span><span class="p">,</span> <span class="n">CPUTempSensorDeviceDriver</span><span class="p">())</span>
 <span class="n">temp</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">()</span>
 
@@ -242,7 +238,7 @@
 </div>
 <div class="section" id="bmp085-i2c">
 <span id="bmp085"></span><h3>BMP085(I2C)<a class="headerlink" href="#bmp085-i2c" title="Permalink to this headline">¶</a></h3>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.sensors.BMP085</span> <span class="k">import</span> <span class="n">BMP085DeviceDriver</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.sensors.BMP085</span> <span class="kn">import</span> <span class="n">BMP085DeviceDriver</span>
 <span class="n">BMP085DeviceDriver</span><span class="p">(</span>
     <span class="n">sensor_type</span><span class="o">=</span><span class="n">BMP085_TEMPERATURE_SENSOR</span><span class="p">,</span>
     <span class="n">mode</span><span class="o">=</span><span class="n">BMP085_STANDARD</span><span class="p">,</span>
@@ -251,24 +247,24 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">sensor_type:</th><td class="field-body">BMP085_TEMPERATURE_SENSOR, BMP085_PRESSURE_SENSOR or BMP085_ALTITUDE_SENSOR</td>
-</tr>
-<tr class="field-even field"><th class="field-name">mode:</th><td class="field-body">BMP085_ULTRALOWPOWER, BMP085_STANDARD, BMP085_HIGHRES, BMP085_ULTRAHIGHRES</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">address:</th><td class="field-body">I2C address. Default is 0x77</td>
-</tr>
-<tr class="field-even field"><th class="field-name">bus:</th><td class="field-body">I2C bus. If 0 or None default bus for platform is selected.</td>
-</tr>
-</tbody>
-</table>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<dl class="field-list simple">
+<dt class="field-odd">sensor_type</dt>
+<dd class="field-odd"><p>BMP085_TEMPERATURE_SENSOR, BMP085_PRESSURE_SENSOR or BMP085_ALTITUDE_SENSOR</p>
+</dd>
+<dt class="field-even">mode</dt>
+<dd class="field-even"><p>BMP085_ULTRALOWPOWER, BMP085_STANDARD, BMP085_HIGHRES, BMP085_ULTRAHIGHRES</p>
+</dd>
+<dt class="field-odd">address</dt>
+<dd class="field-odd"><p>I2C address. Default is 0x77</p>
+</dd>
+<dt class="field-even">bus</dt>
+<dd class="field-even"><p>I2C bus. If 0 or None default bus for platform is selected.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.devices.sensors.BMP085</span> <span class="k">import</span> <span class="n">BMP085DeviceDriver</span><span class="p">,</span> <span class="n">BMP085_TEMPERATURE_SENSOR</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.sensors.BMP085</span> <span class="kn">import</span> <span class="n">BMP085DeviceDriver</span><span class="p">,</span> <span class="n">BMP085_TEMPERATURE_SENSOR</span>
 <span class="n">temp</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;temp_1&quot;</span><span class="p">,</span> <span class="s2">&quot;Temperature outdoor&quot;</span><span class="p">,</span> <span class="n">BMP085DeviceDriver</span><span class="p">(</span><span class="n">BMP085_TEMPERATURE_SENSOR</span><span class="p">))</span>
 <span class="n">temp</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">()</span>
 
@@ -278,22 +274,19 @@
 </div>
 <div class="section" id="ds18b20-one-wire">
 <h3>DS18B20(One wire)<a class="headerlink" href="#ds18b20-one-wire" title="Permalink to this headline">¶</a></h3>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.sensors.DS18XXX</span> <span class="k">import</span> <span class="n">DS18XXXDeviceDriver</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.sensors.DS18XXX</span> <span class="kn">import</span> <span class="n">DS18XXXDeviceDriver</span>
 <span class="n">DS18XXXDeviceDriver</span><span class="p">(</span><span class="n">Address</span><span class="p">)</span>
 </pre></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">address:</th><td class="field-body">One wire address</td>
-</tr>
-</tbody>
-</table>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<dl class="field-list simple">
+<dt class="field-odd">address</dt>
+<dd class="field-odd"><p>One wire address</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.devices.sensors.DS18XXX</span> <span class="k">import</span> <span class="n">DS18XXXDeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.sensors.DS18XXX</span> <span class="kn">import</span> <span class="n">DS18XXXDeviceDriver</span>
 <span class="n">temp</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;temp_1&quot;</span><span class="p">,</span> <span class="s2">&quot;Temperature outdoor&quot;</span><span class="p">,</span> <span class="n">DS18XXXDeviceDriver</span><span class="p">(</span><span class="s2">&quot;0xFC2B454C040010&quot;</span><span class="p">))</span>
 <span class="n">temp</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">()</span>
 
@@ -307,7 +300,8 @@
 <div class="section" id="id1">
 <h3>BMP085<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div>see <a class="reference internal" href="#bmp085"><span class="std std-ref">BMP085(I2C)</span></a>.</div></blockquote>
+<div><p>see <a class="reference internal" href="#bmp085"><span class="std std-ref">BMP085(I2C)</span></a>.</p>
+</div></blockquote>
 </div>
 </div>
 <div class="section" id="orientation">
@@ -315,33 +309,33 @@
 <div class="section" id="lsm9ds0-i2c">
 <h3>LSM9DS0(I2C)<a class="headerlink" href="#lsm9ds0-i2c" title="Permalink to this headline">¶</a></h3>
 <p>This driver combines all sensors in the LSM9DS0 into one sensor with three dimensions, heading(compass), roll and pitch</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.sensors.LSM9DS0</span> <span class="k">import</span> <span class="n">LSM9DS0OrientationDeviceDriver</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.sensors.LSM9DS0</span> <span class="kn">import</span> <span class="n">LSM9DS0OrientationDeviceDriver</span>
 <span class="n">LSM9DS0OrientationDeviceDriver</span><span class="p">(</span>
-    <span class="n">is_flipped</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">is_flipped</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
     <span class="n">accl_address</span><span class="o">=</span><span class="n">I2C_ACCL_ADDRESS</span><span class="p">,</span>
     <span class="n">gyro_address</span><span class="o">=</span><span class="n">I2C_GYRO_ADDRESS</span><span class="p">,</span>
-    <span class="n">bus</span><span class="o">=</span><span class="kc">None</span>
+    <span class="n">bus</span><span class="o">=</span><span class="bp">None</span>
 <span class="p">)</span>
 </pre></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">is_flipped:</th><td class="field-body">True if sensor is physically flipped.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">accl_address:</th><td class="field-body">I2C address for accelerator sensor.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">gyro_address:</th><td class="field-body">I2C address for gyro sensor.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">bus:</th><td class="field-body">I2C bus</td>
-</tr>
-</tbody>
-</table>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<dl class="field-list simple">
+<dt class="field-odd">is_flipped</dt>
+<dd class="field-odd"><p>True if sensor is physically flipped.</p>
+</dd>
+<dt class="field-even">accl_address</dt>
+<dd class="field-even"><p>I2C address for accelerator sensor.</p>
+</dd>
+<dt class="field-odd">gyro_address</dt>
+<dd class="field-odd"><p>I2C address for gyro sensor.</p>
+</dd>
+<dt class="field-even">bus</dt>
+<dd class="field-even"><p>I2C bus</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.devices.sensors.LSM9DS0</span> <span class="k">import</span> <span class="n">LSM9DS0OrientationDeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.sensors.LSM9DS0</span> <span class="kn">import</span> <span class="n">LSM9DS0OrientationDeviceDriver</span>
 <span class="n">sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;orientation&quot;</span><span class="p">,</span> <span class="s2">&quot;Orientation&quot;</span><span class="p">,</span> <span class="n">LSM9DS0OrientationDeviceDriver</span><span class="p">())</span>
 
 <span class="c1">#access sub sensors</span>
@@ -362,11 +356,11 @@
 <div class="section" id="cw2015-i2c-rpi-power-pack-hat">
 <h3>CW2015 (I2C, Rpi power pack hat)<a class="headerlink" href="#cw2015-i2c-rpi-power-pack-hat" title="Permalink to this headline">¶</a></h3>
 <p>CW2015 is a single channel Lipo battery manager where it is possible to read the voltage and capacity of the battery.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.sensors</span> <span class="k">import</span> <span class="n">Sensor</span>
-<span class="kn">from</span> <span class="nn">kervi.devices.sensors.CW2015</span> <span class="k">import</span> <span class="n">CW2015VoltageDeviceDriver</span><span class="p">,</span> <span class="n">CW2015CapacityDeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.sensors</span> <span class="kn">import</span> <span class="n">Sensor</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.sensors.CW2015</span> <span class="kn">import</span> <span class="n">CW2015VoltageDeviceDriver</span><span class="p">,</span> <span class="n">CW2015CapacityDeviceDriver</span>
 
 <span class="n">sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;CW2015_voltage&quot;</span><span class="p">,</span> <span class="s2">&quot;CW2015 voltage&quot;</span><span class="p">,</span> <span class="n">CW2015VoltageDeviceDriver</span><span class="p">())</span>
 <span class="n">sensor</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">()</span>
@@ -383,27 +377,25 @@
 <h2>Light (lux)<a class="headerlink" href="#light-lux" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="tsl2561-i2c">
 <h3>TSL2561(I2C)<a class="headerlink" href="#tsl2561-i2c" title="Permalink to this headline">¶</a></h3>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.sensors.TSL2561</span> <span class="k">import</span> <span class="n">TSL2561DeviceDriver</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.sensors.TSL2561</span> <span class="kn">import</span> <span class="n">TSL2561DeviceDriver</span>
 <span class="n">TSL2561DeviceDriver</span><span class="p">(</span>
     <span class="n">address</span><span class="o">=</span><span class="mh">0x39</span><span class="p">,</span>
     <span class="n">bus</span><span class="o">=</span><span class="mi">0</span>
 <span class="p">)</span>
 </pre></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">address:</th><td class="field-body">I2C address. Default is 0x39</td>
-</tr>
-<tr class="field-even field"><th class="field-name">bus:</th><td class="field-body">I2C bus. If 0 or None default bus for platform is selected.</td>
-</tr>
-</tbody>
-</table>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<dl class="field-list simple">
+<dt class="field-odd">address</dt>
+<dd class="field-odd"><p>I2C address. Default is 0x39</p>
+</dd>
+<dt class="field-even">bus</dt>
+<dd class="field-even"><p>I2C bus. If 0 or None default bus for platform is selected.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.devices.sensors.TSL2561</span> <span class="k">import</span> <span class="n">TSL2561DeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.sensors.TSL2561</span> <span class="kn">import</span> <span class="n">TSL2561DeviceDriver</span>
 <span class="n">lux</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;lux_1&quot;</span><span class="p">,</span> <span class="s2">&quot;Light&quot;</span><span class="p">,</span> <span class="n">TSL2561DeviceDriver</span><span class="p">()</span>
 <span class="n">lux</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">()</span>
 
@@ -417,14 +409,14 @@
 <div class="section" id="memory">
 <h3>Memory<a class="headerlink" href="#memory" title="Permalink to this headline">¶</a></h3>
 <p>Sensor that measures the memory use on the device.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.memory_use</span> <span class="k">import</span> <span class="n">MemUseSensorDeviceDriver</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.memory_use</span> <span class="kn">import</span> <span class="n">MemUseSensorDeviceDriver</span>
 <span class="n">MemUseSensorDeviceDriver</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.cpu_temp</span> <span class="k">import</span> <span class="n">MemUseSensorDeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.cpu_temp</span> <span class="kn">import</span> <span class="n">MemUseSensorDeviceDriver</span>
 <span class="n">temp</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;mem_use&quot;</span><span class="p">,</span> <span class="s2">&quot;Memory use&quot;</span><span class="p">,</span> <span class="n">MemUseSensorDeviceDriver</span><span class="p">())</span>
 <span class="n">temp</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">()</span>
 
@@ -435,14 +427,14 @@
 <div class="section" id="cpu-load">
 <h3>CPU load<a class="headerlink" href="#cpu-load" title="Permalink to this headline">¶</a></h3>
 <p>Sensor that measures the cpu load.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.cpu_use</span> <span class="k">import</span> <span class="n">CPULoadSensorDeviceDriver</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.cpu_use</span> <span class="kn">import</span> <span class="n">CPULoadSensorDeviceDriver</span>
 <span class="n">CPULoadSensorDeviceDriver</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.cpu_load</span> <span class="k">import</span> <span class="n">CPULoadSensorDeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.cpu_load</span> <span class="kn">import</span> <span class="n">CPULoadSensorDeviceDriver</span>
 <span class="n">cpu_load</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;cpu_load&quot;</span><span class="p">,</span> <span class="s2">&quot;CPU load&quot;</span><span class="p">,</span> <span class="n">CPULoadSensorDeviceDriver</span><span class="p">())</span>
 <span class="n">cpu_load</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">()</span>
 
@@ -453,14 +445,14 @@
 <div class="section" id="disk-use">
 <h3>Disk use<a class="headerlink" href="#disk-use" title="Permalink to this headline">¶</a></h3>
 <p>Sensor that measures disk use.</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.disk_use</span> <span class="k">import</span> <span class="n">DiskUseSensorDeviceDriver</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.disk_use</span> <span class="kn">import</span> <span class="n">DiskUseSensorDeviceDriver</span>
 <span class="n">DiskUseSensorDeviceDriver</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="k">import</span> <span class="n">Application</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.disk_use</span> <span class="k">import</span> <span class="n">DiskUseSensorDeviceDriver</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.platforms.common.disk_use</span> <span class="kn">import</span> <span class="n">DiskUseSensorDeviceDriver</span>
 <span class="n">disk_use</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;disk_use&quot;</span><span class="p">,</span> <span class="s2">&quot;Disk use&quot;</span><span class="p">,</span> <span class="n">DiskUseSensorDeviceDriver</span><span class="p">())</span>
 <span class="n">disk_use</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">()</span>
 
@@ -473,9 +465,7 @@
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -484,7 +474,7 @@
         <a href="../multi_process.html" class="btn btn-neutral float-right" title="Process distribution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pwm.html" class="btn btn-neutral" title="PWM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pwm.html" class="btn btn-neutral float-left" title="PWM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -493,11 +483,11 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Tim Wentzlau.
+        &copy; Copyright 2019, Tim Wentzlau
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -510,37 +500,32 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-   
+
+  
+  
+    
+  
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    cookieconsent.run({"notice_banner_type":"headline","consent_type":"express","palette":"dark","change_preferences_selector":"#changePreferences","language":"en"});
+});
+</script>
+
+<script cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-144183988-1"></script>
+<script cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144183988-1');
+</script>
+
+
 
 </body>
 </html>
